@@ -1,17 +1,24 @@
 (function() {
   'use strict';
-  // jscs:disable
-  var MIN_ZOOM = 4;
+  // var MIN_ZOOM = 2; // DEV
+  var MIN_ZOOM = 4; // PROD
   var MAX_ZOOM = 9;
-  // jscs:enable
+  var EXAMPLE1 = [
+    {country: 'USA', color: 'rgb(255,0,0)'},
+    {country: 'MEX', color: 'rgb(0,255,0)'}
+  ];
+  var EXAMPLE2 = [
+    {country: 'USA', color: 'rgb(0,255,0)'},
+    {country: 'MEX', color: 'rgb(0,0,255)'}
+  ];
   var L = window.L;
   var thr0w = window.thr0w;
   document.addEventListener('DOMContentLoaded', ready);
   function ready() {
     var frameEl = document.getElementById('my_frame');
     var contentEl = document.getElementById('my_content');
-    thr0w.setBase('http://192.168.1.2');
-    // thr0w.setBase('http://localhost');
+    thr0w.setBase('http://192.168.1.2'); // PROD
+    // thr0w.setBase('http://localhost'); // DEV
     thr0w.addAdminTools(frameEl,
       connectCallback, messageCallback);
     function connectCallback() {
@@ -25,6 +32,15 @@
       var zoomLevel = MIN_ZOOM;
       var centerY;
       var cancelMove;
+      /*
+      var grid = new thr0w.Grid(
+        frameEl,
+        contentEl,
+        [
+          [0]
+        ]
+      );
+      */
       var grid = new thr0w.FlexGrid(
         frameEl,
         contentEl,
@@ -55,6 +71,10 @@
             padding: 111
           }
         ]
+      );
+      var wm = new thr0w.windows.WindowManager(
+        'wm',
+        grid
       );
       var sync = new thr0w.Sync(
         grid,
@@ -93,19 +113,18 @@
         }
       ).addTo(myMap);
       // jscs:enable
-      contentEl.addEventListener('touchstart', start, true);
-      contentEl.addEventListener('touchmove', move, true);
-      contentEl.addEventListener('touchend', end, true);
-      window.addCountry = function(code, color) {
-        addCountry(code, color);
-        countriesSync.update();
-        countriesSync.idle();
-      };
-      window.removeCountries = function() {
-        removeCountries();
-        countriesSync.update();
-        countriesSync.idle();
-      };
+      if (thr0w.getChannel() === 0) {
+        document.getElementById('controls').style.display = 'block';
+      }
+      contentEl.addEventListener('touchstart', handleTouchStart, true);
+      contentEl.addEventListener('touchmove', handleTouchMove, true);
+      contentEl.addEventListener('touchend', handleTouchEnd, true);
+      document.getElementById('remove')
+        .addEventListener('click', handleRemoveClick);
+      document.getElementById('example1')
+        .addEventListener('click', handleExample1Click);
+      document.getElementById('example2')
+        .addEventListener('click', handleExample2Click);
       function message() {
         return {
           center: myMap.getCenter(),
@@ -137,37 +156,7 @@
           }
         }
       }
-      function addCountry(code, color) {
-        var country;
-        var layer;
-        var xmlhttp = new XMLHttpRequest();
-        country = {
-          code: code,
-          color: color
-        };
-        countries.push(country);
-        xmlhttp.onreadystatechange = handleOnReadyStateChange;
-        function handleOnReadyStateChange() {
-          if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-            layer = L.geoJson(
-              JSON.parse(xmlhttp.responseText),
-              {
-                fillColor: color,
-                weight: 5,
-                opacity: 1,
-                color: 'rgb(255,255,255)',
-                fillOpacity: 0.7
-              }
-            );
-            country.layer = layer;
-            layer.addTo(myMap);
-          }
-        }
-        xmlhttp.open('GET', 'lib/world.geo.json/countries/' +
-          code + '.geo.json', true);
-        xmlhttp.send();
-      }
-      function start(e) {
+      function handleTouchStart(e) {
         cancelMove = false;
         touchOneCurrentX = e.touches[0].pageX;
         touchOneCurrentY = e.touches[0].pageY;
@@ -187,7 +176,7 @@
           sync.update();
         }
       }
-      function move(e) {
+      function handleTouchMove(e) {
         var touchOneLastY = touchOneCurrentY;
         var center = myMap.getCenter();
         touchOneCurrentX = e.touches[0].pageX;
@@ -217,7 +206,7 @@
           sync.update();
         }
       }
-      function end(e) {
+      function handleTouchEnd(e) {
         var touchEndRadius;
         if (e.touches.length === 0) {
           if (touchZoom) { // HACK TO HANDLE POOR TOUCH ZOOM
@@ -237,10 +226,70 @@
           sync.idle();
         }
       }
+      function handleRemoveClick() {
+        removeCountries();
+        countriesSync.update();
+        countriesSync.idle();
+      }
+      function handleExample1Click() {
+        var i;
+        removeCountries();
+        for (i = 0; i < EXAMPLE1.length; i++) {
+          addCountry(EXAMPLE1[i].country, EXAMPLE1[i].color);
+        }
+        countriesSync.update();
+        countriesSync.idle();
+      }
+      function handleExample2Click() {
+        var i;
+        removeCountries();
+        for (i = 0; i < EXAMPLE2.length; i++) {
+          addCountry(EXAMPLE2[i].country, EXAMPLE2[i].color);
+        }
+        countriesSync.update();
+        countriesSync.idle();
+      }
+      function addCountry(code, color) {
+        var country;
+        var layer;
+        var xmlhttp = new XMLHttpRequest();
+        country = {
+          code: code,
+          color: color
+        };
+        countries.push(country);
+        xmlhttp.onreadystatechange = handleOnReadyStateChange;
+        function handleOnReadyStateChange() {
+          if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+            layer = L.geoJson(
+              JSON.parse(xmlhttp.responseText),
+              {
+                fillColor: color,
+                weight: 5,
+                opacity: 1,
+                color: 'rgb(255,255,255)',
+                fillOpacity: 0.7
+              }
+            );
+            country.layer = layer;
+            layer.addTo(myMap);
+            layer.addEventListener('click', handleClick);
+          }
+          function handleClick() {
+            wm.openWindow(code, 0, 0, 300, 300, 'about:blank');
+          }
+        }
+        xmlhttp.open('GET', 'lib/world.geo.json/countries/' +
+          code + '.geo.json', true);
+        xmlhttp.send();
+      }
       function removeCountries() {
         var i;
+        var layer;
         for (i = 0; i < countries.length; i++) {
-          countries[i].layer.removeFrom(myMap);
+          layer = countries[i].layer;
+          layer.removeEventListener();
+          layer.removeFrom(myMap);
         }
         countries = [];
       }
