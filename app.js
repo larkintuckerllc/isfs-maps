@@ -1,5 +1,7 @@
 (function() {
   'use strict';
+  var BASE_URL = 'http://192.168.1.2/apps/dev7/';
+  var BROWSERS = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
   // var MIN_ZOOM = 2; // DEV
   var MIN_ZOOM = 4; // PROD
   var MAX_ZOOM = 9;
@@ -11,8 +13,12 @@
     {country: 'USA', color: 'rgb(0,255,0)'},
     {country: 'MEX', color: 'rgb(0,0,255)'}
   ];
+  var SIZE_SINGLE = 0;
+  var SIZE_DOUBLE = 1;
+  var SIZE_FULL = 2;
   var L = window.L;
   var thr0w = window.thr0w;
+  var parameters = parseQueryString();
   document.addEventListener('DOMContentLoaded', ready);
   function ready() {
     var frameEl = document.getElementById('my_frame');
@@ -32,63 +38,132 @@
       var zoomLevel = MIN_ZOOM;
       var centerY;
       var cancelMove;
-      /*
-      var grid = new thr0w.Grid(
-        frameEl,
-        contentEl,
-        [
-          [0]
-        ]
-      );
-      */
-      var grid = new thr0w.FlexGrid(
-        frameEl,
-        contentEl,
-        [
-          [0, 1, 2],
-          [3, 4, 5],
-          [6, 7, 8, 9]
-        ],
-        [
-          {
-            width: 1920,
-            height: 1080,
-            spacing: 28,
-            scale: 0.84,
-            margin: 20
-          },
-          {
-            width: 1920,
-            height: 1080,
-            spacing: 28,
-            scale: 0.84,
-            margin: 60
-          },
-          {
-            width: 1080,
-            height: 1920,
-            spacing: 112,
-            padding: 111
+      var grid;
+      var wm;
+      var sync;
+      var countriesSync;
+      var myMap;
+      var matrix;
+      var rows;
+      var base;
+      var controlChannel;
+      var channel = thr0w.getChannel();
+      var size = parseInt(parameters.size);
+      var singleEl = document.getElementById('single');
+      var doubleEl = document.getElementById('double');
+      switch (size) {
+        case SIZE_SINGLE:
+          base = 'single';
+          controlChannel = channel;
+          matrix = [
+            [channel]
+          ];
+          rows = [
+            {
+              width: 1080,
+              height: 1920
+            }
+          ];
+          break;
+        case SIZE_DOUBLE:
+          singleEl.style.display = 'block';
+          controlChannel = parseInt(parameters.control);
+          base = 'double_' + controlChannel;
+          switch (controlChannel) {
+            case 6:
+              if (channel !== 6 && channel !== 7) {
+                throw 400;
+              }
+              matrix = [
+                [6, 7]
+              ];
+              break;
+            case 7:
+              if (channel !== 7 && channel !== 8) {
+                throw 400;
+              }
+              matrix = [
+                [7, 8]
+              ];
+              break;
+            case 8:
+              if (channel !== 8 && channel !== 9) {
+                throw 400;
+              }
+              matrix = [
+                [8, 9]
+              ];
+              break;
+            default:
+              throw 400;
           }
-        ]
+          rows = [
+            {
+              width: 1080,
+              height: 1920,
+              spacing: 112
+            }
+          ];
+          break;
+        case SIZE_FULL:
+          singleEl.style.display = 'block';
+          doubleEl.style.display = 'block';
+          base = 'full';
+          controlChannel = 6;
+          matrix = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8, 9]
+          ];
+          rows = [
+            {
+              width: 1920,
+              height: 1080,
+              spacing: 28,
+              scale: 0.84,
+              margin: 20
+            },
+            {
+              width: 1920,
+              height: 1080,
+              spacing: 28,
+              scale: 0.84,
+              margin: 60
+            },
+            {
+              width: 1080,
+              height: 1920,
+              spacing: 112,
+              padding: 111
+            }
+          ];
+          break;
+        default:
+          throw 400;
+      }
+      grid = new thr0w.FlexGrid(
+        frameEl,
+        contentEl,
+        matrix,
+        rows
       );
-      var wm = new thr0w.windows.WindowManager(
+      wm = new thr0w.windows.WindowManager(
         'wm',
         grid
       );
-      var sync = new thr0w.Sync(
+      sync = new thr0w.Sync(
         grid,
-        'map',
+        base + '_map',
         message,
         receive
       );
-      var countriesSync = new thr0w.Sync(
+      countriesSync = new thr0w.Sync(
         grid,
-        'countries',
+        base + '_countries',
         countriesMessage,
         countriesReceive
       );
-      var myMap = L.map(
+      myMap = L.map(
         'mapid',
         {
           minZoom: MIN_ZOOM,
@@ -113,12 +188,16 @@
         }
       ).addTo(myMap);
       // jscs:enable
-      if (thr0w.getChannel() === 0) {
+      if (channel === controlChannel) {
         document.getElementById('controls').style.display = 'block';
       }
       contentEl.addEventListener('touchstart', handleTouchStart, true);
       contentEl.addEventListener('touchmove', handleTouchMove, true);
       contentEl.addEventListener('touchend', handleTouchEnd, true);
+      singleEl.addEventListener('click', handleSingleClick);
+      doubleEl.addEventListener('click', handleDoubleClick);
+      document.getElementById('full')
+        .addEventListener('click', handleFullClick);
       document.getElementById('remove')
         .addEventListener('click', handleRemoveClick);
       document.getElementById('example1')
@@ -226,6 +305,43 @@
           sync.idle();
         }
       }
+      function handleSingleClick() {
+        switch (size) {
+          case SIZE_FULL:
+            thr0w.thr0wChannel([16, 17, 18, 19], {action: 'update',
+              url: BASE_URL + '?size=0'});
+            break;
+          case SIZE_DOUBLE:
+            switch (channel) {
+              case 6:
+                thr0w.thr0wChannel([16, 17], {action: 'update',
+                  url: BASE_URL + '?size=0'});
+                break;
+              case 8:
+                thr0w.thr0wChannel([18, 19], {action: 'update',
+                  url: BASE_URL + '?size=0'});
+                break;
+              default:
+            }
+            break;
+          default:
+        }
+      }
+      function handleDoubleClick() {
+        switch (size) {
+          case SIZE_FULL:
+            thr0w.thr0wChannel([16, 17], {action: 'update', url: BASE_URL +
+              '?size=1&control=6'});
+            thr0w.thr0wChannel([18, 19], {action: 'update', url: BASE_URL +
+              '?size=1&control=8'});
+            break;
+          default:
+        }
+      }
+      function handleFullClick() {
+        thr0w.thr0wChannel(BROWSERS, {action: 'update', url: BASE_URL +
+          '?size=2'});
+      }
       function handleRemoveClick() {
         removeCountries();
         countriesSync.update();
@@ -234,6 +350,7 @@
       function handleExample1Click() {
         var i;
         removeCountries();
+        countriesSync.update();
         for (i = 0; i < EXAMPLE1.length; i++) {
           addCountry(EXAMPLE1[i].country, EXAMPLE1[i].color);
         }
@@ -243,6 +360,7 @@
       function handleExample2Click() {
         var i;
         removeCountries();
+        countriesSync.update();
         for (i = 0; i < EXAMPLE2.length; i++) {
           addCountry(EXAMPLE2[i].country, EXAMPLE2[i].color);
         }
@@ -276,7 +394,8 @@
             layer.addEventListener('click', handleClick);
           }
           function handleClick() {
-            wm.openWindow(code, 0, 0, 300, 300, 'about:blank');
+            wm.closeAllWindows();
+            wm.openWindow(code, 300, 3252, 300, 300, 'about:blank');
           }
         }
         xmlhttp.open('GET', 'lib/world.geo.json/countries/' +
@@ -286,6 +405,7 @@
       function removeCountries() {
         var i;
         var layer;
+        wm.closeAllWindows();
         for (i = 0; i < countries.length; i++) {
           layer = countries[i].layer;
           layer.removeEventListener();
@@ -295,5 +415,25 @@
       }
     }
     function messageCallback() {}
+  }
+  function parseQueryString() {
+    var i;
+    var parameterArray;
+    var parsed = {};
+    var qs = window.location.search;
+    var qsArray;
+    if (!qs) {
+      return parsed;
+    }
+    qsArray = qs.substr(1).split('&');
+    for (i = 0; i < qsArray.length; ++i) {
+      parameterArray = qsArray[i].split('=', 2);
+      if (parameterArray.length === 1) {
+        parsed[parameterArray[0]] = '';
+      } else {
+        parsed[parameterArray[0]] = decodeURIComponent(parameterArray[1].replace(/\+/g, ' '));
+      }
+    }
+    return parsed;
   }
 })();
