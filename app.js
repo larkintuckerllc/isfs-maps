@@ -1,8 +1,7 @@
 (function() {
   'use strict';
-  var BASE_URL = 'http://192.168.1.2/apps/dev7/';
+  var BASE_URL = 'http://192.168.1.2/apps/isfs-maps/';
   var BROWSERS = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
-  // var MIN_ZOOM = 2; // DEV
   var MIN_ZOOM = 4; // PROD
   var MAX_ZOOM = 9;
   var EXAMPLE1 = [
@@ -173,6 +172,7 @@
           bounceAtZoomLimits: false,
           inertia: false,
           zoomControl: false,
+          attributionControl: false,
           fadeAnimation: false,
           zoomAnimation: false,
           markerZoomAnimation: false,
