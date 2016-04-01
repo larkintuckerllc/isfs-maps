@@ -2,15 +2,64 @@
   'use strict';
   var BASE_URL = 'http://192.168.1.2/apps/isfs-maps/';
   var BROWSERS = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
-  var MIN_ZOOM = 4; // PROD
+  var MIN_ZOOM = 4;
   var MAX_ZOOM = 9;
   var EXAMPLE1 = [
     {country: 'USA', color: 'rgb(255,0,0)'},
     {country: 'MEX', color: 'rgb(0,255,0)'}
   ];
   var EXAMPLE2 = [
-    {country: 'USA', color: 'rgb(0,255,0)'},
-    {country: 'MEX', color: 'rgb(0,0,255)'}
+    {country: 'USA/WY', color: '#fff5eb'},
+    {country: 'USA/VT', color: '#fff5eb'},
+    {country: 'USA/AK', color: '#fff5eb'},
+    {country: 'USA/ND', color: '#fff5eb'},
+    {country: 'USA/SD', color: '#fff5eb'},
+    {country: 'USA/DE', color: '#fff5eb'},
+    {country: 'USA/MT', color: '#fff5eb'},
+    {country: 'USA/RI', color: '#fff5eb'},
+    {country: 'USA/ME', color: '#fff5eb'},
+    {country: 'USA/NH', color: '#fff5eb'},
+    {country: 'USA/HI', color: '#fff5eb'},
+    {country: 'USA/ID', color: '#fff5eb'},
+    {country: 'USA/WV', color: '#fff5eb'},
+    {country: 'USA/NE', color: '#fff5eb'},
+    {country: 'USA/NM', color: '#fff5eb'},
+    {country: 'USA/NV', color: '#fff5eb'},
+    {country: 'USA/KS', color: '#fff5eb'},
+    {country: 'USA/AR', color: '#fff5eb'},
+    {country: 'USA/MS', color: '#fff5eb'},
+    {country: 'USA/UT', color: '#fff5eb'},
+    {country: 'USA/IA', color: '#fff5eb'},
+    {country: 'USA/PR', color: '#fff5eb'},
+    {country: 'USA/CT', color: '#fff5eb'},
+    {country: 'USA/OK', color: '#fff5eb'},
+    {country: 'USA/OR', color: '#fee6ce'},
+    {country: 'USA/KY', color: '#fee6ce'},
+    {country: 'USA/LA', color: '#fee6ce'},
+    {country: 'USA/AL', color: '#fee6ce'},
+    {country: 'USA/SC', color: '#fee6ce'},
+    {country: 'USA/CO', color: '#fee6ce'},
+    {country: 'USA/MN', color: '#fee6ce'},
+    {country: 'USA/WI', color: '#fee6ce'},
+    {country: 'USA/MD', color: '#fee6ce'},
+    {country: 'USA/MO', color: '#fee6ce'},
+    {country: 'USA/TN', color: '#fee6ce'},
+    {country: 'USA/IN', color: '#fee6ce'},
+    {country: 'USA/MA', color: '#fee6ce'},
+    {country: 'USA/AZ', color: '#fee6ce'},
+    {country: 'USA/WA', color: '#fee6ce'},
+    {country: 'USA/VA', color: '#fdd0a2'},
+    {country: 'USA/NJ', color: '#fdd0a2'},
+    {country: 'USA/MI', color: '#fdd0a2'},
+    {country: 'USA/NC', color: '#fdd0a2'},
+    {country: 'USA/GA', color: '#fdd0a2'},
+    {country: 'USA/OH', color: '#fdd0a2'},
+    {country: 'USA/PA', color: '#fdae6b'},
+    {country: 'USA/IL', color: '#fdae6b'},
+    {country: 'USA/NY', color: '#f16913'},
+    {country: 'USA/FL', color: '#f16913'},
+    {country: 'USA/TX', color: '#a63603'},
+    {country: 'USA/CA', color: '#7f2704'}
   ];
   var SIZE_SINGLE = 0;
   var SIZE_DOUBLE = 1;
@@ -27,6 +76,8 @@
     thr0w.addAdminTools(frameEl,
       connectCallback, messageCallback);
     function connectCallback() {
+      var chart;
+      var popup;
       var countries = [];
       var touchZoom;
       var touchStartRadius;
@@ -45,6 +96,8 @@
       var matrix;
       var rows;
       var base;
+      var windowX;
+      var windowY;
       var controlChannel;
       var channel = thr0w.getChannel();
       var size = parseInt(parameters.size);
@@ -54,6 +107,8 @@
         case SIZE_SINGLE:
           base = 'single';
           controlChannel = channel;
+          windowX = 180;
+          windowY = 1420;
           matrix = [
             [channel]
           ];
@@ -68,6 +123,8 @@
           singleEl.style.display = 'block';
           controlChannel = parseInt(parameters.control);
           base = 'double_' + controlChannel;
+          windowX = 180;
+          windowY = 1420;
           switch (controlChannel) {
             case 6:
               if (channel !== 6 && channel !== 7) {
@@ -109,6 +166,8 @@
           doubleEl.style.display = 'block';
           base = 'full';
           controlChannel = 6;
+          windowX = 300;
+          windowY = 3252;
           matrix = [
             [0, 1, 2],
             [3, 4, 5],
@@ -343,13 +402,22 @@
           '?size=2'});
       }
       function handleRemoveClick() {
+        chart = null;
+        popup = false;
         removeCountries();
         countriesSync.update();
         countriesSync.idle();
       }
       function handleExample1Click() {
         var i;
+        chart = 'example1';
+        popup = true;
         removeCountries();
+        zoomLevel = 4;
+        myMap.setView([51.505, -0.09], zoomLevel);
+        centerY = myMap.latLngToContainerPoint(myMap.getCenter()).y;
+        sync.update();
+        sync.idle();
         countriesSync.update();
         for (i = 0; i < EXAMPLE1.length; i++) {
           addCountry(EXAMPLE1[i].country, EXAMPLE1[i].color);
@@ -359,7 +427,25 @@
       }
       function handleExample2Click() {
         var i;
+        chart = 'usa_population';
+        popup = false;
         removeCountries();
+        switch (size) {
+          case SIZE_SINGLE:
+            zoomLevel = 4;
+            break;
+          case SIZE_DOUBLE:
+            zoomLevel = 5;
+            break;
+          case SIZE_FULL:
+            zoomLevel = 6;
+            break;
+          default:
+        }
+        myMap.setView([41.4831349,-101.9244864], zoomLevel);
+        centerY = myMap.latLngToContainerPoint(myMap.getCenter()).y;
+        sync.update();
+        sync.idle();
         countriesSync.update();
         for (i = 0; i < EXAMPLE2.length; i++) {
           addCountry(EXAMPLE2[i].country, EXAMPLE2[i].color);
@@ -391,11 +477,14 @@
             );
             country.layer = layer;
             layer.addTo(myMap);
-            layer.addEventListener('click', handleClick);
+            if (popup) {
+              layer.addEventListener('click', handleClick);
+            }
           }
           function handleClick() {
             wm.closeAllWindows();
-            wm.openWindow(code, 300, 3252, 300, 300, 'about:blank');
+            wm.openWindow(code, windowX, windowY, 300, 300,
+              chart + '/?code=' + code);
           }
         }
         xmlhttp.open('GET', 'lib/world.geo.json/countries/' +
