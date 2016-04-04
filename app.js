@@ -1,6 +1,7 @@
 (function() {
   'use strict';
-  var BASE_URL = 'http://192.168.1.2/apps/isfs-maps/';
+  var BASE_URL = 'http://192.168.1.2/apps/isfs-maps/'; // PROD
+  // var BASE_URL = 'http://localhost/apps/isfs-maps/'; // DEV
   var BROWSERS = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
   var MIN_ZOOM = 4;
   var MAX_ZOOM = 9;
@@ -30,7 +31,6 @@
     {country: 'USA/MS', color: '#fff5eb'},
     {country: 'USA/UT', color: '#fff5eb'},
     {country: 'USA/IA', color: '#fff5eb'},
-    {country: 'USA/PR', color: '#fff5eb'},
     {country: 'USA/CT', color: '#fff5eb'},
     {country: 'USA/OK', color: '#fff5eb'},
     {country: 'USA/OR', color: '#fee6ce'},
@@ -64,6 +64,28 @@
   var SIZE_SINGLE = 0;
   var SIZE_DOUBLE = 1;
   var SIZE_FULL = 2;
+  var CHARTS = {
+    example1: {
+      popup: true,
+      center: [41.4831349,-101.9244864],
+      zoom: {
+        0: 4,
+        1: 4,
+        2: 4
+      },
+      countries: EXAMPLE1
+    },
+    example2: {
+      popup: false,
+      center: [41.4831349,-101.9244864],
+      zoom: {
+        0: 4,
+        1: 5,
+        2: 6
+      },
+      countries: EXAMPLE2
+    }
+  };
   var L = window.L;
   var thr0w = window.thr0w;
   var parameters = parseQueryString();
@@ -77,7 +99,6 @@
       connectCallback, messageCallback);
     function connectCallback() {
       var chart;
-      var popup;
       var countries = [];
       var touchZoom;
       var touchStartRadius;
@@ -91,7 +112,7 @@
       var grid;
       var wm;
       var sync;
-      var countriesSync;
+      var chartSync;
       var myMap;
       var matrix;
       var rows;
@@ -103,8 +124,10 @@
       var size = parseInt(parameters.size);
       var singleEl = document.getElementById('single');
       var doubleEl = document.getElementById('double');
+      var fullEl = document.getElementById('full');
       switch (size) {
         case SIZE_SINGLE:
+          fullEl.style.display = 'block';
           base = 'single';
           controlChannel = channel;
           windowX = 180;
@@ -121,6 +144,7 @@
           break;
         case SIZE_DOUBLE:
           singleEl.style.display = 'block';
+          fullEl.style.display = 'block';
           controlChannel = parseInt(parameters.control);
           base = 'double_' + controlChannel;
           windowX = 180;
@@ -215,11 +239,11 @@
         message,
         receive
       );
-      countriesSync = new thr0w.Sync(
+      chartSync = new thr0w.Sync(
         grid,
         base + '_countries',
-        countriesMessage,
-        countriesReceive
+        chartMessage,
+        chartReceive
       );
       myMap = L.map(
         'mapid',
@@ -239,6 +263,7 @@
       );
       myMap.setView([51.505, -0.09], zoomLevel);
       centerY = myMap.latLngToContainerPoint(myMap.getCenter()).y;
+      /*
       // jscs:disable
       L.tileLayer(
         'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
@@ -247,6 +272,7 @@
         }
       ).addTo(myMap);
       // jscs:enable
+      */
       if (channel === controlChannel) {
         document.getElementById('controls').style.display = 'block';
       }
@@ -273,26 +299,38 @@
         zoomLevel = data.zoom;
         myMap.setView(data.center, zoomLevel, {animate: false});
       }
-      function countriesMessage() {
+      function chartMessage() {
+        return {
+          chart: chart
+        };
+        /*
         var i;
-        var data = [];
+        var data = {};
+        data.chart = chart;
+        data.countries = [];
         for (i = 0; i < countries.length; i++) {
-          data.push({
+          data.countries.push({
             code: countries[i].code,
             color: countries[i].color
           });
         }
         return data;
+        */
       }
-      function countriesReceive(data) {
+      function chartReceive(data) {
+        chart = data.chart;
+        updateChart();
+        /*
         var i;
-        if (data.length === 0) {
+        chart = data.chart;
+        if (data.countries.length === 0) {
           removeCountries();
-        } else if (data.length !== countries.length) {
-          for (i = countries.length; i < data.length; i++) {
-            addCountry(data[i].code, data[i].color);
+        } else if (data.countries.length !== countries.length) {
+          for (i = countries.length; i < data.countries.length; i++) {
+            addCountry(data.countries[i].code, data.countries[i].color);
           }
         }
+        */
       }
       function handleTouchStart(e) {
         cancelMove = false;
@@ -403,57 +441,39 @@
       }
       function handleRemoveClick() {
         chart = null;
-        popup = false;
-        removeCountries();
-        countriesSync.update();
-        countriesSync.idle();
+        updateChart();
+        chartSync.update();
+        chartSync.idle();
       }
       function handleExample1Click() {
-        var i;
         chart = 'example1';
-        popup = true;
-        removeCountries();
-        zoomLevel = 4;
-        myMap.setView([51.505, -0.09], zoomLevel);
-        centerY = myMap.latLngToContainerPoint(myMap.getCenter()).y;
-        sync.update();
-        sync.idle();
-        countriesSync.update();
-        for (i = 0; i < EXAMPLE1.length; i++) {
-          addCountry(EXAMPLE1[i].country, EXAMPLE1[i].color);
-        }
-        countriesSync.update();
-        countriesSync.idle();
+        updateChart();
+        chartSync.update();
+        chartSync.idle();
       }
       function handleExample2Click() {
-        var i;
-        chart = 'usa_population';
-        popup = false;
-        removeCountries();
-        switch (size) {
-          case SIZE_SINGLE:
-            zoomLevel = 4;
-            break;
-          case SIZE_DOUBLE:
-            zoomLevel = 5;
-            break;
-          case SIZE_FULL:
-            zoomLevel = 6;
-            break;
-          default:
-        }
-        myMap.setView([41.4831349,-101.9244864], zoomLevel);
-        centerY = myMap.latLngToContainerPoint(myMap.getCenter()).y;
-        sync.update();
-        sync.idle();
-        countriesSync.update();
-        for (i = 0; i < EXAMPLE2.length; i++) {
-          addCountry(EXAMPLE2[i].country, EXAMPLE2[i].color);
-        }
-        countriesSync.update();
-        countriesSync.idle();
+        chart = 'example2';
+        updateChart();
+        chartSync.update();
+        chartSync.idle();
       }
-      function addCountry(code, color) {
+      function updateChart() {
+        var i;
+        wm.closeAllWindows();
+        removeCountries();
+        if (chart) {
+          myMap.setView(CHARTS[chart].center,
+            CHARTS[chart].zoom[size]);
+          centerY = myMap.latLngToContainerPoint(myMap.getCenter()).y;
+          for (i = 0; i < CHARTS[chart].countries.length; i++) {
+            addCountry(CHARTS[chart].countries[i].country,
+              CHARTS[chart].countries[i].color,
+              CHARTS[chart].popup
+            );
+          }
+        }
+      }
+      function addCountry(code, color, popup) {
         var country;
         var layer;
         var xmlhttp = new XMLHttpRequest();
@@ -494,7 +514,6 @@
       function removeCountries() {
         var i;
         var layer;
-        wm.closeAllWindows();
         for (i = 0; i < countries.length; i++) {
           layer = countries[i].layer;
           layer.removeEventListener();
