@@ -6,60 +6,63 @@
   var MIN_ZOOM = 4;
   var MAX_ZOOM = 9;
   var EXAMPLE1 = [
-    {country: 'USA', color: 'rgb(255,0,0)'},
-    {country: 'MEX', color: 'rgb(0,255,0)'}
+    {region: 'USA', color: 'rgb(255,0,0)'},
+    {region: 'MEX', color: 'rgb(0,255,0)'}
   ];
   var EXAMPLE2 = [
-    {country: 'USA/WY', color: '#fff5eb'},
-    {country: 'USA/VT', color: '#fff5eb'},
-    {country: 'USA/AK', color: '#fff5eb'},
-    {country: 'USA/ND', color: '#fff5eb'},
-    {country: 'USA/SD', color: '#fff5eb'},
-    {country: 'USA/DE', color: '#fff5eb'},
-    {country: 'USA/MT', color: '#fff5eb'},
-    {country: 'USA/RI', color: '#fff5eb'},
-    {country: 'USA/ME', color: '#fff5eb'},
-    {country: 'USA/NH', color: '#fff5eb'},
-    {country: 'USA/HI', color: '#fff5eb'},
-    {country: 'USA/ID', color: '#fff5eb'},
-    {country: 'USA/WV', color: '#fff5eb'},
-    {country: 'USA/NE', color: '#fff5eb'},
-    {country: 'USA/NM', color: '#fff5eb'},
-    {country: 'USA/NV', color: '#fff5eb'},
-    {country: 'USA/KS', color: '#fff5eb'},
-    {country: 'USA/AR', color: '#fff5eb'},
-    {country: 'USA/MS', color: '#fff5eb'},
-    {country: 'USA/UT', color: '#fff5eb'},
-    {country: 'USA/IA', color: '#fff5eb'},
-    {country: 'USA/CT', color: '#fff5eb'},
-    {country: 'USA/OK', color: '#fff5eb'},
-    {country: 'USA/OR', color: '#fee6ce'},
-    {country: 'USA/KY', color: '#fee6ce'},
-    {country: 'USA/LA', color: '#fee6ce'},
-    {country: 'USA/AL', color: '#fee6ce'},
-    {country: 'USA/SC', color: '#fee6ce'},
-    {country: 'USA/CO', color: '#fee6ce'},
-    {country: 'USA/MN', color: '#fee6ce'},
-    {country: 'USA/WI', color: '#fee6ce'},
-    {country: 'USA/MD', color: '#fee6ce'},
-    {country: 'USA/MO', color: '#fee6ce'},
-    {country: 'USA/TN', color: '#fee6ce'},
-    {country: 'USA/IN', color: '#fee6ce'},
-    {country: 'USA/MA', color: '#fee6ce'},
-    {country: 'USA/AZ', color: '#fee6ce'},
-    {country: 'USA/WA', color: '#fee6ce'},
-    {country: 'USA/VA', color: '#fdd0a2'},
-    {country: 'USA/NJ', color: '#fdd0a2'},
-    {country: 'USA/MI', color: '#fdd0a2'},
-    {country: 'USA/NC', color: '#fdd0a2'},
-    {country: 'USA/GA', color: '#fdd0a2'},
-    {country: 'USA/OH', color: '#fdd0a2'},
-    {country: 'USA/PA', color: '#fdae6b'},
-    {country: 'USA/IL', color: '#fdae6b'},
-    {country: 'USA/NY', color: '#f16913'},
-    {country: 'USA/FL', color: '#f16913'},
-    {country: 'USA/TX', color: '#a63603'},
-    {country: 'USA/CA', color: '#7f2704'}
+    {region: 'USA/WY', color: '#fff5eb'},
+    {region: 'USA/VT', color: '#fff5eb'},
+    {region: 'USA/AK', color: '#fff5eb'},
+    {region: 'USA/ND', color: '#fff5eb'},
+    {region: 'USA/SD', color: '#fff5eb'},
+    {region: 'USA/DE', color: '#fff5eb'},
+    {region: 'USA/MT', color: '#fff5eb'},
+    {region: 'USA/RI', color: '#fff5eb'},
+    {region: 'USA/ME', color: '#fff5eb'},
+    {region: 'USA/NH', color: '#fff5eb'},
+    {region: 'USA/HI', color: '#fff5eb'},
+    {region: 'USA/ID', color: '#fff5eb'},
+    {region: 'USA/WV', color: '#fff5eb'},
+    {region: 'USA/NE', color: '#fff5eb'},
+    {region: 'USA/NM', color: '#fff5eb'},
+    {region: 'USA/NV', color: '#fff5eb'},
+    {region: 'USA/KS', color: '#fff5eb'},
+    {region: 'USA/AR', color: '#fff5eb'},
+    {region: 'USA/MS', color: '#fff5eb'},
+    {region: 'USA/UT', color: '#fff5eb'},
+    {region: 'USA/IA', color: '#fff5eb'},
+    {region: 'USA/CT', color: '#fff5eb'},
+    {region: 'USA/OK', color: '#fff5eb'},
+    {region: 'USA/OR', color: '#fee6ce'},
+    {region: 'USA/KY', color: '#fee6ce'},
+    {region: 'USA/LA', color: '#fee6ce'},
+    {region: 'USA/AL', color: '#fee6ce'},
+    {region: 'USA/SC', color: '#fee6ce'},
+    {region: 'USA/CO', color: '#fee6ce'},
+    {region: 'USA/MN', color: '#fee6ce'},
+    {region: 'USA/WI', color: '#fee6ce'},
+    {region: 'USA/MD', color: '#fee6ce'},
+    {region: 'USA/MO', color: '#fee6ce'},
+    {region: 'USA/TN', color: '#fee6ce'},
+    {region: 'USA/IN', color: '#fee6ce'},
+    {region: 'USA/MA', color: '#fee6ce'},
+    {region: 'USA/AZ', color: '#fee6ce'},
+    {region: 'USA/WA', color: '#fee6ce'},
+    {region: 'USA/VA', color: '#fdd0a2'},
+    {region: 'USA/NJ', color: '#fdd0a2'},
+    {region: 'USA/MI', color: '#fdd0a2'},
+    {region: 'USA/NC', color: '#fdd0a2'},
+    {region: 'USA/GA', color: '#fdd0a2'},
+    {region: 'USA/OH', color: '#fdd0a2'},
+    {region: 'USA/PA', color: '#fdae6b'},
+    {region: 'USA/IL', color: '#fdae6b'},
+    {region: 'USA/NY', color: '#f16913'},
+    {region: 'USA/FL', color: '#f16913'},
+    {region: 'USA/TX', color: '#a63603'},
+    {region: 'USA/CA', color: '#7f2704'}
+  ];
+  var EXAMPLE3 = [
+    {latlng: [41.4831349,-101.9244864], iconUrl: 'img/markers/cat.jpg'}
   ];
   var SIZE_SINGLE = 0;
   var SIZE_DOUBLE = 1;
@@ -73,7 +76,8 @@
         1: 4,
         2: 4
       },
-      countries: EXAMPLE1
+      regions: EXAMPLE1,
+      markers: []
     },
     example2: {
       popup: false,
@@ -83,7 +87,19 @@
         1: 5,
         2: 6
       },
-      countries: EXAMPLE2
+      regions: EXAMPLE2,
+      markers: []
+    },
+    example3: {
+      popup: false,
+      center: [41.4831349,-101.9244864],
+      zoom: {
+        0: 4,
+        1: 5,
+        2: 6
+      },
+      regions: [],
+      markers: EXAMPLE3
     }
   };
   var L = window.L;
@@ -99,7 +115,8 @@
       connectCallback, messageCallback);
     function connectCallback() {
       var chart;
-      var countries = [];
+      var regions = [];
+      var markers = [];
       var touchZoom;
       var touchStartRadius;
       var touchOneCurrentX;
@@ -241,7 +258,7 @@
       );
       chartSync = new thr0w.Sync(
         grid,
-        base + '_countries',
+        base + '_regions',
         chartMessage,
         chartReceive
       );
@@ -299,6 +316,8 @@
         .addEventListener('click', handleExample1Click);
       document.getElementById('example2')
         .addEventListener('click', handleExample2Click);
+      document.getElementById('example3')
+        .addEventListener('click', handleExample3Click);
       function message() {
         return {
           center: myMap.getCenter(),
@@ -443,33 +462,40 @@
         chartSync.update();
         chartSync.idle();
       }
+      function handleExample3Click() {
+        chart = 'example3';
+        updateChart();
+        chartSync.update();
+        chartSync.idle();
+      }
       function updateChart() {
         var i;
         wm.closeAllWindows();
-        removeCountries();
+        removeRegions();
+        removeMarkers();
         if (chart) {
           myMap.setView(CHARTS[chart].center,
             CHARTS[chart].zoom[size]);
           centerY = myMap.latLngToContainerPoint(myMap.getCenter()).y;
-          for (i = 0; i < CHARTS[chart].countries.length; i++) {
-            addCountry(CHARTS[chart].countries[i].country,
-              CHARTS[chart].countries[i].color,
+          for (i = 0; i < CHARTS[chart].regions.length; i++) {
+            addregion(CHARTS[chart].regions[i].region,
+              CHARTS[chart].regions[i].color,
               CHARTS[chart].popup
             );
           }
+          for (i = 0; i < CHARTS[chart].markers.length; i++) {
+            addMarker(CHARTS[chart].markers[i].latlng,
+              CHARTS[chart].markers[i].iconUrl);
+          }
         }
       }
-      function addCountry(code, color, popup) {
-        var country;
-        var layer;
+      function addregion(code, color, popup) {
+        var region = {};
         var xmlhttp = new XMLHttpRequest();
-        country = {
-          code: code,
-          color: color
-        };
-        countries.push(country);
+        regions.push(region);
         xmlhttp.onreadystatechange = handleOnReadyStateChange;
         function handleOnReadyStateChange() {
+          var layer;
           if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
             layer = L.geoJson(
               JSON.parse(xmlhttp.responseText),
@@ -481,7 +507,7 @@
                 fillOpacity: 0.7
               }
             );
-            country.layer = layer;
+            region.layer = layer;
             layer.addTo(myMap);
             if (popup) {
               layer.addEventListener('click', handleClick);
@@ -497,15 +523,35 @@
           code + '.geo.json', true);
         xmlhttp.send();
       }
-      function removeCountries() {
+      function removeRegions() {
         var i;
         var layer;
-        for (i = 0; i < countries.length; i++) {
-          layer = countries[i].layer;
+        for (i = 0; i < regions.length; i++) {
+          layer = regions[i].layer;
           layer.removeEventListener();
           layer.removeFrom(myMap);
         }
-        countries = [];
+        regions = [];
+      }
+      function addMarker(latlng, iconUrl) {
+        var marker = {};
+        var icon = L.icon({
+          iconUrl: iconUrl
+        });
+        var layer = L.marker(latlng, {icon: icon});
+        markers.push(marker);
+        marker.layer = layer;
+        layer.addTo(myMap);
+      }
+      function removeMarkers() {
+        var i;
+        var layer;
+        for (i = 0; i < markers.length; i++) {
+          layer = markers[i].layer;
+          layer.removeEventListener();
+          layer.removeFrom(myMap);
+        }
+        markers = [];
       }
     }
     function messageCallback() {}
