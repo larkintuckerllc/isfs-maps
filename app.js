@@ -127,6 +127,11 @@
       var centerY;
       var cancelMove;
       var grid;
+      var scale;
+      var frameOffsetLeft;
+      var contentLeft;
+      var frameOffsetTop;
+      var contentTop;
       var wm;
       var sync;
       var chartSync;
@@ -137,11 +142,14 @@
       var windowX;
       var windowY;
       var controlChannel;
+      var tileLayer;
       var channel = thr0w.getChannel();
       var size = parseInt(parameters.size);
       var singleEl = document.getElementById('single');
       var doubleEl = document.getElementById('double');
       var fullEl = document.getElementById('full');
+      var satelliteEl = document.getElementById('satellite');
+      var streetEl = document.getElementById('street');
       switch (size) {
         case SIZE_SINGLE:
           fullEl.style.display = 'block';
@@ -246,6 +254,11 @@
         matrix,
         rows
       );
+      scale = grid.getRowScale();
+      frameOffsetLeft = frameEl.offsetLeft;
+      contentLeft = grid.frameXYToContentXY([0,0])[0];
+      frameOffsetTop = frameEl.offsetTop;
+      contentTop = grid.frameXYToContentXY([0,0])[1];
       wm = new thr0w.windows.WindowManager(
         'wm',
         grid
@@ -291,15 +304,7 @@
       // jscs:enable
       */
       // LOCAL DEVELOPMENT
-      L.tileLayer(
-        'map/{z}/{x}/{y}.png',
-        {
-          minZoom: 0,
-          maxZoom: 7,
-          opacity: 1.0,
-          tms: false
-        }
-      ).addTo(myMap);
+      tileLayer = addSatelliteLayer();
       if (channel === controlChannel) {
         document.getElementById('controls').style.display = 'block';
       }
@@ -310,6 +315,8 @@
       doubleEl.addEventListener('click', handleDoubleClick);
       document.getElementById('full')
         .addEventListener('click', handleFullClick);
+      satelliteEl.addEventListener('click', handleSatelliteClick);
+      streetEl.addEventListener('click', handleStreetClick);
       document.getElementById('remove')
         .addEventListener('click', handleRemoveClick);
       document.getElementById('example1')
@@ -337,16 +344,36 @@
         chart = data.chart;
         updateChart();
       }
+      function addSatelliteLayer() {
+        return L.tileLayer(
+          'map/{z}/{x}/{y}.png',
+          {
+            minZoom: 0,
+            maxZoom: 7,
+            opacity: 1.0,
+            tms: false
+          }
+        ).addTo(myMap);
+      }
       function handleTouchStart(e) {
+        // TODO: WORRY ABOUT SCALE AND BUILT IN PANNING
         cancelMove = false;
-        touchOneCurrentX = e.touches[0].pageX;
-        touchOneCurrentY = e.touches[0].pageY;
+        touchOneCurrentX = (e.touches[0].pageX - frameOffsetLeft) *
+          scale + contentLeft;
+        touchOneCurrentY = (e.touches[0].pageY - frameOffsetTop) *
+          scale + contentTop;
+        // touchOneCurrentX = e.touches[0].pageX;
+        // touchOneCurrentY = e.touches[0].pageY;
         if (e.touches.length > 1) { // HACK TO REPLACE POOR TOUCH ZOOM
           e.stopPropagation();
           if (e.touches.length === 2) {
             touchZoom = true;
-            touchTwoCurrentX = e.touches[1].pageX;
-            touchTwoCurrentY = e.touches[1].pageY;
+            // touchTwoCurrentX = e.touches[1].pageX;
+            // touchTwoCurrentY = e.touches[1].pageY;
+            touchTwoCurrentX = (e.touches[1].pageX - frameOffsetLeft) *
+              scale + contentLeft;
+            touchTwoCurrentY = (e.touches[1].pageY - frameOffsetTop) *
+              scale + contentTop;
             touchStartRadius = Math.floor(Math.sqrt(
               Math.pow(touchOneCurrentX - touchTwoCurrentX, 2) +
               Math.pow(touchOneCurrentY - touchTwoCurrentY, 2)
@@ -360,12 +387,20 @@
       function handleTouchMove(e) {
         var touchOneLastY = touchOneCurrentY;
         var center = myMap.getCenter();
-        touchOneCurrentX = e.touches[0].pageX;
-        touchOneCurrentY = e.touches[0].pageY;
+        // touchOneCurrentX = e.touches[0].pageX;
+        // touchOneCurrentY = e.touches[0].pageY;
+        touchOneCurrentX = (e.touches[0].pageX - frameOffsetLeft) *
+          scale + contentLeft;
+        touchOneCurrentY = (e.touches[0].pageY - frameOffsetTop) *
+          scale + contentTop;
         if (e.touches.length > 1) {
           e.stopPropagation(); // HACK TO REPLACE POOR TOUCH ZOOM
-          touchTwoCurrentX = e.touches[1].pageX;
-          touchTwoCurrentY = e.touches[1].pageY;
+          // touchTwoCurrentX = e.touches[1].pageX;
+          // touchTwoCurrentY = e.touches[1].pageY;
+          touchTwoCurrentX = (e.touches[1].pageX - frameOffsetLeft) *
+            scale + contentLeft;
+          touchTwoCurrentY = (e.touches[1].pageY - frameOffsetTop) *
+            scale + contentTop;
         } else {
           if (cancelMove) { // HACK TO PREVENT POOR EDGE HANDLING
             e.stopPropagation();
@@ -401,7 +436,14 @@
             zoomLevel = zoomLevel < MAX_ZOOM &&
               touchEndRadius > touchStartRadius ?
               zoomLevel + 1 : zoomLevel;
-            myMap.setView(myMap.getCenter(), zoomLevel, {animate: false});
+            myMap.setView(
+              myMap.containerPointToLatLng(
+                L.point(
+                  (touchOneCurrentX + touchTwoCurrentX) / 2,
+                  (touchOneCurrentY + touchTwoCurrentY) / 2
+                )
+              ),
+              zoomLevel, {animate: false});
           }
           sync.update();
           sync.idle();
@@ -443,6 +485,16 @@
       function handleFullClick() {
         thr0w.thr0wChannel(BROWSERS, {action: 'update', url: BASE_URL +
           '?size=2'});
+      }
+      function handleSatelliteClick() {
+        satelliteEl.style.display = 'none';
+        streetEl.style.display = 'block';
+        tileLayer = addSatelliteLayer();
+      }
+      function handleStreetClick() {
+        streetEl.style.display = 'none';
+        satelliteEl.style.display = 'block';
+        tileLayer.removeFrom(myMap);
       }
       function handleRemoveClick() {
         chart = null;
