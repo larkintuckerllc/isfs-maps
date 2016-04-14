@@ -1,7 +1,7 @@
 (function() {
   'use strict';
-  // var BASE_URL = 'http://192.168.1.2/apps/isfs-maps/'; // PROD
-  var BASE_URL = 'http://localhost/apps/isfs-maps/'; // DEV
+  var BASE_URL = 'http://192.168.1.2/apps/isfs-maps/'; // PROD
+  // var BASE_URL = 'http://localhost/apps/isfs-maps/'; // DEV
   var BROWSERS = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
   var MIN_ZOOM = 4;
   var MAX_ZOOM = 9;
@@ -62,7 +62,14 @@
     {region: 'USA/CA', color: '#7f2704'}
   ];
   var EXAMPLE3 = [
-    {latlng: [41.4831349,-101.9244864], iconUrl: 'img/markers/cat.jpg'}
+    {
+      latlng: [41.4831349,-101.9244864],
+      iconUrls: [
+        'img/markers/cat.jpg',
+        'img/markers/single.png'
+      ],
+      minZoom: 5
+    }
   ];
   var SIZE_SINGLE = 0;
   var SIZE_DOUBLE = 1;
@@ -109,33 +116,19 @@
   function ready() {
     var frameEl = document.getElementById('my_frame');
     var contentEl = document.getElementById('my_content');
-    // thr0w.setBase('http://192.168.1.2'); // PROD
-    thr0w.setBase('http://localhost'); // DEV
+    thr0w.setBase('http://192.168.1.2'); // PROD
+    // thr0w.setBase('http://localhost'); // DEV
     thr0w.addAdminTools(frameEl,
       connectCallback, messageCallback);
     function connectCallback() {
       var chart;
       var regions = [];
       var markers = [];
-      var touchZoom;
-      var touchStartRadius;
-      var touchOneCurrentX;
-      var touchOneCurrentY;
-      var touchTwoCurrentX;
-      var touchTwoCurrentY;
-      var zoomLevel = MIN_ZOOM;
-      var centerY;
-      var cancelMove;
       var grid;
-      var scale;
-      var frameOffsetLeft;
-      var contentLeft;
-      var frameOffsetTop;
-      var contentTop;
       var wm;
-      var sync;
       var chartSync;
-      var myMap;
+      var leafletMap;
+      var map;
       var matrix;
       var rows;
       var base;
@@ -254,63 +247,33 @@
         matrix,
         rows
       );
-      scale = grid.getRowScale();
-      frameOffsetLeft = frameEl.offsetLeft;
-      contentLeft = grid.frameXYToContentXY([0,0])[0];
-      frameOffsetTop = frameEl.offsetTop;
-      contentTop = grid.frameXYToContentXY([0,0])[1];
       wm = new thr0w.windows.WindowManager(
         'wm',
         grid
       );
-      sync = new thr0w.Sync(
-        grid,
-        base + '_map',
-        message,
-        receive
-      );
       chartSync = new thr0w.Sync(
         grid,
-        base + '_regions',
+        base + '_chart',
         chartMessage,
         chartReceive
       );
-      myMap = L.map(
+      leafletMap = L.map(
         'mapid',
         {
           minZoom: MIN_ZOOM,
           maxZoom: MAX_ZOOM,
-          touchZoom: false,
-          doubleClickZoom: false,
-          bounceAtZoomLimits: false,
-          inertia: false,
           zoomControl: false,
-          attributionControl: false,
-          fadeAnimation: false,
-          zoomAnimation: false,
-          markerZoomAnimation: false,
+          attributionControl: false
         }
       );
-      myMap.setView([51.505, -0.09], zoomLevel);
-      centerY = myMap.latLngToContainerPoint(myMap.getCenter()).y;
-      /*
-      // jscs:disable
-      L.tileLayer(
-        'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-        {
-	         attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
-        }
-      ).addTo(myMap);
-      // jscs:enable
-      */
-      // LOCAL DEVELOPMENT
+      leafletMap.setView([0, 0], MIN_ZOOM);
+      leafletMap.addEventListener('zoom', zoomed);
       tileLayer = addSatelliteLayer();
+      map = new thr0w.leaflet.Map(grid, leafletMap);
+      // CONTROLS
       if (channel === controlChannel) {
         document.getElementById('controls').style.display = 'block';
       }
-      contentEl.addEventListener('touchstart', handleTouchStart, true);
-      contentEl.addEventListener('touchmove', handleTouchMove, true);
-      contentEl.addEventListener('touchend', handleTouchEnd, true);
       singleEl.addEventListener('click', handleSingleClick);
       doubleEl.addEventListener('click', handleDoubleClick);
       document.getElementById('full')
@@ -325,16 +288,6 @@
         .addEventListener('click', handleExample2Click);
       document.getElementById('example3')
         .addEventListener('click', handleExample3Click);
-      function message() {
-        return {
-          center: myMap.getCenter(),
-          zoom: myMap.getZoom()
-        };
-      }
-      function receive(data) {
-        zoomLevel = data.zoom;
-        myMap.setView(data.center, zoomLevel, {animate: false});
-      }
       function chartMessage() {
         return {
           chart: chart
@@ -345,6 +298,17 @@
         updateChart();
       }
       function addSatelliteLayer() {
+        // PROD
+        // jscs:disable
+        return L.tileLayer(
+          'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+          {
+  	         attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+          }
+        ).addTo(leafletMap);
+        // jscs:enable
+        // DEV
+        /*
         return L.tileLayer(
           'map/{z}/{x}/{y}.png',
           {
@@ -353,100 +317,21 @@
             opacity: 1.0,
             tms: false
           }
-        ).addTo(myMap);
+        ).addTo(leafletMap);
+        */
       }
-      function handleTouchStart(e) {
-        // TODO: WORRY ABOUT SCALE AND BUILT IN PANNING
-        cancelMove = false;
-        touchOneCurrentX = (e.touches[0].pageX - frameOffsetLeft) *
-          scale + contentLeft;
-        touchOneCurrentY = (e.touches[0].pageY - frameOffsetTop) *
-          scale + contentTop;
-        // touchOneCurrentX = e.touches[0].pageX;
-        // touchOneCurrentY = e.touches[0].pageY;
-        if (e.touches.length > 1) { // HACK TO REPLACE POOR TOUCH ZOOM
-          e.stopPropagation();
-          if (e.touches.length === 2) {
-            touchZoom = true;
-            // touchTwoCurrentX = e.touches[1].pageX;
-            // touchTwoCurrentY = e.touches[1].pageY;
-            touchTwoCurrentX = (e.touches[1].pageX - frameOffsetLeft) *
-              scale + contentLeft;
-            touchTwoCurrentY = (e.touches[1].pageY - frameOffsetTop) *
-              scale + contentTop;
-            touchStartRadius = Math.floor(Math.sqrt(
-              Math.pow(touchOneCurrentX - touchTwoCurrentX, 2) +
-              Math.pow(touchOneCurrentY - touchTwoCurrentY, 2)
-            ));
+      function zoomed() {
+        var zoom = leafletMap.getZoom();
+        var i;
+        for (i = 0; i < markers.length; i++) {
+          if (zoom >= markers[i].minZoom && !markers[i].added) {
+            markers[i].added = true;
+            markers[i].layer.addTo(leafletMap);
           }
-        } else {
-          touchZoom = false;
-          sync.update();
-        }
-      }
-      function handleTouchMove(e) {
-        var touchOneLastY = touchOneCurrentY;
-        var center = myMap.getCenter();
-        // touchOneCurrentX = e.touches[0].pageX;
-        // touchOneCurrentY = e.touches[0].pageY;
-        touchOneCurrentX = (e.touches[0].pageX - frameOffsetLeft) *
-          scale + contentLeft;
-        touchOneCurrentY = (e.touches[0].pageY - frameOffsetTop) *
-          scale + contentTop;
-        if (e.touches.length > 1) {
-          e.stopPropagation(); // HACK TO REPLACE POOR TOUCH ZOOM
-          // touchTwoCurrentX = e.touches[1].pageX;
-          // touchTwoCurrentY = e.touches[1].pageY;
-          touchTwoCurrentX = (e.touches[1].pageX - frameOffsetLeft) *
-            scale + contentLeft;
-          touchTwoCurrentY = (e.touches[1].pageY - frameOffsetTop) *
-            scale + contentTop;
-        } else {
-          if (cancelMove) { // HACK TO PREVENT POOR EDGE HANDLING
-            e.stopPropagation();
-            return;
+          if (zoom < markers[i].minZoom && markers[i].added) {
+            markers[i].added = false;
+            markers[i].layer.removeFrom(leafletMap);
           }
-          if (touchOneCurrentY > touchOneLastY &&
-            myMap.latLngToContainerPoint(center).y > centerY) {
-            e.stopPropagation();
-            cancelMove = true;
-            myMap.setView(L.latLng(80,center.lng), zoomLevel, {animate: false});
-          }
-          if (touchOneCurrentY < touchOneLastY &&
-            myMap.latLngToContainerPoint(center).y < centerY) {
-            e.stopPropagation();
-            cancelMove = true;
-            myMap.setView(L.latLng(-80,center.lng), zoomLevel,
-              {animate: false});
-          }
-          sync.update();
-        }
-      }
-      function handleTouchEnd(e) {
-        var touchEndRadius;
-        if (e.touches.length === 0) {
-          if (touchZoom) { // HACK TO HANDLE POOR TOUCH ZOOM
-            touchEndRadius = Math.floor(Math.sqrt(
-              Math.pow(touchOneCurrentX - touchTwoCurrentX, 2) +
-              Math.pow(touchOneCurrentY - touchTwoCurrentY, 2)
-            ));
-            zoomLevel = zoomLevel > MIN_ZOOM &&
-              touchEndRadius < touchStartRadius ?
-              zoomLevel - 1 : zoomLevel;
-            zoomLevel = zoomLevel < MAX_ZOOM &&
-              touchEndRadius > touchStartRadius ?
-              zoomLevel + 1 : zoomLevel;
-            myMap.setView(
-              myMap.containerPointToLatLng(
-                L.point(
-                  (touchOneCurrentX + touchTwoCurrentX) / 2,
-                  (touchOneCurrentY + touchTwoCurrentY) / 2
-                )
-              ),
-              zoomLevel, {animate: false});
-          }
-          sync.update();
-          sync.idle();
         }
       }
       function handleSingleClick() {
@@ -494,7 +379,7 @@
       function handleStreetClick() {
         streetEl.style.display = 'none';
         satelliteEl.style.display = 'block';
-        tileLayer.removeFrom(myMap);
+        tileLayer.removeFrom(leafletMap);
       }
       function handleRemoveClick() {
         chart = null;
@@ -522,13 +407,17 @@
       }
       function updateChart() {
         var i;
+        var j;
         wm.closeAllWindows();
         removeRegions();
         removeMarkers();
         if (chart) {
-          myMap.setView(CHARTS[chart].center,
-            CHARTS[chart].zoom[size]);
-          centerY = myMap.latLngToContainerPoint(myMap.getCenter()).y;
+          map.moveTo(
+            0,
+            CHARTS[chart].center[0],
+            CHARTS[chart].center[1],
+            CHARTS[chart].zoom[size]
+          );
           for (i = 0; i < CHARTS[chart].regions.length; i++) {
             addregion(CHARTS[chart].regions[i].region,
               CHARTS[chart].regions[i].color,
@@ -536,8 +425,13 @@
             );
           }
           for (i = 0; i < CHARTS[chart].markers.length; i++) {
-            addMarker(CHARTS[chart].markers[i].latlng,
-              CHARTS[chart].markers[i].iconUrl);
+            for (j = 0; j < CHARTS[chart].markers[i].iconUrls.length; j++) {
+              addMarker(
+                CHARTS[chart].markers[i].latlng,
+                CHARTS[chart].markers[i].iconUrls[j],
+                CHARTS[chart].markers[i].minZoom
+              );
+            }
           }
         }
       }
@@ -560,7 +454,7 @@
               }
             );
             region.layer = layer;
-            layer.addTo(myMap);
+            layer.addTo(leafletMap);
             if (popup) {
               layer.addEventListener('click', handleClick);
             }
@@ -581,19 +475,24 @@
         for (i = 0; i < regions.length; i++) {
           layer = regions[i].layer;
           layer.removeEventListener();
-          layer.removeFrom(myMap);
+          layer.removeFrom(leafletMap);
         }
         regions = [];
       }
-      function addMarker(latlng, iconUrl) {
+      function addMarker(latlng, iconUrl, minZoom) {
         var marker = {};
         var icon = L.icon({
           iconUrl: iconUrl
         });
         var layer = L.marker(latlng, {icon: icon});
-        markers.push(marker);
         marker.layer = layer;
-        layer.addTo(myMap);
+        marker.minZoom = minZoom;
+        marker.added = false;
+        markers.push(marker);
+        if (leafletMap.getZoom() >= minZoom) {
+          marker.added = true;
+          layer.addTo(leafletMap);
+        }
       }
       function removeMarkers() {
         var i;
@@ -601,7 +500,9 @@
         for (i = 0; i < markers.length; i++) {
           layer = markers[i].layer;
           layer.removeEventListener();
-          layer.removeFrom(myMap);
+          if (markers[i].added) {
+            layer.removeFrom(leafletMap);
+          }
         }
         markers = [];
       }
