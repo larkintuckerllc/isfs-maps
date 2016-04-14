@@ -1,7 +1,7 @@
 (function() {
   'use strict';
-  var BASE_URL = 'http://192.168.1.2/apps/debug2/'; // PROD
-  // var BASE_URL = 'http://localhost/apps/isfs-maps/'; // DEV
+  // var BASE_URL = 'http://192.168.1.2/apps/debug2/'; // PROD
+  var BASE_URL = 'http://localhost/apps/isfs-maps/'; // DEV
   var BROWSERS = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
   var MIN_ZOOM = 4;
   var MAX_ZOOM = 9;
@@ -116,8 +116,8 @@
   function ready() {
     var frameEl = document.getElementById('my_frame');
     var contentEl = document.getElementById('my_content');
-    thr0w.setBase('http://192.168.1.2'); // PROD
-    // thr0w.setBase('http://localhost'); // DEV
+    // thr0w.setBase('http://192.168.1.2'); // PROD
+    thr0w.setBase('http://localhost'); // DEV
     thr0w.addAdminTools(frameEl,
       connectCallback, messageCallback);
     function connectCallback() {
@@ -431,7 +431,7 @@
         }
         if (tiles === 'street') {
           tileLayer = L.tileLayer(
-            'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            'http://localhost:8081/street/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
           }).addTo(leafletMap);
@@ -440,7 +440,7 @@
           // PROD
           // jscs:disable
           tileLayer =  L.tileLayer(
-            'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+            'http://localhost:8081/satellite/{z}/{y}/{x}',
             {
                attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
             }
