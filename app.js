@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  var BASE_URL = 'http://192.168.1.2/apps/isfs-maps/'; // PROD
+  var BASE_URL = 'http://192.168.1.2/apps/debug2/'; // PROD
   // var BASE_URL = 'http://localhost/apps/isfs-maps/'; // DEV
   var BROWSERS = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
   var MIN_ZOOM = 4;
@@ -121,7 +121,8 @@
     thr0w.addAdminTools(frameEl,
       connectCallback, messageCallback);
     function connectCallback() {
-      var chart;
+      var chart = null;
+      var tiles = null;
       var regions = [];
       var markers = [];
       var grid;
@@ -268,7 +269,8 @@
       );
       leafletMap.setView([0, 0], MIN_ZOOM);
       leafletMap.addEventListener('zoom', zoomed);
-      tileLayer = addSatelliteLayer();
+      tiles = 'satellite';
+      updateTiles();
       map = new thr0w.leaflet.Map(grid, leafletMap);
       // CONTROLS
       if (channel === controlChannel) {
@@ -290,35 +292,15 @@
         .addEventListener('click', handleExample3Click);
       function chartMessage() {
         return {
-          chart: chart
+          chart: chart,
+          tiles: tiles
         };
       }
       function chartReceive(data) {
         chart = data.chart;
+        tiles = data.tiles;
         updateChart();
-      }
-      function addSatelliteLayer() {
-        // PROD
-        // jscs:disable
-        return L.tileLayer(
-          'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-          {
-  	         attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
-          }
-        ).addTo(leafletMap);
-        // jscs:enable
-        // DEV
-        /*
-        return L.tileLayer(
-          'map/{z}/{x}/{y}.png',
-          {
-            minZoom: 0,
-            maxZoom: 7,
-            opacity: 1.0,
-            tms: false
-          }
-        ).addTo(leafletMap);
-        */
+        updateTiles();
       }
       function zoomed() {
         var zoom = leafletMap.getZoom();
@@ -374,12 +356,18 @@
       function handleSatelliteClick() {
         satelliteEl.style.display = 'none';
         streetEl.style.display = 'block';
-        tileLayer = addSatelliteLayer();
+        tiles = 'satellite';
+        updateTiles();
+        chartSync.update();
+        chartSync.idle();
       }
       function handleStreetClick() {
         streetEl.style.display = 'none';
         satelliteEl.style.display = 'block';
-        tileLayer.removeFrom(leafletMap);
+        tiles = 'street';
+        updateTiles();
+        chartSync.update();
+        chartSync.idle();
       }
       function handleRemoveClick() {
         chart = null;
@@ -412,12 +400,14 @@
         removeRegions();
         removeMarkers();
         if (chart) {
-          map.moveTo(
-            0,
-            CHARTS[chart].center[0],
-            CHARTS[chart].center[1],
-            CHARTS[chart].zoom[size]
-          );
+          if (channel === controlChannel) {
+            map.moveTo(
+              0,
+              CHARTS[chart].center[0],
+              CHARTS[chart].center[1],
+              CHARTS[chart].zoom[size]
+            );
+          }
           for (i = 0; i < CHARTS[chart].regions.length; i++) {
             addregion(CHARTS[chart].regions[i].region,
               CHARTS[chart].regions[i].color,
@@ -433,6 +423,41 @@
               );
             }
           }
+        }
+      }
+      function updateTiles() {
+        if (tileLayer) {
+          tileLayer.removeFrom(leafletMap);
+        }
+        if (tiles === 'street') {
+          tileLayer = L.tileLayer(
+            'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+          }).addTo(leafletMap);
+        }
+        if (tiles === 'satellite') {
+          // PROD
+          // jscs:disable
+          tileLayer =  L.tileLayer(
+            'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+            {
+               attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+            }
+          ).addTo(leafletMap);
+          // jscs:enable
+          // DEV
+          /*
+          return L.tileLayer(
+            'map/{z}/{x}/{y}.png',
+            {
+              minZoom: 0,
+              maxZoom: 7,
+              opacity: 1.0,
+              tms: false
+            }
+          ).addTo(leafletMap);
+          */
         }
       }
       function addregion(code, color, popup) {
