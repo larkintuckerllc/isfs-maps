@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  var BASE_URL = 'http://192.168.1.2/apps/debug2/'; // PROD
+  var BASE_URL = 'http://192.168.1.2/apps/isfs-maps/'; // PROD
   // var BASE_URL = 'http://localhost/apps/isfs-maps/'; // DEV
   var BROWSERS = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
   var MIN_ZOOM = 4;
@@ -266,7 +266,7 @@
           attributionControl: false
         }
       );
-      leafletMap = map.leafletMap;
+      leafletMap = map.getLeafletMap();
       leafletMap.addEventListener('zoom', zoomed);
       tiles = 'satellite';
       updateTiles();
@@ -446,8 +446,8 @@
             }
           ).addTo(leafletMap);
           // jscs:enable
-          // DEV
           /*
+          // DEV
           return L.tileLayer(
             'map/{z}/{x}/{y}.png',
             {
