@@ -1,10 +1,10 @@
 (function() {
   'use strict';
-  // var BASE_URL = 'http://192.168.1.2/apps/debug2/'; // PROD
-  var BASE_URL = 'http://localhost/apps/isfs-maps/'; // DEV
+  var BASE_URL = 'http://192.168.1.2/apps/debug2/'; // PROD
+  // var BASE_URL = 'http://localhost/apps/isfs-maps/'; // DEV
   var BROWSERS = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
   var MIN_ZOOM = 4;
-  var MAX_ZOOM = 9;
+  var MAX_ZOOM = 19;
   var EXAMPLE1 = [
     {region: 'USA', color: 'rgb(255,0,0)'},
     {region: 'MEX', color: 'rgb(0,255,0)'}
@@ -116,8 +116,8 @@
   function ready() {
     var frameEl = document.getElementById('my_frame');
     var contentEl = document.getElementById('my_content');
-    // thr0w.setBase('http://192.168.1.2'); // PROD
-    thr0w.setBase('http://localhost'); // DEV
+    thr0w.setBase('http://192.168.1.2'); // PROD
+    // thr0w.setBase('http://localhost'); // DEV
     thr0w.addAdminTools(frameEl,
       connectCallback, messageCallback);
     function connectCallback() {
@@ -258,8 +258,7 @@
         chartMessage,
         chartReceive
       );
-      leafletMap = L.map(
-        'mapid',
+      map = new thr0w.leaflet.Map(grid, 0, 0, MIN_ZOOM,
         {
           minZoom: MIN_ZOOM,
           maxZoom: MAX_ZOOM,
@@ -267,11 +266,10 @@
           attributionControl: false
         }
       );
-      leafletMap.setView([0, 0], MIN_ZOOM);
+      leafletMap = map.leafletMap;
       leafletMap.addEventListener('zoom', zoomed);
       tiles = 'satellite';
       updateTiles();
-      map = new thr0w.leaflet.Map(grid, leafletMap);
       // CONTROLS
       if (channel === controlChannel) {
         document.getElementById('controls').style.display = 'block';
@@ -430,17 +428,19 @@
           tileLayer.removeFrom(leafletMap);
         }
         if (tiles === 'street') {
+          // jscs:disable
           tileLayer = L.tileLayer(
-            'http://localhost:8081/street/{z}/{x}/{y}.png', {
+            'http://192.168.1.2/street/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
           }).addTo(leafletMap);
+          // jscs:enable
         }
         if (tiles === 'satellite') {
           // PROD
           // jscs:disable
           tileLayer =  L.tileLayer(
-            'http://localhost:8081/satellite/{z}/{y}/{x}',
+            'http://192.168.1.2/satellite/{z}/{y}/{x}',
             {
                attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
             }
