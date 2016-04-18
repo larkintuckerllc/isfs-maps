@@ -63,12 +63,39 @@
   ];
   var EXAMPLE3 = [
     {
-      latlng: [41.4831349,-101.9244864],
+      latlng: [32.5,-120.25],
       iconUrls: [
-        'img/markers/cat.jpg',
-        'img/markers/single.png'
+        'img/markers/spot_prawn.png'
       ],
-      minZoom: 5
+      minZoom: 6
+    },
+    {
+      latlng: [33.5,-121],
+      iconUrls: [
+        'img/markers/sea_cucumber.png'
+      ],
+      minZoom: 6
+    },
+    {
+      latlng: [33.5,-119.5],
+      iconUrls: [
+        'img/markers/sea_urchin.png'
+      ],
+      minZoom: 6
+    },
+    {
+      latlng: [32,-118.5],
+      iconUrls: [
+        'img/markers/spiny_lobster.png'
+      ],
+      minZoom: 6
+    },
+    {
+      latlng: [33.970697997361626,-122.5],
+      iconUrls: [
+        'img/markers/rock_crab.png'
+      ],
+      minZoom: 6
     }
   ];
   var SIZE_SINGLE = 0;
@@ -90,8 +117,8 @@
       popup: false,
       center: [41.4831349,-101.9244864],
       zoom: {
-        0: 4,
-        1: 5,
+        0: 6,
+        1: 6,
         2: 6
       },
       regions: EXAMPLE2,
@@ -99,10 +126,10 @@
     },
     example3: {
       popup: false,
-      center: [41.4831349,-101.9244864],
+      center: [37.287953, -120.817917],
       zoom: {
-        0: 4,
-        1: 5,
+        0: 7,
+        1: 6,
         2: 6
       },
       regions: [],
