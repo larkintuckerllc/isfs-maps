@@ -1,3 +1,6 @@
+:focus {
+  outline: 0;
+}
 html, body {
   margin: 0px;
   padding: 0px;
@@ -23,4 +26,11 @@ html, body {
 }
 .control {
   height: 100px;
+}
+.leaflet-marker {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
 }

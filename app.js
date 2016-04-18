@@ -63,39 +63,84 @@
   ];
   var EXAMPLE3 = [
     {
-      latlng: [32.5,-120.25],
+      marker: 'chinook_salmon',
+      latlng: [40,-125],
+      iconUrls: [
+        'img/markers/chinook_salmon.png'
+      ],
+      minZoom: 7
+    },
+    {
+      marker: 'dungeness_crab',
+      latlng: [38.5,-124.25],
+      iconUrls: [
+        'img/markers/dungeness_crab.png'
+      ],
+      minZoom: 7
+    },
+    {
+      marker: 'sablefish',
+      latlng: [37.5,-123.65],
+      iconUrls: [
+        'img/markers/sablefish.png'
+      ],
+      minZoom: 7
+    },
+    {
+      marker: 'market_squid',
+      latlng: [36.5,-123.15],
+      iconUrls: [
+        'img/markers/market_squid.png'
+      ],
+      minZoom: 7
+    },
+    {
+      marker: 'nearshore_finfish',
+      latlng: [35.5,-122.15],
+      iconUrls: [
+        'img/markers/nearshore_finfish.png'
+      ],
+      minZoom: 7
+    },
+    {
+      marker: 'spot_prawn',
+      latlng: [33,-120.75],
       iconUrls: [
         'img/markers/spot_prawn.png'
       ],
-      minZoom: 6
+      minZoom: 7
     },
     {
-      latlng: [33.5,-121],
+      marker: 'sea_cucumber',
+      latlng: [34.1,-120.75],
       iconUrls: [
         'img/markers/sea_cucumber.png'
       ],
-      minZoom: 6
+      minZoom: 7
     },
     {
-      latlng: [33.5,-119.5],
+      marker: 'sea_urchin',
+      latlng: [33.9,-119.5],
       iconUrls: [
         'img/markers/sea_urchin.png'
       ],
-      minZoom: 6
+      minZoom: 7
     },
     {
-      latlng: [32,-118.5],
+      marker: 'spiny_lobster',
+      latlng: [33,-118.5],
       iconUrls: [
         'img/markers/spiny_lobster.png'
       ],
-      minZoom: 6
+      minZoom: 7
     },
     {
-      latlng: [33.970697997361626,-122.5],
+      marker: 'rock_crab',
+      latlng: [34.3,-122],
       iconUrls: [
         'img/markers/rock_crab.png'
       ],
-      minZoom: 6
+      minZoom: 7
     }
   ];
   var SIZE_SINGLE = 0;
@@ -103,7 +148,14 @@
   var SIZE_FULL = 2;
   var CHARTS = {
     example1: {
-      popup: true,
+      regionsPopup: true,
+      regionsWindowY: 0,
+      regionsWindowWidth: 300,
+      regionsWindowHeight: 300,
+      markersPopup: false,
+      markersWindowWidth: 500,
+      markersWindowHeight: 500,
+      markersWindowY: 0,
       center: [41.4831349,-101.9244864],
       zoom: {
         0: 4,
@@ -114,7 +166,14 @@
       markers: []
     },
     example2: {
-      popup: false,
+      regionsPopup: false,
+      regionsWindowY: 0,
+      regionsWindowWidth: 300,
+      regionsWindowHeight: 300,
+      markersPopup: false,
+      markersWindowY: 0,
+      markersWindowWidth: 500,
+      markersWindowHeight: 500,
       center: [41.4831349,-101.9244864],
       zoom: {
         0: 6,
@@ -125,12 +184,19 @@
       markers: []
     },
     example3: {
-      popup: false,
-      center: [37.287953, -120.817917],
+      regionsPopup: false,
+      regionsWindowY: 300,
+      regionsWindowWidth: 300,
+      regionsWindowHeight: 300,
+      markersPopup: true,
+      markersWindowY: 1500,
+      markersWindowWidth: 308,
+      markersWindowHeight: 255,
+      center: [35, -120.817917],
       zoom: {
         0: 7,
-        1: 6,
-        2: 6
+        1: 7,
+        2: 9
       },
       regions: [],
       markers: EXAMPLE3
@@ -161,7 +227,7 @@
       var rows;
       var base;
       var windowX;
-      var windowY;
+      var windowYBase;
       var controlChannel;
       var tileLayer;
       var channel = thr0w.getChannel();
@@ -177,7 +243,7 @@
           base = 'single';
           controlChannel = channel;
           windowX = 180;
-          windowY = 1420;
+          windowYBase = 0;
           matrix = [
             [channel]
           ];
@@ -194,7 +260,7 @@
           controlChannel = parseInt(parameters.control);
           base = 'double_' + controlChannel;
           windowX = 180;
-          windowY = 1420;
+          windowYBase = 0;
           switch (controlChannel) {
             case 6:
               if (channel !== 6 && channel !== 7) {
@@ -237,7 +303,7 @@
           base = 'full';
           controlChannel = 6;
           windowX = 300;
-          windowY = 3252;
+          windowYBase = 1882;
           matrix = [
             [0, 1, 2],
             [3, 4, 5],
@@ -434,17 +500,26 @@
             );
           }
           for (i = 0; i < CHARTS[chart].regions.length; i++) {
-            addregion(CHARTS[chart].regions[i].region,
+            addRegion(
+              CHARTS[chart].regions[i].region,
               CHARTS[chart].regions[i].color,
-              CHARTS[chart].popup
+              CHARTS[chart].regionsPopup,
+              CHARTS[chart].regionsWindowY,
+              CHARTS[chart].regionsWindowWidth,
+              CHARTS[chart].regionsWindowHeight
             );
           }
           for (i = 0; i < CHARTS[chart].markers.length; i++) {
             for (j = 0; j < CHARTS[chart].markers[i].iconUrls.length; j++) {
               addMarker(
+                CHARTS[chart].markers[i].marker,
                 CHARTS[chart].markers[i].latlng,
                 CHARTS[chart].markers[i].iconUrls[j],
-                CHARTS[chart].markers[i].minZoom
+                CHARTS[chart].markers[i].minZoom,
+                CHARTS[chart].markersPopup,
+                CHARTS[chart].markersWindowY,
+                CHARTS[chart].markersWindowWidth,
+                CHARTS[chart].markersWindowHeight
               );
             }
           }
@@ -487,7 +562,8 @@
           */
         }
       }
-      function addregion(code, color, popup) {
+      function addRegion(code, color, popup,
+        windowY, windowWidth, windowHeight) {
         var region = {};
         var xmlhttp = new XMLHttpRequest();
         regions.push(region);
@@ -513,7 +589,8 @@
           }
           function handleClick() {
             wm.closeAllWindows();
-            wm.openWindow(code, windowX, windowY, 300, 300,
+            wm.openWindow(code,
+              windowX, windowYBase + windowY, windowWidth, windowHeight,
               chart + '/?code=' + code);
           }
         }
@@ -531,12 +608,16 @@
         }
         regions = [];
       }
-      function addMarker(latlng, iconUrl, minZoom) {
+      function addMarker(code, latlng, iconUrl, minZoom, popup,
+        windowY, windowWidth, windowHeight) {
         var marker = {};
         var icon = L.icon({
           iconUrl: iconUrl
         });
         var layer = L.marker(latlng, {icon: icon});
+        if (popup) {
+          layer.addEventListener('click', handleClick);
+        }
         marker.layer = layer;
         marker.minZoom = minZoom;
         marker.added = false;
@@ -544,6 +625,11 @@
         if (leafletMap.getZoom() >= minZoom) {
           marker.added = true;
           layer.addTo(leafletMap);
+        }
+        function handleClick() {
+          wm.closeAllWindows();
+          wm.openWindow(code, windowX, windowYBase + windowY,
+            windowWidth, windowHeight, chart + '/?code=' + code);
         }
       }
       function removeMarkers() {
