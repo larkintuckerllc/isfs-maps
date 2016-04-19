@@ -1,7 +1,9 @@
 (function() {
   'use strict';
-  var BASE_URL = 'http://192.168.1.2/apps/isfs-maps/'; // PROD
-  // var BASE_URL = 'http://localhost/apps/isfs-maps/'; // DEV
+  var TIMEOUT = 120 * 1000;
+  var BASE_URL = 'http://192.168.1.2/apps/isfs-maps/interact/'; // PROD
+  // var BASE_URL = 'http://localhost/apps/isfs-maps/interact/'; // DEV
+  var CHANNELS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   var BROWSERS = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
   var MIN_ZOOM = 4;
   var MAX_ZOOM = 19;
@@ -207,6 +209,7 @@
   var parameters = parseQueryString();
   document.addEventListener('DOMContentLoaded', ready);
   function ready() {
+    var active = true;
     var frameEl = document.getElementById('my_frame');
     var contentEl = document.getElementById('interact_content');
     thr0w.setBase('http://192.168.1.2'); // PROD
@@ -367,6 +370,7 @@
       if (channel === controlChannel) {
         document.getElementById('controls').style.display = 'block';
       }
+      frameEl.addEventListener('touchstart', keepActive, true);
       singleEl.addEventListener('click', handleSingleClick);
       doubleEl.addEventListener('click', handleDoubleClick);
       document.getElementById('full')
@@ -381,6 +385,7 @@
         .addEventListener('click', handleExample2Click);
       document.getElementById('example3')
         .addEventListener('click', handleExample3Click);
+      window.setInterval(checkIdle, TIMEOUT);
       function chartMessage() {
         return {
           chart: chart,
@@ -644,8 +649,25 @@
         }
         markers = [];
       }
+      function keepActive() {
+        window.console.log('KEEPACTIVE');
+        active = true;
+        thr0w.thr0wChannel(CHANNELS, {type: 'active'});
+      }
+      function checkIdle() {
+        if (!active) {
+          thr0w.thr0wChannel(CHANNELS, {type: 'idle'});
+        }
+        active = false;
+      }
     }
-    function messageCallback() {}
+    function messageCallback(data) {
+      if (data.message.type === 'idle') {
+        document.location.href = '../';
+      } else if (data.message.type === 'active') {
+        active = true;
+      }
+    }
   }
   function parseQueryString() {
     var i;

@@ -1,7 +1,7 @@
 (function() {
   'use strict';
-  var INTERVAL = 30 * 1000;
-  var ANIMATION = 25 * 1000;
+  var INTERVAL = 240 * 1000;
+  var ANIMATION = 230 * 1000;
   var ZOOM = 7;
   var POSITIONS = [
     [36, -114],
