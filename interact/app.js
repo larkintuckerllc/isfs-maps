@@ -1,7 +1,7 @@
 (function() {
   'use strict';
-  // var BASE_URL = 'http://192.168.1.2/apps/isfs-maps/'; // PROD
-  var BASE_URL = 'http://localhost/apps/isfs-maps/'; // DEV
+  var BASE_URL = 'http://192.168.1.2/apps/isfs-maps/'; // PROD
+  // var BASE_URL = 'http://localhost/apps/isfs-maps/'; // DEV
   var BROWSERS = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
   var MIN_ZOOM = 4;
   var MAX_ZOOM = 19;
@@ -209,8 +209,8 @@
   function ready() {
     var frameEl = document.getElementById('my_frame');
     var contentEl = document.getElementById('my_content');
-    // thr0w.setBase('http://192.168.1.2'); // PROD
-    thr0w.setBase('http://localhost'); // DEV
+    thr0w.setBase('http://192.168.1.2'); // PROD
+    // thr0w.setBase('http://localhost'); // DEV
     thr0w.addAdminTools(frameEl,
       connectCallback, messageCallback);
     function connectCallback() {
