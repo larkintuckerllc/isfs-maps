@@ -208,7 +208,7 @@
   document.addEventListener('DOMContentLoaded', ready);
   function ready() {
     var frameEl = document.getElementById('my_frame');
-    var contentEl = document.getElementById('my_content');
+    var contentEl = document.getElementById('interact_content');
     thr0w.setBase('http://192.168.1.2'); // PROD
     // thr0w.setBase('http://localhost'); // DEV
     thr0w.addAdminTools(frameEl,

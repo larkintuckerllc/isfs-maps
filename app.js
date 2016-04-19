@@ -1,7 +1,8 @@
 (function() {
   'use strict';
-  var INTERVAL = 10000;
-  var ZOOM = 5;
+  var INTERVAL = 30 * 1000;
+  var ANIMATION = 25 * 1000;
+  var ZOOM = 7;
   var POSITIONS = [
     [36, -114],
     [40,-6],
@@ -68,13 +69,15 @@
       ).addTo(leafletMap);
       // jscs:enable
       if (thr0w.getChannel() === 0) {
+        move();
         window.setInterval(move, INTERVAL);
       }
       frameEl.addEventListener('click', handleClick);
       function move() {
         position++;
         position = position < POSITIONS.length ? position : 0;
-        map.moveTo(5000, POSITIONS[position][0], POSITIONS[position][1], ZOOM);
+        map.moveTo(ANIMATION, POSITIONS[position][0],
+          POSITIONS[position][1], ZOOM);
       }
       function handleClick() {
         window.location.href = 'interact/?size=0';
