@@ -8,7 +8,24 @@
   <link rel="stylesheet" type="text/css" href="app.css">
 </head>
 <body>
-  <img id="image" width=300 height=200 style="display: hidden;"/>
+  <div id="highlight">
+    <img id="highlight__image" width=300 height=200 style="display: hidden;"/>
+    <div id="highlight__title"></div>
+  </div>
+  <div id="data">
+    <div class="data__metric">
+      <div class="data__metric__title">Ecology</div>
+      <div id="data__metric__value--ecology" class="data__metric__value"></div>
+    </div>
+    <div class="data__metric">
+      <div class="data__metric__title">Economics</div>
+      <div id="data__metric__value--economics" class="data__metric__value"></div>
+    </div>
+    <div class="data__metric">
+      <div class="data__metric__title">Community</div>
+      <div id="data__metric__value--community" class="data__metric__value"></div>
+    </div>
+  </div>
   <script src="app.js"></script>
 </body>
 </html>

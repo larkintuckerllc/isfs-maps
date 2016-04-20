@@ -97,7 +97,7 @@
       regionsPopup: false,
       markersPopup: true,
       markersPopupWidth: 308,
-      markersPopupHeight: 255,
+      markersPopupHeight: 480,
       center: [35, -120.817917],
       zoom: {
         0: 7,
