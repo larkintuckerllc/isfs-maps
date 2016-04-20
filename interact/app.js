@@ -572,6 +572,11 @@
         var layer;
         for (i = 0; i < markers.length; i++) {
           layer = markers[i].layer;
+          layer.closePopup();
+          markerCode = markers[i].code;
+          markerEvent = 'popupclose';
+          markerSync.update();
+          markerSync.idle();
           layer.removeEventListener();
           if (markers[i].added) {
             layer.removeFrom(leafletMap);
