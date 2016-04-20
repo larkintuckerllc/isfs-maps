@@ -1,69 +1,13 @@
 (function() {
   'use strict';
   var TIMEOUT = 120 * 1000;
-  var BASE_URL = 'http://192.168.1.2/apps/isfs-maps/interact/'; // PROD
-  // var BASE_URL = 'http://localhost/apps/isfs-maps/interact/'; // DEV
+  var BASE_URL = 'http://192.168.1.2/apps/isfs-steering/interact/'; // PROD
+  // var BASE_URL = 'http://localhost/apps/isfs-steering/interact/'; // DEV
   var CHANNELS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   var BROWSERS = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
   var MIN_ZOOM = 4;
   var MAX_ZOOM = 19;
-  var EXAMPLE1 = [
-    {region: 'USA', color: 'rgb(255,0,0)'},
-    {region: 'MEX', color: 'rgb(0,255,0)'}
-  ];
-  var EXAMPLE2 = [
-    {region: 'USA/WY', color: '#fff5eb'},
-    {region: 'USA/VT', color: '#fff5eb'},
-    {region: 'USA/AK', color: '#fff5eb'},
-    {region: 'USA/ND', color: '#fff5eb'},
-    {region: 'USA/SD', color: '#fff5eb'},
-    {region: 'USA/DE', color: '#fff5eb'},
-    {region: 'USA/MT', color: '#fff5eb'},
-    {region: 'USA/RI', color: '#fff5eb'},
-    {region: 'USA/ME', color: '#fff5eb'},
-    {region: 'USA/NH', color: '#fff5eb'},
-    {region: 'USA/HI', color: '#fff5eb'},
-    {region: 'USA/ID', color: '#fff5eb'},
-    {region: 'USA/WV', color: '#fff5eb'},
-    {region: 'USA/NE', color: '#fff5eb'},
-    {region: 'USA/NM', color: '#fff5eb'},
-    {region: 'USA/NV', color: '#fff5eb'},
-    {region: 'USA/KS', color: '#fff5eb'},
-    {region: 'USA/AR', color: '#fff5eb'},
-    {region: 'USA/MS', color: '#fff5eb'},
-    {region: 'USA/UT', color: '#fff5eb'},
-    {region: 'USA/IA', color: '#fff5eb'},
-    {region: 'USA/CT', color: '#fff5eb'},
-    {region: 'USA/OK', color: '#fff5eb'},
-    {region: 'USA/OR', color: '#fee6ce'},
-    {region: 'USA/KY', color: '#fee6ce'},
-    {region: 'USA/LA', color: '#fee6ce'},
-    {region: 'USA/AL', color: '#fee6ce'},
-    {region: 'USA/SC', color: '#fee6ce'},
-    {region: 'USA/CO', color: '#fee6ce'},
-    {region: 'USA/MN', color: '#fee6ce'},
-    {region: 'USA/WI', color: '#fee6ce'},
-    {region: 'USA/MD', color: '#fee6ce'},
-    {region: 'USA/MO', color: '#fee6ce'},
-    {region: 'USA/TN', color: '#fee6ce'},
-    {region: 'USA/IN', color: '#fee6ce'},
-    {region: 'USA/MA', color: '#fee6ce'},
-    {region: 'USA/AZ', color: '#fee6ce'},
-    {region: 'USA/WA', color: '#fee6ce'},
-    {region: 'USA/VA', color: '#fdd0a2'},
-    {region: 'USA/NJ', color: '#fdd0a2'},
-    {region: 'USA/MI', color: '#fdd0a2'},
-    {region: 'USA/NC', color: '#fdd0a2'},
-    {region: 'USA/GA', color: '#fdd0a2'},
-    {region: 'USA/OH', color: '#fdd0a2'},
-    {region: 'USA/PA', color: '#fdae6b'},
-    {region: 'USA/IL', color: '#fdae6b'},
-    {region: 'USA/NY', color: '#f16913'},
-    {region: 'USA/FL', color: '#f16913'},
-    {region: 'USA/TX', color: '#a63603'},
-    {region: 'USA/CA', color: '#7f2704'}
-  ];
-  var EXAMPLE3 = [
+  var FISHERIES = [
     {
       marker: 'chinook_salmon',
       latlng: [40,-125],
@@ -149,51 +93,11 @@
   var SIZE_DOUBLE = 1;
   var SIZE_FULL = 2;
   var CHARTS = {
-    example1: {
-      regionsPopup: true,
-      regionsWindowY: 0,
-      regionsWindowWidth: 300,
-      regionsWindowHeight: 300,
-      markersPopup: false,
-      markersWindowWidth: 500,
-      markersWindowHeight: 500,
-      markersWindowY: 0,
-      center: [41.4831349,-101.9244864],
-      zoom: {
-        0: 4,
-        1: 4,
-        2: 4
-      },
-      regions: EXAMPLE1,
-      markers: []
-    },
-    example2: {
+    fisheries: {
       regionsPopup: false,
-      regionsWindowY: 0,
-      regionsWindowWidth: 300,
-      regionsWindowHeight: 300,
-      markersPopup: false,
-      markersWindowY: 0,
-      markersWindowWidth: 500,
-      markersWindowHeight: 500,
-      center: [41.4831349,-101.9244864],
-      zoom: {
-        0: 6,
-        1: 6,
-        2: 6
-      },
-      regions: EXAMPLE2,
-      markers: []
-    },
-    example3: {
-      regionsPopup: false,
-      regionsWindowY: 300,
-      regionsWindowWidth: 300,
-      regionsWindowHeight: 300,
       markersPopup: true,
-      markersWindowY: 1500,
-      markersWindowWidth: 308,
-      markersWindowHeight: 255,
+      markersPopupWidth: 308,
+      markersPopupHeight: 255,
       center: [35, -120.817917],
       zoom: {
         0: 7,
@@ -201,7 +105,7 @@
         2: 9
       },
       regions: [],
-      markers: EXAMPLE3
+      markers: FISHERIES
     }
   };
   var L = window.L;
@@ -217,6 +121,8 @@
     thr0w.addAdminTools(frameEl,
       connectCallback, messageCallback);
     function connectCallback() {
+      var markerCode;
+      var markerEvent;
       var chart = null;
       var tiles = null;
       var regions = [];
@@ -354,6 +260,12 @@
         chartMessage,
         chartReceive
       );
+      var markerSync = new thr0w.Sync(
+        grid,
+        base + '_marker',
+        markerMessage,
+        markerReceive
+      );
       map = new thr0w.leaflet.Map(grid, 0, 0, MIN_ZOOM,
         {
           minZoom: MIN_ZOOM,
@@ -377,14 +289,10 @@
         .addEventListener('click', handleFullClick);
       satelliteEl.addEventListener('click', handleSatelliteClick);
       streetEl.addEventListener('click', handleStreetClick);
-      document.getElementById('remove')
-        .addEventListener('click', handleRemoveClick);
-      document.getElementById('example1')
-        .addEventListener('click', handleExample1Click);
-      document.getElementById('example2')
-        .addEventListener('click', handleExample2Click);
-      document.getElementById('example3')
-        .addEventListener('click', handleExample3Click);
+      document.getElementById('none')
+        .addEventListener('click', handleNoneClick);
+      document.getElementById('fisheries')
+        .addEventListener('click', handleFisheriesClick);
       window.setInterval(checkIdle, TIMEOUT);
       function chartMessage() {
         return {
@@ -397,6 +305,25 @@
         tiles = data.tiles;
         updateChart();
         updateTiles();
+      }
+      function markerMessage() {
+        return {
+          code: markerCode,
+          event: markerEvent
+        };
+      }
+      function markerReceive(data) {
+        var i;
+        for (i = 0; i < markers.length; i++) {
+          if (markers[i].code === data.code) {
+            if (data.event === 'popupopen') {
+              markers[i].layer.openPopup();
+            }
+            if (data.event === 'popupclose') {
+              markers[i].layer.closePopup();
+            }
+          }
+        }
       }
       function zoomed() {
         var zoom = leafletMap.getZoom();
@@ -465,26 +392,14 @@
         chartSync.update();
         chartSync.idle();
       }
-      function handleRemoveClick() {
+      function handleNoneClick() {
         chart = null;
         updateChart();
         chartSync.update();
         chartSync.idle();
       }
-      function handleExample1Click() {
-        chart = 'example1';
-        updateChart();
-        chartSync.update();
-        chartSync.idle();
-      }
-      function handleExample2Click() {
-        chart = 'example2';
-        updateChart();
-        chartSync.update();
-        chartSync.idle();
-      }
-      function handleExample3Click() {
-        chart = 'example3';
+      function handleFisheriesClick() {
+        chart = 'fisheries';
         updateChart();
         chartSync.update();
         chartSync.idle();
@@ -509,9 +424,8 @@
               CHARTS[chart].regions[i].region,
               CHARTS[chart].regions[i].color,
               CHARTS[chart].regionsPopup,
-              CHARTS[chart].regionsWindowY,
-              CHARTS[chart].regionsWindowWidth,
-              CHARTS[chart].regionsWindowHeight
+              CHARTS[chart].regionsPopupWidth,
+              CHARTS[chart].regionsPopupHeight
             );
           }
           for (i = 0; i < CHARTS[chart].markers.length; i++) {
@@ -522,9 +436,8 @@
                 CHARTS[chart].markers[i].iconUrls[j],
                 CHARTS[chart].markers[i].minZoom,
                 CHARTS[chart].markersPopup,
-                CHARTS[chart].markersWindowY,
-                CHARTS[chart].markersWindowWidth,
-                CHARTS[chart].markersWindowHeight
+                CHARTS[chart].markersPopupWidth,
+                CHARTS[chart].markersPopupHeight
               );
             }
           }
@@ -568,7 +481,7 @@
         }
       }
       function addRegion(code, color, popup,
-        windowY, windowWidth, windowHeight) {
+        popupWidth, popupHeight) {
         var region = {};
         var xmlhttp = new XMLHttpRequest();
         regions.push(region);
@@ -589,14 +502,10 @@
             region.layer = layer;
             layer.addTo(leafletMap);
             if (popup) {
-              layer.addEventListener('click', handleClick);
+              // TODO: IMPLEMENT POPUP
+              window.console.log(popupWidth);
+              window.console.log(popupHeight);
             }
-          }
-          function handleClick() {
-            wm.closeAllWindows();
-            wm.openWindow(code,
-              windowX, windowYBase + windowY, windowWidth, windowHeight,
-              chart + '/?code=' + code);
           }
         }
         xmlhttp.open('GET', 'lib/world.geo.json/countries/' +
@@ -614,15 +523,29 @@
         regions = [];
       }
       function addMarker(code, latlng, iconUrl, minZoom, popup,
-        windowY, windowWidth, windowHeight) {
+        popupWidth, popupHeight) {
         var marker = {};
         var icon = L.icon({
           iconUrl: iconUrl
         });
         var layer = L.marker(latlng, {icon: icon});
         if (popup) {
-          layer.addEventListener('click', handleClick);
+          layer.addEventListener('popupopen', handlePopupOpen);
+          layer.addEventListener('popupclose', handlePopupClose);
+          layer.bindPopup([
+            '<iframe src="',
+            chart + '/?code=' + code,
+            '" ',
+            'width="',
+            popupWidth,
+            '" ',
+            'height="',
+            popupHeight,
+            '" style="border:none">',
+            '</iframe>'
+          ].join(''), {autoPan: false});
         }
+        marker.code = code;
         marker.layer = layer;
         marker.minZoom = minZoom;
         marker.added = false;
@@ -631,10 +554,17 @@
           marker.added = true;
           layer.addTo(leafletMap);
         }
-        function handleClick() {
-          wm.closeAllWindows();
-          wm.openWindow(code, windowX, windowYBase + windowY,
-            windowWidth, windowHeight, chart + '/?code=' + code);
+        function handlePopupOpen() {
+          markerCode = code;
+          markerEvent = 'popupopen';
+          markerSync.update();
+          markerSync.idle();
+        }
+        function handlePopupClose() {
+          markerCode = code;
+          markerEvent = 'popupclose';
+          markerSync.update();
+          markerSync.idle();
         }
       }
       function removeMarkers() {
