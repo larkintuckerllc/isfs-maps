@@ -68,24 +68,39 @@
     var code = parameters.code;
     var imageEl = document.getElementById('highlight__image');
     var titleEl = document.getElementById('highlight__title');
-    var valueEcologyEl = document
-      .getElementById('data__metric__value--ecology');
-    var valueEconomicsEl = document
-      .getElementById('data__metric__value--economics');
-    var valueCommunityEl = document
-      .getElementById('data__metric__value--community');
+    var barEcologyEl = document
+      .getElementById('data__metric__value__bar--ecology');
+    var barEconomicsEl = document
+      .getElementById('data__metric__value__bar--economics');
+    var barCommunityEl = document
+      .getElementById('data__metric__value__bar--community');
     imageEl.src = 'img/' + code + '.jpg';
     imageEl.style.visibility = 'visible';
     titleEl.innerHTML = FISHERIES[code].title;
-    valueEcologyEl.innerHTML = FISHERIES[code].ecology;
-    valueEcologyEl.style.backgroundColor =
+    barEcologyEl.style.backgroundColor =
       colorOfValue(FISHERIES[code].ecology);
-    valueEconomicsEl.innerHTML = FISHERIES[code].economics;
-    valueEconomicsEl.style.backgroundColor =
+    barEconomicsEl.style.backgroundColor =
       colorOfValue(FISHERIES[code].economics);
-    valueCommunityEl.innerHTML = FISHERIES[code].community;
-    valueCommunityEl.style.backgroundColor =
+    barCommunityEl.style.backgroundColor =
       colorOfValue(FISHERIES[code].community);
+    window.setTimeout(animateBars, 500);
+    function colorOfValue(value) {
+      if (value >= 4) {
+        return 'rgb(90,200,90)';
+      }
+      if (value >= 3) {
+        return 'rgb(200,200,90)';
+      }
+      return ('rgb(200,90,90)');
+    }
+    function animateBars() {
+      barEcologyEl.style.width =
+        (100 * (FISHERIES[code].ecology - 1) / 5) + '%';
+      barEconomicsEl.style.width =
+        (100 * (FISHERIES[code].economics - 1) / 5) + '%';
+      barCommunityEl.style.width =
+        (100 * (FISHERIES[code].community - 1) / 5) + '%';
+    }
   }
   function parseQueryString() {
     var i;
@@ -107,13 +122,5 @@
     }
     return parsed;
   }
-  function colorOfValue(value) {
-    if (value >= 4) {
-      return 'rgb(90,200,90)';
-    }
-    if (value >= 3) {
-      return 'rgb(200,200,90)';
-    }
-    return ('rgb(200,90,90)');
-  }
+
 })();

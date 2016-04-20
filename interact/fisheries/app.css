@@ -4,6 +4,7 @@ html, body {
   overflow: hidden;
   background-color: rgb(255,255,255);
   font-family: sans-serif;
+  -webkit-user-select: none;
 }
 body {
   width: 300px;
@@ -35,7 +36,10 @@ body {
   border-left: 1px solid black;
   border-right: 1px solid black;
   border-bottom: 1px solid black;
-  padding: 10px;
-  text-align: center;
-  font-weight: bold;
+  height: 30px;
+}
+.data__metric__value__bar {
+  border-right: 1px solid black;
+  height: 100%;
+  transition: width 2s;
 }
