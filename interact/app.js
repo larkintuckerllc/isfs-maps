@@ -116,8 +116,8 @@
     var active = true;
     var frameEl = document.getElementById('my_frame');
     var contentEl = document.getElementById('interact_content');
-    thr0w.setBase('http://192.168.1.2'); // PROD
-    // thr0w.setBase('http://localhost'); // DEV
+    // thr0w.setBase('http://192.168.1.2'); // PROD
+    thr0w.setBase('http://localhost'); // DEV
     thr0w.addAdminTools(frameEl,
       connectCallback, messageCallback);
     function connectCallback() {
@@ -457,6 +457,7 @@
           // jscs:enable
         }
         if (tiles === 'satellite') {
+          /*
           // PROD
           // jscs:disable
           tileLayer =  L.tileLayer(
@@ -466,10 +467,10 @@
             }
           ).addTo(leafletMap);
           // jscs:enable
-          /*
+          */
           // DEV
           return L.tileLayer(
-            'map/{z}/{x}/{y}.png',
+            '../map/{z}/{x}/{y}.png',
             {
               minZoom: 0,
               maxZoom: 7,
@@ -477,7 +478,6 @@
               tms: false
             }
           ).addTo(leafletMap);
-          */
         }
       }
       function addRegion(code, color, popup,
