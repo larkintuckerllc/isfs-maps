@@ -15,8 +15,8 @@
   document.addEventListener('DOMContentLoaded', ready);
   function ready() {
     var frameEl = document.getElementById('my_frame');
-    // thr0w.setBase('http://192.168.1.2'); // PROD
-    thr0w.setBase('http://localhost'); // DEV
+    thr0w.setBase('http://192.168.1.2'); // PROD
+    // thr0w.setBase('http://localhost'); // DEV
     thr0w.addAdminTools(frameEl,
       connectCallback, messageCallback);
     function connectCallback() {
@@ -60,7 +60,6 @@
         }
       );
       var leafletMap = map.getLeafletMap();
-      /*
       // PROD
       // jscs:disable
       L.tileLayer(
@@ -70,7 +69,7 @@
         }
       ).addTo(leafletMap);
       // jscs:enable
-      */
+      /*
       // DEV
       L.tileLayer(
         'map/{z}/{x}/{y}.png',
@@ -81,6 +80,7 @@
           tms: false
         }
       ).addTo(leafletMap);
+      */
       if (thr0w.getChannel() === 0) {
         move();
         window.setInterval(move, INTERVAL);
