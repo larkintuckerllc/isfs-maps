@@ -60,6 +60,126 @@
       ecology: 2.88,
       economics: 3.33,
       community: 3.88
+    },
+    'gambia_artisanal_sole_and_catfish': {
+      title: 'Gambia Artisanal Sole and Catfish',
+      ecology: 3.5,
+      economics: 3.35,
+      community: 3.38
+    },
+    'gambia_try_oysters': {
+      title: 'Gambia TRY Oysters',
+      ecology: 3,
+      economics: 2.17,
+      community: 2.4
+    },
+    'ghana_artisanal': {
+      title: 'Ghana Artisanal',
+      ecology: 2.38,
+      economics: 2.39,
+      community: 3.36
+    },
+    'ghana_axim_artisanal': {
+      title: 'Ghana Axim Artisanal',
+      ecology: 2.5,
+      economics: 2.79,
+      community: 4.19
+    },
+    'kenya_shimoni_artisanal': {
+      title: 'Kenya Shimoni Artisanal',
+      ecology: 2.63,
+      economics: 2.46,
+      community: 3.29
+    },
+    'kenya_octopus': {
+      title: 'Kenya Octopus',
+      ecology: 2.38,
+      economics: 3.39,
+      community: 3.74
+    },
+    'liberia_westpoint_artisanal': {
+      title: 'Liberia Westpoint Artisanal',
+      ecology: 2.38,
+      economics: 2.4,
+      community: 3.12
+    },
+    'liberia_westpoint_artisanal_2': {
+      title: 'Liberia Westpoint Artisanal 2',
+      ecology: 4,
+      economics: 3.08,
+      community: 3.93
+    },
+    'liberia_robertsport_artisanal': {
+      title: 'Liberia Robertsport Artisanal',
+      ecology: 3.5,
+      economics: 2.96,
+      community: 3.79
+    },
+    'liberia_semi-industrial': {
+      title: 'Liberia Semi-Industrial',
+      ecology: 3.5,
+      economics: 2.9,
+      community: 3.07
+    },
+    'malawi_lake_chiuta': {
+      title: 'Malawi Lake Chiuta',
+      ecology: 3,
+      economics: 2.75,
+      community: 3.33
+    },
+    'morocco_central_zone': {
+      title: 'Morocco Central Zone',
+      ecology: 3.06,
+      economics: 3.22,
+      community: 4.31
+    },
+    'morocco_southern_zone': {
+      title: 'Morocco Southern Zone',
+      ecology: 3.69,
+      economics: 3.6,
+      community: 3.75
+    },
+    'senegal_artisanal': {
+      title: 'Senegal Artisanal',
+      ecology: 2.5,
+      economics: 3.39,
+      community: 3.76
+    },
+    'senegal_ngaparou_artisanal': {
+      title: 'Senegal Ngaparou Artisanal',
+      ecology: 2.63,
+      economics: 2.64,
+      community: 3.52
+    },
+    'sierra_leone_sherbro': {
+      title: 'Sierra Leone Sherbro',
+      ecology: 2.63,
+      economics: 2.72,
+      community: 3.6
+    },
+    'sierra_leone_tombo': {
+      title: 'Sierra Leone Tombo',
+      ecology: 2.5,
+      economics: 2.5,
+      community: 3.88
+    },
+    'uganda_lake_victoria_dagaa': {
+      title: 'Uganda Lake Victoria Dagaa',
+      ecology: 4.25,
+      economics: 2.93,
+      community: 3.33
+    },
+    'uganda_lake_victoria_tilapia': {
+      title: 'Uganda Lake Victoria Tilapia',
+      ecology: 4.25,
+      economics: 3.06,
+      community: 3.29
+    },
+    'uganda_nile_perch': {
+      title: 'Uganda Nile Perch',
+      ecology: 2.75,
+      economics: 3.39,
+      community: 3.6
     }
   };
   var parameters = parseQueryString();

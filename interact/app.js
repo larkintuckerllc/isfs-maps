@@ -87,7 +87,180 @@
         'img/markers/rock_crab.png'
       ],
       minZoom: 7
+    },
+    /*
+    {
+      marker: 'gambia_artisanal_sole_and_catfish',
+      latlng: [33,-118.5],
+      iconUrls: [
+        'img/markers/gambia_artisanal_sole_and_catfish.png'
+      ],
+      minZoom: 7
+    },
+    {
+      marker: 'gambia_try_oysters',
+      latlng: [33,-118.5],
+      iconUrls: [
+        'img/markers/gambia_try_oysters.png'
+      ],
+      minZoom: 7
+    },
+    {
+      marker: 'ghana_artisanal',
+      latlng: [33,-118.5],
+      iconUrls: [
+        'img/markers/ghana_artisanal.png'
+      ],
+      minZoom: 7
+    },
+    {
+      marker: 'ghana_axim_artisanal',
+      latlng: [33,-118.5],
+      iconUrls: [
+        'img/markers/ghana_axim_artisanal.png'
+      ],
+      minZoom: 7
+    },
+    {
+      marker: 'kenya_shimoni_artisanal',
+      latlng: [33,-118.5],
+      iconUrls: [
+        'img/markers/kenya_shimoni_artisanal.png'
+      ],
+      minZoom: 7
+    },
+    {
+      marker: 'kenya_octopus',
+      latlng: [33,-118.5],
+      iconUrls: [
+        'img/markers/kenya_octopus.png'
+      ],
+      minZoom: 7
+    },
+    */
+    {
+      marker: 'liberia_westpoint_artisanal',
+      latlng: [6.192568, -11.172748],
+      iconUrls: [
+        // 'img/markers/liberia_westpoint_artisanal.png'
+        'img/markers/black.png'
+      ],
+      minZoom: 8
+    },
+    /*
+    {
+      marker: 'liberia_westpoint_artisanal_2',
+      latlng: [33,-118.5],
+      iconUrls: [
+        'img/markers/liberia_westpoint_artisanal_2.png'
+      ],
+      minZoom: 7
+    },
+    */
+    {
+      marker: 'liberia_robertsport_artisanal',
+      latlng: [6.596532, -11.584735],
+      iconUrls: [
+        // 'img/markers/liberia_robertsport_artisanal.png'
+        'img/markers/black.png'
+      ],
+      minZoom: 8
+    },
+    {
+      marker: 'liberia_semi-industrial',
+      latlng: [5.766433, -10.370746],
+      iconUrls: [
+        // 'img/markers/liberia_semi-industrial.png'
+        'img/markers/black.png'
+      ],
+      minZoom: 8
+    },
+    /*
+    {
+      marker: 'malawi_lake_chiuta',
+      latlng: [33,-118.5],
+      iconUrls: [
+        'img/markers/malawi_lake_chiuta.png'
+      ],
+      minZoom: 7
+    },
+    {
+      marker: 'morocco_central_zone',
+      latlng: [33,-118.5],
+      iconUrls: [
+        'img/markers/morocco_central_zone.png'
+      ],
+      minZoom: 7
+    },
+    {
+      marker: 'morocco_southern_zone',
+      latlng: [33,-118.5],
+      iconUrls: [
+        'img/markers/morocco_southern_zone.png'
+      ],
+      minZoom: 7
+    },
+    {
+      marker: 'senegal_artisanal',
+      latlng: [33,-118.5],
+      iconUrls: [
+        'img/markers/senegal_artisanal.png'
+      ],
+      minZoom: 7
+    },
+    {
+      marker: 'senegal_ngaparou_artisanal',
+      latlng: [33,-118.5],
+      iconUrls: [
+        'img/markers/senegal_ngaparou_artisanal.png'
+      ],
+      minZoom: 7
+    },
+    */
+    {
+      marker: 'sierra_leone_sherbro',
+      latlng: [7.468817, -12.996478],
+      iconUrls: [
+        // 'img/markers/sierra_leone_sherbro.png'
+        'img/markers/black.png'
+      ],
+      minZoom: 8
+    },
+    {
+      marker: 'sierra_leone_tombo',
+      latlng: [8.062079, -13.073382],
+      iconUrls: [
+        // 'img/markers/sierra_leone_tombo.png'
+        'img/markers/black.png'
+      ],
+      minZoom: 8
     }
+    /*
+    {
+      marker: 'uganda_lake_victoria_dagaa',
+      latlng: [33,-118.5],
+      iconUrls: [
+        'img/markers/uganda_lake_victoria_dagaa.png'
+      ],
+      minZoom: 7
+    },
+    {
+      marker: 'uganda_lake_victoria_tilapia',
+      latlng: [33,-118.5],
+      iconUrls: [
+        'img/markers/uganda_lake_victoria_tilapia.png'
+      ],
+      minZoom: 7
+    },
+    {
+      marker: 'uganda_nile_perch',
+      latlng: [33,-118.5],
+      iconUrls: [
+        'img/markers/uganda_nile_perch.png'
+      ],
+      minZoom: 7
+    }
+    */
   ];
   var SIZE_SINGLE = 0;
   var SIZE_DOUBLE = 1;
