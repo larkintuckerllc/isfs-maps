@@ -88,26 +88,25 @@
       ],
       minZoom: 7
     },
-    /*
     {
       marker: 'gambia_artisanal_sole_and_catfish',
-      latlng: [33,-118.5],
+      latlng: [13.42, -17.25],
       iconUrls: [
         'img/markers/gambia_artisanal_sole_and_catfish.png'
       ],
-      minZoom: 7
+      minZoom: 8
     },
     {
       marker: 'gambia_try_oysters',
-      latlng: [33,-118.5],
+      latlng: [13.42, -17.958683],
       iconUrls: [
         'img/markers/gambia_try_oysters.png'
       ],
-      minZoom: 7
+      minZoom: 8
     },
     {
       marker: 'ghana_artisanal',
-      latlng: [33,-118.5],
+      latlng: [4.845139, -0.463350],
       iconUrls: [
         'img/markers/ghana_artisanal.png'
       ],
@@ -115,7 +114,7 @@
     },
     {
       marker: 'ghana_axim_artisanal',
-      latlng: [33,-118.5],
+      latlng: [4.489268, -2.748506],
       iconUrls: [
         'img/markers/ghana_axim_artisanal.png'
       ],
@@ -123,7 +122,7 @@
     },
     {
       marker: 'kenya_shimoni_artisanal',
-      latlng: [33,-118.5],
+      latlng: [-4.537789, 39.944896],
       iconUrls: [
         'img/markers/kenya_shimoni_artisanal.png'
       ],
@@ -131,19 +130,17 @@
     },
     {
       marker: 'kenya_octopus',
-      latlng: [33,-118.5],
+      latlng: [-3.3, 40.4],
       iconUrls: [
         'img/markers/kenya_octopus.png'
       ],
       minZoom: 7
     },
-    */
     {
       marker: 'liberia_westpoint_artisanal',
       latlng: [6.192568, -11.172748],
       iconUrls: [
-        // 'img/markers/liberia_westpoint_artisanal.png'
-        'img/markers/black.png'
+        'img/markers/liberia_westpoint_artisanal.png'
       ],
       minZoom: 8
     },
@@ -161,8 +158,7 @@
       marker: 'liberia_robertsport_artisanal',
       latlng: [6.596532, -11.584735],
       iconUrls: [
-        // 'img/markers/liberia_robertsport_artisanal.png'
-        'img/markers/black.png'
+        'img/markers/liberia_robertsport_artisanal.png'
       ],
       minZoom: 8
     },
@@ -170,15 +166,13 @@
       marker: 'liberia_semi-industrial',
       latlng: [5.766433, -10.370746],
       iconUrls: [
-        // 'img/markers/liberia_semi-industrial.png'
-        'img/markers/black.png'
+        'img/markers/liberia_semi-industrial.png'
       ],
       minZoom: 8
     },
-    /*
     {
       marker: 'malawi_lake_chiuta',
-      latlng: [33,-118.5],
+      latlng: [-14.800886, 35.865439],
       iconUrls: [
         'img/markers/malawi_lake_chiuta.png'
       ],
@@ -186,7 +180,7 @@
     },
     {
       marker: 'morocco_central_zone',
-      latlng: [33,-118.5],
+      latlng: [30.813943, -10.986501],
       iconUrls: [
         'img/markers/morocco_central_zone.png'
       ],
@@ -194,7 +188,7 @@
     },
     {
       marker: 'morocco_southern_zone',
-      latlng: [33,-118.5],
+      latlng: [26.142019, -16.303884],
       iconUrls: [
         'img/markers/morocco_southern_zone.png'
       ],
@@ -202,27 +196,25 @@
     },
     {
       marker: 'senegal_artisanal',
-      latlng: [33,-118.5],
+      latlng: [14.659583, -18.101505],
       iconUrls: [
         'img/markers/senegal_artisanal.png'
       ],
-      minZoom: 7
+      minZoom: 8
     },
     {
       marker: 'senegal_ngaparou_artisanal',
-      latlng: [33,-118.5],
+      latlng: [14.310286, -17.409366],
       iconUrls: [
         'img/markers/senegal_ngaparou_artisanal.png'
       ],
-      minZoom: 7
+      minZoom: 8
     },
-    */
     {
       marker: 'sierra_leone_sherbro',
       latlng: [7.468817, -12.996478],
       iconUrls: [
-        // 'img/markers/sierra_leone_sherbro.png'
-        'img/markers/black.png'
+        'img/markers/sierra_leone_sherbro.png'
       ],
       minZoom: 8
     },
@@ -230,37 +222,34 @@
       marker: 'sierra_leone_tombo',
       latlng: [8.062079, -13.073382],
       iconUrls: [
-        // 'img/markers/sierra_leone_tombo.png'
-        'img/markers/black.png'
+        'img/markers/sierra_leone_tombo.png'
       ],
       minZoom: 8
-    }
-    /*
+    },
     {
       marker: 'uganda_lake_victoria_dagaa',
-      latlng: [33,-118.5],
+      latlng: [-0.451243, 33.020296],
       iconUrls: [
         'img/markers/uganda_lake_victoria_dagaa.png'
       ],
-      minZoom: 7
+      minZoom: 8
     },
     {
       marker: 'uganda_lake_victoria_tilapia',
-      latlng: [33,-118.5],
+      latlng: [-1.140316, 32.826649],
       iconUrls: [
         'img/markers/uganda_lake_victoria_tilapia.png'
       ],
-      minZoom: 7
+      minZoom: 8
     },
     {
       marker: 'uganda_nile_perch',
-      latlng: [33,-118.5],
+      latlng: [-1.5, 32.178456],
       iconUrls: [
         'img/markers/uganda_nile_perch.png'
       ],
-      minZoom: 7
+      minZoom: 8
     }
-    */
   ];
   var SIZE_SINGLE = 0;
   var SIZE_DOUBLE = 1;
@@ -271,7 +260,7 @@
       markersPopup: true,
       markersPopupWidth: 308,
       markersPopupHeight: 480,
-      center: [35, -120.817917],
+      center: [-1.140316, 32.826649],
       zoom: {
         0: 7,
         1: 7,
@@ -640,8 +629,18 @@
           ).addTo(leafletMap);
           // jscs:enable
           /*
-          // DEV
-          return L.tileLayer(
+          // DEV DEBUG
+          // jscs:disable
+          tileLayer = L.tileLayer(
+            'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            {
+              maxZoom: 19,
+              attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }
+          ).addTo(leafletMap);
+          // jscs:enable
+          // DEV LOCAL
+          tileLayer = L.tileLayer(
             '../map/{z}/{x}/{y}.png',
             {
               minZoom: 0,
