@@ -493,11 +493,13 @@
         for (i = 0; i < markers.length; i++) {
           if (zoom >= markers[i].minZoom && !markers[i].added) {
             markers[i].added = true;
+            markers[i].pinLayer.removeFrom(leafletMap);
             markers[i].layer.addTo(leafletMap);
           }
           if (zoom < markers[i].minZoom && markers[i].added) {
             markers[i].added = false;
             markers[i].layer.removeFrom(leafletMap);
+            markers[i].pinLayer.addTo(leafletMap);
           }
         }
       }
@@ -697,6 +699,10 @@
       function addMarker(code, latlng, iconUrl, minZoom, popup,
         popupWidth, popupHeight) {
         var marker = {};
+        var pinIcon = L.icon({
+          iconUrl: 'img/pins/red.png'
+        });
+        var pinLayer = L.marker(latlng, {icon: pinIcon});
         var icon = L.icon({
           iconUrl: iconUrl
         });
@@ -718,6 +724,7 @@
           ].join(''), {autoPan: false});
         }
         marker.code = code;
+        marker.pinLayer = pinLayer;
         marker.layer = layer;
         marker.minZoom = minZoom;
         marker.added = false;
@@ -725,6 +732,8 @@
         if (leafletMap.getZoom() >= minZoom) {
           marker.added = true;
           layer.addTo(leafletMap);
+        } else {
+          pinLayer.addTo(leafletMap);
         }
         function handlePopupOpen() {
           markerCode = code;
@@ -741,8 +750,10 @@
       }
       function removeMarkers() {
         var i;
+        var pinLayer;
         var layer;
         for (i = 0; i < markers.length; i++) {
+          pinLayer = markers[i].pinLayer;
           layer = markers[i].layer;
           layer.closePopup();
           markerCode = markers[i].code;
@@ -752,6 +763,8 @@
           layer.removeEventListener();
           if (markers[i].added) {
             layer.removeFrom(leafletMap);
+          } else {
+            pinLayer.removeFrom(leafletMap);
           }
         }
         markers = [];
