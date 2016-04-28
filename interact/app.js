@@ -260,11 +260,11 @@
       markersPopup: true,
       markersPopupWidth: 308,
       markersPopupHeight: 480,
-      center: [-1.140316, 32.826649],
+      center: [0, 0],
       zoom: {
-        0: 7,
-        1: 7,
-        2: 9
+        0: 4,
+        1: 4,
+        2: 4
       },
       regions: [],
       markers: FISHERIES

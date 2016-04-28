@@ -85,7 +85,7 @@
         move();
         window.setInterval(move, INTERVAL);
       }
-      frameEl.addEventListener('click', handleClick);
+      frameEl.addEventListener('touchstart', handleClick, true);
       function move() {
         position++;
         position = position < POSITIONS.length ? position : 0;
