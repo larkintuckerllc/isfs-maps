@@ -180,6 +180,116 @@
       ecology: 2.75,
       economics: 3.39,
       community: 3.6
+    },
+    'shrimp_artisanal': {
+      title: 'Shrimp Artisanal',
+      ecology: 2.25,
+      economics: 2.81,
+      community: 4.18
+    },
+    'shrimp_industrial': {
+      title: 'Shrimp Industrial',
+      ecology: 2.38,
+      economics: 3.25,
+      community: 4.29
+    },
+    'industrial_tuna': {
+      title: 'Industrial Tuna',
+      ecology: 3.88,
+      economics: 3.88,
+      community: 4.31
+    },
+    'la_paz_bivalves': {
+      title: 'La Paz Bivalves',
+      ecology: 2.38,
+      economics: 2.49,
+      community: 3.45
+    },
+    /*
+    'la_paz_bivalves': {
+      title: 'La Paz Bivalves',
+      ecology: 2.88,
+      economics: 2.33,
+      community: 3.71
+    },
+    */
+    'la_paz_chocolata': {
+      title: 'La Paz Bay Chocolata',
+      ecology: 3,
+      economics: 2.76,
+      community: 3.93
+    },
+    'purse_seine_tuna': {
+      title: 'Purse Seine Tuna',
+      ecology: 3.38,
+      economics: 4.26,
+      community: 4.67
+    },
+    'anchovy': {
+      title: 'Anchovy',
+      ecology: 3,
+      economics: 3.68,
+      community: 3.98
+    },
+    'ak_pollock': {
+      title: 'AK Pollock',
+      ecology: 4.88,
+      economics: 4.38,
+      community: 3.52
+    },
+    'fl_spiny_lobster': {
+      title: 'FL Spiny Lobster',
+      ecology: 3.75,
+      economics: 3.53,
+      community: 4.12
+    },
+    'louisiana_shrimp': {
+      title: 'Louisiana Shrimp',
+      ecology: 3.5,
+      economics: 3.35,
+      community: 3.9
+    },
+    'ak_salmon': {
+      title: 'AK Salmon',
+      ecology: 4.88,
+      economics: 2.86,
+      community: 3.4
+    },
+    'ne_groundfish': {
+      title: 'NE Groundfish',
+      ecology: 2.5,
+      economics: 3.42,
+      community: 3.55
+    },
+    'or_dungeness_crab': {
+      title: 'OR Dungeness Crab',
+      ecology: 4.63,
+      economics: 3.33,
+      community: 3.48
+    },
+    'ak_crab': {
+      title: 'AK Crab',
+      ecology: 4.25,
+      economics: 4.44,
+      community: 3.71
+    },
+    'ak_halibut': {
+      title: 'AK Halibut',
+      ecology: 4.88,
+      economics: 4.01,
+      community: 3.6
+    },
+    'pacific_groundfish': {
+      title: 'Pacific Groundfish',
+      ecology: 3.75,
+      economics: 3.82,
+      community: 3.45
+    },
+    'gom_snapper': {
+      title: 'GoM Snapper',
+      ecology: 2.88,
+      economics: 3.79,
+      community: 3.83
     }
   };
   var parameters = parseQueryString();

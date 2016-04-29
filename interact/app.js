@@ -249,6 +249,152 @@
         'img/markers/uganda_nile_perch.png'
       ],
       minZoom: 8
+    },
+    {
+      marker: 'shrimp_artisanal',
+      latlng: [6.007321, -79.750257],
+      iconUrls: [
+        'img/markers/shrimp_artisanal.png'
+      ],
+      minZoom: 7
+    },
+    {
+      marker: 'shrimp_industrial',
+      latlng: [4.905359, -80.396452],
+      iconUrls: [
+        'img/markers/shrimp_industrial.png'
+      ],
+      minZoom: 7
+    },
+    {
+      marker: 'industrial_tuna',
+      latlng: [-0.257219, -83.035502],
+      iconUrls: [
+        'img/markers/industrial_tuna.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 'la_paz_bivalves',
+      latlng: [26.667472, -110.521220],
+      iconUrls: [
+        'img/markers/la_paz_bivalves.png'
+      ],
+      minZoom: 6
+    },
+    /*
+    {
+      marker: 'la_paz_bivalves',
+      latlng: [0, 0],
+      iconUrls: [
+        'img/markers/la_paz_bivalves.png'
+      ],
+      minZoom: 5
+    },
+    */
+    {
+      marker: 'la_paz_chocolata',
+      latlng: [24.268098, -109.452236],
+      iconUrls: [
+        'img/markers/la_paz_chocolata.png'
+      ],
+      minZoom: 6
+    },
+    {
+      marker: 'purse_seine_tuna',
+      latlng: [19.803150, -109.568574],
+      iconUrls: [
+        'img/markers/purse_seine_tuna.png'
+      ],
+      minZoom: 6
+    },
+    {
+      marker: 'anchovy',
+      latlng: [-10.698497, -80.487562],
+      iconUrls: [
+        'img/markers/anchovy.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 'ak_pollock',
+      latlng: [56.349602, -167.723229],
+      iconUrls: [
+        'img/markers/ak_pollock.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 'fl_spiny_lobster',
+      latlng: [25.080696, -81.629106],
+      iconUrls: [
+        'img/markers/fl_spiny_lobster.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 'louisiana_shrimp',
+      latlng: [28.625209, -90.490466],
+      iconUrls: [
+        'img/markers/louisiana_shrimp.png'
+      ],
+      minZoom: 6
+    },
+    {
+      marker: 'ak_salmon',
+      latlng: [58.923187, -162.812096],
+      iconUrls: [
+        'img/markers/ak_salmon.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 'ne_groundfish',
+      latlng: [42.487950, -69.600870],
+      iconUrls: [
+        'img/markers/ne_groundfish.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 'or_dungeness_crab',
+      latlng: [45.126981, -125.517987],
+      iconUrls: [
+        'img/markers/or_dungeness_crab.png'
+      ],
+      minZoom: 6
+    },
+    {
+      marker: 'ak_crab',
+      latlng: [58.664182, -171.642374],
+      iconUrls: [
+        'img/markers/ak_crab.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 'ak_halibut',
+      latlng: [58.675757, -150.375991],
+      iconUrls: [
+        'img/markers/ak_halibut.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 'pacific_groundfish',
+      latlng: [42.419284, -126.048231],
+      iconUrls: [
+        'img/markers/pacific_groundfish.png'
+      ],
+      minZoom: 6
+    },
+    {
+      marker: 'gom_snapper',
+      latlng: [29.697035, -86.668360],
+      iconUrls: [
+        'img/markers/gom_snapper.png'
+      ],
+      minZoom: 6
     }
   ];
   var SIZE_SINGLE = 0;
@@ -433,7 +579,8 @@
           minZoom: MIN_ZOOM,
           maxZoom: MAX_ZOOM,
           zoomControl: false,
-          attributionControl: false
+          attributionControl: false,
+          closePopupOnClick: false
         }
       );
       leafletMap = map.getLeafletMap();
