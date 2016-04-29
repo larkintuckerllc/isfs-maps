@@ -479,10 +479,20 @@
         for (i = 0; i < markers.length; i++) {
           if (markers[i].code === data.code) {
             if (data.event === 'popupopen') {
-              markers[i].layer.openPopup();
+              markers[i].popped = true;
+              if (markers[i].added) {
+                markers[i].layer.openPopup();
+              } else {
+                markers[i].pinLayer.openPopup();
+              }
             }
             if (data.event === 'popupclose') {
-              markers[i].layer.closePopup();
+              markers[i].popped = false;
+              if (markers[i].added) {
+                markers[i].layer.closePopup();
+              } else {
+                markers[i].pinLayer.closePopup();
+              }
             }
           }
         }
@@ -490,16 +500,24 @@
       function zoomed() {
         var zoom = leafletMap.getZoom();
         var i;
+        var iPopped;
         for (i = 0; i < markers.length; i++) {
+          iPopped = markers[i].popped;
           if (zoom >= markers[i].minZoom && !markers[i].added) {
             markers[i].added = true;
             markers[i].pinLayer.removeFrom(leafletMap);
             markers[i].layer.addTo(leafletMap);
+            if (iPopped) {
+              markers[i].layer.openPopup();
+            }
           }
           if (zoom < markers[i].minZoom && markers[i].added) {
             markers[i].added = false;
             markers[i].layer.removeFrom(leafletMap);
             markers[i].pinLayer.addTo(leafletMap);
+            if (iPopped) {
+              markers[i].pinLayer.openPopup();
+            }
           }
         }
       }
@@ -698,6 +716,7 @@
       }
       function addMarker(code, latlng, iconUrl, minZoom, popup,
         popupWidth, popupHeight) {
+        var popupHtml;
         var marker = {};
         var pinIcon = L.icon({
           iconUrl: 'img/pins/red.png'
@@ -708,9 +727,7 @@
         });
         var layer = L.marker(latlng, {icon: icon});
         if (popup) {
-          layer.addEventListener('popupopen', handlePopupOpen);
-          layer.addEventListener('popupclose', handlePopupClose);
-          layer.bindPopup([
+          popupHtml = [
             '<iframe src="',
             chart + '/?code=' + code,
             '" ',
@@ -721,13 +738,20 @@
             popupHeight,
             '" style="border:none">',
             '</iframe>'
-          ].join(''), {autoPan: false});
+          ].join('');
+          pinLayer.addEventListener('popupopen', handlePopupOpen);
+          pinLayer.addEventListener('popupclose', handlePopupClose);
+          layer.addEventListener('popupopen', handlePopupOpen);
+          layer.addEventListener('popupclose', handlePopupClose);
+          pinLayer.bindPopup(popupHtml, {autoPan: false});
+          layer.bindPopup(popupHtml, {autoPan: false});
         }
         marker.code = code;
         marker.pinLayer = pinLayer;
         marker.layer = layer;
         marker.minZoom = minZoom;
         marker.added = false;
+        marker.popped = false;
         markers.push(marker);
         if (leafletMap.getZoom() >= minZoom) {
           marker.added = true;
@@ -737,12 +761,14 @@
         }
         function handlePopupOpen() {
           markerCode = code;
+          marker.popped = true;
           markerEvent = 'popupopen';
           markerSync.update();
           markerSync.idle();
         }
         function handlePopupClose() {
           markerCode = code;
+          marker.popped = false;
           markerEvent = 'popupclose';
           markerSync.update();
           markerSync.idle();
@@ -756,10 +782,13 @@
           pinLayer = markers[i].pinLayer;
           layer = markers[i].layer;
           layer.closePopup();
+          pinLayer.closePopup();
+          markers[i].popped = false;
           markerCode = markers[i].code;
           markerEvent = 'popupclose';
           markerSync.update();
           markerSync.idle();
+          pinLayer.removeEventListener();
           layer.removeEventListener();
           if (markers[i].added) {
             layer.removeFrom(leafletMap);
@@ -770,7 +799,6 @@
         markers = [];
       }
       function keepActive() {
-        window.console.log('KEEPACTIVE');
         active = true;
         thr0w.thr0wChannel(CHANNELS, {type: 'active'});
       }
