@@ -907,18 +907,22 @@
           pinLayer.addTo(leafletMap);
         }
         function handlePopupOpen() {
-          markerCode = code;
-          marker.popped = true;
-          markerEvent = 'popupopen';
-          markerSync.update();
-          markerSync.idle();
+          if (!marker.popped) {
+            marker.popped = true;
+            markerCode = code;
+            markerEvent = 'popupopen';
+            markerSync.update();
+            markerSync.idle();
+          }
         }
         function handlePopupClose() {
-          markerCode = code;
-          marker.popped = false;
-          markerEvent = 'popupclose';
-          markerSync.update();
-          markerSync.idle();
+          if (marker.popped) {
+            marker.popped = false;
+            markerCode = code;
+            markerEvent = 'popupclose';
+            markerSync.update();
+            markerSync.idle();
+          }
         }
       }
       function removeMarkers() {
