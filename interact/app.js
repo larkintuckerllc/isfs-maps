@@ -866,11 +866,15 @@
         var popupHtml;
         var marker = {};
         var pinIcon = L.icon({
-          iconUrl: 'img/pins/red.png'
+          iconUrl: 'img/pins/red.png',
+          iconSize: L.point(25,43),
+          iconAnchor: L.point(12,43)
         });
         var pinLayer = L.marker(latlng, {icon: pinIcon});
         var icon = L.icon({
-          iconUrl: iconUrl
+          iconUrl: iconUrl,
+          iconSize: L.point(100,100),
+          iconAnchor: L.point(50,50)
         });
         var layer = L.marker(latlng, {icon: icon});
         if (popup) {
