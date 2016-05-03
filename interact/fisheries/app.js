@@ -290,6 +290,66 @@
       ecology: 2.88,
       economics: 3.79,
       community: 3.83
+    },
+    'se_sl_skipjack_tuna': {
+      title: 'SE SL Skipjack Tuna',
+      ecology: 4.13,
+      economics: 3.15,
+      community: 4.05
+    },
+    'lombok_shark': {
+      title: 'Lombok Shark',
+      ecology: 3.88,
+      economics: 2.78,
+      community: 4.1
+    },
+    's_sb_yellowfin_tuna': {
+      title: 'S SB Yellowfin Tuna',
+      ecology: 3.5,
+      economics: 3.23,
+      community: 4.05
+    },
+    'n_sb_yellowfin_tuna': {
+      title: 'N SB Yellowfin Tuna',
+      ecology: 3.38,
+      economics: 3.19,
+      community: 3.76
+    },
+    's_sm_blue_swming_crab': {
+      title: 'S SM Blue Swming Crab',
+      ecology: 3.13,
+      economics: 3.53,
+      community: 3.5
+    },
+    'n_sb_demersal': {
+      title: 'N SB Demersal',
+      ecology: 2.75,
+      economics: 2.84,
+      community: 3.69
+    },
+    'se_sl_blue_swming_crab': {
+      title: 'SE SL Blue Swming Crab',
+      ecology: 2.63,
+      economics: 3.4,
+      community: 3.69
+    },
+    'central_sl_demersal': {
+      title: 'Central SL Demersal',
+      ecology: 2.5,
+      economics: 3.75,
+      community: 4.1
+    },
+    's_sl_grouper': {
+      title: 'S SL Grouper',
+      ecology: 2.5,
+      economics: 3.11,
+      community: 3.83
+    },
+    's_sb_demersal': {
+      title: 'S SB Demersal',
+      ecology: 2.38,
+      economics: 2.58,
+      community: 3.83
     }
   };
   var parameters = parseQueryString();

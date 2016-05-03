@@ -395,6 +395,86 @@
         'img/markers/gom_snapper.png'
       ],
       minZoom: 6
+    },
+    {
+      marker: 'se_sl_skipjack_tuna',
+      latlng: [0,0],
+      iconUrls: [
+        'img/markers/se_sl_skipjack_tuna.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 'lombok_shark',
+      latlng: [0,0],
+      iconUrls: [
+        'img/markers/lombok_shark.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 's_sb_yellowfin_tuna',
+      latlng: [0,0],
+      iconUrls: [
+        'img/markers/s_sb_yellowfin_tuna.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 'n_sb_yellowfin_tuna',
+      latlng: [0,0],
+      iconUrls: [
+        'img/markers/n_sb_yellowfin_tuna.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 's_sm_blue_swming_crab',
+      latlng: [0,0],
+      iconUrls: [
+        'img/markers/s_sm_blue_swming_crab.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 'n_sb_demersal',
+      latlng: [0,0],
+      iconUrls: [
+        'img/markers/n_sb_demersal.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 'se_sl_blue_swming_crab',
+      latlng: [0,0],
+      iconUrls: [
+        'img/markers/se_sl_blue_swming_crab.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 'central_sl_demersal',
+      latlng: [0,0],
+      iconUrls: [
+        'img/markers/central_sl_demersal.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 's_sl_grouper',
+      latlng: [0,0],
+      iconUrls: [
+        'img/markers/s_sl_grouper.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 's_sb_demersal',
+      latlng: [0,0],
+      iconUrls: [
+        'img/markers/s_sb_demersal.png'
+      ],
+      minZoom: 5
     }
   ];
   var SIZE_SINGLE = 0;
