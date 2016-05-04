@@ -91,7 +91,7 @@
           tileLayer.removeFrom(leafletMap);
         }
         tiles = newTiles;
-        if (tiles === 'day') {
+        if (tiles === 'night') {
           // jscs:disable
           tileLayer = L.tileLayer(
             'http://192.168.1.2/night/{z}/{x}/{y}.png',
@@ -121,13 +121,9 @@
         window.location.href = 'interact/?size=0';
       }
       function checkTime() {
-        window.console.log('CHECKTIME');
-        /*
         var hours = (new Date()).getHours();
         var newTiles = hours >= START_HOUR && hours <= STOP_HOUR ?
           'day' : 'night';
-        */
-        var newTiles = tiles === 'day' ? 'night' : 'day';
         if (newTiles !== tiles) {
           changeTiles(newTiles);
           tilesSync.update();
