@@ -398,39 +398,39 @@
     },
     {
       marker: 'se_sl_skipjack_tuna',
-      latlng: [0,0],
+      latlng: [-4.534977, 122.532078],
       iconUrls: [
         'img/markers/se_sl_skipjack_tuna.png'
       ],
-      minZoom: 5
+      minZoom: 8
     },
     {
       marker: 'lombok_shark',
-      latlng: [0,0],
+      latlng: [-9.214523, 115.580407],
       iconUrls: [
         'img/markers/lombok_shark.png'
       ],
-      minZoom: 5
+      minZoom: 8
     },
     {
       marker: 's_sb_yellowfin_tuna',
-      latlng: [0,0],
+      latlng: [-9.880516, 116.774507],
       iconUrls: [
         'img/markers/s_sb_yellowfin_tuna.png'
       ],
-      minZoom: 5
+      minZoom: 8
     },
     {
       marker: 'n_sb_yellowfin_tuna',
-      latlng: [0,0],
+      latlng: [-7.549081, 116.784295],
       iconUrls: [
         'img/markers/n_sb_yellowfin_tuna.png'
       ],
-      minZoom: 5
+      minZoom: 8
     },
     {
       marker: 's_sm_blue_swming_crab',
-      latlng: [0,0],
+      latlng: [-4.194371, 107.081856],
       iconUrls: [
         'img/markers/s_sm_blue_swming_crab.png'
       ],
@@ -438,23 +438,23 @@
     },
     {
       marker: 'n_sb_demersal',
-      latlng: [0,0],
+      latlng: [-7.053957, 118.575445],
       iconUrls: [
         'img/markers/n_sb_demersal.png'
       ],
-      minZoom: 5
+      minZoom: 8
     },
     {
       marker: 'se_sl_blue_swming_crab',
-      latlng: [0,0],
+      latlng: [-5.068920, 121.599003],
       iconUrls: [
         'img/markers/se_sl_blue_swming_crab.png'
       ],
-      minZoom: 5
+      minZoom: 8
     },
     {
       marker: 'central_sl_demersal',
-      latlng: [0,0],
+      latlng: [-0.418821, 124.528146],
       iconUrls: [
         'img/markers/central_sl_demersal.png'
       ],
@@ -462,19 +462,19 @@
     },
     {
       marker: 's_sl_grouper',
-      latlng: [0,0],
+      latlng: [-5.497042, 118.655953],
       iconUrls: [
         'img/markers/s_sl_grouper.png'
       ],
-      minZoom: 5
+      minZoom: 7
     },
     {
       marker: 's_sb_demersal',
-      latlng: [0,0],
+      latlng: [-9.793722, 118.183937],
       iconUrls: [
         'img/markers/s_sb_demersal.png'
       ],
-      minZoom: 5
+      minZoom: 8
     }
   ];
   var SIZE_SINGLE = 0;
