@@ -1,6 +1,9 @@
 (function() {
   'use strict';
+  var START_HOUR = 8;
+  var STOP_HOUR = 17;
   var INTERVAL = 240 * 1000;
+  var TILES_INTERVAL = 60 * 1000;
   var ANIMATION = 230 * 1000;
   var ZOOM = 7;
   var POSITIONS = [
@@ -60,32 +63,54 @@
         }
       );
       var leafletMap = map.getLeafletMap();
-      // PROD
-      // jscs:disable
-      L.tileLayer(
-        'http://192.168.1.2/satellite/{z}/{y}/{x}',
-        {
-           attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
-        }
-      ).addTo(leafletMap);
-      // jscs:enable
-      /*
-      // DEV
-      L.tileLayer(
-        'map/{z}/{x}/{y}.png',
-        {
-          minZoom: 0,
-          maxZoom: 7,
-          opacity: 1.0,
-          tms: false
-        }
-      ).addTo(leafletMap);
-      */
+      var tiles = null;
+      var tileLayer = null;
+      var tilesSync = new thr0w.Sync(
+        grid,
+        'tiles',
+        tilesMessage,
+        tilesReceive
+      );
       if (thr0w.getChannel() === 0) {
         move();
+        checkTime();
         window.setInterval(move, INTERVAL);
+        window.setInterval(checkTime, TILES_INTERVAL);
       }
       frameEl.addEventListener('touchstart', handleClick, true);
+      function tilesMessage() {
+        return {
+          tiles: tiles
+        };
+      }
+      function tilesReceive(data) {
+        changeTiles(data.tiles);
+      }
+      function changeTiles(newTiles) {
+        if (tileLayer) {
+          tileLayer.removeFrom(leafletMap);
+        }
+        tiles = newTiles;
+        if (tiles === 'day') {
+          // jscs:disable
+          tileLayer = L.tileLayer(
+            'http://192.168.1.2/night/{z}/{x}/{y}.png',
+            {
+          	   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+            }
+          ).addTo(leafletMap);
+          // jscs:enable
+        } else {
+          // jscs:disable
+          tileLayer = L.tileLayer(
+            'http://192.168.1.2/satellite/{z}/{y}/{x}',
+            {
+               attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+            }
+          ).addTo(leafletMap);
+          // jscs:enable
+        }
+      }
       function move() {
         position++;
         position = position < POSITIONS.length ? position : 0;
@@ -94,6 +119,20 @@
       }
       function handleClick() {
         window.location.href = 'interact/?size=0';
+      }
+      function checkTime() {
+        window.console.log('CHECKTIME');
+        /*
+        var hours = (new Date()).getHours();
+        var newTiles = hours >= START_HOUR && hours <= STOP_HOUR ?
+          'day' : 'night';
+        */
+        var newTiles = tiles === 'day' ? 'night' : 'day';
+        if (newTiles !== tiles) {
+          changeTiles(newTiles);
+          tilesSync.update();
+          tilesSync.idle();
+        }
       }
     }
     function messageCallback() {
