@@ -478,7 +478,7 @@
     },
     {
       marker: 'is_lobster',
-      latlng: [40,-125],
+      latlng: [63.836833, -15.019223],
       iconUrls: [
         'img/markers/is_lobster.png'
       ],
@@ -486,7 +486,7 @@
     },
     {
       marker: 'mv_skipjack_tuna',
-      latlng: [40,-125],
+      latlng: [3.558032, 73.593691],
       iconUrls: [
         'img/markers/mv_skipjack_tuna.png'
       ],
@@ -494,7 +494,7 @@
     },
     {
       marker: 'no_cod',
-      latlng: [40,-125],
+      latlng: [74.435238, 21.719056],
       iconUrls: [
         'img/markers/no_cod.png'
       ],
@@ -502,7 +502,7 @@
     },
     {
       marker: 'no_purse_seine',
-      latlng: [40,-125],
+      latlng: [67.756106, 9.590150],
       iconUrls: [
         'img/markers/no_purse_seine.png'
       ],
@@ -510,15 +510,15 @@
     },
     {
       marker: 'au_spencer_gulf_prawn',
-      latlng: [40,-125],
+      latlng: [-34.482839, 136.871064],
       iconUrls: [
         'img/markers/au_spencer_gulf_prawn.png'
       ],
-      minZoom: 5
+      minZoom: 6
     },
     {
       marker: 'nz_hoki',
-      latlng: [40,-125],
+      latlng: [-42.453335, 167.167302],
       iconUrls: [
         'img/markers/nz_hoki.png'
       ],
@@ -526,15 +526,15 @@
     },
     {
       marker: 'au_w_zn_abalone',
-      latlng: [40,-125],
+      latlng: [-33.736732, 133.577217],
       iconUrls: [
         'img/markers/au_w_zn_abalone.png'
       ],
-      minZoom: 5
+      minZoom: 6
     },
     {
       marker: 'eu_purse_seine_tuna',
-      latlng: [40,-125],
+      latlng: [-18.168574, 62.173707],
       iconUrls: [
         'img/markers/eu_purse_seine_tuna.png'
       ],
@@ -542,7 +542,7 @@
     },
     {
       marker: 'se_baltic_cod',
-      latlng: [40,-125],
+      latlng: [58.922845, 19.961244],
       iconUrls: [
         'img/markers/se_baltic_cod.png'
       ],
@@ -550,35 +550,35 @@
     },
     {
       marker: 'au_s_zn_rock_lobster',
-      latlng: [40,-125],
+      latlng: [-37.078922, 138.859801],
       iconUrls: [
         'img/markers/au_s_zn_rock_lobster.png'
       ],
-      minZoom: 5
+      minZoom: 6
     },
     {
       marker: 'sc_inshore_artisanal',
-      latlng: [40,-125],
+      latlng: [-4.776912, 55.726373],
       iconUrls: [
         'img/markers/sc_inshore_artisanal.png'
       ],
-      minZoom: 5
+      minZoom: 10 
     },
     {
       marker: 'sc_semi-industrial',
-      latlng: [40,-125],
+      latlng: [-4.570192, 55.801608],
       iconUrls: [
         'img/markers/sc_semi-industrial.png'
       ],
-      minZoom: 5
+      minZoom: 10 
     },
     {
       marker: 'sc_sea_cucumber',
-      latlng: [40,-125],
+      latlng: [-4.481132, 55.494752],
       iconUrls: [
         'img/markers/sc_sea_cucumber.png'
       ],
-      minZoom: 5
+      minZoom: 10 
     }
   ];
   var SIZE_SINGLE = 0;
@@ -608,8 +608,8 @@
     var active = true;
     var frameEl = document.getElementById('my_frame');
     var contentEl = document.getElementById('interact_content');
-    // thr0w.setBase('http://192.168.1.2'); // PROD
-    thr0w.setBase('http://localhost'); // DEV
+    thr0w.setBase('http://192.168.1.2'); // PROD
+    // thr0w.setBase('http://localhost'); // DEV
     thr0w.addAdminTools(frameEl,
       connectCallback, messageCallback);
     function connectCallback() {
