@@ -350,6 +350,84 @@
       ecology: 2.38,
       economics: 2.58,
       community: 3.83
+    },
+    'is_lobster': {
+      title: 'IS Lobster',
+      ecology: 5,
+      economics: 4.34,
+      community: 4.05
+    },
+    'mv_skipjack_tuna': {
+      title: 'MV Skipjack Tuna',
+      ecology: 4.75,
+      economics: 3.53,
+      community: 3.93
+    },
+    'no_cod': {
+      title: 'NO Cod',
+      ecology: 4.75,
+      economics: 3.83,
+      community: 3.98
+    },
+    'no_purse_seine': {
+      title: 'NO Purse Seine',
+      ecology: 4.75,
+      economics: 3.88,
+      community: 3.98
+    },
+    'au_spencer_gulf_prawn': {
+      title: 'AU Spencer Gulf Prawn',
+      ecology: 4.38,
+      economics: 3.79,
+      community: 4.45
+    },
+    'nz_hoki': {
+      title: 'NZ Hoki',
+      ecology: 4.38,
+      economics: 4.25,
+      community: 3.9
+    },
+    'au_w_zn_abalone': {
+      title: 'AU W Zn Abalone',
+      ecology: 4.13,
+      economics: 4.1,
+      community: 4.67
+    },
+    'eu_purse_seine_tuna': {
+      title: 'EU Purse Seine Tuna',
+      ecology: 4,
+      economics: 3.85,
+      community: 4.17
+    },
+    'se_baltic_cod': {
+      title: 'SE Baltic Cod',
+      ecology: 4,
+      economics: 3.79,
+      community: 4.12
+    },
+    'au_s_zn_rock_lobster': {
+      title: 'AU S Zn Rock Lobster',
+      ecology: 4,
+      economics: 4.01,
+      community: 4.69
+    },
+    'sc_inshore_artisanal': {
+      title: 'SC Inshore Artisanal',
+      ecology: 3.63,
+      economics: 3.51,
+      community: 4.1
+    },
+    'sc_semi-industrial': {
+      title: 'SC Semi-Industrial',
+      ecology: 3.5,
+      economics: 3.97,
+      community: 4.05
+    },
+    'sc_sea_cucumber': {
+      title: 'SC Sea Cucumber',
+      ecology: 3,
+      economics: 3.6,
+      community: 4.21
     }
   };
   var parameters = parseQueryString();

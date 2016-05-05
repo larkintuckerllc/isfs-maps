@@ -475,6 +475,110 @@
         'img/markers/s_sb_demersal.png'
       ],
       minZoom: 8
+    },
+    {
+      marker: 'is_lobster',
+      latlng: [40,-125],
+      iconUrls: [
+        'img/markers/is_lobster.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 'mv_skipjack_tuna',
+      latlng: [40,-125],
+      iconUrls: [
+        'img/markers/mv_skipjack_tuna.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 'no_cod',
+      latlng: [40,-125],
+      iconUrls: [
+        'img/markers/no_cod.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 'no_purse_seine',
+      latlng: [40,-125],
+      iconUrls: [
+        'img/markers/no_purse_seine.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 'au_spencer_gulf_prawn',
+      latlng: [40,-125],
+      iconUrls: [
+        'img/markers/au_spencer_gulf_prawn.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 'nz_hoki',
+      latlng: [40,-125],
+      iconUrls: [
+        'img/markers/nz_hoki.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 'au_w_zn_abalone',
+      latlng: [40,-125],
+      iconUrls: [
+        'img/markers/au_w_zn_abalone.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 'eu_purse_seine_tuna',
+      latlng: [40,-125],
+      iconUrls: [
+        'img/markers/eu_purse_seine_tuna.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 'se_baltic_cod',
+      latlng: [40,-125],
+      iconUrls: [
+        'img/markers/se_baltic_cod.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 'au_s_zn_rock_lobster',
+      latlng: [40,-125],
+      iconUrls: [
+        'img/markers/au_s_zn_rock_lobster.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 'sc_inshore_artisanal',
+      latlng: [40,-125],
+      iconUrls: [
+        'img/markers/sc_inshore_artisanal.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 'sc_semi-industrial',
+      latlng: [40,-125],
+      iconUrls: [
+        'img/markers/sc_semi-industrial.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 'sc_sea_cucumber',
+      latlng: [40,-125],
+      iconUrls: [
+        'img/markers/sc_sea_cucumber.png'
+      ],
+      minZoom: 5
     }
   ];
   var SIZE_SINGLE = 0;
@@ -504,8 +608,8 @@
     var active = true;
     var frameEl = document.getElementById('my_frame');
     var contentEl = document.getElementById('interact_content');
-    thr0w.setBase('http://192.168.1.2'); // PROD
-    // thr0w.setBase('http://localhost'); // DEV
+    // thr0w.setBase('http://192.168.1.2'); // PROD
+    thr0w.setBase('http://localhost'); // DEV
     thr0w.addAdminTools(frameEl,
       connectCallback, messageCallback);
     function connectCallback() {
