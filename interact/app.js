@@ -1145,9 +1145,15 @@
             wm.openWindow(code, windowX,
               windowYBase + 1920 - popupDetailHeight - 100,
               popupDetailWidth,
-              popupDetailHeight, chart + '/?code=' + code);
+              popupDetailHeight, chart + '/?code=' + code
+            );
           } catch (error) {
-            wm.focusWindow(code);
+            wm.closeWindow(code);
+            wm.openWindow(code, windowX,
+              windowYBase + 1920 - popupDetailHeight - 100,
+              popupDetailWidth,
+              popupDetailHeight, chart + '/?code=' + code
+            );
           }
         }
       }
