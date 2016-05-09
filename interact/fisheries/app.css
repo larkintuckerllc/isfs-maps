@@ -15,18 +15,20 @@ body {
 }
 #highlight__title {
   position: absolute;
+  box-sizing: border-box;
   left: 0px;
   bottom: 0px;
   width: 100%;
-  height: 50px;
+  padding: 15px;
   background-color: rgba(0,0,0,0.5);
   color: rgb(255,255,255);
   text-align: center;
-  line-height: 50px;
-  font-size: 1.5em;
+  font-weight: bold;
+}
+.data__metric {
+  margin-top: 10px;
 }
 .data__metric__title {
-  margin-top: 10px;
   border: 1px solid black;
   padding: 10px;
   text-align: center;
@@ -42,4 +44,10 @@ body {
   border-right: 1px solid black;
   height: 100%;
   transition: width 2s;
+}
+.data__scale {
+  margin-top: 10px;
+}
+#data__scale__value--good {
+  float: right;
 }

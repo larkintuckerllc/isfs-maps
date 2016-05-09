@@ -62,145 +62,145 @@
       community: 3.88
     },
     'gambia_artisanal_sole_and_catfish': {
-      title: 'GM Sole and Catfish',
+      title: 'Gambia Artisanal Sole and Catfish',
       ecology: 3.5,
       economics: 3.35,
       community: 3.38
     },
     'gambia_try_oysters': {
-      title: 'GM TRY Oysters',
+      title: 'Gambia TRY Oysters',
       ecology: 3,
       economics: 2.17,
       community: 2.4
     },
     'ghana_artisanal': {
-      title: 'GH Artisanal',
+      title: 'Ghana Artisanal',
       ecology: 2.38,
       economics: 2.39,
       community: 3.36
     },
     'ghana_axim_artisanal': {
-      title: 'GH Axim',
+      title: 'Ghana Axim',
       ecology: 2.5,
       economics: 2.79,
       community: 4.19
     },
     'kenya_shimoni_artisanal': {
-      title: 'KE Shimoni',
+      title: 'Kenya Shimoni Artisanal',
       ecology: 2.63,
       economics: 2.46,
       community: 3.29
     },
     'kenya_octopus': {
-      title: 'KE Octopus',
+      title: 'Kenya Octopus',
       ecology: 2.38,
       economics: 3.39,
       community: 3.74
     },
     'liberia_westpoint_artisanal': {
-      title: 'LR Westpoint',
+      title: 'Liberia Westpoint Artisinal',
       ecology: 2.38,
       economics: 2.4,
       community: 3.12
     },
     'liberia_westpoint_artisanal_2': {
-      title: 'LR Westpoint',
+      title: 'Liberia Westpoint Artisinal',
       ecology: 4,
       economics: 3.08,
       community: 3.93
     },
     'liberia_robertsport_artisanal': {
-      title: 'LR Robertsport',
+      title: 'Liberia Robertsport Artisinal',
       ecology: 3.5,
       economics: 2.96,
       community: 3.79
     },
     'liberia_semi-industrial': {
-      title: 'LR Semi-Industrial',
+      title: 'Liberia Semi-Industrial',
       ecology: 3.5,
       economics: 2.9,
       community: 3.07
     },
     'malawi_lake_chiuta': {
-      title: 'MW Lake Chiuta',
+      title: 'Malawi Lake Chiuta',
       ecology: 3,
       economics: 2.75,
       community: 3.33
     },
     'morocco_central_zone': {
-      title: 'MA Central Zone',
+      title: 'Morocco Central Zone',
       ecology: 3.06,
       economics: 3.22,
       community: 4.31
     },
     'morocco_southern_zone': {
-      title: 'MA Southern Zone',
+      title: 'Morocco Southern Zone',
       ecology: 3.69,
       economics: 3.6,
       community: 3.75
     },
     'senegal_artisanal': {
-      title: 'SN Artisanal',
+      title: 'Senegal Artisanal',
       ecology: 2.5,
       economics: 3.39,
       community: 3.76
     },
     'senegal_ngaparou_artisanal': {
-      title: 'SN Ngaparou',
+      title: 'Senegal Ngaparou Artisanal',
       ecology: 2.63,
       economics: 2.64,
       community: 3.52
     },
     'sierra_leone_sherbro': {
-      title: 'SL Sherbro',
+      title: 'Sierra Leone Sherbro',
       ecology: 2.63,
       economics: 2.72,
       community: 3.6
     },
     'sierra_leone_tombo': {
-      title: 'SL Tombo',
+      title: 'Sierre Leone Tombo',
       ecology: 2.5,
       economics: 2.5,
       community: 3.88
     },
     'uganda_lake_victoria_dagaa': {
-      title: 'UG Dagaa',
+      title: 'Uganda Lake Victoria Dagaa',
       ecology: 4.25,
       economics: 2.93,
       community: 3.33
     },
     'uganda_lake_victoria_tilapia': {
-      title: 'UG Tilapia',
+      title: 'Uganda Lake Victoria Tilapia',
       ecology: 4.25,
       economics: 3.06,
       community: 3.29
     },
     'uganda_nile_perch': {
-      title: 'UG Nile Perch',
+      title: 'Uganda Nile Perch',
       ecology: 2.75,
       economics: 3.39,
       community: 3.6
     },
     'shrimp_artisanal': {
-      title: 'Shrimp Artisanal',
+      title: 'Columbia Shrimp Artisanal',
       ecology: 2.25,
       economics: 2.81,
       community: 4.18
     },
     'shrimp_industrial': {
-      title: 'Shrimp Industrial',
+      title: 'Colombia Shrimp Industrial',
       ecology: 2.38,
       economics: 3.25,
       community: 4.29
     },
     'industrial_tuna': {
-      title: 'Industrial Tuna',
+      title: 'Ecuador Industrial Tuna',
       ecology: 3.88,
       economics: 3.88,
       community: 4.31
     },
     'la_paz_bivalves': {
-      title: 'La Paz Bivalves',
+      title: 'Mexico La Paz Bivalves',
       ecology: 2.38,
       economics: 2.49,
       community: 3.45
@@ -214,31 +214,31 @@
     },
     */
     'la_paz_chocolata': {
-      title: 'La Paz Bay Chocolata',
+      title: 'Mexico La Paz Bay Chocolata',
       ecology: 3,
       economics: 2.76,
       community: 3.93
     },
     'purse_seine_tuna': {
-      title: 'Purse Seine Tuna',
+      title: 'Mexico Purse Seine Tuna',
       ecology: 3.38,
       economics: 4.26,
       community: 4.67
     },
     'anchovy': {
-      title: 'Anchovy',
+      title: 'Peru Anchovy',
       ecology: 3,
       economics: 3.68,
       community: 3.98
     },
     'ak_pollock': {
-      title: 'AK Pollock',
+      title: 'Alaska Pollock',
       ecology: 4.88,
       economics: 4.38,
       community: 3.52
     },
     'fl_spiny_lobster': {
-      title: 'FL Spiny Lobster',
+      title: 'Florida Spiny Lobster',
       ecology: 3.75,
       economics: 3.53,
       community: 4.12
@@ -250,31 +250,31 @@
       community: 3.9
     },
     'ak_salmon': {
-      title: 'AK Salmon',
+      title: 'Alaska Salmon',
       ecology: 4.88,
       economics: 2.86,
       community: 3.4
     },
     'ne_groundfish': {
-      title: 'NE Groundfish',
+      title: 'Northeast Groundfish',
       ecology: 2.5,
       economics: 3.42,
       community: 3.55
     },
     'or_dungeness_crab': {
-      title: 'OR Dungeness Crab',
+      title: 'Oregon Dungeness Crab',
       ecology: 4.63,
       economics: 3.33,
       community: 3.48
     },
     'ak_crab': {
-      title: 'AK Crab',
+      title: 'Alaska Crab',
       ecology: 4.25,
       economics: 4.44,
       community: 3.71
     },
     'ak_halibut': {
-      title: 'AK Halibut',
+      title: 'Alaska Halibut',
       ecology: 4.88,
       economics: 4.01,
       community: 3.6
@@ -292,7 +292,7 @@
       community: 3.83
     },
     'se_sl_skipjack_tuna': {
-      title: 'SE SL Skipjack Tuna',
+      title: 'SE Sulawesi Skipjack Tuna',
       ecology: 4.13,
       economics: 3.15,
       community: 4.05
@@ -304,91 +304,91 @@
       community: 4.1
     },
     's_sb_yellowfin_tuna': {
-      title: 'S SB Yellowfin Tuna',
+      title: 'S Sumbawa Yellowfin Tuna',
       ecology: 3.5,
       economics: 3.23,
       community: 4.05
     },
     'n_sb_yellowfin_tuna': {
-      title: 'N SB Yellowfin Tuna',
+      title: 'N Sumbawa Yellowfin Tuna',
       ecology: 3.38,
       economics: 3.19,
       community: 3.76
     },
     's_sm_blue_swming_crab': {
-      title: 'S SM Blue Swming Crab',
+      title: 'S Sumatra Blue Swimming Crab',
       ecology: 3.13,
       economics: 3.53,
       community: 3.5
     },
     'n_sb_demersal': {
-      title: 'N SB Demersal',
+      title: 'N Sumbawa Demersal',
       ecology: 2.75,
       economics: 2.84,
       community: 3.69
     },
     'se_sl_blue_swming_crab': {
-      title: 'SE SL Blue Swming Crab',
+      title: 'SE Sulawesi Blue Swimming Crab',
       ecology: 2.63,
       economics: 3.4,
       community: 3.69
     },
     'central_sl_demersal': {
-      title: 'Central SL Demersal',
+      title: 'Central Sulawesi Demersal',
       ecology: 2.5,
       economics: 3.75,
       community: 4.1
     },
     's_sl_grouper': {
-      title: 'S SL Grouper',
+      title: 'S Sulawesi Grouper',
       ecology: 2.5,
       economics: 3.11,
       community: 3.83
     },
     's_sb_demersal': {
-      title: 'S SB Demersal',
+      title: 'S Sumbawa Demersal',
       ecology: 2.38,
       economics: 2.58,
       community: 3.83
     },
     'is_lobster': {
-      title: 'IS Lobster',
+      title: 'Iceland Lobster',
       ecology: 5,
       economics: 4.34,
       community: 4.05
     },
     'mv_skipjack_tuna': {
-      title: 'MV Skipjack Tuna',
+      title: 'Maldives Skipjack Tuna',
       ecology: 4.75,
       economics: 3.53,
       community: 3.93
     },
     'no_cod': {
-      title: 'NO Cod',
+      title: 'Norway Cod',
       ecology: 4.75,
       economics: 3.83,
       community: 3.98
     },
     'no_purse_seine': {
-      title: 'NO Purse Seine',
+      title: 'Norway Purse Seine',
       ecology: 4.75,
       economics: 3.88,
       community: 3.98
     },
     'au_spencer_gulf_prawn': {
-      title: 'AU Spencer Gulf Prawn',
+      title: 'Australia Spencer Gulf Prawn',
       ecology: 4.38,
       economics: 3.79,
       community: 4.45
     },
     'nz_hoki': {
-      title: 'NZ Hoki',
+      title: 'New Zealand Hoki',
       ecology: 4.38,
       economics: 4.25,
       community: 3.9
     },
     'au_w_zn_abalone': {
-      title: 'AU W Zn Abalone',
+      title: 'Australia Western Zone Abalone',
       ecology: 4.13,
       economics: 4.1,
       community: 4.67
@@ -400,31 +400,31 @@
       community: 4.17
     },
     'se_baltic_cod': {
-      title: 'SE Baltic Cod',
+      title: 'Sweden Baltic Cod',
       ecology: 4,
       economics: 3.79,
       community: 4.12
     },
     'au_s_zn_rock_lobster': {
-      title: 'AU S Zn Rock Lobster',
+      title: 'Australia Southern Zone Rock Lobster',
       ecology: 4,
       economics: 4.01,
       community: 4.69
     },
     'sc_inshore_artisanal': {
-      title: 'SC Inshore Artisanal',
+      title: 'Seychelles Inshore Artisanal',
       ecology: 3.63,
       economics: 3.51,
       community: 4.1
     },
     'sc_semi-industrial': {
-      title: 'SC Semi-Industrial',
+      title: 'Seychelles Semi-Industrial',
       ecology: 3.5,
       economics: 3.97,
       community: 4.05
     },
     'sc_sea_cucumber': {
-      title: 'SC Sea Cucumber',
+      title: 'Seychelles Sea Cucumber',
       ecology: 3,
       economics: 3.6,
       community: 4.21

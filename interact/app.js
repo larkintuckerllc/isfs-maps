@@ -14,7 +14,7 @@
       iconUrls: [
         'img/markers/chinook_salmon.png'
       ],
-      minZoom: 7
+      minZoom: 5
     },
     {
       marker: 'dungeness_crab',
@@ -22,7 +22,7 @@
       iconUrls: [
         'img/markers/dungeness_crab.png'
       ],
-      minZoom: 7
+      minZoom: 5
     },
     {
       marker: 'sablefish',
@@ -30,7 +30,7 @@
       iconUrls: [
         'img/markers/sablefish.png'
       ],
-      minZoom: 7
+      minZoom: 5
     },
     {
       marker: 'market_squid',
@@ -38,7 +38,7 @@
       iconUrls: [
         'img/markers/market_squid.png'
       ],
-      minZoom: 7
+      minZoom: 5
     },
     {
       marker: 'nearshore_finfish',
@@ -46,7 +46,7 @@
       iconUrls: [
         'img/markers/nearshore_finfish.png'
       ],
-      minZoom: 7
+      minZoom: 5
     },
     {
       marker: 'spot_prawn',
@@ -54,7 +54,7 @@
       iconUrls: [
         'img/markers/spot_prawn.png'
       ],
-      minZoom: 7
+      minZoom: 5
     },
     {
       marker: 'sea_cucumber',
@@ -62,7 +62,7 @@
       iconUrls: [
         'img/markers/sea_cucumber.png'
       ],
-      minZoom: 7
+      minZoom: 5
     },
     {
       marker: 'sea_urchin',
@@ -70,7 +70,7 @@
       iconUrls: [
         'img/markers/sea_urchin.png'
       ],
-      minZoom: 7
+      minZoom: 5
     },
     {
       marker: 'spiny_lobster',
@@ -78,7 +78,7 @@
       iconUrls: [
         'img/markers/spiny_lobster.png'
       ],
-      minZoom: 7
+      minZoom: 5
     },
     {
       marker: 'rock_crab',
@@ -86,7 +86,7 @@
       iconUrls: [
         'img/markers/rock_crab.png'
       ],
-      minZoom: 7
+      minZoom: 5
     },
     {
       marker: 'gambia_artisanal_sole_and_catfish',
@@ -94,7 +94,7 @@
       iconUrls: [
         'img/markers/gambia_artisanal_sole_and_catfish.png'
       ],
-      minZoom: 8
+      minZoom: 5
     },
     {
       marker: 'gambia_try_oysters',
@@ -102,7 +102,7 @@
       iconUrls: [
         'img/markers/gambia_try_oysters.png'
       ],
-      minZoom: 8
+      minZoom: 5
     },
     {
       marker: 'ghana_artisanal',
@@ -110,7 +110,7 @@
       iconUrls: [
         'img/markers/ghana_artisanal.png'
       ],
-      minZoom: 7
+      minZoom: 5
     },
     {
       marker: 'ghana_axim_artisanal',
@@ -118,7 +118,7 @@
       iconUrls: [
         'img/markers/ghana_axim_artisanal.png'
       ],
-      minZoom: 7
+      minZoom: 5
     },
     {
       marker: 'kenya_shimoni_artisanal',
@@ -126,7 +126,7 @@
       iconUrls: [
         'img/markers/kenya_shimoni_artisanal.png'
       ],
-      minZoom: 7
+      minZoom: 5
     },
     {
       marker: 'kenya_octopus',
@@ -134,7 +134,7 @@
       iconUrls: [
         'img/markers/kenya_octopus.png'
       ],
-      minZoom: 7
+      minZoom: 5
     },
     {
       marker: 'liberia_westpoint_artisanal',
@@ -142,7 +142,7 @@
       iconUrls: [
         'img/markers/liberia_westpoint_artisanal.png'
       ],
-      minZoom: 8
+      minZoom: 5
     },
     /*
     {
@@ -151,7 +151,7 @@
       iconUrls: [
         'img/markers/liberia_westpoint_artisanal_2.png'
       ],
-      minZoom: 7
+      minZoom: 5
     },
     */
     {
@@ -160,7 +160,7 @@
       iconUrls: [
         'img/markers/liberia_robertsport_artisanal.png'
       ],
-      minZoom: 8
+      minZoom: 5
     },
     {
       marker: 'liberia_semi-industrial',
@@ -168,7 +168,7 @@
       iconUrls: [
         'img/markers/liberia_semi-industrial.png'
       ],
-      minZoom: 8
+      minZoom: 5
     },
     {
       marker: 'malawi_lake_chiuta',
@@ -176,7 +176,7 @@
       iconUrls: [
         'img/markers/malawi_lake_chiuta.png'
       ],
-      minZoom: 7
+      minZoom: 5
     },
     {
       marker: 'morocco_central_zone',
@@ -184,7 +184,7 @@
       iconUrls: [
         'img/markers/morocco_central_zone.png'
       ],
-      minZoom: 7
+      minZoom: 5
     },
     {
       marker: 'morocco_southern_zone',
@@ -192,7 +192,7 @@
       iconUrls: [
         'img/markers/morocco_southern_zone.png'
       ],
-      minZoom: 7
+      minZoom: 5
     },
     {
       marker: 'senegal_artisanal',
@@ -200,7 +200,7 @@
       iconUrls: [
         'img/markers/senegal_artisanal.png'
       ],
-      minZoom: 8
+      minZoom: 5
     },
     {
       marker: 'senegal_ngaparou_artisanal',
@@ -208,7 +208,7 @@
       iconUrls: [
         'img/markers/senegal_ngaparou_artisanal.png'
       ],
-      minZoom: 8
+      minZoom: 5
     },
     {
       marker: 'sierra_leone_sherbro',
@@ -216,7 +216,7 @@
       iconUrls: [
         'img/markers/sierra_leone_sherbro.png'
       ],
-      minZoom: 8
+      minZoom: 5
     },
     {
       marker: 'sierra_leone_tombo',
@@ -224,7 +224,7 @@
       iconUrls: [
         'img/markers/sierra_leone_tombo.png'
       ],
-      minZoom: 8
+      minZoom: 5
     },
     {
       marker: 'uganda_lake_victoria_dagaa',
@@ -232,7 +232,7 @@
       iconUrls: [
         'img/markers/uganda_lake_victoria_dagaa.png'
       ],
-      minZoom: 8
+      minZoom: 5
     },
     {
       marker: 'uganda_lake_victoria_tilapia',
@@ -240,7 +240,7 @@
       iconUrls: [
         'img/markers/uganda_lake_victoria_tilapia.png'
       ],
-      minZoom: 8
+      minZoom: 5
     },
     {
       marker: 'uganda_nile_perch',
@@ -248,7 +248,7 @@
       iconUrls: [
         'img/markers/uganda_nile_perch.png'
       ],
-      minZoom: 8
+      minZoom: 5
     },
     {
       marker: 'shrimp_artisanal',
@@ -256,7 +256,7 @@
       iconUrls: [
         'img/markers/shrimp_artisanal.png'
       ],
-      minZoom: 7
+      minZoom: 5
     },
     {
       marker: 'shrimp_industrial',
@@ -264,7 +264,7 @@
       iconUrls: [
         'img/markers/shrimp_industrial.png'
       ],
-      minZoom: 7
+      minZoom: 5
     },
     {
       marker: 'industrial_tuna',
@@ -280,7 +280,7 @@
       iconUrls: [
         'img/markers/la_paz_bivalves.png'
       ],
-      minZoom: 6
+      minZoom: 5
     },
     /*
     {
@@ -298,7 +298,7 @@
       iconUrls: [
         'img/markers/la_paz_chocolata.png'
       ],
-      minZoom: 6
+      minZoom: 5
     },
     {
       marker: 'purse_seine_tuna',
@@ -306,7 +306,7 @@
       iconUrls: [
         'img/markers/purse_seine_tuna.png'
       ],
-      minZoom: 6
+      minZoom: 5
     },
     {
       marker: 'anchovy',
@@ -338,7 +338,7 @@
       iconUrls: [
         'img/markers/louisiana_shrimp.png'
       ],
-      minZoom: 6
+      minZoom: 5
     },
     {
       marker: 'ak_salmon',
@@ -362,7 +362,7 @@
       iconUrls: [
         'img/markers/or_dungeness_crab.png'
       ],
-      minZoom: 6
+      minZoom: 5
     },
     {
       marker: 'ak_crab',
@@ -386,7 +386,7 @@
       iconUrls: [
         'img/markers/pacific_groundfish.png'
       ],
-      minZoom: 6
+      minZoom: 5
     },
     {
       marker: 'gom_snapper',
@@ -394,7 +394,7 @@
       iconUrls: [
         'img/markers/gom_snapper.png'
       ],
-      minZoom: 6
+      minZoom: 5
     },
     {
       marker: 'se_sl_skipjack_tuna',
@@ -402,7 +402,7 @@
       iconUrls: [
         'img/markers/se_sl_skipjack_tuna.png'
       ],
-      minZoom: 8
+      minZoom: 5
     },
     {
       marker: 'lombok_shark',
@@ -410,7 +410,7 @@
       iconUrls: [
         'img/markers/lombok_shark.png'
       ],
-      minZoom: 8
+      minZoom: 5
     },
     {
       marker: 's_sb_yellowfin_tuna',
@@ -418,7 +418,7 @@
       iconUrls: [
         'img/markers/s_sb_yellowfin_tuna.png'
       ],
-      minZoom: 8
+      minZoom: 5
     },
     {
       marker: 'n_sb_yellowfin_tuna',
@@ -426,7 +426,7 @@
       iconUrls: [
         'img/markers/n_sb_yellowfin_tuna.png'
       ],
-      minZoom: 8
+      minZoom: 5
     },
     {
       marker: 's_sm_blue_swming_crab',
@@ -442,7 +442,7 @@
       iconUrls: [
         'img/markers/n_sb_demersal.png'
       ],
-      minZoom: 8
+      minZoom: 5
     },
     {
       marker: 'se_sl_blue_swming_crab',
@@ -450,7 +450,7 @@
       iconUrls: [
         'img/markers/se_sl_blue_swming_crab.png'
       ],
-      minZoom: 8
+      minZoom: 5
     },
     {
       marker: 'central_sl_demersal',
@@ -466,7 +466,7 @@
       iconUrls: [
         'img/markers/s_sl_grouper.png'
       ],
-      minZoom: 7
+      minZoom: 5
     },
     {
       marker: 's_sb_demersal',
@@ -474,7 +474,7 @@
       iconUrls: [
         'img/markers/s_sb_demersal.png'
       ],
-      minZoom: 8
+      minZoom: 5
     },
     {
       marker: 'is_lobster',
@@ -514,7 +514,7 @@
       iconUrls: [
         'img/markers/au_spencer_gulf_prawn.png'
       ],
-      minZoom: 6
+      minZoom: 5
     },
     {
       marker: 'nz_hoki',
@@ -530,7 +530,7 @@
       iconUrls: [
         'img/markers/au_w_zn_abalone.png'
       ],
-      minZoom: 6
+      minZoom: 5
     },
     {
       marker: 'eu_purse_seine_tuna',
@@ -554,7 +554,7 @@
       iconUrls: [
         'img/markers/au_s_zn_rock_lobster.png'
       ],
-      minZoom: 6
+      minZoom: 5
     },
     {
       marker: 'sc_inshore_artisanal',
@@ -562,7 +562,7 @@
       iconUrls: [
         'img/markers/sc_inshore_artisanal.png'
       ],
-      minZoom: 10 
+      minZoom: 5
     },
     {
       marker: 'sc_semi-industrial',
@@ -570,7 +570,7 @@
       iconUrls: [
         'img/markers/sc_semi-industrial.png'
       ],
-      minZoom: 10 
+      minZoom: 5
     },
     {
       marker: 'sc_sea_cucumber',
@@ -578,7 +578,7 @@
       iconUrls: [
         'img/markers/sc_sea_cucumber.png'
       ],
-      minZoom: 10 
+      minZoom: 5
     }
   ];
   var SIZE_SINGLE = 0;
