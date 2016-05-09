@@ -4,6 +4,7 @@
 html, body {
   margin: 0px;
   padding: 0px;
+  -webkit-user-select: none;
 }
 #my_frame {
   position: relative;
