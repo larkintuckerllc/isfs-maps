@@ -1112,14 +1112,15 @@
           pinLayer.addTo(leafletMap);
         }
         function handlePopupOpen() {
+          if (popupDetail) {
+            popupDetailButton = document.getElementById(
+              'popup__detail--' + code
+            );
+            window.console.log(popupDetailButton);
+            popupDetailButton.addEventListener('click',
+              handlePopupDetailClick);
+          }
           if (!marker.popped) {
-            if (popupDetail) {
-              popupDetailButton = document.getElementById(
-                'popup__detail--' + code
-              );
-              popupDetailButton.addEventListener('click',
-                handlePopupDetailClick);
-            }
             marker.popped = true;
             markerCode = code;
             markerEvent = 'popupopen';
@@ -1128,11 +1129,11 @@
           }
         }
         function handlePopupClose() {
+          if (popupDetail) {
+            popupDetailButton.removeEventListener('click',
+              handlePopupDetailClick);
+          }
           if (marker.popped) {
-            if (popupDetail) {
-              popupDetailButton.removeEventListener('click',
-                handlePopupDetailClick);
-            }
             marker.popped = false;
             markerCode = code;
             markerEvent = 'popupclose';
