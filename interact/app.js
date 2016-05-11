@@ -1054,6 +1054,8 @@
         popupDetail, popupWidth, popupHeight, popupDetailWidth,
         popupDetailHeight) {
         var popupHtml;
+        var popupDetailHtml = '';
+        var popupDetailPinHtml = '';
         var popupDetailButton;
         var marker = {};
         var pinIcon = L.icon({
@@ -1082,7 +1084,7 @@
             '</iframe>'
           ].join('');
           if (popupDetail) {
-            popupHtml += [
+            popupDetailHtml = [
               '<div id="popup__detail--',
               code,
               '" class="popup__detail">',
@@ -1090,13 +1092,21 @@
               '</div>',
               '<div style="clear: both;">&nbsp;</div>',
             ].join('');
+            popupDetailPinHtml = [
+              '<div id="popup__detail--pin--',
+              code,
+              '" class="popup__detail">',
+              '<img src="img/info.png" width="50" height="50"/>',
+              '</div>',
+              '<div style="clear: both;">&nbsp;</div>',
+            ].join('');
           }
-          pinLayer.addEventListener('popupopen', handlePopupOpen);
+          pinLayer.addEventListener('popupopen', handlePopupPinOpen);
           pinLayer.addEventListener('popupclose', handlePopupClose);
           layer.addEventListener('popupopen', handlePopupOpen);
           layer.addEventListener('popupclose', handlePopupClose);
-          pinLayer.bindPopup(popupHtml, {autoPan: false});
-          layer.bindPopup(popupHtml, {autoPan: false});
+          pinLayer.bindPopup(popupHtml + popupDetailPinHtml, {autoPan: false});
+          layer.bindPopup(popupHtml + popupDetailHtml, {autoPan: false});
         }
         marker.code = code;
         marker.pinLayer = pinLayer;
@@ -1111,22 +1121,11 @@
         } else {
           pinLayer.addTo(leafletMap);
         }
+        function handlePopupPinOpen() {
+          handleOpen('popup__detail--pin--');
+        }
         function handlePopupOpen() {
-          if (popupDetail) {
-            popupDetailButton = document.getElementById(
-              'popup__detail--' + code
-            );
-            window.console.log(popupDetailButton);
-            popupDetailButton.addEventListener('click',
-              handlePopupDetailClick);
-          }
-          if (!marker.popped) {
-            marker.popped = true;
-            markerCode = code;
-            markerEvent = 'popupopen';
-            markerSync.update();
-            markerSync.idle();
-          }
+          handleOpen('popup__detail--');
         }
         function handlePopupClose() {
           if (popupDetail) {
@@ -1137,6 +1136,22 @@
             marker.popped = false;
             markerCode = code;
             markerEvent = 'popupclose';
+            markerSync.update();
+            markerSync.idle();
+          }
+        }
+        function handleOpen(prefix) {
+          if (popupDetail) {
+            popupDetailButton = document.getElementById(
+              prefix + code
+            );
+            popupDetailButton.addEventListener('click',
+              handlePopupDetailClick);
+          }
+          if (!marker.popped) {
+            marker.popped = true;
+            markerCode = code;
+            markerEvent = 'popupopen';
             markerSync.update();
             markerSync.idle();
           }
