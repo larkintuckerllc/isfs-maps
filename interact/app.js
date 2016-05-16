@@ -125,6 +125,213 @@
     {
       region: 'VEN',
       color: 'rgb(61,91,166)'
+    },
+    // AMRO D
+    {
+      region: 'BOL',
+      color: 'rgb(255,246,181)'
+    },
+    {
+      region: 'ECU',
+      color: 'rgb(255,246,181)'
+    },
+    {
+      region: 'GTM',
+      color: 'rgb(255,246,181)'
+    },
+    {
+      region: 'HTI',
+      color: 'rgb(255,246,181)'
+    },
+    {
+      region: 'NIC',
+      color: 'rgb(255,246,181)'
+    },
+    {
+      region: 'PER',
+      color: 'rgb(255,246,181)'
+    },
+    // AFRO D
+    {
+      region: 'DZA',
+      color: 'rgb(163,0,35)'
+    },
+    {
+      region: 'AGO',
+      color: 'rgb(163,0,35)'
+    },
+    {
+      region: 'BEN',
+      color: 'rgb(163,0,35)'
+    },
+    {
+      region: 'BFA',
+      color: 'rgb(163,0,35)'
+    },
+    {
+      region: 'CMR',
+      color: 'rgb(163,0,35)'
+    },
+    {
+      region: 'CPV',
+      color: 'rgb(163,0,35)'
+    },
+    {
+      region: 'TCD',
+      color: 'rgb(163,0,35)'
+    },
+    {
+      region: 'COM',
+      color: 'rgb(163,0,35)'
+    },
+    {
+      region: 'GNQ',
+      color: 'rgb(163,0,35)'
+    },
+    {
+      region: 'GAB',
+      color: 'rgb(163,0,35)'
+    },
+    {
+      region: 'GMB',
+      color: 'rgb(163,0,35)'
+    },
+    {
+      region: 'GHA',
+      color: 'rgb(163,0,35)'
+    },
+    {
+      region: 'GIN',
+      color: 'rgb(163,0,35)'
+    },
+    {
+      region: 'GNB',
+      color: 'rgb(163,0,35)'
+    },
+    {
+      region: 'LBR',
+      color: 'rgb(163,0,35)'
+    },
+    {
+      region: 'MDG',
+      color: 'rgb(163,0,35)'
+    },
+    {
+      region: 'MLI',
+      color: 'rgb(163,0,35)'
+    },
+    {
+      region: 'MRT',
+      color: 'rgb(163,0,35)'
+    },
+    {
+      region: 'MUS',
+      color: 'rgb(163,0,35)'
+    },
+    {
+      region: 'NER',
+      color: 'rgb(163,0,35)'
+    },
+    {
+      region: 'NGA',
+      color: 'rgb(163,0,35)'
+    },
+    {
+      region: 'STP',
+      color: 'rgb(163,0,35)'
+    },
+    {
+      region: 'SEN',
+      color: 'rgb(163,0,35)'
+    },
+    {
+      region: 'SYC',
+      color: 'rgb(163,0,35)'
+    },
+    {
+      region: 'SLE',
+      color: 'rgb(163,0,35)'
+    },
+    {
+      region: 'TGO',
+      color: 'rgb(163,0,35)'
+    },
+    // AFRO E
+    {
+      region: 'BWA',
+      color: 'rgb(191,27,38)'
+    },
+    {
+      region: 'BDI',
+      color: 'rgb(191,27,38)'
+    },
+    {
+      region: 'CAF',
+      color: 'rgb(191,27,38)'
+    },
+    {
+      region: 'COG',
+      color: 'rgb(191,27,38)'
+    },
+    {
+      region: 'CRI',
+      color: 'rgb(191,27,38)'
+    },
+    {
+      region: 'COD',
+      color: 'rgb(191,27,38)'
+    },
+    {
+      region: 'ERI',
+      color: 'rgb(191,27,38)'
+    },
+    {
+      region: 'KEN',
+      color: 'rgb(191,27,38)'
+    },
+    {
+      region: 'LSO',
+      color: 'rgb(191,27,38)'
+    },
+    {
+      region: 'MWI',
+      color: 'rgb(191,27,38)'
+    },
+    {
+      region: 'MOZ',
+      color: 'rgb(191,27,38)'
+    },
+    {
+      region: 'NAM',
+      color: 'rgb(191,27,38)'
+    },
+    {
+      region: 'RWA',
+      color: 'rgb(191,27,38)'
+    },
+    {
+      region: 'ZAF',
+      color: 'rgb(191,27,38)'
+    },
+    {
+      region: 'SWZ',
+      color: 'rgb(191,27,38)'
+    },
+    {
+      region: 'UGA',
+      color: 'rgb(191,27,38)'
+    },
+    {
+      region: 'TZA',
+      color: 'rgb(191,27,38)'
+    },
+    {
+      region: 'ZMB',
+      color: 'rgb(191,27,38)'
+    },
+    {
+      region: 'ZWE',
+      color: 'rgb(191,27,38)'
     }
   ];
   var FISHERIES = [
@@ -715,7 +922,7 @@
       markersPopupDetailHeight: 535,
       center: [0, 0],
       zoom: {
-        0: 4,
+        0: 3,
         1: 4,
         2: 4
       },
@@ -732,7 +939,7 @@
       markersPopupDetailHeight: 0,
       center: [0, 0],
       zoom: {
-        0: 4,
+        0: 3,
         1: 4,
         2: 4
       },
