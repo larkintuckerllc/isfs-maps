@@ -5,7 +5,11 @@
   // var BASE_URL = 'http://localhost:8080/apps/isfs-steering/interact/'; // DEV
   var CHANNELS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   var BROWSERS = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
-  var MIN_ZOOM = 4;
+  var MIN_ZOOM = {
+    0: 3,
+    1: 4,
+    2: 4
+  };
   var MAX_ZOOM = 19;
   var DISEASE = [
     // AMRO A
@@ -274,7 +278,7 @@
       color: 'rgb(191,27,38)'
     },
     {
-      region: 'CRI',
+      region: 'CIV',
       color: 'rgb(191,27,38)'
     },
     {
@@ -1105,9 +1109,9 @@
         markerMessage,
         markerReceive
       );
-      map = new thr0w.leaflet.Map(grid, 0, 0, MIN_ZOOM,
+      map = new thr0w.leaflet.Map(grid, 0, 0, MIN_ZOOM[size],
         {
-          minZoom: MIN_ZOOM,
+          minZoom: MIN_ZOOM[size],
           maxZoom: MAX_ZOOM,
           zoomControl: false,
           attributionControl: false,
