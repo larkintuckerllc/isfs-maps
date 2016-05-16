@@ -7,6 +7,126 @@
   var BROWSERS = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
   var MIN_ZOOM = 4;
   var MAX_ZOOM = 19;
+  var DISEASE = [
+    // AMRO A
+    {
+      region: 'CAN',
+      color: 'rgb(181,221,235)'
+    },
+    {
+      region: 'CUB',
+      color: 'rgb(181,221,235)'
+    },
+    {
+      region: 'USA',
+      color: 'rgb(181,221,235)'
+    },
+    // AMRO B
+    {
+      region: 'ATG',
+      color: 'rgb(61,91,166)'
+    },
+    {
+      region: 'ARG',
+      color: 'rgb(61,91,166)'
+    },
+    {
+      region: 'BHS',
+      color: 'rgb(61,91,166)'
+    },
+    {
+      region: 'BRB',
+      color: 'rgb(61,91,166)'
+    },
+    {
+      region: 'BLZ',
+      color: 'rgb(61,91,166)'
+    },
+    {
+      region: 'BRA',
+      color: 'rgb(61,91,166)'
+    },
+    {
+      region: 'CHL',
+      color: 'rgb(61,91,166)'
+    },
+    {
+      region: 'COL',
+      color: 'rgb(61,91,166)'
+    },
+    {
+      region: 'CRI',
+      color: 'rgb(61,91,166)'
+    },
+    {
+      region: 'DMA',
+      color: 'rgb(61,91,166)'
+    },
+    {
+      region: 'DOM',
+      color: 'rgb(61,91,166)'
+    },
+    {
+      region: 'SLV',
+      color: 'rgb(61,91,166)'
+    },
+    {
+      region: 'GRD',
+      color: 'rgb(61,91,166)'
+    },
+    {
+      region: 'GUY',
+      color: 'rgb(61,91,166)'
+    },
+    {
+      region: 'HND',
+      color: 'rgb(61,91,166)'
+    },
+    {
+      region: 'JAM',
+      color: 'rgb(61,91,166)'
+    },
+    {
+      region: 'MEX',
+      color: 'rgb(61,91,166)'
+    },
+    {
+      region: 'PAN',
+      color: 'rgb(61,91,166)'
+    },
+    {
+      region: 'PRY',
+      color: 'rgb(61,91,166)'
+    },
+    {
+      region: 'KNA',
+      color: 'rgb(61,91,166)'
+    },
+    {
+      region: 'LCA',
+      color: 'rgb(61,91,166)'
+    },
+    {
+      region: 'VCT',
+      color: 'rgb(61,91,166)'
+    },
+    {
+      region: 'SUR',
+      color: 'rgb(61,91,166)'
+    },
+    {
+      region: 'TTO',
+      color: 'rgb(61,91,166)'
+    },
+    {
+      region: 'URY',
+      color: 'rgb(61,91,166)'
+    },
+    {
+      region: 'VEN',
+      color: 'rgb(61,91,166)'
+    }
+  ];
   var FISHERIES = [
     {
       marker: 'chinook_salmon',
@@ -601,6 +721,23 @@
       },
       regions: [],
       markers: FISHERIES
+    },
+    disease: {
+      regionsPopup: false,
+      markersPopup: false,
+      markersPopupDetail: false,
+      markersPopupWidth: 0,
+      markersPopupHeight: 0,
+      markersPopupDetailWidth: 0,
+      markersPopupDetailHeight: 0,
+      center: [0, 0],
+      zoom: {
+        0: 4,
+        1: 4,
+        2: 4
+      },
+      regions: DISEASE,
+      markers: []
     }
   };
   var L = window.L;
@@ -789,6 +926,8 @@
         .addEventListener('click', handleNoneClick);
       document.getElementById('fisheries')
         .addEventListener('click', handleFisheriesClick);
+      document.getElementById('disease')
+        .addEventListener('click', handleDiseaseClick);
       window.setInterval(checkIdle, TIMEOUT);
       function chartMessage() {
         return {
@@ -916,6 +1055,12 @@
       }
       function handleFisheriesClick() {
         chart = 'fisheries';
+        updateChart();
+        chartSync.update();
+        chartSync.idle();
+      }
+      function handleDiseaseClick() {
+        chart = 'disease';
         updateChart();
         chartSync.update();
         chartSync.idle();
