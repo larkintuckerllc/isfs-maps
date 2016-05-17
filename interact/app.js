@@ -119,10 +119,6 @@
       color: 'rgb(61,91,166)'
     },
     {
-      region: 'GUF',
-      color: 'rgb(61,91,166)'
-    },
-    {
       region: 'TTO',
       color: 'rgb(61,91,166)'
     },
@@ -1942,6 +1938,7 @@
           }
           function handleClick(e) {
             if (region.popped) {
+              regionCode = code;
               regionEvent = 'popupclose';
               regionSync.update();
               regionSync.idle();
