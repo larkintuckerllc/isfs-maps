@@ -336,6 +336,475 @@
     {
       region: 'ZWE',
       color: 'rgb(191,27,38)'
+    },
+    // EMR B
+    {
+      region: 'BHR',
+      color: 'rgb(252,220,157)'
+    },
+    {
+      region: 'IRN',
+      color: 'rgb(252,220,157)'
+    },
+    {
+      region: 'JOR',
+      color: 'rgb(252,220,157)'
+    },
+    {
+      region: 'KWT',
+      color: 'rgb(252,220,157)'
+    },
+    {
+      region: 'LBN',
+      color: 'rgb(252,220,157)'
+    },
+    {
+      region: 'LBY',
+      color: 'rgb(252,220,157)'
+    },
+    {
+      region: 'OMN',
+      color: 'rgb(252,220,157)'
+    },
+    {
+      region: 'QAT',
+      color: 'rgb(252,220,157)'
+    },
+    {
+      region: 'SAU',
+      color: 'rgb(252,220,157)'
+    },
+    {
+      region: 'SYR',
+      color: 'rgb(252,220,157)'
+    },
+    {
+      region: 'TUN',
+      color: 'rgb(252,220,157)'
+    },
+    {
+      region: 'ARE',
+      color: 'rgb(252,220,157)'
+    },
+    // EMR D
+    {
+      region: 'AFG',
+      color: 'rgb(250,157,90)'
+    },
+    {
+      region: 'DJI',
+      color: 'rgb(250,157,90)'
+    },
+    {
+      region: 'EGY',
+      color: 'rgb(250,157,90)'
+    },
+    {
+      region: 'IRQ',
+      color: 'rgb(250,157,90)'
+    },
+    {
+      region: 'MAR',
+      color: 'rgb(250,157,90)'
+    },
+    {
+      region: 'PAK',
+      color: 'rgb(250,157,90)'
+    },
+    {
+      region: 'SOM',
+      color: 'rgb(250,157,90)'
+    },
+    {
+      region: 'SSD',
+      color: 'rgb(250,157,90)'
+    },
+    {
+      region: 'SDN',
+      color: 'rgb(250,157,90)'
+    },
+    {
+      region: 'YEM',
+      color: 'rgb(250,157,90)'
+    },
+    {
+      region: 'TUN',
+      color: 'rgb(250,157,90)'
+    },
+    {
+      region: 'ARE',
+      color: 'rgb(250,157,90)'
+    },
+    // EUR A
+    {
+      region: 'AND',
+      color: 'rgb(127,181,212)'
+    },
+    {
+      region: 'AUT',
+      color: 'rgb(127,181,212)'
+    },
+    {
+      region: 'BEL',
+      color: 'rgb(127,181,212)'
+    },
+    {
+      region: 'HRV',
+      color: 'rgb(127,181,212)'
+    },
+    {
+      region: 'CYP',
+      color: 'rgb(127,181,212)'
+    },
+    {
+      region: 'CZE',
+      color: 'rgb(127,181,212)'
+    },
+    {
+      region: 'DNK',
+      color: 'rgb(127,181,212)'
+    },
+    {
+      region: 'FIN',
+      color: 'rgb(127,181,212)'
+    },
+    {
+      region: 'FRA',
+      color: 'rgb(127,181,212)'
+    },
+    {
+      region: 'DEU',
+      color: 'rgb(127,181,212)'
+    },
+    {
+      region: 'GRC',
+      color: 'rgb(127,181,212)'
+    },
+    {
+      region: 'ISL',
+      color: 'rgb(127,181,212)'
+    },
+    {
+      region: 'IRL',
+      color: 'rgb(127,181,212)'
+    },
+    {
+      region: 'ISR',
+      color: 'rgb(127,181,212)'
+    },
+    {
+      region: 'ITA',
+      color: 'rgb(127,181,212)'
+    },
+    {
+      region: 'LUX',
+      color: 'rgb(127,181,212)'
+    },
+    {
+      region: 'MLT',
+      color: 'rgb(127,181,212)'
+    },
+    {
+      region: 'MCO',
+      color: 'rgb(127,181,212)'
+    },
+    {
+      region: 'NLD',
+      color: 'rgb(127,181,212)'
+    },
+    {
+      region: 'NOR',
+      color: 'rgb(127,181,212)'
+    },
+    {
+      region: 'PRT',
+      color: 'rgb(127,181,212)'
+    },
+    {
+      region: 'SMR',
+      color: 'rgb(127,181,212)'
+    },
+    {
+      region: 'SVN',
+      color: 'rgb(127,181,212)'
+    },
+    {
+      region: 'ESP',
+      color: 'rgb(127,181,212)'
+    },
+    {
+      region: 'SWE',
+      color: 'rgb(127,181,212)'
+    },
+    {
+      region: 'CHE',
+      color: 'rgb(127,181,212)'
+    },
+    {
+      region: 'GBR',
+      color: 'rgb(127,181,212)'
+    },
+    // EURO B
+    {
+      region: 'ALB',
+      color: 'rgb(85,137,189)'
+    },
+    {
+      region: 'ARM',
+      color: 'rgb(85,137,189)'
+    },
+    {
+      region: 'AZE',
+      color: 'rgb(85,137,189)'
+    },
+    {
+      region: 'BIH',
+      color: 'rgb(85,137,189)'
+    },
+    {
+      region: 'BGR',
+      color: 'rgb(85,137,189)'
+    },
+    {
+      region: 'GEO',
+      color: 'rgb(85,137,189)'
+    },
+    {
+      region: 'KGZ',
+      color: 'rgb(85,137,189)'
+    },
+    {
+      region: 'MNE',
+      color: 'rgb(85,137,189)'
+    },
+    {
+      region: 'POL',
+      color: 'rgb(85,137,189)'
+    },
+    {
+      region: 'ROU',
+      color: 'rgb(85,137,189)'
+    },
+    {
+      region: 'SRB',
+      color: 'rgb(85,137,189)'
+    },
+    {
+      region: 'SVK',
+      color: 'rgb(85,137,189)'
+    },
+    {
+      region: 'TJK',
+      color: 'rgb(85,137,189)'
+    },
+    {
+      region: 'MKD',
+      color: 'rgb(85,137,189)'
+    },
+    {
+      region: 'TUR',
+      color: 'rgb(85,137,189)'
+    },
+    {
+      region: 'TKM',
+      color: 'rgb(85,137,189)'
+    },
+    {
+      region: 'UZB',
+      color: 'rgb(85,137,189)'
+    },
+    // EURO C
+    {
+      region: 'BLR',
+      color: 'rgb(103,158,199)'
+    },
+    {
+      region: 'EST',
+      color: 'rgb(103,158,199)'
+    },
+    {
+      region: 'HUN',
+      color: 'rgb(103,158,199)'
+    },
+    {
+      region: 'KAZ',
+      color: 'rgb(103,158,199)'
+    },
+    {
+      region: 'LVA',
+      color: 'rgb(103,158,199)'
+    },
+    {
+      region: 'LTU',
+      color: 'rgb(103,158,199)'
+    },
+    {
+      region: 'MDA',
+      color: 'rgb(103,158,199)'
+    },
+    {
+      region: 'RUS',
+      color: 'rgb(103,158,199)'
+    },
+    {
+      region: 'UKR',
+      color: 'rgb(103,158,199)'
+    },
+    // SEAR B
+    {
+      region: 'IDN',
+      color: 'rgb(230,78,55)'
+    },
+    {
+      region: 'LKA',
+      color: 'rgb(230,78,55)'
+    },
+    {
+      region: 'THA',
+      color: 'rgb(230,78,55)'
+    },
+    // SEAR D
+    {
+      region: 'BGD',
+      color: 'rgb(230,78,55)'
+    },
+    {
+      region: 'BTN',
+      color: 'rgb(230,78,55)'
+    },
+    {
+      region: 'PRK',
+      color: 'rgb(230,78,55)'
+    },
+    {
+      region: 'IND',
+      color: 'rgb(230,78,55)'
+    },
+    {
+      region: 'MDV',
+      color: 'rgb(230,78,55)'
+    },
+    {
+      region: 'MMR',
+      color: 'rgb(230,78,55)'
+    },
+    {
+      region: 'NPL',
+      color: 'rgb(230,78,55)'
+    },
+    {
+      region: 'TLS',
+      color: 'rgb(230,78,55)'
+    },
+    // WPR A
+    {
+      region: 'AUS',
+      color: 'rgb(158,205,219)'
+    },
+    {
+      region: 'BRN',
+      color: 'rgb(158,205,219)'
+    },
+    {
+      region: 'PRK',
+      color: 'rgb(158,205,219)'
+    },
+    {
+      region: 'NZL',
+      color: 'rgb(158,205,219)'
+    },
+    {
+      region: 'SGP',
+      color: 'rgb(158,205,219)'
+    },
+    // WPR B
+    {
+      region: 'KHM',
+      color: 'rgb(58,82,161)'
+    },
+    {
+      region: 'CHN',
+      color: 'rgb(58,82,161)'
+    },
+    {
+      region: 'COK',
+      color: 'rgb(58,82,161)'
+    },
+    {
+      region: 'FJI',
+      color: 'rgb(58,82,161)'
+    },
+    {
+      region: 'KIR',
+      color: 'rgb(58,82,161)'
+    },
+    {
+      region: 'LAO',
+      color: 'rgb(58,82,161)'
+    },
+    {
+      region: 'MYS',
+      color: 'rgb(58,82,161)'
+    },
+    {
+      region: 'MHL',
+      color: 'rgb(58,82,161)'
+    },
+    {
+      region: 'FSM',
+      color: 'rgb(58,82,161)'
+    },
+    {
+      region: 'MNG',
+      color: 'rgb(58,82,161)'
+    },
+    {
+      region: 'NRU',
+      color: 'rgb(58,82,161)'
+    },
+    {
+      region: 'NIU',
+      color: 'rgb(58,82,161)'
+    },
+    {
+      region: 'PLW',
+      color: 'rgb(58,82,161)'
+    },
+    {
+      region: 'PNG',
+      color: 'rgb(58,82,161)'
+    },
+    {
+      region: 'PHL',
+      color: 'rgb(58,82,161)'
+    },
+    {
+      region: 'KOR',
+      color: 'rgb(58,82,161)'
+    },
+    {
+      region: 'WSM',
+      color: 'rgb(58,82,161)'
+    },
+    {
+      region: 'SLB',
+      color: 'rgb(58,82,161)'
+    },
+    {
+      region: 'TON',
+      color: 'rgb(58,82,161)'
+    },
+    {
+      region: 'TUV',
+      color: 'rgb(58,82,161)'
+    },
+    {
+      region: 'VUT',
+      color: 'rgb(58,82,161)'
+    },
+    {
+      region: 'VNM',
+      color: 'rgb(58,82,161)'
     }
   ];
   var FISHERIES = [
@@ -1340,8 +1809,8 @@
                attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
             }
           ).addTo(leafletMap);
-          // jscs:enable
           /*
+          // jscs:enable
           // DEV DEBUG
           // jscs:disable
           tileLayer = L.tileLayer(
