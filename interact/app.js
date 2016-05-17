@@ -1879,7 +1879,6 @@
       function addRegion(code, color, popup,
         popuDetail, popupWidth, popupHeight,
         popupDetailWidth, popupDetailHeight) {
-        // KNOWN ISSUE WITH POPUP LOCATION NOT SYNCHING ON MULIPLE CLICKS
         var popupHtml = '';
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = handleOnReadyStateChange;
@@ -1912,6 +1911,7 @@
               ].join('');
               layer.addEventListener('popupopen', handlePopupOpen);
               layer.addEventListener('popupclose', handlePopupClose);
+              layer.addEventListener('click', handleClick);
               layer.bindPopup(popupHtml, {autoPan: false});
             }
             region.code = code;
@@ -1936,6 +1936,18 @@
               region.popped = false;
               regionCode = code;
               regionEvent = 'popupclose';
+              regionSync.update();
+              regionSync.idle();
+            }
+          }
+          function handleClick(e) {
+            if (region.popped) {
+              regionEvent = 'popupclose';
+              regionSync.update();
+              regionSync.idle();
+              regionEvent = 'popupopen';
+              regionLat = e.latlng.lat;
+              regionLng = e.latlng.lng;
               regionSync.update();
               regionSync.idle();
             }
