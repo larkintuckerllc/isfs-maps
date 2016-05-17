@@ -1,0 +1,11 @@
+html, body {
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
+  background-color: rgb(255,255,255);
+  font-family: sans-serif;
+  -webkit-user-select: none;
+}
+body {
+  width: 300px;
+}

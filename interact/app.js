@@ -119,6 +119,10 @@
       color: 'rgb(61,91,166)'
     },
     {
+      region: 'GUF',
+      color: 'rgb(61,91,166)'
+    },
+    {
       region: 'TTO',
       color: 'rgb(61,91,166)'
     },
@@ -287,6 +291,10 @@
     },
     {
       region: 'ERI',
+      color: 'rgb(191,27,38)'
+    },
+    {
+      region: 'ETH',
       color: 'rgb(191,27,38)'
     },
     {
@@ -706,7 +714,7 @@
       color: 'rgb(158,205,219)'
     },
     {
-      region: 'PRK',
+      region: 'JPN',
       color: 'rgb(158,205,219)'
     },
     {
@@ -1403,13 +1411,11 @@
       markers: FISHERIES
     },
     disease: {
-      regionsPopup: false,
+      regionsPopup: true,
+      regionsPopupDetail: false,
+      regionsPopupWidth: 308,
+      regionsPopupHeight: 480,
       markersPopup: false,
-      markersPopupDetail: false,
-      markersPopupWidth: 0,
-      markersPopupHeight: 0,
-      markersPopupDetailWidth: 0,
-      markersPopupDetailHeight: 0,
       center: [0, 0],
       zoom: {
         0: 3,
@@ -1435,6 +1441,10 @@
     function connectCallback() {
       var markerCode;
       var markerEvent;
+      var regionCode;
+      var regionEvent;
+      var regionLat;
+      var regionLng;
       var chart = null;
       var tiles = null;
       var regions = [];
@@ -1578,6 +1588,12 @@
         markerMessage,
         markerReceive
       );
+      var regionSync = new thr0w.Sync(
+        grid,
+        base + '_region',
+        regionMessage,
+        regionReceive
+      );
       map = new thr0w.leaflet.Map(grid, 0, 0, MIN_ZOOM[size],
         {
           minZoom: MIN_ZOOM[size],
@@ -1646,6 +1662,29 @@
               } else {
                 markers[i].pinLayer.closePopup();
               }
+            }
+          }
+        }
+      }
+      function regionMessage() {
+        return {
+          code: regionCode,
+          event: regionEvent,
+          lat: regionLat,
+          lng: regionLng
+        };
+      }
+      function regionReceive(data) {
+        var i;
+        for (i = 0; i < regions.length; i++) {
+          if (regions[i].code === data.code) {
+            if (data.event === 'popupopen') {
+              regions[i].popped = true;
+              regions[i].layer.openPopup(L.latLng(data.lat, data.lng));
+            }
+            if (data.event === 'popupclose') {
+              regions[i].popped = false;
+              regions[i].layer.closePopup();
             }
           }
         }
@@ -1765,8 +1804,11 @@
               CHARTS[chart].regions[i].region,
               CHARTS[chart].regions[i].color,
               CHARTS[chart].regionsPopup,
+              CHARTS[chart].regionsPopupDetail,
               CHARTS[chart].regionsPopupWidth,
-              CHARTS[chart].regionsPopupHeight
+              CHARTS[chart].regionsPopupHeight,
+              CHARTS[chart].regionsPopupDetailWidth,
+              CHARTS[chart].regionsPopupDetailHeight
             );
           }
           for (i = 0; i < CHARTS[chart].markers.length; i++) {
@@ -1835,13 +1877,15 @@
         }
       }
       function addRegion(code, color, popup,
-        popupWidth, popupHeight) {
-        var region = {};
+        popuDetail, popupWidth, popupHeight,
+        popupDetailWidth, popupDetailHeight) {
+        // KNOWN ISSUE WITH POPUP LOCATION NOT SYNCHING ON MULIPLE CLICKS
+        var popupHtml = '';
         var xmlhttp = new XMLHttpRequest();
-        regions.push(region);
         xmlhttp.onreadystatechange = handleOnReadyStateChange;
         function handleOnReadyStateChange() {
           var layer;
+          var region = {};
           if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
             layer = L.geoJson(
               JSON.parse(xmlhttp.responseText),
@@ -1853,11 +1897,47 @@
                 fillOpacity: 0.7
               }
             );
-            region.layer = layer;
-            layer.addTo(leafletMap);
             if (popup) {
-              window.console.log(popupWidth);
-              window.console.log(popupHeight);
+              popupHtml = [
+                '<iframe src="',
+                chart + '/?code=' + code,
+                '" ',
+                'width="',
+                popupWidth,
+                '" ',
+                'height="',
+                popupHeight,
+                '" style="border:none">',
+                '</iframe>'
+              ].join('');
+              layer.addEventListener('popupopen', handlePopupOpen);
+              layer.addEventListener('popupclose', handlePopupClose);
+              layer.bindPopup(popupHtml, {autoPan: false});
+            }
+            region.code = code;
+            region.layer = layer;
+            region.popped = false;
+            regions.push(region);
+            layer.addTo(leafletMap);
+          }
+          function handlePopupOpen(e) {
+            if (!region.popped) {
+              region.popped = true;
+              regionCode = code;
+              regionEvent = 'popupopen';
+              regionLat = e.popup.getLatLng().lat;
+              regionLng = e.popup.getLatLng().lng;
+              regionSync.update();
+              regionSync.idle();
+            }
+          }
+          function handlePopupClose() {
+            if (region.popped) {
+              region.popped = false;
+              regionCode = code;
+              regionEvent = 'popupclose';
+              regionSync.update();
+              regionSync.idle();
             }
           }
         }
@@ -1870,6 +1950,12 @@
         var layer;
         for (i = 0; i < regions.length; i++) {
           layer = regions[i].layer;
+          layer.closePopup();
+          regions[i].popped = false;
+          regionCode = regions[i].code;
+          regionEvent = 'popupclose';
+          regionSync.update();
+          regionSync.idle();
           layer.removeEventListener();
           layer.removeFrom(leafletMap);
         }
