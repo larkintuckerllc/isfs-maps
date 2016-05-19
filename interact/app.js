@@ -431,14 +431,6 @@
       region: 'YEM',
       color: 'rgb(250,157,90)'
     },
-    {
-      region: 'TUN',
-      color: 'rgb(250,157,90)'
-    },
-    {
-      region: 'ARE',
-      color: 'rgb(250,157,90)'
-    },
     // EUR A
     {
       region: 'AND',
@@ -1430,8 +1422,8 @@
     var active = true;
     var frameEl = document.getElementById('my_frame');
     var contentEl = document.getElementById('interact_content');
-    thr0w.setBase('http://192.168.1.2'); // PROD
-    // thr0w.setBase('http://localhost'); // DEV
+    // thr0w.setBase('http://192.168.1.2'); // PROD
+    thr0w.setBase('http://localhost'); // DEV
     thr0w.addAdminTools(frameEl,
       connectCallback, messageCallback);
     function connectCallback() {
