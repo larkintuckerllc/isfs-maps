@@ -1401,8 +1401,8 @@
     disease: {
       regionsPopup: true,
       regionsPopupDetail: false,
-      regionsPopupWidth: 308,
-      regionsPopupHeight: 480,
+      regionsPopupWidth: 508,
+      regionsPopupHeight: 500,
       markersPopup: false,
       center: [0, 0],
       zoom: {

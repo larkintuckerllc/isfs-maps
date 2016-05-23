@@ -496,29 +496,30 @@
   var parameters = parseQueryString();
   document.addEventListener('DOMContentLoaded', ready);
   function ready() {
-    var bodyEl = document.body;
+    var titleRegionEl = document.getElementById('title__region');
+    var titleAllEl = document.getElementById('title__all');
+    var scaleValueAllEl = document.getElementById('data__scale__value--all');
+    var countriesEl = document.getElementById('countries');
     var countryEl;
     var i;
     var code = parameters.code;
     var region = _.find(COUNTRY_IN_REGION, matchesCountry).region;
     var countries = _.filter(COUNTRY_IN_REGION, matchesRegion)
       .map(pluckCountry).sort();
+    var allHazards = REGIONS[region]['All Hazards'];
+    titleRegionEl.innerHTML = region;
+    titleAllEl.innerHTML = allHazards;
+    scaleValueAllEl.innerHTML = allHazards;
     for (i = 0; i < countries.length; i++) {
       countryEl = document.createElement('div');
+      countryEl.classList.add('countries__country');
       countryEl.innerHTML = COUNTRIES[countries[i]].name;
       if (countries[i] === code) {
         countryEl.style.fontWeight = 'bold';
       }
-      bodyEl.appendChild(countryEl);
+      countriesEl.appendChild(countryEl);
     }
-    /*
-    window.console.log(region);
-    window.console.log(REGIONS[region]['All Hazards']);
-    window.console.log(REGIONS[region]['Chemicals and Toxins']);
-    window.console.log(REGIONS[region]['Diarrheal Disease Agents']);
-    window.console.log(REGIONS[region].Helminths);
-    window.console.log(REGIONS[region]['Invasive Infectious Disease Agents']);
-    */
+    window.setTimeout(animateBars, 500);
     function matchesCountry(o) {
       return o.country === code;
     }
@@ -527,6 +528,25 @@
     }
     function pluckCountry(o) {
       return o.country;
+    }
+    function animateBars() {
+      var barChemicalsEl = document
+        .getElementById('data__metric__value__bar--chemicals');
+      var barDiarrhealEl = document
+        .getElementById('data__metric__value__bar--diarrheal');
+      var barHelminthsEl = document
+        .getElementById('data__metric__value__bar--helminths');
+      var barInvasiveEl = document
+        .getElementById('data__metric__value__bar--invasive');
+      barChemicalsEl.style.width =
+        (100 * REGIONS[region]['Chemicals and Toxins'] / allHazards) + '%';
+      barDiarrhealEl.style.width =
+        (100 * REGIONS[region]['Diarrheal Disease Agents'] / allHazards) + '%';
+      barHelminthsEl.style.width =
+        (100 * REGIONS[region].Helminths / allHazards) + '%';
+      barInvasiveEl.style.width =
+        (100 * REGIONS[region]['Invasive Infectious Disease Agents'] /
+        allHazards) + '%';
     }
   }
   function parseQueryString() {
