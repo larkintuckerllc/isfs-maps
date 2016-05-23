@@ -1402,7 +1402,7 @@
       regionsPopup: true,
       regionsPopupDetail: false,
       regionsPopupWidth: 508,
-      regionsPopupHeight: 500,
+      regionsPopupHeight: 550,
       markersPopup: false,
       center: [0, 0],
       zoom: {
@@ -1900,7 +1900,7 @@
               layer.addEventListener('popupopen', handlePopupOpen);
               layer.addEventListener('popupclose', handlePopupClose);
               layer.addEventListener('click', handleClick);
-              layer.bindPopup(popupHtml, {autoPan: false});
+              layer.bindPopup(popupHtml, {autoPan: false, maxWidth: popupWidth});
             }
             region.code = code;
             region.layer = layer;
@@ -2017,8 +2017,10 @@
           pinLayer.addEventListener('popupclose', handlePopupClose);
           layer.addEventListener('popupopen', handlePopupOpen);
           layer.addEventListener('popupclose', handlePopupClose);
-          pinLayer.bindPopup(popupHtml + popupDetailPinHtml, {autoPan: false});
-          layer.bindPopup(popupHtml + popupDetailHtml, {autoPan: false});
+          pinLayer.bindPopup(popupHtml + popupDetailPinHtml,
+            {autoPan: false, maxWidth: popupWidth});
+          layer.bindPopup(popupHtml + popupDetailHtml,
+            {autoPan: false, maxWidth: popupWidth});
         }
         marker.code = code;
         marker.pinLayer = pinLayer;
