@@ -1375,6 +1375,86 @@
         'img/markers/sc_sea_cucumber.png'
       ],
       minZoom: 5
+    },
+    {
+      marker: 'pabna_sadullaspracole',
+      latlng: [23.571352, 89.866387],
+      iconUrls: [
+        'img/markers/pabna_sadullaspracole.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 'beel_chatra',
+      latlng: [23.469702, 90.180492],
+      iconUrls: [
+        'img/markers/beel_chatra.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 'kailin_nadi',
+      latlng: [23.342530, 90.503834],
+      iconUrls: [
+        'img/markers/kailin_nadi.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 'suruga_pink_shrimp',
+      latlng: [34.864099, 138.584939],
+      iconUrls: [
+        'img/markers/suruga_pink_shrimp.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 'tokyo_bay',
+      latlng: [35.400526, 139.767449],
+      iconUrls: [
+        'img/markers/tokyo_bay.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 'philippines_blue_crab',
+      latlng: [12.930268, 122.484781],
+      iconUrls: [
+        'img/markers/philippines_blue_crab.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 'longline_tuna_taiwan',
+      latlng: [-1.999583, 80.342334],
+      iconUrls: [
+        'img/markers/longline_tuna_taiwan.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 'thanh_hoa',
+      latlng: [19.900078, 107.003797],
+      iconUrls: [
+        'img/markers/thanh_hoa.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 'fish_trawl_offshore',
+      latlng: [13.399177, 110.033515],
+      iconUrls: [
+        'img/markers/fish_trawl_offshore.png'
+      ],
+      minZoom: 5
+    },
+    {
+      marker: 'shrimp_trawl_inshore',
+      latlng: [12.884756, 110.064589],
+      iconUrls: [
+        'img/markers/shrimp_trawl_inshore.png'
+      ],
+      minZoom: 5
     }
   ];
   var SIZE_SINGLE = 0;
@@ -1831,6 +1911,7 @@
           // jscs:enable
         }
         if (tiles === 'satellite') {
+          /*
           // PROD
           // jscs:disable
           tileLayer =  L.tileLayer(
@@ -1839,7 +1920,7 @@
                attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
             }
           ).addTo(leafletMap);
-          /*
+          */
           // jscs:enable
           // DEV DEBUG
           // jscs:disable
@@ -1850,18 +1931,6 @@
               attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             }
           ).addTo(leafletMap);
-          // jscs:enable
-          // DEV LOCAL
-          tileLayer = L.tileLayer(
-            '../map/{z}/{x}/{y}.png',
-            {
-              minZoom: 0,
-              maxZoom: 7,
-              opacity: 1.0,
-              tms: false
-            }
-          ).addTo(leafletMap);
-          */
         }
       }
       function addRegion(code, color, popup,

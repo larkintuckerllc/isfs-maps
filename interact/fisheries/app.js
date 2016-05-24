@@ -428,6 +428,66 @@
       ecology: 3,
       economics: 3.6,
       community: 4.21
+    },
+    'pabna_sadullaspracole': {
+      title: 'Pabna Sadullaspracole',
+      ecology: 3.13,
+      economics: 2.75,
+      community: 3.33
+    },
+    'beel_chatra': {
+      title: 'Beel Chatra',
+      ecology: 3.5,
+      economics: 2.97,
+      community: 4.05
+    },
+    'kailin_nadi': {
+      title: 'Kailin Nadi',
+      ecology: 3.38,
+      economics: 2.69,
+      community: 3.54
+    },
+    'suruga_pink_shrimp': {
+      title: 'Suruga Pink Shrimp',
+      ecology: 4.38,
+      economics: 3.61,
+      community: 4.31
+    },
+    'tokyo_bay': {
+      title: 'Tokyo Bay',
+      ecology: 3.25,
+      economics: 3.69,
+      community: 4.27
+    },
+    'philippines_blue_crab': {
+      title: 'Philippines Blue Crab',
+      ecology: 2.63,
+      economics: 3.44,
+      community: 3.36
+    },
+    'longline_tuna_taiwan': {
+      title: 'Longline Tuna Taiwan',
+      ecology: 3.13,
+      economics: 4.17,
+      community: 4.31
+    },
+    'thanh_hoa': {
+      title: 'Thanh Hoa',
+      ecology: 2.13,
+      economics: 3.01,
+      community: 3.45
+    },
+    'fish_trawl_offshore': {
+      title: 'Fish Trawl (Offshore)',
+      ecology: 2.25,
+      economics: 2.88,
+      community: 4.1
+    },
+    'shrimp_trawl_inshore': {
+      title: 'Shrimp Trawl (Inshore)',
+      ecology: 2,
+      economics: 3,
+      community: 3.71
     }
   };
   var parameters = parseQueryString();
