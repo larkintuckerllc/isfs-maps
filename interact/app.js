@@ -1911,7 +1911,6 @@
           // jscs:enable
         }
         if (tiles === 'satellite') {
-          /*
           // PROD
           // jscs:disable
           tileLayer =  L.tileLayer(
@@ -1920,9 +1919,9 @@
                attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
             }
           ).addTo(leafletMap);
-          */
+          /*
           // jscs:enable
-          // DEV DEBUG
+          // DEV 
           // jscs:disable
           tileLayer = L.tileLayer(
             'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -1931,6 +1930,7 @@
               attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             }
           ).addTo(leafletMap);
+          */
         }
       }
       function addRegion(code, color, popup,
