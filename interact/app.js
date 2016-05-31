@@ -1536,6 +1536,13 @@
       var fullEl = document.getElementById('full');
       var satelliteEl = document.getElementById('satellite');
       var streetEl = document.getElementById('street');
+      var initialCenterLat = parameters.initialCenterLat ?
+        parseFloat(parameters.initialCenterLat) : 0;
+      var initialCenterLng = parameters.initialCenterLng ?
+        parseFloat(parameters.initialCenterLng) : 0;
+      var initialZoomLevel = parameters.initialZoomLevel ?
+        parseInt(parameters.initialZoomLevel) : MIN_ZOOM[size];
+      initialZoomLevel = Math.max(initialZoomLevel, MIN_ZOOM[size]);
       switch (size) {
         case SIZE_SINGLE:
           fullEl.style.display = 'block';
@@ -1662,7 +1669,8 @@
         regionMessage,
         regionReceive
       );
-      map = new thr0w.leaflet.Map(grid, 0, 0, MIN_ZOOM[size],
+      map = new thr0w.leaflet.Map(grid, initialCenterLat, initialCenterLng,
+        initialZoomLevel,
         {
           minZoom: MIN_ZOOM[size],
           maxZoom: MAX_ZOOM,
@@ -1816,7 +1824,11 @@
       }
       function handleFullClick() {
         thr0w.thr0wChannel(BROWSERS, {action: 'update', url: BASE_URL +
-          '?size=2'});
+          '?size=2' +
+          '&initialCenterLat=' + map.getCenterLat() +
+          '&initialCenterLng=' + map.getCenterLng() +
+          '&initialZoomLevel=' + map.getZoomLevel()
+        });
       }
       function handleSatelliteClick() {
         satelliteEl.style.display = 'none';
@@ -1921,7 +1933,7 @@
           ).addTo(leafletMap);
           /*
           // jscs:enable
-          // DEV 
+          // DEV
           // jscs:disable
           tileLayer = L.tileLayer(
             'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
