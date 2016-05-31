@@ -1793,17 +1793,29 @@
         switch (size) {
           case SIZE_FULL:
             thr0w.thr0wChannel([16, 17, 18, 19], {action: 'update',
-              url: BASE_URL + '?size=0'});
+              url: BASE_URL + '?size=0' +
+              '&initialCenterLat=' + map.getCenterLat() +
+              '&initialCenterLng=' + map.getCenterLng() +
+              '&initialZoomLevel=' + map.getZoomLevel()
+            });
             break;
           case SIZE_DOUBLE:
             switch (channel) {
               case 6:
                 thr0w.thr0wChannel([16, 17], {action: 'update',
-                  url: BASE_URL + '?size=0'});
+                  url: BASE_URL + '?size=0' +
+                  '&initialCenterLat=' + map.getCenterLat() +
+                  '&initialCenterLng=' + map.getCenterLng() +
+                  '&initialZoomLevel=' + map.getZoomLevel()
+                });
                 break;
               case 8:
                 thr0w.thr0wChannel([18, 19], {action: 'update',
-                  url: BASE_URL + '?size=0'});
+                  url: BASE_URL + '?size=0' +
+                  '&initialCenterLat=' + map.getCenterLat() +
+                  '&initialCenterLng=' + map.getCenterLng() +
+                  '&initialZoomLevel=' + map.getZoomLevel()
+                });
                 break;
               default:
             }
@@ -1815,9 +1827,17 @@
         switch (size) {
           case SIZE_FULL:
             thr0w.thr0wChannel([16, 17], {action: 'update', url: BASE_URL +
-              '?size=1&control=6'});
+              '?size=1&control=6' +
+              '&initialCenterLat=' + map.getCenterLat() +
+              '&initialCenterLng=' + map.getCenterLng() +
+              '&initialZoomLevel=' + map.getZoomLevel()
+            });
             thr0w.thr0wChannel([18, 19], {action: 'update', url: BASE_URL +
-              '?size=1&control=8'});
+              '?size=1&control=8' +
+              '&initialCenterLat=' + map.getCenterLat() +
+              '&initialCenterLng=' + map.getCenterLng() +
+              '&initialZoomLevel=' + map.getZoomLevel()
+            });
             break;
           default:
         }
