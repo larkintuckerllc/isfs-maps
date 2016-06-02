@@ -1469,12 +1469,6 @@
       markersPopupHeight: 480,
       markersPopupDetailWidth: 308,
       markersPopupDetailHeight: 535,
-      center: [0, 0],
-      zoom: {
-        0: 3,
-        1: 4,
-        2: 4
-      },
       regions: [],
       markers: FISHERIES
     },
@@ -1484,12 +1478,6 @@
       regionsPopupWidth: 508,
       regionsPopupHeight: 550,
       markersPopup: false,
-      center: [0, 0],
-      zoom: {
-        0: 3,
-        1: 4,
-        2: 4
-      },
       regions: DISEASE,
       markers: []
     }
@@ -1544,6 +1532,16 @@
         parseFloat(parameters.initialCenterLng) : 0;
       var initialZoomLevel = parameters.initialZoomLevel ?
         parseInt(parameters.initialZoomLevel) : MIN_ZOOM[size];
+      var initialMarkerPopped = parameters.initialMarkerPopped ?
+        parameters.initialMarkerPopped : null;
+      var initialRegionPopped = parameters.initialRegionPopped ?
+        parameters.initialRegionPopped : null;
+      var initialRegionPoppedLat = parameters.initialRegionPoppedLat ?
+        parameters.initialRegionPoppedLat : null;
+      var initialRegionPoppedLng = parameters.initialRegionPoppedLng ?
+        parameters.initialRegionPoppedLng : null;
+      var iMarker;
+      var iRegion;
       initialZoomLevel = Math.max(initialZoomLevel, MIN_ZOOM[size]);
       switch (size) {
         case SIZE_SINGLE:
@@ -1685,6 +1683,19 @@
       leafletMap.addEventListener('zoom', zoomed);
       updateTiles();
       updateChart();
+      if (initialMarkerPopped) {
+        for (iMarker = 0; iMarker < markers.length; iMarker++) {
+          if (initialMarkerPopped === markers[iMarker].code) {
+            if (markers[iMarker].added) {
+              markers[iMarker].layer.openPopup();
+            } else {
+              markers[iMarker].pinLayer.openPopup();
+            }
+            break;
+          }
+        }
+      }
+
       // CONTROLS
       if (channel === controlChannel) {
         document.getElementById('controls').style.display = 'block';
@@ -1754,6 +1765,8 @@
       }
       function regionReceive(data) {
         var i;
+        regionLat = data.regionLat;
+        regionLng = data.regionLng;
         for (i = 0; i < regions.length; i++) {
           if (regions[i].code === data.code) {
             if (data.event === 'popupopen') {
@@ -1803,6 +1816,8 @@
         if (chart) {
           url += '&chart=' + chart;
         }
+        url += initialMarkerPoppedParameter();
+        url += initialRegionPoppedParameter();
         switch (size) {
           case SIZE_FULL:
             thr0w.thr0wChannel([16, 17, 18, 19], {action: 'update',
@@ -1836,6 +1851,8 @@
         if (chart) {
           url += '&chart=' + chart;
         }
+        url += initialMarkerPoppedParameter();
+        url += initialRegionPoppedParameter();
         thr0w.thr0wChannel([16, 17], {action: 'update', url: url});
         url = [
           BASE_URL,
@@ -1848,6 +1865,8 @@
         if (chart) {
           url += '&chart=' + chart;
         }
+        url += initialMarkerPoppedParameter();
+        url += initialRegionPoppedParameter();
         thr0w.thr0wChannel([18, 19], {action: 'update', url: url});
       }
       function handleFullClick() {
@@ -1862,7 +1881,35 @@
         if (chart) {
           url += '&chart=' + chart;
         }
+        url += initialMarkerPoppedParameter();
+        url += initialRegionPoppedParameter();
         thr0w.thr0wChannel(BROWSERS, {action: 'update', url: url});
+      }
+      function initialMarkerPoppedParameter() {
+        var i;
+        var parameter = '';
+        for (i = 0; i < markers.length; i++) {
+          if (markers[i].popped) {
+            parameter = '&initialMarkerPopped=' + markers[i].code;
+            break;
+          }
+        }
+        return parameter;
+      }
+      function initialRegionPoppedParameter() {
+        var i;
+        var parameter = '';
+        for (i = 0; i < regions.length; i++) {
+          if (regions[i].popped) {
+            parameter = [
+              '&initialRegionPopped=' + regions[i].code,
+              '&initialRegionPoppedLat=' + regionLat,
+              '&initialRegionPoppedLng=' + regionLng
+            ].join('');
+            break;
+          }
+        }
+        return parameter;
       }
       function handleSatelliteClick() {
         tiles = 'satellite';
@@ -1901,14 +1948,6 @@
         removeRegions();
         removeMarkers();
         if (chart) {
-          if (channel === controlChannel) {
-            map.moveTo(
-              0,
-              CHARTS[chart].center[0],
-              CHARTS[chart].center[1],
-              CHARTS[chart].zoom[size]
-            );
-          }
           for (i = 0; i < CHARTS[chart].regions.length; i++) {
             addRegion(
               CHARTS[chart].regions[i].region,
@@ -2022,6 +2061,11 @@
             region.popped = false;
             regions.push(region);
             layer.addTo(leafletMap);
+            if (initialRegionPopped === code) {
+              layer.openPopup(
+                L.latLng(initialRegionPoppedLat,
+                  initialRegionPoppedLng));
+            }
           }
           function handlePopupOpen(e) {
             if (!region.popped) {
