@@ -1,8 +1,8 @@
 (function() {
   'use strict';
   var TIMEOUT = 120 * 1000;
-  var BASE_URL = 'http://192.168.1.2/apps/isfs-steering/interact/'; // PROD
-  // var BASE_URL = 'http://localhost:8080/apps/isfs-steering/interact/'; // DEV
+  // var BASE_URL = 'http://192.168.1.2/apps/isfs-steering/interact/'; // PROD
+  var BASE_URL = 'http://localhost:8080/apps/isfs-steering/interact/'; // DEV
   var CHANNELS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   var BROWSERS = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
   var MIN_ZOOM = {
@@ -1502,8 +1502,8 @@
     var active = true;
     var frameEl = document.getElementById('my_frame');
     var contentEl = document.getElementById('interact_content');
-    thr0w.setBase('http://192.168.1.2'); // PROD
-    // thr0w.setBase('http://localhost'); // DEV
+    // thr0w.setBase('http://192.168.1.2'); // PROD
+    thr0w.setBase('http://localhost'); // DEV
     thr0w.addAdminTools(frameEl,
       connectCallback, messageCallback);
     function connectCallback() {
@@ -1514,7 +1514,8 @@
       var regionLat;
       var regionLng;
       var chart = null;
-      var tiles = null;
+      var tiles = parameters.tiles ?
+        parameters.tiles : 'satellite';
       var regions = [];
       var markers = [];
       var grid;
@@ -1681,7 +1682,6 @@
       );
       leafletMap = map.getLeafletMap();
       leafletMap.addEventListener('zoom', zoomed);
-      tiles = 'satellite';
       updateTiles();
       // CONTROLS
       if (channel === controlChannel) {
@@ -1851,16 +1851,12 @@
         });
       }
       function handleSatelliteClick() {
-        satelliteEl.style.display = 'none';
-        streetEl.style.display = 'block';
         tiles = 'satellite';
         updateTiles();
         chartSync.update();
         chartSync.idle();
       }
       function handleStreetClick() {
-        streetEl.style.display = 'none';
-        satelliteEl.style.display = 'block';
         tiles = 'street';
         updateTiles();
         chartSync.update();
@@ -1934,6 +1930,8 @@
           tileLayer.removeFrom(leafletMap);
         }
         if (tiles === 'street') {
+          streetEl.style.display = 'none';
+          satelliteEl.style.display = 'block';
           // jscs:disable
           tileLayer = L.tileLayer(
             'http://192.168.1.2/street/{z}/{x}/{y}.png', {
@@ -1943,6 +1941,9 @@
           // jscs:enable
         }
         if (tiles === 'satellite') {
+          satelliteEl.style.display = 'none';
+          streetEl.style.display = 'block';
+          /*
           // PROD
           // jscs:disable
           tileLayer =  L.tileLayer(
@@ -1951,7 +1952,7 @@
                attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
             }
           ).addTo(leafletMap);
-          /*
+          */
           // jscs:enable
           // DEV
           // jscs:disable
@@ -1962,7 +1963,6 @@
               attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             }
           ).addTo(leafletMap);
-          */
         }
       }
       function addRegion(code, color, popup,
