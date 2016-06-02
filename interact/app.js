@@ -1510,6 +1510,8 @@
       var grid;
       var wm;
       var chartSync;
+      var tilesSync;
+      var markerSync;
       var leafletMap;
       var map;
       var matrix;
@@ -1657,7 +1659,13 @@
         chartMessage,
         chartReceive
       );
-      var markerSync = new thr0w.Sync(
+      tilesSync = new thr0w.Sync(
+        grid,
+        base + '_tiles',
+        tilesMessage,
+        tilesReceive
+      );
+      markerSync = new thr0w.Sync(
         grid,
         base + '_marker',
         markerMessage,
@@ -1717,14 +1725,20 @@
       window.setInterval(checkIdle, TIMEOUT);
       function chartMessage() {
         return {
-          chart: chart,
-          tiles: tiles
+          chart: chart
         };
       }
       function chartReceive(data) {
         chart = data.chart;
-        tiles = data.tiles;
         updateChart();
+      }
+      function tilesMessage() {
+        return {
+          tiles: tiles
+        };
+      }
+      function tilesReceive(data) {
+        tiles = data.tiles;
         updateTiles();
       }
       function markerMessage() {
@@ -1915,14 +1929,14 @@
       function handleSatelliteClick() {
         tiles = 'satellite';
         updateTiles();
-        chartSync.update();
-        chartSync.idle();
+        tilesSync.update();
+        tilesSync.idle();
       }
       function handleStreetClick() {
         tiles = 'street';
         updateTiles();
-        chartSync.update();
-        chartSync.idle();
+        tilesSync.update();
+        tilesSync.idle();
       }
       function handleNoneClick() {
         chart = null;
@@ -2116,12 +2130,10 @@
         var layer;
         for (i = 0; i < regions.length; i++) {
           layer = regions[i].layer;
-          layer.closePopup();
-          regions[i].popped = false;
-          regionCode = regions[i].code;
-          regionEvent = 'popupclose';
-          regionSync.update();
-          regionSync.idle();
+          if (regions[i].popped) {
+            regions[i].popped = false;
+            layer.closePopup();
+          }
           layer.removeEventListener();
           layer.removeFrom(leafletMap);
         }
@@ -2259,13 +2271,11 @@
         for (i = 0; i < markers.length; i++) {
           pinLayer = markers[i].pinLayer;
           layer = markers[i].layer;
-          layer.closePopup();
-          pinLayer.closePopup();
-          markers[i].popped = false;
-          markerCode = markers[i].code;
-          markerEvent = 'popupclose';
-          markerSync.update();
-          markerSync.idle();
+          if (markers[i].popped) {
+            markers[i].popped = false;
+            layer.closePopup();
+            pinLayer.closePopup();
+          }
           pinLayer.removeEventListener();
           layer.removeEventListener();
           if (markers[i].added) {
