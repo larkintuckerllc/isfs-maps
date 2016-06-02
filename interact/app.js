@@ -1770,6 +1770,8 @@
           if (regions[i].code === data.code) {
             if (data.event === 'popupopen') {
               regions[i].popped = true;
+              regions[i].poppedLat = data.lat;
+              regions[i].poppedLng = data.lng;
               regions[i].layer.openPopup(L.latLng(data.lat, data.lng));
             }
             if (data.event === 'popupclose') {
