@@ -1,8 +1,8 @@
 (function() {
   'use strict';
   var TIMEOUT = 120 * 1000;
-  // var BASE_URL = 'http://192.168.1.2/apps/isfs-steering/interact/'; // PROD
-  var BASE_URL = 'http://localhost:8080/apps/isfs-steering/interact/'; // DEV
+  var BASE_URL = 'http://192.168.1.2/apps/isfs-steering/interact/'; // PROD
+  // var BASE_URL = 'http://localhost:8080/apps/isfs-steering/interact/'; // DEV
   var CHANNELS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   var BROWSERS = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
   var MIN_ZOOM = {
@@ -1502,8 +1502,8 @@
     var active = true;
     var frameEl = document.getElementById('my_frame');
     var contentEl = document.getElementById('interact_content');
-    // thr0w.setBase('http://192.168.1.2'); // PROD
-    thr0w.setBase('http://localhost'); // DEV
+    thr0w.setBase('http://192.168.1.2'); // PROD
+    // thr0w.setBase('http://localhost'); // DEV
     thr0w.addAdminTools(frameEl,
       connectCallback, messageCallback);
     function connectCallback() {
@@ -1513,7 +1513,8 @@
       var regionEvent;
       var regionLat;
       var regionLng;
-      var chart = null;
+      var chart = parameters.chart ?
+        parameters.chart : null;
       var tiles = parameters.tiles ?
         parameters.tiles : 'satellite';
       var regions = [];
@@ -1683,6 +1684,7 @@
       leafletMap = map.getLeafletMap();
       leafletMap.addEventListener('zoom', zoomed);
       updateTiles();
+      updateChart();
       // CONTROLS
       if (channel === controlChannel) {
         document.getElementById('controls').style.display = 'block';
@@ -1790,32 +1792,31 @@
         }
       }
       function handleSingleClick() {
+        var url = [
+          BASE_URL,
+          '?size=0',
+          '&initialCenterLat=' + map.getCenterLat(),
+          '&initialCenterLng=' + map.getCenterLng(),
+          '&initialZoomLevel=' + map.getZoomLevel(),
+          '&tiles=' + tiles
+        ].join('');
+        if (chart) {
+          url += '&chart=' + chart;
+        }
         switch (size) {
           case SIZE_FULL:
             thr0w.thr0wChannel([16, 17, 18, 19], {action: 'update',
-              url: BASE_URL + '?size=0' +
-              '&initialCenterLat=' + map.getCenterLat() +
-              '&initialCenterLng=' + map.getCenterLng() +
-              '&initialZoomLevel=' + map.getZoomLevel()
-            });
+              url: url});
             break;
           case SIZE_DOUBLE:
             switch (channel) {
               case 6:
                 thr0w.thr0wChannel([16, 17], {action: 'update',
-                  url: BASE_URL + '?size=0' +
-                  '&initialCenterLat=' + map.getCenterLat() +
-                  '&initialCenterLng=' + map.getCenterLng() +
-                  '&initialZoomLevel=' + map.getZoomLevel()
-                });
+                  url: url});
                 break;
               case 8:
                 thr0w.thr0wChannel([18, 19], {action: 'update',
-                  url: BASE_URL + '?size=0' +
-                  '&initialCenterLat=' + map.getCenterLat() +
-                  '&initialCenterLng=' + map.getCenterLng() +
-                  '&initialZoomLevel=' + map.getZoomLevel()
-                });
+                  url: url});
                 break;
               default:
             }
@@ -1824,31 +1825,44 @@
         }
       }
       function handleDoubleClick() {
-        switch (size) {
-          case SIZE_FULL:
-            thr0w.thr0wChannel([16, 17], {action: 'update', url: BASE_URL +
-              '?size=1&control=6' +
-              '&initialCenterLat=' + map.getCenterLat() +
-              '&initialCenterLng=' + map.getCenterLng() +
-              '&initialZoomLevel=' + map.getZoomLevel()
-            });
-            thr0w.thr0wChannel([18, 19], {action: 'update', url: BASE_URL +
-              '?size=1&control=8' +
-              '&initialCenterLat=' + map.getCenterLat() +
-              '&initialCenterLng=' + map.getCenterLng() +
-              '&initialZoomLevel=' + map.getZoomLevel()
-            });
-            break;
-          default:
+        var url = [
+          BASE_URL,
+          '?size=1&control=6',
+          '&initialCenterLat=' + map.getCenterLat(),
+          '&initialCenterLng=' + map.getCenterLng(),
+          '&initialZoomLevel=' + map.getZoomLevel(),
+          '&tiles=' + tiles
+        ].join('');
+        if (chart) {
+          url += '&chart=' + chart;
         }
+        thr0w.thr0wChannel([16, 17], {action: 'update', url: url});
+        url = [
+          BASE_URL,
+          '?size=1&control=8',
+          '&initialCenterLat=' + map.getCenterLat(),
+          '&initialCenterLng=' + map.getCenterLng(),
+          '&initialZoomLevel=' + map.getZoomLevel(),
+          '&tiles=' + tiles
+        ].join('');
+        if (chart) {
+          url += '&chart=' + chart;
+        }
+        thr0w.thr0wChannel([18, 19], {action: 'update', url: url});
       }
       function handleFullClick() {
-        thr0w.thr0wChannel(BROWSERS, {action: 'update', url: BASE_URL +
-          '?size=2' +
-          '&initialCenterLat=' + map.getCenterLat() +
-          '&initialCenterLng=' + map.getCenterLng() +
-          '&initialZoomLevel=' + map.getZoomLevel()
-        });
+        var url = [
+          BASE_URL,
+          '?size=2',
+          '&initialCenterLat=' + map.getCenterLat(),
+          '&initialCenterLng=' + map.getCenterLng(),
+          '&initialZoomLevel=' + map.getZoomLevel(),
+          '&tiles=' + tiles
+        ].join('');
+        if (chart) {
+          url += '&chart=' + chart;
+        }
+        thr0w.thr0wChannel(BROWSERS, {action: 'update', url: url});
       }
       function handleSatelliteClick() {
         tiles = 'satellite';
@@ -1943,7 +1957,6 @@
         if (tiles === 'satellite') {
           satelliteEl.style.display = 'none';
           streetEl.style.display = 'block';
-          /*
           // PROD
           // jscs:disable
           tileLayer =  L.tileLayer(
@@ -1952,7 +1965,7 @@
                attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
             }
           ).addTo(leafletMap);
-          */
+          /*
           // jscs:enable
           // DEV
           // jscs:disable
@@ -1963,6 +1976,7 @@
               attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             }
           ).addTo(leafletMap);
+          */
         }
       }
       function addRegion(code, color, popup,
