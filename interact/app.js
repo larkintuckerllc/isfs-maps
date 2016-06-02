@@ -1686,6 +1686,7 @@
       if (initialMarkerPopped) {
         for (iMarker = 0; iMarker < markers.length; iMarker++) {
           if (initialMarkerPopped === markers[iMarker].code) {
+            markers.popped = true;
             if (markers[iMarker].added) {
               markers[iMarker].layer.openPopup();
             } else {
@@ -1765,8 +1766,6 @@
       }
       function regionReceive(data) {
         var i;
-        regionLat = data.regionLat;
-        regionLng = data.regionLng;
         for (i = 0; i < regions.length; i++) {
           if (regions[i].code === data.code) {
             if (data.event === 'popupopen') {
@@ -1903,8 +1902,8 @@
           if (regions[i].popped) {
             parameter = [
               '&initialRegionPopped=' + regions[i].code,
-              '&initialRegionPoppedLat=' + regionLat,
-              '&initialRegionPoppedLng=' + regionLng
+              '&initialRegionPoppedLat=' + regions[i].poppedLat,
+              '&initialRegionPoppedLng=' + regions[i].poppedLng
             ].join('');
             break;
           }
@@ -2062,20 +2061,23 @@
             regions.push(region);
             layer.addTo(leafletMap);
             if (initialRegionPopped === code) {
-              regionLat = initialRegionPoppedLat;
-              regionLng = initialRegionPoppedLng;
+              region.popped = true;
+              region.poppedLat = initialRegionPoppedLat;
+              region.poppedLng = initialRegionPoppedLng;
               layer.openPopup(
-                L.latLng(regionLat,
-                  regionLng));
+                L.latLng(initialRegionPoppedLat,
+                  initialRegionPoppedLng));
             }
           }
           function handlePopupOpen(e) {
             if (!region.popped) {
               region.popped = true;
+              region.poppedLat = e.popup.getLatLng().lat;
+              region.poppedLng = e.popup.getLatLng().lng;
               regionCode = code;
               regionEvent = 'popupopen';
-              regionLat = e.popup.getLatLng().lat;
-              regionLng = e.popup.getLatLng().lng;
+              regionLat = region.poppedLat;
+              regionLng = region.poppedLng;
               regionSync.update();
               regionSync.idle();
             }
