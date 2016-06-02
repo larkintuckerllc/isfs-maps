@@ -2062,9 +2062,11 @@
             regions.push(region);
             layer.addTo(leafletMap);
             if (initialRegionPopped === code) {
+              regionLat = initialRegionPoppedLat;
+              regionLng = initialRegionPoppedLng;
               layer.openPopup(
-                L.latLng(initialRegionPoppedLat,
-                  initialRegionPoppedLng));
+                L.latLng(regionLat,
+                  regionLng));
             }
           }
           function handlePopupOpen(e) {
