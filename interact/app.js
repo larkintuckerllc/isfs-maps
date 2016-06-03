@@ -1474,9 +1474,11 @@
     },
     disease: {
       regionsPopup: true,
-      regionsPopupDetail: false,
+      regionsPopupDetail: true,
       regionsPopupWidth: 508,
       regionsPopupHeight: 550,
+      regionsPopupDetailWidth: 508,
+      regionsPopupDetailHeight: 605,
       markersPopup: false,
       regions: DISEASE,
       markers: []
@@ -2038,9 +2040,11 @@
         }
       }
       function addRegion(code, color, popup,
-        popuDetail, popupWidth, popupHeight,
+        popupDetail, popupWidth, popupHeight,
         popupDetailWidth, popupDetailHeight) {
         var popupHtml = '';
+        var popupDetailHtml = '';
+        var popupDetailButton;
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = handleOnReadyStateChange;
         function handleOnReadyStateChange() {
@@ -2070,10 +2074,21 @@
                 '" style="border:none">',
                 '</iframe>'
               ].join('');
+              if (popupDetail) {
+                popupDetailHtml = [
+                  '<div id="popup__detail--',
+                  code,
+                  '" class="popup__detail">',
+                  '<img src="img/info.png" width="50" height="50"/>',
+                  '</div>',
+                  '<div style="clear: both;">&nbsp;</div>',
+                ].join('');
+              }
               layer.addEventListener('popupopen', handlePopupOpen);
               layer.addEventListener('popupclose', handlePopupClose);
               layer.addEventListener('click', handleClick);
-              layer.bindPopup(popupHtml, {autoPan: false, maxWidth: popupWidth});
+              layer.bindPopup(popupHtml + popupDetailHtml,
+                {autoPan: false, maxWidth: popupWidth});
             }
             region.code = code;
             region.layer = layer;
@@ -2090,6 +2105,13 @@
             }
           }
           function handlePopupOpen(e) {
+            if (popupDetail) {
+              popupDetailButton = document.getElementById(
+                'popup__detail--' + code
+              );
+              popupDetailButton.addEventListener('click',
+                handlePopupDetailClick);
+            }
             if (!region.popped) {
               region.popped = true;
               region.poppedLat = e.popup.getLatLng().lat;
@@ -2102,7 +2124,27 @@
               regionSync.idle();
             }
           }
+          function handlePopupDetailClick() {
+            try {
+              wm.openWindow(code, windowX,
+                windowYBase + 1920 - popupDetailHeight - 100,
+                popupDetailWidth,
+                popupDetailHeight, chart + '/?code=' + code
+              );
+            } catch (error) {
+              wm.closeWindow(code);
+              wm.openWindow(code, windowX,
+                windowYBase + 1920 - popupDetailHeight - 100,
+                popupDetailWidth,
+                popupDetailHeight, chart + '/?code=' + code
+              );
+            }
+          }
           function handlePopupClose() {
+            if (popupDetail) {
+              popupDetailButton.removeEventListener('click',
+                handlePopupDetailClick);
+            }
             if (region.popped) {
               region.popped = false;
               regionCode = code;
