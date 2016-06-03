@@ -1,8 +1,8 @@
 (function() {
   'use strict';
   var TIMEOUT = 120 * 1000;
-  // var BASE_URL = 'http://192.168.1.2/apps/isfs-steering/interact/'; // PROD
-  var BASE_URL = 'http://localhost:8080/apps/isfs-steering/interact/'; // DEV
+  var BASE_URL = 'http://192.168.1.2/apps/isfs-steering/interact/'; // PROD
+  // var BASE_URL = 'http://localhost:8080/apps/isfs-steering/interact/'; // DEV
   var CHANNELS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   var BROWSERS = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
   var MIN_ZOOM = {
@@ -1490,8 +1490,8 @@
     var active = true;
     var frameEl = document.getElementById('my_frame');
     var contentEl = document.getElementById('interact_content');
-    // thr0w.setBase('http://192.168.1.2'); // PROD
-    thr0w.setBase('http://localhost'); // DEV
+    thr0w.setBase('http://192.168.1.2'); // PROD
+    // thr0w.setBase('http://localhost'); // DEV
     thr0w.addAdminTools(frameEl,
       connectCallback, messageCallback);
     function connectCallback() {
@@ -2006,7 +2006,7 @@
           satelliteEl.style.display = 'block';
           // jscs:disable
           tileLayer = L.tileLayer(
-            'http://192.168.1.2/street/{z}/{x}/{y}.png', {
+            'http://192.168.1.2:8081/street/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
           }).addTo(leafletMap);
@@ -2015,16 +2015,15 @@
         if (tiles === 'satellite') {
           satelliteEl.style.display = 'none';
           streetEl.style.display = 'block';
-          /*
           // PROD
           // jscs:disable
           tileLayer =  L.tileLayer(
-            'http://192.168.1.2/satellite/{z}/{y}/{x}',
+            'http://192.168.1.2:8080/satellite/{z}/{y}/{x}',
             {
                attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
             }
           ).addTo(leafletMap);
-          */
+          /*
           // jscs:enable
           // DEV
           // jscs:disable
@@ -2035,6 +2034,7 @@
               attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             }
           ).addTo(leafletMap);
+          */
         }
       }
       function addRegion(code, color, popup,
