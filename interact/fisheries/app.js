@@ -98,19 +98,19 @@
       community: 3.74
     },
     'liberia_westpoint_artisanal': {
-      title: 'Liberia Westpoint Artisinal',
+      title: 'Liberia Westpoint Artisanal',
       ecology: 2.38,
       economics: 2.4,
       community: 3.12
     },
     'liberia_westpoint_artisanal_2': {
-      title: 'Liberia Westpoint Artisinal',
+      title: 'Liberia Westpoint Artisanal',
       ecology: 4,
       economics: 3.08,
       community: 3.93
     },
     'liberia_robertsport_artisanal': {
-      title: 'Liberia Robertsport Artisinal',
+      title: 'Liberia Robertsport Artisanal',
       ecology: 3.5,
       economics: 2.96,
       community: 3.79
