@@ -1477,8 +1477,8 @@
       regionsPopupDetail: true,
       regionsPopupWidth: 508,
       regionsPopupHeight: 550,
-      regionsPopupDetailWidth: 508,
-      regionsPopupDetailHeight: 605,
+      regionsPopupDetailWidth: 563,
+      regionsPopupDetailHeight: 800,
       markersPopup: false,
       regions: DISEASE,
       markers: []
@@ -2129,14 +2129,14 @@
               wm.openWindow(code, windowX,
                 windowYBase + 1920 - popupDetailHeight - 100,
                 popupDetailWidth,
-                popupDetailHeight, chart + '/?code=' + code
+                popupDetailHeight, chart + '_detail' + '/?code=' + code
               );
             } catch (error) {
               wm.closeWindow(code);
               wm.openWindow(code, windowX,
                 windowYBase + 1920 - popupDetailHeight - 100,
                 popupDetailWidth,
-                popupDetailHeight, chart + '/?code=' + code
+                popupDetailHeight, chart + '_detail' + '/?code=' + code
               );
             }
           }
@@ -2298,14 +2298,14 @@
             wm.openWindow(code, windowX,
               windowYBase + 1920 - popupDetailHeight - 100,
               popupDetailWidth,
-              popupDetailHeight, chart + '/?code=' + code
+              popupDetailHeight, chart + '/?code=' + code + '_detail'
             );
           } catch (error) {
             wm.closeWindow(code);
             wm.openWindow(code, windowX,
               windowYBase + 1920 - popupDetailHeight - 100,
               popupDetailWidth,
-              popupDetailHeight, chart + '/?code=' + code
+              popupDetailHeight, chart + '/?code=' + code + '_detail'
             );
           }
         }

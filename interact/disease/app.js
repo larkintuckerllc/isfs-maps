@@ -507,6 +507,7 @@
     var countries = _.filter(COUNTRY_IN_REGION, matchesRegion)
       .map(pluckCountry).sort();
     var allHazards = REGIONS[region]['All Hazards'];
+    var detail;
     titleRegionEl.innerHTML = region;
     titleAllEl.innerHTML = allHazards;
     scaleValueAllEl.innerHTML = allHazards;

@@ -1,0 +1,53 @@
+html, body {
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
+  background-color: rgb(255,255,255);
+  font-family: sans-serif;
+  -webkit-user-select: none;
+}
+body {
+  width: 300px;
+}
+#highlight {
+  position: relative;
+  height: 200px;
+}
+#highlight__title {
+  position: absolute;
+  box-sizing: border-box;
+  left: 0px;
+  bottom: 0px;
+  width: 100%;
+  padding: 15px;
+  background-color: rgba(0,0,0,0.5);
+  color: rgb(255,255,255);
+  text-align: center;
+  font-weight: bold;
+}
+.data__metric {
+  margin-top: 10px;
+}
+.data__metric__title {
+  border: 1px solid black;
+  padding: 10px;
+  text-align: center;
+  background-color: rgb(220,220,220);
+}
+.data__metric__value {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  height: 30px;
+}
+.data__metric__value__bar {
+  border-right: 1px solid black;
+  height: 100%;
+  transition: width 2s;
+}
+.data__scale {
+  margin-top: 10px;
+}
+#data__scale__value--good {
+  float: right;
+}
