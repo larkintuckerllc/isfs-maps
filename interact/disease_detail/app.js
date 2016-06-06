@@ -4,7 +4,7 @@
   var REGIONS_DETAIL = {
     'AFR D': [
       {
-         'disease': 'Bacteria',
+         'disease': 'Bacteria (Diarrheal)',
          'daly': 787
        },
       {
@@ -28,11 +28,11 @@
          'daly': 107
        },
       {
-         'disease': 'Bacteria',
+         'disease': 'Bacteria (Invasive Infectious)',
          'daly': 93
        },
       {
-         'disease': 'Viruses',
+         'disease': 'Viruses (Diarrheal)',
          'daly': 75
        },
       {
@@ -60,7 +60,7 @@
          'daly': 28
        },
       {
-         'disease': 'Viruses',
+         'disease': 'Viruses (Invasive Infectious)',
          'daly': 27
        },
       {
@@ -166,7 +166,7 @@
     ],
     'AFR E': [
      {
-        'disease': 'Bacteria',
+        'disease': 'Bacteria (Diarrheal)',
         'daly': 712
       },
      {
@@ -194,11 +194,11 @@
         'daly': 105
       },
      {
-        'disease': 'Bacteria',
+        'disease': 'Bacteria (Invasive Infectious)',
         'daly': 104
       },
      {
-        'disease': 'Viruses',
+        'disease': 'Viruses (Diarheal)',
         'daly': 76
       },
      {
@@ -234,7 +234,7 @@
         'daly': 20
       },
      {
-        'disease': 'Viruses',
+        'disease': 'Viruses (Invasive Infectious)',
         'daly': 18
       },
      {
@@ -318,7 +318,7 @@
         'daly': 0
       },
      {
-        'disease': 'Intestinal flukes*',
+        'disease': 'Intestinal flukes',
         'daly': 0
       },
      {
@@ -328,7 +328,7 @@
     ],
     'AMR A': [
      {
-        'disease': 'Bacteria',
+        'disease': 'Bacteria (Diarrheal)',
         'daly': 19
       },
      {
@@ -348,11 +348,11 @@
         'daly': 5
       },
      {
-        'disease': 'Bacteria',
+        'disease': 'Bacteria (Invasive Infectious)',
         'daly': 4
       },
      {
-        'disease': 'Viruses',
+        'disease': 'Viruses (Diarheal)',
         'daly': 3
       },
      {
@@ -372,7 +372,7 @@
         'daly': 0.6
       },
      {
-        'disease': 'Viruses',
+        'disease': 'Viruses (Invasive Infectious)',
         'daly': 0.5
       },
      {
@@ -420,7 +420,7 @@
         'daly': 0.1
       },
      {
-        'disease': 'Intestinal flukes*',
+        'disease': 'Intestinal flukes',
         'daly': 0.1
       },
      {
@@ -490,7 +490,7 @@
     ],
     'AMR B': [
      {
-        'disease': 'Bacteria',
+        'disease': 'Bacteria (Diarrheal)',
         'daly': 45
       },
      {
@@ -510,7 +510,7 @@
         'daly': 20
       },
      {
-        'disease': 'Bacteria',
+        'disease': 'Bacteria (Invasive Infectious)',
         'daly': 16
       },
      {
@@ -518,7 +518,7 @@
         'daly': 15
       },
      {
-        'disease': 'Viruses',
+        'disease': 'Viruses (Diarheal)',
         'daly': 12
       },
      {
@@ -570,7 +570,7 @@
         'daly': 2
       },
      {
-        'disease': 'Viruses',
+        'disease': 'Viruses (Invasive Infectious)',
         'daly': 1
       },
      {
@@ -614,7 +614,7 @@
         'daly': 0.1
       },
      {
-        'disease': 'Intestinal flukes*',
+        'disease': 'Intestinal flukes',
         'daly': 0.06
       },
      {
@@ -664,7 +664,7 @@
         'daly': 69
       },
      {
-        'disease': 'Bacteria',
+        'disease': 'Bacteria  (Diarrheal)',
         'daly': 54
       },
      {
@@ -684,7 +684,7 @@
         'daly': 27
       },
      {
-        'disease': 'Bacteria',
+        'disease': 'Bacteria (Invasive Infectious)',
         'daly': 19
       },
      {
@@ -696,7 +696,7 @@
         'daly': 14
       },
      {
-        'disease': 'Viruses',
+        'disease': 'Viruses (Diarheal)',
         'daly': 13
       },
      {
@@ -732,7 +732,7 @@
         'daly': 2
       },
      {
-        'disease': 'Viruses',
+        'disease': 'Viruses (Invasive Infectious)',
         'daly': 2
       },
      {
@@ -800,7 +800,7 @@
         'daly': 0
       },
      {
-        'disease': 'Intestinal flukes*',
+        'disease': 'Intestinal flukes',
         'daly': 0
       },
      {
@@ -814,7 +814,7 @@
     ],
     'EMR B': [
      {
-        'disease': 'Bacteria',
+        'disease': 'Bacteria (Diarrheal)',
         'daly': 237
       },
      {
@@ -826,7 +826,7 @@
         'daly': 50
       },
      {
-        'disease': 'Bacteria',
+        'disease': 'Bacteria (Invasive Infectious)',
         'daly': 50
       },
      {
@@ -838,7 +838,7 @@
         'daly': 29
       },
      {
-        'disease': 'Viruses',
+        'disease': 'Viruses (Diarheal)',
         'daly': 28
       },
      {
@@ -890,7 +890,7 @@
         'daly': 2
       },
      {
-        'disease': 'Viruses',
+        'disease': 'Viruses (Invasive Infectious)',
         'daly': 2
       },
      {
@@ -942,7 +942,7 @@
         'daly': 0.09
       },
      {
-        'disease': 'Intestinal flukes*',
+        'disease': 'Intestinal flukes',
         'daly': 0.06
       },
      {
@@ -976,7 +976,7 @@
     ],
     'EMR D': [
      {
-        'disease': 'Bacteria',
+        'disease': 'Bacteria (Diarrheal)',
         'daly': 347
       },
      {
@@ -984,7 +984,7 @@
         'daly': 97
       },
      {
-        'disease': 'Bacteria',
+        'disease': 'Bacteria (Invasive Infectious)',
         'daly': 82
       },
      {
@@ -1008,7 +1008,7 @@
         'daly': 37
       },
      {
-        'disease': 'Viruses',
+        'disease': 'Viruses (Diarheal)',
         'daly': 33
       },
      {
@@ -1016,7 +1016,7 @@
         'daly': 33
       },
      {
-        'disease': 'Viruses',
+        'disease': 'Viruses (Invasive Infectious)',
         'daly': 32
       },
      {
@@ -1104,7 +1104,7 @@
         'daly': 0.2
       },
      {
-        'disease': 'Intestinal flukes*',
+        'disease': 'Intestinal flukes',
         'daly': 0.08
       },
      {
@@ -1138,7 +1138,7 @@
     ],
     'EUR A': [
      {
-        'disease': 'Bacteria',
+        'disease': 'Bacteria (Diarrheal)',
         'daly': 24
       },
      {
@@ -1158,7 +1158,7 @@
         'daly': 6
       },
      {
-        'disease': 'Viruses',
+        'disease': 'Viruses (Diarheal)',
         'daly': 4
       },
      {
@@ -1166,7 +1166,7 @@
         'daly': 4
       },
      {
-        'disease': 'Bacteria',
+        'disease': 'Bacteria (Invasive Infectious)',
         'daly': 3
       },
      {
@@ -1178,7 +1178,7 @@
         'daly': 2
       },
      {
-        'disease': 'Viruses',
+        'disease': 'Viruses (Invasive Infectious)',
         'daly': 0.8
       },
      {
@@ -1254,7 +1254,7 @@
         'daly': 0.03
       },
      {
-        'disease': 'Intestinal flukes*',
+        'disease': 'Intestinal flukes',
         'daly': 0.03
       },
      {
@@ -1300,7 +1300,7 @@
     ],
     'EUR B': [
      {
-        'disease': 'Bacteria',
+        'disease': 'Bacteria (Diarrheal)',
         'daly': 21
       },
      {
@@ -1320,7 +1320,7 @@
         'daly': 8
       },
      {
-        'disease': 'Bacteria',
+        'disease': 'Bacteria (Invasive Infectious)',
         'daly': 8
       },
      {
@@ -1332,7 +1332,7 @@
         'daly': 4
       },
      {
-        'disease': 'Viruses',
+        'disease': 'Viruses (Diarheal)',
         'daly': 3
       },
      {
@@ -1352,7 +1352,7 @@
         'daly': 2
       },
      {
-        'disease': 'Viruses',
+        'disease': 'Viruses (Invasive Infectious)',
         'daly': 1
       },
      {
@@ -1412,7 +1412,7 @@
         'daly': 0.06
       },
      {
-        'disease': 'Intestinal flukes*',
+        'disease': 'Intestinal flukes',
         'daly': 0.05
       },
      {
@@ -1462,7 +1462,7 @@
     ],
     'EUR C': [
      {
-        'disease': 'Bacteria',
+        'disease': 'Bacteria (Diarrheal)',
         'daly': 20
       },
      {
@@ -1482,7 +1482,7 @@
         'daly': 8
       },
      {
-        'disease': 'Bacteria',
+        'disease': 'Bacteria (Invasive Infectious)',
         'daly': 5
       },
      {
@@ -1490,7 +1490,7 @@
         'daly': 4
       },
      {
-        'disease': 'Viruses',
+        'disease': 'Viruses (Diarheal)',
         'daly': 3
       },
      {
@@ -1510,7 +1510,7 @@
         'daly': 2
       },
      {
-        'disease': 'Viruses',
+        'disease': 'Viruses (Invasive Infectious)',
         'daly': 1
       },
      {
@@ -1570,7 +1570,7 @@
         'daly': 0.1
       },
      {
-        'disease': 'Intestinal flukes*',
+        'disease': 'Intestinal flukes',
         'daly': 0.09
       },
      {
@@ -1624,11 +1624,11 @@
     ],
     'SEAR B': [
      {
-        'disease': 'Bacteria',
+        'disease': 'Bacteria (Invasive Infectious)',
         'daly': 251
       },
      {
-        'disease': 'Bacteria',
+        'disease': 'Bacteria (Diarrheal)',
         'daly': 247
       },
      {
@@ -1644,7 +1644,7 @@
         'daly': 59
       },
      {
-        'disease': 'Viruses',
+        'disease': 'Viruses (Diarheal)',
         'daly': 55
       },
      {
@@ -1708,7 +1708,7 @@
         'daly': 6
       },
      {
-        'disease': 'Viruses',
+        'disease': 'Viruses (Invasive Infectious)',
         'daly': 5
       },
      {
@@ -1744,7 +1744,7 @@
         'daly': 0.2
       },
      {
-        'disease': 'Intestinal flukes*',
+        'disease': 'Intestinal flukes',
         'daly': 0.2
       },
      {
@@ -1786,11 +1786,11 @@
     ],
     'SEAR D': [
      {
-        'disease': 'Bacteria',
+        'disease': 'Bacteria (Diarrheal)',
         'daly': 285
       },
      {
-        'disease': 'Bacteria',
+        'disease': 'Bacteria (Invasive Infectious)',
         'daly': 165
       },
      {
@@ -1798,7 +1798,7 @@
         'daly': 113
       },
      {
-        'disease': 'Viruses',
+        'disease': 'Viruses (Diarheal)',
         'daly': 69
       },
      {
@@ -1814,7 +1814,7 @@
         'daly': 58
       },
      {
-        'disease': 'Viruses',
+        'disease': 'Viruses (Invasive Infectious)',
         'daly': 58
       },
      {
@@ -1918,7 +1918,7 @@
         'daly': 0.1
       },
      {
-        'disease': 'Intestinal flukes*',
+        'disease': 'Intestinal flukes',
         'daly': 0.1
       },
      {
@@ -1948,7 +1948,7 @@
     ],
     'WPR A': [
      {
-        'disease': 'Bacteria',
+        'disease': 'Bacteria (Diarrheal)',
         'daly': 19
       },
      {
@@ -1968,7 +1968,7 @@
         'daly': 5
       },
      {
-        'disease': 'Viruses',
+        'disease': 'Viruses (Diarheal)',
         'daly': 3
       },
      {
@@ -1976,7 +1976,7 @@
         'daly': 3
       },
      {
-        'disease': 'Bacteria',
+        'disease': 'Bacteria (Invasive Infectious)',
         'daly': 3
       },
      {
@@ -1984,7 +1984,7 @@
         'daly': 2
       },
      {
-        'disease': 'Viruses',
+        'disease': 'Viruses (Invasive Infectious)',
         'daly': 1
       },
      {
@@ -1996,7 +1996,7 @@
         'daly': 1
       },
      {
-        'disease': 'Intestinal flukes*',
+        'disease': 'Intestinal flukes',
         'daly': 1
       },
      {
@@ -2118,7 +2118,7 @@
         'daly': 60
       },
      {
-        'disease': 'Bacteria',
+        'disease': 'Bacteria (Invasive Infectious)',
         'daly': 50
       },
      {
@@ -2130,7 +2130,7 @@
         'daly': 36
       },
      {
-        'disease': 'Bacteria',
+        'disease': 'Bacteria  (Diarrheal)',
         'daly': 34
       },
      {
@@ -2174,7 +2174,7 @@
         'daly': 9
       },
      {
-        'disease': 'Intestinal flukes*',
+        'disease': 'Intestinal flukes',
         'daly': 9
       },
      {
@@ -2186,7 +2186,7 @@
         'daly': 5
       },
      {
-        'disease': 'Viruses',
+        'disease': 'Viruses (Invasive Infectious)',
         'daly': 5
       },
      {
@@ -2194,7 +2194,7 @@
         'daly': 5
       },
      {
-        'disease': 'Viruses',
+        'disease': 'Viruses (Diarheal)',
         'daly': 4
       },
      {
