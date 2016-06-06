@@ -1492,8 +1492,8 @@
     var active = true;
     var frameEl = document.getElementById('my_frame');
     var contentEl = document.getElementById('interact_content');
-    thr0w.setBase('http://192.168.1.2'); // PROD
-    // thr0w.setBase('http://localhost'); // DEV
+    // thr0w.setBase('http://192.168.1.2'); // PROD
+    thr0w.setBase('http://localhost'); // DEV
     thr0w.addAdminTools(frameEl,
       connectCallback, messageCallback);
     function connectCallback() {
@@ -1939,24 +1939,18 @@
         tilesSync.idle();
       }
       function handleNoneClick() {
-        initialMarkerPopped = false;
-        initialRegionPopped = false;
         chart = null;
         updateChart();
         chartSync.update();
         chartSync.idle();
       }
       function handleFisheriesClick() {
-        initialMarkerPopped = false;
-        initialRegionPopped = false;
         chart = 'fisheries';
         updateChart();
         chartSync.update();
         chartSync.idle();
       }
       function handleDiseaseClick() {
-        initialMarkerPopped = false;
-        initialRegionPopped = false;
         chart = 'disease';
         updateChart();
         chartSync.update();
@@ -2096,6 +2090,7 @@
             regions.push(region);
             layer.addTo(leafletMap);
             if (initialRegionPopped === code) {
+              initialRegionPopped = null;
               region.popped = true;
               region.poppedLat = initialRegionPoppedLat;
               region.poppedLng = initialRegionPoppedLng;
@@ -2298,14 +2293,14 @@
             wm.openWindow(code, windowX,
               windowYBase + 1920 - popupDetailHeight - 100,
               popupDetailWidth,
-              popupDetailHeight, chart + '/?code=' + code + '_detail'
+              popupDetailHeight, chart + '_detail' + '/?code=' + code
             );
           } catch (error) {
             wm.closeWindow(code);
             wm.openWindow(code, windowX,
               windowYBase + 1920 - popupDetailHeight - 100,
               popupDetailWidth,
-              popupDetailHeight, chart + '/?code=' + code + '_detail'
+              popupDetailHeight, chart + '_detail' + '/?code=' + code
             );
           }
         }
