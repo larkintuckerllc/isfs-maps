@@ -1939,18 +1939,25 @@
         tilesSync.idle();
       }
       function handleNoneClick() {
+        wm.closeAllWindows();
+        map.moveTo(0, 0, 0, MIN_ZOOM[size]);
         chart = null;
         updateChart();
         chartSync.update();
         chartSync.idle();
       }
       function handleFisheriesClick() {
+        wm.closeAllWindows();
+        map.moveTo(0, 0, 0, MIN_ZOOM[size]);
         chart = 'fisheries';
         updateChart();
         chartSync.update();
         chartSync.idle();
       }
       function handleDiseaseClick() {
+        wm.closeAllWindows();
+        map.moveTo(0, 0, 0, MIN_ZOOM[size]);
+        chart = 'fisheries';
         chart = 'disease';
         updateChart();
         chartSync.update();
@@ -1959,7 +1966,6 @@
       function updateChart() {
         var i;
         var j;
-        wm.closeAllWindows();
         removeRegions();
         removeMarkers();
         if (chart) {
@@ -2019,8 +2025,8 @@
                attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
             }
           ).addTo(leafletMap);
-          /*
           // jscs:enable
+          /*
           // DEV
           // jscs:disable
           tileLayer = L.tileLayer(
