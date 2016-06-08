@@ -2388,7 +2388,11 @@
         thr0w.thr0wChannel(CHANNELS, {type: 'active'});
       }
       function checkIdle() {
-        if (!video && !active) {
+        if (video) {
+          keepActive();
+          return;
+        }
+        if (!active) {
           thr0w.thr0wChannel(CHANNELS, {type: 'idle'});
         }
         active = false;
