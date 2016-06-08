@@ -1509,11 +1509,14 @@
         parameters.tiles : 'satellite';
       var regions = [];
       var markers = [];
+      var video = false;
       var grid;
       var wm;
       var chartSync;
       var tilesSync;
       var markerSync;
+      var regionSync;
+      var videoSync;
       var leafletMap;
       var map;
       var matrix;
@@ -1525,6 +1528,9 @@
       var tileLayer;
       var channel = thr0w.getChannel();
       var size = parseInt(parameters.size);
+      var videoCoverEl = document.getElementById('video_cover');
+      var videoContainerEl = document.getElementById('video_container');
+      var videoElementEl = document.getElementById('video_element');
       var singleEl = document.getElementById('single');
       var doubleEl = document.getElementById('double');
       var fullEl = document.getElementById('full');
@@ -1672,11 +1678,17 @@
         markerMessage,
         markerReceive
       );
-      var regionSync = new thr0w.Sync(
+      regionSync = new thr0w.Sync(
         grid,
         base + '_region',
         regionMessage,
         regionReceive
+      );
+      videoSync = new thr0w.Sync(
+        grid,
+        base + '_video',
+        videoMessage,
+        videoReceive
       );
       map = new thr0w.leaflet.Map(grid, initialCenterLat, initialCenterLng,
         initialZoomLevel,
@@ -1722,6 +1734,11 @@
         .addEventListener('click', handleFisheriesClick);
       document.getElementById('disease')
         .addEventListener('click', handleDiseaseClick);
+      document.getElementById('video')
+        .addEventListener('click', handleVideoClick);
+      document.getElementById('video_stop')
+        .addEventListener('click', handleVideoStopClick);
+      videoElementEl.addEventListener('ended', handleVideoStopClick);
       window.setInterval(checkIdle, TIMEOUT);
       function chartMessage() {
         return {
@@ -1793,6 +1810,22 @@
               regions[i].layer.closePopup();
             }
           }
+        }
+      }
+      function videoMessage() {
+        return {
+          video: video
+        };
+      }
+      function videoReceive(data) {
+        video = data.video;
+        updateVideo();
+      }
+      function updateVideo() {
+        if (!video) {
+          videoCoverEl.style.display = 'none';
+        } else {
+          videoCoverEl.style.display = 'block';
         }
       }
       function zoomed() {
@@ -1962,6 +1995,23 @@
         updateChart();
         chartSync.update();
         chartSync.idle();
+      }
+      function handleVideoClick() {
+        video = true;
+        videoContainerEl.style.display = 'block';
+        videoElementEl.play();
+        updateVideo();
+        videoSync.update();
+        videoSync.idle();
+      }
+      function handleVideoStopClick() {
+        videoElementEl.pause();
+        videoElementEl.currentTime = 0;
+        videoContainerEl.style.display = 'none';
+        video = false;
+        updateVideo();
+        videoSync.update();
+        videoSync.idle();
       }
       function updateChart() {
         var i;
@@ -2338,7 +2388,7 @@
         thr0w.thr0wChannel(CHANNELS, {type: 'active'});
       }
       function checkIdle() {
-        if (!active) {
+        if (!video && !active) {
           thr0w.thr0wChannel(CHANNELS, {type: 'idle'});
         }
         active = false;
