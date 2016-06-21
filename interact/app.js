@@ -1619,10 +1619,10 @@
           ];
           break;
         case SIZE_FULL:
-          videoElementEl.setAttribute('width', 4800);
-          videoElementEl.setAttribute('height', 2700);
-          videoContainerEl.style.width = '4800px';
-          videoContainerEl.style.height = '2700px';
+          videoElementEl.setAttribute('width', 3200);
+          videoElementEl.setAttribute('height', 1800);
+          videoContainerEl.style.width = '3200px';
+          videoContainerEl.style.height = '1800px';
           videoStopEl.style.right = 'initial';
           videoStopEl.style.top = 'initial';
           videoStopEl.style.left = '0px';
