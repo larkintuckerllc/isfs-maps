@@ -1531,6 +1531,8 @@
       var videoCoverEl = document.getElementById('video_cover');
       var videoContainerEl = document.getElementById('video_container');
       var videoElementEl = document.getElementById('video_element');
+      var videoStopEl = document.getElementById('video_stop');
+      var videoObj;
       var singleEl = document.getElementById('single');
       var doubleEl = document.getElementById('double');
       var fullEl = document.getElementById('full');
@@ -1570,6 +1572,10 @@
           ];
           break;
         case SIZE_DOUBLE:
+          videoElementEl.setAttribute('width', 1600);
+          videoElementEl.setAttribute('height', 900);
+          videoContainerEl.style.width = '1600px';
+          videoContainerEl.style.height = '900px';
           singleEl.style.display = 'block';
           fullEl.style.display = 'block';
           controlChannel = parseInt(parameters.control);
@@ -1613,6 +1619,17 @@
           ];
           break;
         case SIZE_FULL:
+          videoElementEl.setAttribute('width', 4800);
+          videoElementEl.setAttribute('height', 2700);
+          videoContainerEl.style.width = '4800px';
+          videoContainerEl.style.height = '2700px';
+          videoStopEl.style.right = 'initial';
+          videoStopEl.style.top = 'initial';
+          videoStopEl.style.left = '0px';
+          videoStopEl.style.bottom = '0px';
+          videoStopEl.style.width = '100px';
+          videoStopEl.style.height = '100px';
+          videoStopEl.style.transform = 'translate(-150%, 150%)';
           singleEl.style.display = 'block';
           doubleEl.style.display = 'block';
           base = 'full';
@@ -1736,9 +1753,9 @@
         .addEventListener('click', handleDiseaseClick);
       document.getElementById('video')
         .addEventListener('click', handleVideoClick);
-      document.getElementById('video_stop')
-        .addEventListener('click', handleVideoStopClick);
-      videoElementEl.addEventListener('ended', handleVideoStopClick);
+      videoStopEl.addEventListener('click', handleVideoStopClick);
+      videoObj = new thr0w.video.Video(grid, videoElementEl);
+      videoObj.addEventListener('ended', handleVideoStopClick);
       window.setInterval(checkIdle, TIMEOUT);
       function chartMessage() {
         return {
@@ -1823,9 +1840,11 @@
       }
       function updateVideo() {
         if (!video) {
+          videoContainerEl.style.display = 'none';
           videoCoverEl.style.display = 'none';
         } else {
           videoCoverEl.style.display = 'block';
+          videoContainerEl.style.display = 'block';
         }
       }
       function zoomed() {
@@ -1998,20 +2017,18 @@
       }
       function handleVideoClick() {
         video = true;
-        videoContainerEl.style.display = 'block';
-        videoElementEl.play();
         updateVideo();
         videoSync.update();
         videoSync.idle();
+        videoObj.play();
       }
       function handleVideoStopClick() {
-        videoElementEl.pause();
-        videoElementEl.currentTime = 0;
-        videoContainerEl.style.display = 'none';
         video = false;
+        videoObj.pause();
         updateVideo();
         videoSync.update();
         videoSync.idle();
+        videoObj.setCurrentTime(0);
       }
       function updateChart() {
         var i;

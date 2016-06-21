@@ -9,23 +9,24 @@
   <link rel="stylesheet" type="text/css" href="/bower_components/thr0w-client/dist/thr0w-base.css">
   <link rel="stylesheet" type="text/css" href="/bower_components/thr0w-leaflet/dist/thr0w-leaflet.css">
   <link rel="stylesheet" type="text/css" href="/bower_components/thr0w-windows/dist/thr0w-windows.css">
+  <link rel="stylesheet" type="text/css" href="/bower_components/thr0w-video/dist/thr0w-video.css">
   <link rel="stylesheet" type="text/css" href="app.css">
 </head>
 <body>
   <div id="my_frame">
-    <div id="video_container" style="display: none;">
-      <video id="video_element" width="800" height="450">
-        <source src="img/ifas_research.mp4" type="video/mp4" />
-      </video>
-      <svg id="video_stop" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-        <g>
-        <ellipse stroke="#000000" ry="49" rx="49" id="svg_1" cy="50" cx="50" stroke-width="2" fill="#ffffff"></ellipse>
-        <path id="svg_4" fill-opacity="1" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#808080" fill="#808080"></path>
-        <path id="svg_6" d="m13.75,30.5l18.5,18.75l-19.5,20.25l17.25,16.75l20.5,-19l19.25,19.5l17.25,-17l-19.5,-19.25l19.75,-19.75l-17.5,-17.5l-19.25,20l-19.5,-20l-17.25,17.25z" fill-opacity="1" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#808080" fill="#808080"></path>
-        </g>
-      </svg>
-    </div>
     <div id="interact_content">
+      <div id="video_container" style="display: none;">
+        <video id="video_element" width="800" height="450">
+          <source src="img/ifas_research.mp4" type="video/mp4" />
+        </video>
+        <svg id="video_stop" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+          <g>
+          <ellipse stroke="#000000" ry="49" rx="49" id="svg_1" cy="50" cx="50" stroke-width="2" fill="#ffffff"></ellipse>
+          <path id="svg_4" fill-opacity="1" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#808080" fill="#808080"></path>
+          <path id="svg_6" d="m13.75,30.5l18.5,18.75l-19.5,20.25l17.25,16.75l20.5,-19l19.25,19.5l17.25,-17l-19.5,-19.25l19.75,-19.75l-17.5,-17.5l-19.25,20l-19.5,-20l-17.25,17.25z" fill-opacity="1" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#808080" fill="#808080"></path>
+          </g>
+        </svg>
+      </div>
       <div id="video_cover" style="display: none;"></div>
     </div>
     <div id="controls" style="display: none;">
@@ -66,6 +67,7 @@
   <script src="/bower_components/thr0w-client/dist/thr0w-base.min.js"></script>
   <script src="/bower_components/thr0w-leaflet/dist/thr0w-leaflet.min.js"></script>
   <script src="/bower_components/thr0w-windows/dist/thr0w-windows.min.js"></script>
+  <script src="/bower_components/thr0w-video/dist/thr0w-video.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
