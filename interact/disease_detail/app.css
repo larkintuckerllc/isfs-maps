@@ -34,7 +34,19 @@ body {
   border: 1px solid black;
   padding: 10px;
   text-align: center;
-  background-color: rgb(220,220,220);
+  color: rgb(255,255,255);
+}
+.data__metric__title--chemicals{
+  background-color: #70A37F;
+}
+.data__metric__title--diarrheal {
+  background-color: #41658A;
+}
+.data__metric__title--helminths{
+  background-color: #414073;
+}
+.data__metric__title--invasive{
+  background-color: #4C3957;
 }
 .data__metric__value {
   border-left: 1px solid black;
@@ -69,7 +81,19 @@ body {
   border: 1px solid black;
   padding: 10px;
   text-align: center;
-  background-color: rgb(220,220,220);
+  color: rgb(255,255,255);
+}
+.data__detail__metric__title--chemicals{
+  background-color: #70A37F;
+}
+.data__detail__metric__title--diarrheal {
+  background-color: #41658A;
+}
+.data__detail__metric__title--helminths{
+  background-color: #414073;
+}
+.data__detail__metric__title--invasive{
+  background-color: #4C3957;
 }
 .data__detail__metric__value {
   border-left: 1px solid black;

@@ -4,2269 +4,1765 @@
   var REGIONS_DETAIL = {
     'AFR D': [
       {
-         'disease': 'Bacteria (Diarrheal)',
-         'daly': 787
-       },
-      {
-         'disease': 'Non-typhoidal',
+         'disease': 'Non-typhoidal S. enterica', 'category': 'diarrheal',
          'daly': 338
        },
       {
-         'disease': 'Cestodes',
-         'daly': 172
-       },
+        'disease': 'Taenia solium', 'category': 'helminths',
+        'daly': 170
+      },
       {
-         'disease': 'Taenia',
-         'daly': 170
-       },
-      {
-         'disease': 'Enteropathogenic',
+         'disease': 'Enteropathogenic E. coli ', 'category': 'diarrheal',
          'daly': 136
        },
       {
-         'disease': 'Enterotoxigenic',
-         'daly': 107
-       },
+        'disease': 'Enterotoxigenic E. coli', 'category': 'diarrheal',
+        'daly': 107
+      },
       {
-         'disease': 'Bacteria (Invasive Infectious)',
-         'daly': 93
-       },
-      {
-         'disease': 'Viruses (Diarrheal)',
+         'disease': 'Norovirus', 'category': 'diarrheal',
          'daly': 75
        },
       {
-         'disease': 'Norovirus',
-         'daly': 75
-       },
-      {
-         'disease': 'Campylobacter',
+         'disease': 'Campylobacter spp.', 'category': 'diarrheal',
          'daly': 71
        },
       {
-         'disease': 'Vibrio',
+         'disease': 'Vibrio cholerae', 'category': 'diarrheal',
          'daly': 70
        },
       {
-         'disease': 'Salmonella',
+         'disease': 'Salmonella Typhi', 'category': 'invasive',
          'daly': 47
        },
       {
-         'disease': 'Shigella',
-         'daly': 37
-       },
+        'disease': 'Shigella spp.', 'category': 'diarrheal',
+        'daly': 37
+      },
       {
-         'disease': 'Aflatoxin',
+         'disease': 'Aflatoxin', 'category': 'chemicals',
          'daly': 28
        },
       {
-         'disease': 'Viruses (Invasive Infectious)',
-         'daly': 27
-       },
+        'disease': 'Hepatitis A virus', 'category': 'invasive',
+        'daly': 27
+      },
       {
-         'disease': 'Hepatitis',
-         'daly': 27
-       },
+        'disease': 'Mycobacterium bovis', 'category': 'invasive',
+        'daly': 25
+      },
       {
-         'disease': 'Mycobacterium',
-         'daly': 25
-       },
+        'disease': 'Toxoplasma gondii', 'category': 'invasive',
+        'daly': 21
+      },
       {
-         'disease': 'Protozoa',
-         'daly': 21
-       },
+        'disease': 'Ascaris spp.', 'category': 'helminths',
+        'daly': 13
+      },
       {
-         'disease': 'Toxoplasma',
-         'daly': 21
-       },
+        'disease': 'Cryptosporidium spp.', 'category': 'diarrheal',
+        'daly': 12
+      },
       {
-         'disease': 'Protozoa',
-         'daly': 20
-       },
-      {
-         'disease': 'Nematodes',
-         'daly': 13
-       },
-      {
-         'disease': 'Ascaris',
-         'daly': 13
-       },
-      {
-         'disease': 'Cryptosporidium',
-         'daly': 12
-       },
-      {
-         'disease': 'Salmonella',
+         'disease': 'Salmonella Paratyphi A', 'category': 'invasive',
          'daly': 11
        },
       {
-         'disease': 'Entamoeba',
-         'daly': 5
-       },
+        'disease': 'Entamoeba histolytica', 'category': 'diarrheal',
+        'daly': 5
+      },
       {
-         'disease': 'Brucella',
-         'daly': 2
-       },
+        'disease': 'Brucella spp.', 'category': 'invasive',
+        'daly': 2
+      },
       {
-         'disease': 'Listeria',
-         'daly': 1
-       },
+        'disease': 'Listeria monocytogenes', 'category': 'invasive',
+        'daly': 1
+      },
       {
-         'disease': 'Cassava',
-         'daly': 1
-       },
+        'disease': 'Cassava cyanide', 'category': 'chemicals',
+        'daly': 1
+      },
       {
-         'disease': 'Giardia',
-         'daly': 0.7
-       },
+        'disease': 'Giardia spp.', 'category': 'diarrheal',
+        'daly': 0.7
+      },
       {
-         'disease': 'Echinococcus',
-         'daly': 0.4
-       },
+        'disease': 'Echinococcus granulosus', 'category': 'helminths',
+        'daly': 0.4
+      },
       {
-         'disease': 'Dioxin',
+         'disease': 'Dioxin', 'category': 'chemicals',
          'daly': 0.2
        },
       {
-         'disease': 'Trematodes',
-         'daly': 0.06
-       },
+        'disease': 'Paragonimus spp.', 'category': 'helminths',
+        'daly': 0.03
+      },
       {
-         'disease': 'Paragonimus',
-         'daly': 0.03
-       },
+        'disease': 'Fasciola spp.', 'category': 'helminths',
+        'daly': 0.02
+      },
       {
-         'disease': 'Fasciola',
-         'daly': 0.02
-       },
+        'disease': 'Intestinal flukes', 'category': 'helminths',
+        'daly': 0.01
+      },
       {
-         'disease': 'Intestinal',
-         'daly': 0.01
-       },
+        'disease': 'Shiga toxin-producing E. coli', 'category': 'diarrheal',
+        'daly': 0.01
+      },
       {
-         'disease': 'Shiga',
-         'daly': 0.01
-       },
+        'disease': 'Trichinella spp.', 'category': 'helminths',
+        'daly': 0
+      },
       {
-         'disease': 'Trichinella',
+         'disease': 'Echinococcus multilocularis', 'category': 'helminths',
          'daly': 0
        },
       {
-         'disease': 'Echinococcus',
-         'daly': 0
-       },
+        'disease': 'Clonorchis sinensis', 'category': 'helminths',
+        'daly': 0
+      },
       {
-         'disease': 'Clonorchis',
-         'daly': 0
-       },
-      {
-         'disease': 'Opisthorchis',
-         'daly': 0
-       }
+        'disease': 'Opisthorchis spp.', 'category': 'helminths',
+        'daly': 0
+      }
     ],
     'AFR E': [
      {
-        'disease': 'Bacteria (Diarrheal)',
-        'daly': 712
-      },
-     {
-        'disease': 'Non-typhoidal S. enterica',
+        'disease': 'Non-typhoidal S. enterica', 'category': 'diarrheal',
         'daly': 193
       },
      {
-        'disease': 'Cestodes',
-        'daly': 178
-      },
-     {
-        'disease': 'Taenia solium',
+        'disease': 'Taenia solium', 'category': 'helminths',
         'daly': 176
       },
      {
-        'disease': 'Vibrio cholerae',
+        'disease': 'Vibrio cholerae', 'category': 'diarrheal',
         'daly': 143
       },
      {
-        'disease': 'Enteropathogenic E. coli ',
+        'disease': 'Enteropathogenic E. coli ', 'category': 'diarrheal',
         'daly': 138
       },
      {
-        'disease': 'Enterotoxigenic E. coli',
+        'disease': 'Enterotoxigenic E. coli', 'category': 'diarrheal',
         'daly': 105
       },
      {
-        'disease': 'Bacteria (Invasive Infectious)',
-        'daly': 104
-      },
-     {
-        'disease': 'Viruses (Diarheal)',
+        'disease': 'Norovirus', 'category': 'diarrheal',
         'daly': 76
       },
      {
-        'disease': 'Norovirus',
-        'daly': 76
-      },
-     {
-        'disease': 'Campylobacter spp.',
+        'disease': 'Campylobacter spp.', 'category': 'diarrheal',
         'daly': 70
       },
      {
-        'disease': 'Salmonella Typhi',
+        'disease': 'Salmonella Typhi', 'category': 'invasive',
         'daly': 52
       },
      {
-        'disease': 'Shigella spp.',
+        'disease': 'Shigella spp.', 'category': 'diarrheal',
         'daly': 37
       },
      {
-        'disease': 'Mycobacterium bovis',
+        'disease': 'Mycobacterium bovis', 'category': 'invasive',
         'daly': 34
       },
      {
-        'disease': 'Protozoa',
-        'daly': 21
-      },
-     {
-        'disease': 'Protozoa',
+        'disease': 'Toxoplasma gondii', 'category': 'invasive',
         'daly': 20
       },
      {
-        'disease': 'Toxoplasma gondii',
-        'daly': 20
-      },
-     {
-        'disease': 'Viruses (Invasive Infectious)',
+        'disease': 'Hepatitis A virus', 'category': 'invasive',
         'daly': 18
       },
      {
-        'disease': 'Hepatitis A virus',
-        'daly': 18
-      },
-     {
-        'disease': 'Cryptosporidium spp.',
+        'disease': 'Cryptosporidium spp.', 'category': 'diarrheal',
         'daly': 12
       },
      {
-        'disease': 'Salmonella Paratyphi A',
+        'disease': 'Salmonella Paratyphi A', 'category': 'invasive',
         'daly': 12
       },
      {
-        'disease': 'Entamoeba histolytica',
+        'disease': 'Entamoeba histolytica', 'category': 'diarrheal',
         'daly': 5
       },
      {
-        'disease': 'Nematodes',
+        'disease': 'Ascaris spp.', 'category': 'helminths',
         'daly': 5
       },
      {
-        'disease': 'Ascaris spp.',
-        'daly': 5
-      },
-     {
-        'disease': 'Aflatoxin',
+        'disease': 'Aflatoxin', 'category': 'chemicals',
         'daly': 3
       },
      {
-        'disease': 'Cassava cyanide',
+        'disease': 'Cassava cyanide', 'category': 'chemicals',
         'daly': 3
       },
      {
-        'disease': 'Listeria monocytogenes',
+        'disease': 'Listeria monocytogenes', 'category': 'invasive',
         'daly': 1
       },
      {
-        'disease': 'Echinococcus granulosus',
+        'disease': 'Echinococcus granulosus', 'category': 'helminths',
         'daly': 0.8
       },
      {
-        'disease': 'Giardia spp.',
+        'disease': 'Giardia spp.', 'category': 'diarrheal',
         'daly': 0.7
       },
      {
-        'disease': 'Brucella spp.',
+        'disease': 'Brucella spp.', 'category': 'invasive',
         'daly': 0.3
       },
      {
-        'disease': 'Dioxin',
+        'disease': 'Dioxin', 'category': 'chemicals',
         'daly': 0.2
       },
      {
-        'disease': 'Shiga toxin-producing E. coli',
+        'disease': 'Shiga toxin-producing E. coli', 'category': 'diarrheal',
         'daly': 0.08
       },
      {
-        'disease': 'Trematodes',
-        'daly': 0.02
-      },
-     {
-        'disease': 'Fasciola spp.',
+        'disease': 'Fasciola spp.', 'category': 'helminths',
         'daly': 0.01
       },
      {
-        'disease': 'Paragonimus spp.',
+        'disease': 'Paragonimus spp.', 'category': 'helminths',
         'daly': 0.01
       },
      {
-        'disease': 'Trichinella spp.',
+        'disease': 'Trichinella spp.', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Echinococcus multilocularis',
+        'disease': 'Echinococcus multilocularis', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Clonorchis sinensis',
+        'disease': 'Clonorchis sinensis', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Intestinal flukes',
+        'disease': 'Intestinal flukes', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Opisthorchis spp.',
+        'disease': 'Opisthorchis spp.', 'category': 'helminths',
         'daly': 0
       }
     ],
     'AMR A': [
      {
-        'disease': 'Bacteria (Diarrheal)',
-        'daly': 19
-      },
-     {
-        'disease': 'Campylobacter spp.',
+        'disease': 'Campylobacter spp.', 'category': 'diarrheal',
         'daly': 9
       },
      {
-        'disease': 'Non-typhoidal S. enterica',
+        'disease': 'Non-typhoidal S. enterica', 'category': 'diarrheal',
         'daly': 9
       },
      {
-        'disease': 'Protozoa',
+        'disease': 'Toxoplasma gondii', 'category': 'invasive',
         'daly': 5
       },
      {
-        'disease': 'Toxoplasma gondii',
-        'daly': 5
-      },
-     {
-        'disease': 'Bacteria (Invasive Infectious)',
-        'daly': 4
-      },
-     {
-        'disease': 'Viruses (Diarheal)',
+        'disease': 'Norovirus', 'category': 'diarrheal',
         'daly': 3
       },
      {
-        'disease': 'Norovirus',
+        'disease': 'Listeria monocytogenes', 'category': 'invasive',
         'daly': 3
       },
      {
-        'disease': 'Listeria monocytogenes',
-        'daly': 3
-      },
-     {
-        'disease': 'Nematodes',
+        'disease': 'Ascaris spp.', 'category': 'helminths',
         'daly': 0.6
       },
      {
-        'disease': 'Ascaris spp.',
-        'daly': 0.6
-      },
-     {
-        'disease': 'Viruses (Invasive Infectious)',
+        'disease': 'Hepatitis A virus', 'category': 'invasive',
         'daly': 0.5
       },
      {
-        'disease': 'Hepatitis A virus',
-        'daly': 0.5
-      },
-     {
-        'disease': 'Salmonella Typhi',
+        'disease': 'Salmonella Typhi', 'category': 'invasive',
         'daly': 0.4
       },
      {
-        'disease': 'Cestodes',
+        'disease': 'Taenia solium', 'category': 'helminths',
         'daly': 0.4
       },
      {
-        'disease': 'Taenia solium',
-        'daly': 0.4
-      },
-     {
-        'disease': 'Dioxin',
+        'disease': 'Dioxin', 'category': 'chemicals',
         'daly': 0.3
       },
      {
-        'disease': 'Shiga toxin-producing E. coli',
+        'disease': 'Shiga toxin-producing E. coli', 'category': 'diarrheal',
         'daly': 0.2
       },
      {
-        'disease': 'Shigella spp.',
+        'disease': 'Shigella spp.', 'category': 'diarrheal',
         'daly': 0.2
       },
      {
-        'disease': 'Protozoa',
+        'disease': 'Cryptosporidium spp.', 'category': 'diarrheal',
         'daly': 0.2
       },
      {
-        'disease': 'Cryptosporidium spp.',
-        'daly': 0.2
-      },
-     {
-        'disease': 'Trematodes',
-        'daly': 0.2
-      },
-     {
-        'disease': 'Salmonella Paratyphi A',
+        'disease': 'Salmonella Paratyphi A', 'category': 'invasive',
         'daly': 0.1
       },
      {
-        'disease': 'Intestinal flukes',
+        'disease': 'Intestinal flukes', 'category': 'helminths',
         'daly': 0.1
       },
      {
-        'disease': 'Brucella spp.',
+        'disease': 'Brucella spp.', 'category': 'invasive',
         'daly': 0.07
       },
      {
-        'disease': 'Fasciola spp.',
+        'disease': 'Fasciola spp.', 'category': 'helminths',
         'daly': 0.04
       },
      {
-        'disease': 'Paragonimus spp.',
+        'disease': 'Paragonimus spp.', 'category': 'helminths',
         'daly': 0.04
       },
      {
-        'disease': 'Aflatoxin',
+        'disease': 'Aflatoxin', 'category': 'chemicals',
         'daly': 0.04
       },
      {
-        'disease': 'Giardia spp.',
+        'disease': 'Giardia spp.', 'category': 'diarrheal',
         'daly': 0.03
       },
      {
-        'disease': 'Mycobacterium bovis',
+        'disease': 'Mycobacterium bovis', 'category': 'invasive',
         'daly': 0.03
       },
      {
-        'disease': 'Echinococcus granulosus',
+        'disease': 'Echinococcus granulosus', 'category': 'helminths',
         'daly': 0.01
       },
      {
-        'disease': 'Trichinella spp.',
+        'disease': 'Trichinella spp.', 'category': 'helminths',
         'daly': 0.01
       },
      {
-        'disease': 'Enteropathogenic E. coli ',
+        'disease': 'Enteropathogenic E. coli ', 'category': 'diarrheal',
         'daly': 0.01
       },
      {
-        'disease': 'Enterotoxigenic E. coli',
+        'disease': 'Enterotoxigenic E. coli', 'category': 'diarrheal',
         'daly': 0
       },
      {
-        'disease': 'Vibrio cholerae',
+        'disease': 'Vibrio cholerae', 'category': 'diarrheal',
         'daly': 0
       },
      {
-        'disease': 'Entamoeba histolytica',
+        'disease': 'Entamoeba histolytica', 'category': 'diarrheal',
         'daly': 0
       },
      {
-        'disease': 'Echinococcus multilocularis',
+        'disease': 'Echinococcus multilocularis', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Clonorchis sinensis',
+        'disease': 'Clonorchis sinensis', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Opisthorchis spp.',
+        'disease': 'Opisthorchis spp.', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Cassava cyanide',
+        'disease': 'Cassava cyanide', 'category': 'chemicals',
         'daly': 0
       }
     ],
     'AMR B': [
      {
-        'disease': 'Bacteria (Diarrheal)',
-        'daly': 45
-      },
-     {
-        'disease': 'Cestodes',
+        'disease': 'Taenia solium', 'category': 'helminths',
         'daly': 25
       },
      {
-        'disease': 'Taenia solium',
-        'daly': 25
-      },
-     {
-        'disease': 'Protozoa',
+        'disease': 'Toxoplasma gondii', 'category': 'invasive',
         'daly': 20
       },
      {
-        'disease': 'Toxoplasma gondii',
-        'daly': 20
-      },
-     {
-        'disease': 'Bacteria (Invasive Infectious)',
-        'daly': 16
-      },
-     {
-        'disease': 'Campylobacter spp.',
+        'disease': 'Campylobacter spp.', 'category': 'diarrheal',
         'daly': 15
       },
      {
-        'disease': 'Viruses (Diarheal)',
+        'disease': 'Norovirus', 'category': 'diarrheal',
         'daly': 12
       },
      {
-        'disease': 'Norovirus',
-        'daly': 12
-      },
-     {
-        'disease': 'Non-typhoidal S. enterica',
+        'disease': 'Non-typhoidal S. enterica', 'category': 'diarrheal',
         'daly': 11
       },
      {
-        'disease': 'Nematodes',
+        'disease': 'Ascaris spp.', 'category': 'helminths',
         'daly': 11
       },
      {
-        'disease': 'Ascaris spp.',
-        'daly': 11
-      },
-     {
-        'disease': 'Enteropathogenic E. coli ',
+        'disease': 'Enteropathogenic E. coli ', 'category': 'diarrheal',
         'daly': 7
       },
      {
-        'disease': 'Enterotoxigenic E. coli',
+        'disease': 'Enterotoxigenic E. coli', 'category': 'diarrheal',
         'daly': 7
       },
      {
-        'disease': 'Salmonella Typhi',
+        'disease': 'Salmonella Typhi', 'category': 'invasive',
         'daly': 7
       },
      {
-        'disease': 'Aflatoxin',
+        'disease': 'Aflatoxin', 'category': 'chemicals',
         'daly': 3
       },
      {
-        'disease': 'Shigella spp.',
+        'disease': 'Shigella spp.', 'category': 'diarrheal',
         'daly': 2
       },
      {
-        'disease': 'Protozoa',
+        'disease': 'Listeria monocytogenes', 'category': 'invasive',
         'daly': 2
       },
      {
-        'disease': 'Listeria monocytogenes',
+        'disease': 'Salmonella Paratyphi A', 'category': 'invasive',
         'daly': 2
       },
      {
-        'disease': 'Salmonella Paratyphi A',
-        'daly': 2
-      },
-     {
-        'disease': 'Viruses (Invasive Infectious)',
+        'disease': 'Hepatitis A virus', 'category': 'invasive',
         'daly': 1
       },
      {
-        'disease': 'Hepatitis A virus',
+        'disease': 'Brucella spp.', 'category': 'invasive',
         'daly': 1
       },
      {
-        'disease': 'Brucella spp.',
-        'daly': 1
-      },
-     {
-        'disease': 'Cryptosporidium spp.',
+        'disease': 'Cryptosporidium spp.', 'category': 'diarrheal',
         'daly': 0.7
       },
      {
-        'disease': 'Shiga toxin-producing E. coli',
+        'disease': 'Shiga toxin-producing E. coli', 'category': 'diarrheal',
         'daly': 0.4
       },
      {
-        'disease': 'Entamoeba histolytica',
+        'disease': 'Entamoeba histolytica', 'category': 'diarrheal',
         'daly': 0.4
       },
      {
-        'disease': 'Giardia spp.',
+        'disease': 'Giardia spp.', 'category': 'diarrheal',
         'daly': 0.4
       },
      {
-        'disease': 'Mycobacterium bovis',
+        'disease': 'Mycobacterium bovis', 'category': 'invasive',
         'daly': 0.4
       },
      {
-        'disease': 'Echinococcus granulosus',
+        'disease': 'Echinococcus granulosus', 'category': 'helminths',
         'daly': 0.3
       },
      {
-        'disease': 'Trematodes',
+        'disease': 'Dioxin', 'category': 'chemicals',
         'daly': 0.1
       },
      {
-        'disease': 'Dioxin',
-        'daly': 0.1
-      },
-     {
-        'disease': 'Intestinal flukes',
+        'disease': 'Intestinal flukes', 'category': 'helminths',
         'daly': 0.06
       },
      {
-        'disease': 'Fasciola spp.',
+        'disease': 'Fasciola spp.', 'category': 'helminths',
         'daly': 0.04
       },
      {
-        'disease': 'Paragonimus spp.',
+        'disease': 'Paragonimus spp.', 'category': 'helminths',
         'daly': 0.04
       },
      {
-        'disease': 'Trichinella spp.',
+        'disease': 'Trichinella spp.', 'category': 'helminths',
         'daly': 0.01
       },
      {
-        'disease': 'Vibrio cholerae',
+        'disease': 'Vibrio cholerae', 'category': 'diarrheal',
         'daly': 0
       },
      {
-        'disease': 'Echinococcus multilocularis',
+        'disease': 'Echinococcus multilocularis', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Clonorchis sinensis',
+        'disease': 'Clonorchis sinensis', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Opisthorchis spp.',
+        'disease': 'Opisthorchis spp.', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Cassava cyanide',
+        'disease': 'Cassava cyanide', 'category': 'chemicals',
         'daly': 0
       }
     ],
     'AMR D': [
      {
-        'disease': 'Trematodes',
-        'daly': 101
-      },
-     {
-        'disease': 'Cestodes',
-        'daly': 71
-      },
-     {
-        'disease': 'Taenia solium',
+        'disease': 'Taenia solium', 'category': 'helminths',
         'daly': 69
       },
      {
-        'disease': 'Bacteria  (Diarrheal)',
-        'daly': 54
-      },
-     {
-        'disease': 'Paragonimus spp.',
+        'disease': 'Paragonimus spp.', 'category': 'helminths',
         'daly': 53
       },
      {
-        'disease': 'Fasciola spp.',
+        'disease': 'Fasciola spp.', 'category': 'helminths',
         'daly': 46
       },
      {
-        'disease': 'Protozoa',
+        'disease': 'Toxoplasma gondii', 'category': 'invasive',
         'daly': 27
       },
      {
-        'disease': 'Toxoplasma gondii',
-        'daly': 27
-      },
-     {
-        'disease': 'Bacteria (Invasive Infectious)',
-        'daly': 19
-      },
-     {
-        'disease': 'Campylobacter spp.',
+        'disease': 'Campylobacter spp.', 'category': 'diarrheal',
         'daly': 15
       },
      {
-        'disease': 'Non-typhoidal S. enterica',
+        'disease': 'Non-typhoidal S. enterica', 'category': 'diarrheal',
         'daly': 14
       },
      {
-        'disease': 'Viruses (Diarheal)',
+        'disease': 'Norovirus', 'category': 'diarrheal',
         'daly': 13
       },
      {
-        'disease': 'Norovirus',
-        'daly': 13
-      },
-     {
-        'disease': 'Nematodes',
+        'disease': 'Ascaris spp.', 'category': 'helminths',
         'daly': 12
       },
      {
-        'disease': 'Ascaris spp.',
-        'daly': 12
-      },
-     {
-        'disease': 'Enteropathogenic E. coli ',
+        'disease': 'Enteropathogenic E. coli ', 'category': 'diarrheal',
         'daly': 9
       },
      {
-        'disease': 'Enterotoxigenic E. coli',
+        'disease': 'Enterotoxigenic E. coli', 'category': 'diarrheal',
         'daly': 9
       },
      {
-        'disease': 'Salmonella Typhi',
+        'disease': 'Salmonella Typhi', 'category': 'invasive',
         'daly': 8
       },
      {
-        'disease': 'Protozoa',
-        'daly': 3
-      },
-     {
-        'disease': 'Shigella spp.',
+        'disease': 'Shigella spp.', 'category': 'diarrheal',
         'daly': 2
       },
      {
-        'disease': 'Viruses (Invasive Infectious)',
+        'disease': 'Hepatitis A virus', 'category': 'invasive',
         'daly': 2
       },
      {
-        'disease': 'Hepatitis A virus',
+        'disease': 'Brucella spp.', 'category': 'invasive',
         'daly': 2
       },
      {
-        'disease': 'Brucella spp.',
+        'disease': 'Mycobacterium bovis', 'category': 'invasive',
         'daly': 2
       },
      {
-        'disease': 'Mycobacterium bovis',
+        'disease': 'Salmonella Paratyphi A', 'category': 'invasive',
         'daly': 2
       },
      {
-        'disease': 'Salmonella Paratyphi A',
+        'disease': 'Echinococcus granulosus', 'category': 'helminths',
         'daly': 2
       },
      {
-        'disease': 'Echinococcus granulosus',
+        'disease': 'Aflatoxin', 'category': 'chemicals',
         'daly': 2
       },
      {
-        'disease': 'Aflatoxin',
-        'daly': 2
-      },
-     {
-        'disease': 'Cryptosporidium spp.',
+        'disease': 'Cryptosporidium spp.', 'category': 'diarrheal',
         'daly': 1
       },
      {
-        'disease': 'Listeria monocytogenes',
+        'disease': 'Listeria monocytogenes', 'category': 'invasive',
         'daly': 1
       },
      {
-        'disease': 'Shiga toxin-producing E. coli',
+        'disease': 'Shiga toxin-producing E. coli', 'category': 'diarrheal',
         'daly': 0.5
       },
      {
-        'disease': 'Giardia spp.',
+        'disease': 'Giardia spp.', 'category': 'diarrheal',
         'daly': 0.5
       },
      {
-        'disease': 'Entamoeba histolytica',
+        'disease': 'Entamoeba histolytica', 'category': 'diarrheal',
         'daly': 0.4
       },
      {
-        'disease': 'Dioxin',
+        'disease': 'Dioxin', 'category': 'chemicals',
         'daly': 0.2
       },
      {
-        'disease': 'Trichinella spp.',
+        'disease': 'Trichinella spp.', 'category': 'helminths',
         'daly': 0.01
       },
      {
-        'disease': 'Vibrio cholerae',
+        'disease': 'Vibrio cholerae', 'category': 'diarrheal',
         'daly': 0
       },
      {
-        'disease': 'Echinococcus multilocularis',
+        'disease': 'Echinococcus multilocularis', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Clonorchis sinensis',
+        'disease': 'Clonorchis sinensis', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Intestinal flukes',
+        'disease': 'Intestinal flukes', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Opisthorchis spp.',
+        'disease': 'Opisthorchis spp.', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Cassava cyanide',
+        'disease': 'Cassava cyanide', 'category': 'chemicals',
         'daly': 0
       }
     ],
     'EMR B': [
      {
-        'disease': 'Bacteria (Diarrheal)',
-        'daly': 237
-      },
-     {
-        'disease': 'Campylobacter spp.',
+        'disease': 'Campylobacter spp.', 'category': 'diarrheal',
         'daly': 75
       },
      {
-        'disease': 'Non-typhoidal S. enterica',
+        'disease': 'Non-typhoidal S. enterica', 'category': 'diarrheal',
         'daly': 50
       },
      {
-        'disease': 'Bacteria (Invasive Infectious)',
-        'daly': 50
-      },
-     {
-        'disease': 'Enteropathogenic E. coli ',
+        'disease': 'Enteropathogenic E. coli ', 'category': 'diarrheal',
         'daly': 46
       },
      {
-        'disease': 'Enterotoxigenic E. coli',
+        'disease': 'Enterotoxigenic E. coli', 'category': 'diarrheal',
         'daly': 29
       },
      {
-        'disease': 'Viruses (Diarheal)',
+        'disease': 'Norovirus', 'category': 'diarrheal',
         'daly': 28
       },
      {
-        'disease': 'Norovirus',
-        'daly': 28
-      },
-     {
-        'disease': 'Shigella spp.',
+        'disease': 'Shigella spp.', 'category': 'diarrheal',
         'daly': 27
       },
      {
-        'disease': 'Brucella spp.',
+        'disease': 'Brucella spp.', 'category': 'invasive',
         'daly': 23
       },
      {
-        'disease': 'Protozoa',
+        'disease': 'Toxoplasma gondii', 'category': 'invasive',
         'daly': 20
       },
      {
-        'disease': 'Toxoplasma gondii',
-        'daly': 20
-      },
-     {
-        'disease': 'Salmonella Typhi',
+        'disease': 'Salmonella Typhi', 'category': 'invasive',
         'daly': 14
       },
      {
-        'disease': 'Protozoa',
-        'daly': 6
-      },
-     {
-        'disease': 'Cryptosporidium spp.',
+        'disease': 'Cryptosporidium spp.', 'category': 'diarrheal',
         'daly': 3
       },
      {
-        'disease': 'Salmonella Paratyphi A',
+        'disease': 'Salmonella Paratyphi A', 'category': 'invasive',
         'daly': 3
       },
      {
-        'disease': 'Nematodes',
+        'disease': 'Ascaris spp.', 'category': 'helminths',
         'daly': 3
       },
      {
-        'disease': 'Ascaris spp.',
-        'daly': 3
-      },
-     {
-        'disease': 'Entamoeba histolytica',
+        'disease': 'Entamoeba histolytica', 'category': 'diarrheal',
         'daly': 2
       },
      {
-        'disease': 'Viruses (Invasive Infectious)',
+        'disease': 'Hepatitis A virus', 'category': 'invasive',
         'daly': 2
       },
      {
-        'disease': 'Hepatitis A virus',
-        'daly': 2
-      },
-     {
-        'disease': 'Listeria monocytogenes',
+        'disease': 'Listeria monocytogenes', 'category': 'invasive',
         'daly': 1
       },
      {
-        'disease': 'Mycobacterium bovis',
+        'disease': 'Mycobacterium bovis', 'category': 'invasive',
         'daly': 1
       },
      {
-        'disease': 'Cestodes',
-        'daly': 1
-      },
-     {
-        'disease': 'Echinococcus granulosus',
+        'disease': 'Echinococcus granulosus', 'category': 'helminths',
         'daly': 0.9
       },
      {
-        'disease': 'Aflatoxin',
+        'disease': 'Aflatoxin', 'category': 'chemicals',
         'daly': 0.7
       },
      {
-        'disease': 'Giardia spp.',
+        'disease': 'Giardia spp.', 'category': 'diarrheal',
         'daly': 0.4
       },
      {
-        'disease': 'Trematodes',
-        'daly': 0.3
-      },
-     {
-        'disease': 'Shiga toxin-producing E. coli',
+        'disease': 'Shiga toxin-producing E. coli', 'category': 'diarrheal',
         'daly': 0.2
       },
      {
-        'disease': 'Vibrio cholerae',
+        'disease': 'Vibrio cholerae', 'category': 'diarrheal',
         'daly': 0.2
       },
      {
-        'disease': 'Fasciola spp.',
+        'disease': 'Fasciola spp.', 'category': 'helminths',
         'daly': 0.2
       },
      {
-        'disease': 'Dioxin',
+        'disease': 'Dioxin', 'category': 'chemicals',
         'daly': 0.09
       },
      {
-        'disease': 'Intestinal flukes',
+        'disease': 'Intestinal flukes', 'category': 'helminths',
         'daly': 0.06
       },
      {
-        'disease': 'Echinococcus multilocularis',
+        'disease': 'Echinococcus multilocularis', 'category': 'helminths',
         'daly': 0.03
       },
      {
-        'disease': 'Taenia solium',
+        'disease': 'Taenia solium', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Trichinella spp.',
+        'disease': 'Trichinella spp.', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Clonorchis sinensis',
+        'disease': 'Clonorchis sinensis', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Opisthorchis spp.',
+        'disease': 'Opisthorchis spp.', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Paragonimus spp.',
+        'disease': 'Paragonimus spp.', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Cassava cyanide',
+        'disease': 'Cassava cyanide', 'category': 'chemicals',
         'daly': 0
       }
     ],
     'EMR D': [
      {
-        'disease': 'Bacteria (Diarrheal)',
-        'daly': 347
-      },
-     {
-        'disease': 'Campylobacter spp.',
+        'disease': 'Campylobacter spp.', 'category': 'diarrheal',
         'daly': 97
       },
      {
-        'disease': 'Bacteria (Invasive Infectious)',
-        'daly': 82
-      },
-     {
-        'disease': 'Non-typhoidal S. enterica',
+        'disease': 'Non-typhoidal S. enterica', 'category': 'diarrheal',
         'daly': 67
       },
      {
-        'disease': 'Enteropathogenic E. coli ',
+        'disease': 'Enteropathogenic E. coli ', 'category': 'diarrheal',
         'daly': 60
       },
      {
-        'disease': 'Salmonella Typhi',
+        'disease': 'Salmonella Typhi', 'category': 'invasive',
         'daly': 45
       },
      {
-        'disease': 'Enterotoxigenic E. coli',
+        'disease': 'Enterotoxigenic E. coli', 'category': 'diarrheal',
         'daly': 37
       },
      {
-        'disease': 'Shigella spp.',
+        'disease': 'Shigella spp.', 'category': 'diarrheal',
         'daly': 37
       },
      {
-        'disease': 'Viruses (Diarheal)',
+        'disease': 'Norovirus', 'category': 'diarrheal',
         'daly': 33
       },
      {
-        'disease': 'Norovirus',
-        'daly': 33
-      },
-     {
-        'disease': 'Viruses (Invasive Infectious)',
+        'disease': 'Hepatitis A virus', 'category': 'invasive',
         'daly': 32
       },
      {
-        'disease': 'Hepatitis A virus',
-        'daly': 32
-      },
-     {
-        'disease': 'Vibrio cholerae',
+        'disease': 'Vibrio cholerae', 'category': 'diarrheal',
         'daly': 28
       },
      {
-        'disease': 'Protozoa',
+        'disease': 'Toxoplasma gondii', 'category': 'invasive',
         'daly': 18
       },
      {
-        'disease': 'Toxoplasma gondii',
-        'daly': 18
-      },
-     {
-        'disease': 'Mycobacterium bovis',
+        'disease': 'Mycobacterium bovis', 'category': 'invasive',
         'daly': 13
       },
      {
-        'disease': 'Nematodes',
+        'disease': 'Ascaris spp.', 'category': 'helminths',
         'daly': 13
       },
      {
-        'disease': 'Ascaris spp.',
-        'daly': 13
-      },
-     {
-        'disease': 'Salmonella Paratyphi A',
+        'disease': 'Salmonella Paratyphi A', 'category': 'invasive',
         'daly': 10
       },
      {
-        'disease': 'Protozoa',
+        'disease': 'Fasciola spp.', 'category': 'helminths',
         'daly': 7
       },
      {
-        'disease': 'Trematodes',
-        'daly': 7
-      },
-     {
-        'disease': 'Fasciola spp.',
-        'daly': 7
-      },
-     {
-        'disease': 'Aflatoxin',
+        'disease': 'Aflatoxin', 'category': 'chemicals',
         'daly': 5
       },
      {
-        'disease': 'Brucella spp.',
+        'disease': 'Brucella spp.', 'category': 'invasive',
         'daly': 4
       },
      {
-        'disease': 'Cryptosporidium spp.',
+        'disease': 'Cryptosporidium spp.', 'category': 'diarrheal',
         'daly': 3
       },
      {
-        'disease': 'Dioxin',
+        'disease': 'Dioxin', 'category': 'chemicals',
         'daly': 3
       },
      {
-        'disease': 'Entamoeba histolytica',
+        'disease': 'Entamoeba histolytica', 'category': 'diarrheal',
         'daly': 2
       },
      {
-        'disease': 'Listeria monocytogenes',
+        'disease': 'Listeria monocytogenes', 'category': 'invasive',
         'daly': 1
       },
      {
-        'disease': 'Cestodes',
-        'daly': 0.7
-      },
-     {
-        'disease': 'Giardia spp.',
+        'disease': 'Giardia spp.', 'category': 'diarrheal',
         'daly': 0.6
       },
      {
-        'disease': 'Echinococcus granulosus',
+        'disease': 'Echinococcus granulosus', 'category': 'helminths',
         'daly': 0.6
       },
      {
-        'disease': 'Shiga toxin-producing E. coli',
+        'disease': 'Shiga toxin-producing E. coli', 'category': 'diarrheal',
         'daly': 0.2
       },
      {
-        'disease': 'Intestinal flukes',
+        'disease': 'Intestinal flukes', 'category': 'helminths',
         'daly': 0.08
       },
      {
-        'disease': 'Paragonimus spp.',
+        'disease': 'Paragonimus spp.', 'category': 'helminths',
         'daly': 0.02
       },
      {
-        'disease': 'Echinococcus multilocularis',
+        'disease': 'Echinococcus multilocularis', 'category': 'helminths',
         'daly': 0.01
       },
      {
-        'disease': 'Taenia solium',
+        'disease': 'Taenia solium', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Trichinella spp.',
+        'disease': 'Trichinella spp.', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Clonorchis sinensis',
+        'disease': 'Clonorchis sinensis', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Opisthorchis spp.',
+        'disease': 'Opisthorchis spp.', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Cassava cyanide',
+        'disease': 'Cassava cyanide', 'category': 'chemicals',
         'daly': 0
       }
     ],
     'EUR A': [
      {
-        'disease': 'Bacteria (Diarrheal)',
-        'daly': 24
-      },
-     {
-        'disease': 'Non-typhoidal S. enterica',
+        'disease': 'Non-typhoidal S. enterica', 'category': 'diarrheal',
         'daly': 12
       },
      {
-        'disease': 'Campylobacter spp.',
+        'disease': 'Campylobacter spp.', 'category': 'diarrheal',
         'daly': 10
       },
      {
-        'disease': 'Protozoa',
+        'disease': 'Toxoplasma gondii', 'category': 'invasive',
         'daly': 6
       },
      {
-        'disease': 'Toxoplasma gondii',
-        'daly': 6
-      },
-     {
-        'disease': 'Viruses (Diarheal)',
+        'disease': 'Norovirus', 'category': 'diarrheal',
         'daly': 4
       },
      {
-        'disease': 'Norovirus',
-        'daly': 4
-      },
-     {
-        'disease': 'Bacteria (Invasive Infectious)',
+        'disease': 'Listeria monocytogenes', 'category': 'invasive',
         'daly': 3
       },
      {
-        'disease': 'Listeria monocytogenes',
-        'daly': 3
-      },
-     {
-        'disease': 'Dioxin',
+        'disease': 'Dioxin', 'category': 'chemicals',
         'daly': 2
       },
      {
-        'disease': 'Viruses (Invasive Infectious)',
+        'disease': 'Hepatitis A virus', 'category': 'invasive',
         'daly': 0.8
       },
      {
-        'disease': 'Hepatitis A virus',
-        'daly': 0.8
-      },
-     {
-        'disease': 'Shiga toxin-producing E. coli',
+        'disease': 'Shiga toxin-producing E. coli', 'category': 'diarrheal',
         'daly': 0.6
       },
      {
-        'disease': 'Brucella spp.',
+        'disease': 'Brucella spp.', 'category': 'invasive',
         'daly': 0.3
       },
      {
-        'disease': 'Aflatoxin',
+        'disease': 'Aflatoxin', 'category': 'chemicals',
         'daly': 0.3
       },
      {
-        'disease': 'Protozoa',
-        'daly': 0.2
-      },
-     {
-        'disease': 'Cestodes',
-        'daly': 0.2
-      },
-     {
-        'disease': 'Trematodes',
-        'daly': 0.2
-      },
-     {
-        'disease': 'Cryptosporidium spp.',
+        'disease': 'Cryptosporidium spp.', 'category': 'diarrheal',
         'daly': 0.1
       },
      {
-        'disease': 'Echinococcus granulosus',
+        'disease': 'Echinococcus granulosus', 'category': 'helminths',
         'daly': 0.1
       },
      {
-        'disease': 'Shigella spp.',
+        'disease': 'Shigella spp.', 'category': 'diarrheal',
         'daly': 0.09
       },
      {
-        'disease': 'Salmonella Typhi',
+        'disease': 'Salmonella Typhi', 'category': 'invasive',
         'daly': 0.09
       },
      {
-        'disease': 'Mycobacterium bovis',
+        'disease': 'Mycobacterium bovis', 'category': 'invasive',
         'daly': 0.08
       },
      {
-        'disease': 'Fasciola spp.',
+        'disease': 'Fasciola spp.', 'category': 'helminths',
         'daly': 0.07
       },
      {
-        'disease': 'Opisthorchis spp.',
+        'disease': 'Opisthorchis spp.', 'category': 'helminths',
         'daly': 0.07
       },
      {
-        'disease': 'Nematodes',
+        'disease': 'Trichinella spp.', 'category': 'helminths',
         'daly': 0.04
       },
      {
-        'disease': 'Trichinella spp.',
-        'daly': 0.04
-      },
-     {
-        'disease': 'Giardia spp.',
+        'disease': 'Giardia spp.', 'category': 'diarrheal',
         'daly': 0.03
       },
      {
-        'disease': 'Echinococcus multilocularis',
+        'disease': 'Echinococcus multilocularis', 'category': 'helminths',
         'daly': 0.03
       },
      {
-        'disease': 'Intestinal flukes',
+        'disease': 'Intestinal flukes', 'category': 'helminths',
         'daly': 0.03
       },
      {
-        'disease': 'Salmonella Paratyphi A',
+        'disease': 'Salmonella Paratyphi A', 'category': 'invasive',
         'daly': 0.02
       },
      {
-        'disease': 'Enteropathogenic E. coli ',
+        'disease': 'Enteropathogenic E. coli ', 'category': 'diarrheal',
         'daly': 0.01
       },
      {
-        'disease': 'Enterotoxigenic E. coli',
+        'disease': 'Enterotoxigenic E. coli', 'category': 'diarrheal',
         'daly': 0
       },
      {
-        'disease': 'Vibrio cholerae',
+        'disease': 'Vibrio cholerae', 'category': 'diarrheal',
         'daly': 0
       },
      {
-        'disease': 'Entamoeba histolytica',
+        'disease': 'Entamoeba histolytica', 'category': 'diarrheal',
         'daly': 0
       },
      {
-        'disease': 'Taenia solium',
+        'disease': 'Taenia solium', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Ascaris spp.',
+        'disease': 'Ascaris spp.', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Clonorchis sinensis',
+        'disease': 'Clonorchis sinensis', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Paragonimus spp.',
+        'disease': 'Paragonimus spp.', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Cassava cyanide',
+        'disease': 'Cassava cyanide', 'category': 'chemicals',
         'daly': 0
       }
     ],
     'EUR B': [
      {
-        'disease': 'Bacteria (Diarrheal)',
-        'daly': 21
-      },
-     {
-        'disease': 'Non-typhoidal S. enterica',
+        'disease': 'Non-typhoidal S. enterica', 'category': 'diarrheal',
         'daly': 12
       },
      {
-        'disease': 'Protozoa',
+        'disease': 'Toxoplasma gondii', 'category': 'invasive',
         'daly': 10
       },
      {
-        'disease': 'Toxoplasma gondii',
-        'daly': 10
-      },
-     {
-        'disease': 'Campylobacter spp.',
+        'disease': 'Campylobacter spp.', 'category': 'diarrheal',
         'daly': 8
       },
      {
-        'disease': 'Bacteria (Invasive Infectious)',
-        'daly': 8
-      },
-     {
-        'disease': 'Brucella spp.',
+        'disease': 'Brucella spp.', 'category': 'invasive',
         'daly': 4
       },
      {
-        'disease': 'Cestodes',
-        'daly': 4
-      },
-     {
-        'disease': 'Viruses (Diarheal)',
+        'disease': 'Norovirus', 'category': 'diarrheal',
         'daly': 3
       },
      {
-        'disease': 'Norovirus',
-        'daly': 3
-      },
-     {
-        'disease': 'Salmonella Typhi',
+        'disease': 'Salmonella Typhi', 'category': 'invasive',
         'daly': 2
       },
      {
-        'disease': 'Echinococcus granulosus',
+        'disease': 'Echinococcus granulosus', 'category': 'helminths',
         'daly': 2
       },
      {
-        'disease': 'Echinococcus multilocularis',
+        'disease': 'Echinococcus multilocularis', 'category': 'helminths',
         'daly': 2
       },
      {
-        'disease': 'Viruses (Invasive Infectious)',
+        'disease': 'Hepatitis A virus', 'category': 'invasive',
         'daly': 1
       },
      {
-        'disease': 'Hepatitis A virus',
+        'disease': 'Ascaris spp.', 'category': 'helminths',
         'daly': 1
       },
      {
-        'disease': 'Nematodes',
-        'daly': 1
-      },
-     {
-        'disease': 'Ascaris spp.',
-        'daly': 1
-      },
-     {
-        'disease': 'Mycobacterium bovis',
+        'disease': 'Mycobacterium bovis', 'category': 'invasive',
         'daly': 0.6
       },
      {
-        'disease': 'Aflatoxin',
+        'disease': 'Aflatoxin', 'category': 'chemicals',
         'daly': 0.6
       },
      {
-        'disease': 'Listeria monocytogenes',
+        'disease': 'Listeria monocytogenes', 'category': 'invasive',
         'daly': 0.3
       },
      {
-        'disease': 'Salmonella Paratyphi A',
+        'disease': 'Salmonella Paratyphi A', 'category': 'invasive',
         'daly': 0.3
       },
      {
-        'disease': 'Dioxin',
+        'disease': 'Dioxin', 'category': 'chemicals',
         'daly': 0.3
       },
      {
-        'disease': 'Protozoa',
-        'daly': 0.2
-      },
-     {
-        'disease': 'Trematodes',
-        'daly': 0.2
-      },
-     {
-        'disease': 'Shigella spp.',
+        'disease': 'Shigella spp.', 'category': 'diarrheal',
         'daly': 0.1
       },
      {
-        'disease': 'Cryptosporidium spp.',
+        'disease': 'Cryptosporidium spp.', 'category': 'diarrheal',
         'daly': 0.1
       },
      {
-        'disease': 'Shiga toxin-producing E. coli',
+        'disease': 'Shiga toxin-producing E. coli', 'category': 'diarrheal',
         'daly': 0.07
       },
      {
-        'disease': 'Fasciola spp.',
+        'disease': 'Fasciola spp.', 'category': 'helminths',
         'daly': 0.06
       },
      {
-        'disease': 'Intestinal flukes',
+        'disease': 'Intestinal flukes', 'category': 'helminths',
         'daly': 0.05
       },
      {
-        'disease': 'Opisthorchis spp.',
+        'disease': 'Opisthorchis spp.', 'category': 'helminths',
         'daly': 0.05
       },
      {
-        'disease': 'Trichinella spp.',
+        'disease': 'Trichinella spp.', 'category': 'helminths',
         'daly': 0.04
       },
      {
-        'disease': 'Giardia spp.',
+        'disease': 'Giardia spp.', 'category': 'diarrheal',
         'daly': 0.03
       },
      {
-        'disease': 'Enteropathogenic E. coli ',
+        'disease': 'Enteropathogenic E. coli ', 'category': 'diarrheal',
         'daly': 0
       },
      {
-        'disease': 'Enterotoxigenic E. coli',
+        'disease': 'Enterotoxigenic E. coli', 'category': 'diarrheal',
         'daly': 0
       },
      {
-        'disease': 'Vibrio cholerae',
+        'disease': 'Vibrio cholerae', 'category': 'diarrheal',
         'daly': 0
       },
      {
-        'disease': 'Entamoeba histolytica',
+        'disease': 'Entamoeba histolytica', 'category': 'diarrheal',
         'daly': 0
       },
      {
-        'disease': 'Taenia solium',
+        'disease': 'Taenia solium', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Clonorchis sinensis',
+        'disease': 'Clonorchis sinensis', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Paragonimus spp.',
+        'disease': 'Paragonimus spp.', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Cassava cyanide',
+        'disease': 'Cassava cyanide', 'category': 'chemicals',
         'daly': 0
       }
     ],
     'EUR C': [
      {
-        'disease': 'Bacteria (Diarrheal)',
-        'daly': 20
-      },
-     {
-        'disease': 'Non-typhoidal S. enterica',
+        'disease': 'Non-typhoidal S. enterica', 'category': 'diarrheal',
         'daly': 11
       },
      {
-        'disease': 'Protozoa',
+        'disease': 'Toxoplasma gondii', 'category': 'invasive',
         'daly': 10
       },
      {
-        'disease': 'Toxoplasma gondii',
-        'daly': 10
-      },
-     {
-        'disease': 'Campylobacter spp.',
+        'disease': 'Campylobacter spp.', 'category': 'diarrheal',
         'daly': 8
       },
      {
-        'disease': 'Bacteria (Invasive Infectious)',
-        'daly': 5
-      },
-     {
-        'disease': 'Cestodes',
-        'daly': 4
-      },
-     {
-        'disease': 'Viruses (Diarheal)',
+        'disease': 'Norovirus', 'category': 'diarrheal',
         'daly': 3
       },
      {
-        'disease': 'Norovirus',
+        'disease': 'Mycobacterium bovis', 'category': 'invasive',
         'daly': 3
       },
      {
-        'disease': 'Mycobacterium bovis',
-        'daly': 3
-      },
-     {
-        'disease': 'Echinococcus multilocularis',
+        'disease': 'Echinococcus multilocularis', 'category': 'helminths',
         'daly': 2
       },
      {
-        'disease': 'Dioxin',
+        'disease': 'Dioxin', 'category': 'chemicals',
         'daly': 2
       },
      {
-        'disease': 'Viruses (Invasive Infectious)',
+        'disease': 'Hepatitis A virus', 'category': 'invasive',
         'daly': 1
       },
      {
-        'disease': 'Hepatitis A virus',
+        'disease': 'Ascaris spp.', 'category': 'helminths',
         'daly': 1
       },
      {
-        'disease': 'Nematodes',
-        'daly': 1
-      },
-     {
-        'disease': 'Ascaris spp.',
-        'daly': 1
-      },
-     {
-        'disease': 'Trematodes',
-        'daly': 1
-      },
-     {
-        'disease': 'Taenia solium',
+        'disease': 'Taenia solium', 'category': 'helminths',
         'daly': 0.9
       },
      {
-        'disease': 'Opisthorchis spp.',
+        'disease': 'Opisthorchis spp.', 'category': 'helminths',
         'daly': 0.9
       },
      {
-        'disease': 'Brucella spp.',
+        'disease': 'Brucella spp.', 'category': 'invasive',
         'daly': 0.8
       },
      {
-        'disease': 'Listeria monocytogenes',
+        'disease': 'Listeria monocytogenes', 'category': 'invasive',
         'daly': 0.6
       },
      {
-        'disease': 'Echinococcus granulosus',
+        'disease': 'Echinococcus granulosus', 'category': 'helminths',
         'daly': 0.5
       },
      {
-        'disease': 'Aflatoxin',
+        'disease': 'Aflatoxin', 'category': 'chemicals',
         'daly': 0.5
       },
      {
-        'disease': 'Shigella spp.',
+        'disease': 'Shigella spp.', 'category': 'diarrheal',
         'daly': 0.2
       },
      {
-        'disease': 'Protozoa',
-        'daly': 0.2
-      },
-     {
-        'disease': 'Shiga toxin-producing E. coli',
+        'disease': 'Shiga toxin-producing E. coli', 'category': 'diarrheal',
         'daly': 0.1
       },
      {
-        'disease': 'Cryptosporidium spp.',
+        'disease': 'Cryptosporidium spp.', 'category': 'diarrheal',
         'daly': 0.1
       },
      {
-        'disease': 'Intestinal flukes',
+        'disease': 'Intestinal flukes', 'category': 'helminths',
         'daly': 0.09
       },
      {
-        'disease': 'Salmonella Typhi',
+        'disease': 'Salmonella Typhi', 'category': 'invasive',
         'daly': 0.04
       },
      {
-        'disease': 'Trichinella spp.',
+        'disease': 'Trichinella spp.', 'category': 'helminths',
         'daly': 0.04
       },
      {
-        'disease': 'Clonorchis sinensis',
+        'disease': 'Clonorchis sinensis', 'category': 'helminths',
         'daly': 0.04
       },
      {
-        'disease': 'Fasciola spp.',
+        'disease': 'Fasciola spp.', 'category': 'helminths',
         'daly': 0.04
       },
      {
-        'disease': 'Giardia spp.',
+        'disease': 'Giardia spp.', 'category': 'diarrheal',
         'daly': 0.03
       },
      {
-        'disease': 'Paragonimus spp.',
+        'disease': 'Paragonimus spp.', 'category': 'helminths',
         'daly': 0.03
       },
      {
-        'disease': 'Salmonella Paratyphi A',
+        'disease': 'Salmonella Paratyphi A', 'category': 'invasive',
         'daly': 0.01
       },
      {
-        'disease': 'Enteropathogenic E. coli ',
+        'disease': 'Enteropathogenic E. coli ', 'category': 'diarrheal',
         'daly': 0
       },
      {
-        'disease': 'Enterotoxigenic E. coli',
+        'disease': 'Enterotoxigenic E. coli', 'category': 'diarrheal',
         'daly': 0
       },
      {
-        'disease': 'Vibrio cholerae',
+        'disease': 'Vibrio cholerae', 'category': 'diarrheal',
         'daly': 0
       },
      {
-        'disease': 'Entamoeba histolytica',
+        'disease': 'Entamoeba histolytica', 'category': 'diarrheal',
         'daly': 0
       },
      {
-        'disease': 'Cassava cyanide',
+        'disease': 'Cassava cyanide', 'category': 'chemicals',
         'daly': 0
       }
     ],
     'SEAR B': [
      {
-        'disease': 'Bacteria (Invasive Infectious)',
-        'daly': 251
-      },
-     {
-        'disease': 'Bacteria (Diarrheal)',
-        'daly': 247
-      },
-     {
-        'disease': 'Salmonella Typhi',
+        'disease': 'Salmonella Typhi', 'category': 'invasive',
         'daly': 184
       },
      {
-        'disease': 'Enteropathogenic E. coli ',
+        'disease': 'Enteropathogenic E. coli ', 'category': 'diarrheal',
         'daly': 64
       },
      {
-        'disease': 'Non-typhoidal S. enterica',
+        'disease': 'Non-typhoidal S. enterica', 'category': 'diarrheal',
         'daly': 59
       },
      {
-        'disease': 'Viruses (Diarheal)',
+        'disease': 'Norovirus', 'category': 'diarrheal',
         'daly': 55
       },
      {
-        'disease': 'Norovirus',
-        'daly': 55
-      },
-     {
-        'disease': 'Enterotoxigenic E. coli',
+        'disease': 'Enterotoxigenic E. coli', 'category': 'diarrheal',
         'daly': 42
       },
      {
-        'disease': 'Salmonella Paratyphi A',
+        'disease': 'Salmonella Paratyphi A', 'category': 'invasive',
         'daly': 42
       },
      {
-        'disease': 'Trematodes',
+        'disease': 'Opisthorchis spp.', 'category': 'helminths',
         'daly': 40
       },
      {
-        'disease': 'Opisthorchis spp.',
-        'daly': 40
-      },
-     {
-        'disease': 'Campylobacter spp.',
+        'disease': 'Campylobacter spp.', 'category': 'diarrheal',
         'daly': 37
       },
      {
-        'disease': 'Shigella spp.',
+        'disease': 'Shigella spp.', 'category': 'diarrheal',
         'daly': 25
       },
      {
-        'disease': 'Aflatoxin',
+        'disease': 'Aflatoxin', 'category': 'chemicals',
         'daly': 18
       },
      {
-        'disease': 'Protozoa',
+        'disease': 'Toxoplasma gondii', 'category': 'invasive',
         'daly': 13
       },
      {
-        'disease': 'Toxoplasma gondii',
-        'daly': 13
-      },
-     {
-        'disease': 'Mycobacterium bovis',
+        'disease': 'Mycobacterium bovis', 'category': 'invasive',
         'daly': 11
       },
      {
-        'disease': 'Protozoa',
-        'daly': 10
-      },
-     {
-        'disease': 'Nematodes',
+        'disease': 'Ascaris spp.', 'category': 'helminths',
         'daly': 8
       },
      {
-        'disease': 'Ascaris spp.',
-        'daly': 8
-      },
-     {
-        'disease': 'Cryptosporidium spp.',
+        'disease': 'Cryptosporidium spp.', 'category': 'diarrheal',
         'daly': 6
       },
      {
-        'disease': 'Viruses (Invasive Infectious)',
+        'disease': 'Hepatitis A virus', 'category': 'invasive',
         'daly': 5
       },
      {
-        'disease': 'Hepatitis A virus',
-        'daly': 5
-      },
-     {
-        'disease': 'Cestodes',
+        'disease': 'Taenia solium', 'category': 'helminths',
         'daly': 3
       },
      {
-        'disease': 'Taenia solium',
-        'daly': 3
-      },
-     {
-        'disease': 'Vibrio cholerae',
+        'disease': 'Vibrio cholerae', 'category': 'diarrheal',
         'daly': 2
       },
      {
-        'disease': 'Entamoeba histolytica',
+        'disease': 'Entamoeba histolytica', 'category': 'diarrheal',
         'daly': 2
       },
      {
-        'disease': 'Listeria monocytogenes',
+        'disease': 'Listeria monocytogenes', 'category': 'invasive',
         'daly': 1
       },
      {
-        'disease': 'Brucella spp.',
+        'disease': 'Brucella spp.', 'category': 'invasive',
         'daly': 0.8
       },
      {
-        'disease': 'Shiga toxin-producing E. coli',
+        'disease': 'Shiga toxin-producing E. coli', 'category': 'diarrheal',
         'daly': 0.2
       },
      {
-        'disease': 'Intestinal flukes',
+        'disease': 'Intestinal flukes', 'category': 'helminths',
         'daly': 0.2
       },
      {
-        'disease': 'Dioxin',
+        'disease': 'Dioxin', 'category': 'chemicals',
         'daly': 0.2
       },
      {
-        'disease': 'Giardia spp.',
+        'disease': 'Giardia spp.', 'category': 'diarrheal',
         'daly': 0.1
       },
      {
-        'disease': 'Paragonimus spp.',
+        'disease': 'Paragonimus spp.', 'category': 'helminths',
         'daly': 0.05
       },
      {
-        'disease': 'Fasciola spp.',
+        'disease': 'Fasciola spp.', 'category': 'helminths',
         'daly': 0.02
       },
      {
-        'disease': 'Clonorchis sinensis',
+        'disease': 'Clonorchis sinensis', 'category': 'helminths',
         'daly': 0.01
       },
      {
-        'disease': 'Echinococcus granulosus',
+        'disease': 'Echinococcus granulosus', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Echinococcus multilocularis',
+        'disease': 'Echinococcus multilocularis', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Trichinella spp.',
+        'disease': 'Trichinella spp.', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Cassava cyanide',
+        'disease': 'Cassava cyanide', 'category': 'chemicals',
         'daly': 0
       }
     ],
     'SEAR D': [
      {
-        'disease': 'Bacteria (Diarrheal)',
-        'daly': 285
-      },
-     {
-        'disease': 'Bacteria (Invasive Infectious)',
-        'daly': 165
-      },
-     {
-        'disease': 'Salmonella Typhi',
+        'disease': 'Salmonella Typhi', 'category': 'invasive',
         'daly': 113
       },
      {
-        'disease': 'Viruses (Diarheal)',
+        'disease': 'Norovirus', 'category': 'diarrheal',
         'daly': 69
       },
      {
-        'disease': 'Norovirus',
-        'daly': 69
-      },
-     {
-        'disease': 'Enteropathogenic E. coli ',
+        'disease': 'Enteropathogenic E. coli ', 'category': 'diarrheal',
         'daly': 65
       },
      {
-        'disease': 'Non-typhoidal S. enterica',
+        'disease': 'Non-typhoidal S. enterica', 'category': 'diarrheal',
         'daly': 58
       },
      {
-        'disease': 'Viruses (Invasive Infectious)',
+        'disease': 'Hepatitis A virus', 'category': 'invasive',
         'daly': 58
       },
      {
-        'disease': 'Hepatitis A virus',
-        'daly': 58
-      },
-     {
-        'disease': 'Cestodes',
-        'daly': 46
-      },
-     {
-        'disease': 'Taenia solium',
+        'disease': 'Taenia solium', 'category': 'helminths',
         'daly': 45
       },
      {
-        'disease': 'Enterotoxigenic E. coli',
+        'disease': 'Enterotoxigenic E. coli', 'category': 'diarrheal',
         'daly': 42
       },
      {
-        'disease': 'Vibrio cholerae',
+        'disease': 'Vibrio cholerae', 'category': 'diarrheal',
         'daly': 36
       },
      {
-        'disease': 'Campylobacter spp.',
+        'disease': 'Campylobacter spp.', 'category': 'diarrheal',
         'daly': 33
       },
      {
-        'disease': 'Salmonella Paratyphi A',
+        'disease': 'Salmonella Paratyphi A', 'category': 'invasive',
         'daly': 26
       },
      {
-        'disease': 'Shigella spp.',
+        'disease': 'Shigella spp.', 'category': 'diarrheal',
         'daly': 25
       },
      {
-        'disease': 'Mycobacterium bovis',
+        'disease': 'Mycobacterium bovis', 'category': 'invasive',
         'daly': 14
       },
      {
-        'disease': 'Dioxin',
+        'disease': 'Dioxin', 'category': 'chemicals',
         'daly': 14
       },
      {
-        'disease': 'Nematodes',
+        'disease': 'Ascaris spp.', 'category': 'helminths',
         'daly': 13
       },
      {
-        'disease': 'Ascaris spp.',
-        'daly': 13
-      },
-     {
-        'disease': 'Protozoa',
-        'daly': 10
-      },
-     {
-        'disease': 'Protozoa',
+        'disease': 'Toxoplasma gondii', 'category': 'invasive',
         'daly': 9
       },
      {
-        'disease': 'Toxoplasma gondii',
-        'daly': 9
-      },
-     {
-        'disease': 'Cryptosporidium spp.',
+        'disease': 'Cryptosporidium spp.', 'category': 'diarrheal',
         'daly': 6
       },
      {
-        'disease': 'Aflatoxin',
+        'disease': 'Aflatoxin', 'category': 'chemicals',
         'daly': 4
       },
      {
-        'disease': 'Entamoeba histolytica',
+        'disease': 'Entamoeba histolytica', 'category': 'diarrheal',
         'daly': 2
       },
      {
-        'disease': 'Listeria monocytogenes',
+        'disease': 'Listeria monocytogenes', 'category': 'invasive',
         'daly': 1
       },
      {
-        'disease': 'Echinococcus granulosus',
+        'disease': 'Echinococcus granulosus', 'category': 'helminths',
         'daly': 0.8
       },
      {
-        'disease': 'Brucella spp.',
+        'disease': 'Brucella spp.', 'category': 'invasive',
         'daly': 0.7
       },
      {
-        'disease': 'Trematodes',
-        'daly': 0.7
-      },
-     {
-        'disease': 'Opisthorchis spp.',
+        'disease': 'Opisthorchis spp.', 'category': 'helminths',
         'daly': 0.4
       },
      {
-        'disease': 'Shiga toxin-producing E. coli',
+        'disease': 'Shiga toxin-producing E. coli', 'category': 'diarrheal',
         'daly': 0.2
       },
      {
-        'disease': 'Giardia spp.',
+        'disease': 'Giardia spp.', 'category': 'diarrheal',
         'daly': 0.1
       },
      {
-        'disease': 'Intestinal flukes',
+        'disease': 'Intestinal flukes', 'category': 'helminths',
         'daly': 0.1
       },
      {
-        'disease': 'Paragonimus spp.',
+        'disease': 'Paragonimus spp.', 'category': 'helminths',
         'daly': 0.06
       },
      {
-        'disease': 'Fasciola spp.',
+        'disease': 'Fasciola spp.', 'category': 'helminths',
         'daly': 0.05
       },
      {
-        'disease': 'Clonorchis sinensis',
+        'disease': 'Clonorchis sinensis', 'category': 'helminths',
         'daly': 0.04
       },
      {
-        'disease': 'Echinococcus multilocularis',
+        'disease': 'Echinococcus multilocularis', 'category': 'helminths',
         'daly': 0.01
       },
      {
-        'disease': 'Trichinella spp.',
+        'disease': 'Trichinella spp.', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Cassava cyanide',
+        'disease': 'Cassava cyanide', 'category': 'chemicals',
         'daly': 0
       }
     ],
     'WPR A': [
      {
-        'disease': 'Bacteria (Diarrheal)',
-        'daly': 19
-      },
-     {
-        'disease': 'Campylobacter spp.',
+        'disease': 'Campylobacter spp.', 'category': 'diarrheal',
         'daly': 9
       },
      {
-        'disease': 'Non-typhoidal S. enterica',
+        'disease': 'Non-typhoidal S. enterica', 'category': 'diarrheal',
         'daly': 9
       },
      {
-        'disease': 'Protozoa',
+        'disease': 'Toxoplasma gondii', 'category': 'invasive',
         'daly': 5
       },
      {
-        'disease': 'Toxoplasma gondii',
-        'daly': 5
-      },
-     {
-        'disease': 'Viruses (Diarheal)',
+        'disease': 'Norovirus', 'category': 'diarrheal',
         'daly': 3
       },
      {
-        'disease': 'Norovirus',
-        'daly': 3
-      },
-     {
-        'disease': 'Bacteria (Invasive Infectious)',
-        'daly': 3
-      },
-     {
-        'disease': 'Trematodes',
-        'daly': 2
-      },
-     {
-        'disease': 'Viruses (Invasive Infectious)',
+        'disease': 'Hepatitis A virus', 'category': 'invasive',
         'daly': 1
       },
      {
-        'disease': 'Hepatitis A virus',
+        'disease': 'Listeria monocytogenes', 'category': 'invasive',
         'daly': 1
       },
      {
-        'disease': 'Listeria monocytogenes',
+        'disease': 'Intestinal flukes', 'category': 'helminths',
         'daly': 1
       },
      {
-        'disease': 'Intestinal flukes',
-        'daly': 1
-      },
-     {
-        'disease': 'Brucella spp.',
+        'disease': 'Brucella spp.', 'category': 'invasive',
         'daly': 0.6
       },
      {
-        'disease': 'Salmonella Typhi',
+        'disease': 'Salmonella Typhi', 'category': 'invasive',
         'daly': 0.6
       },
      {
-        'disease': 'Shiga toxin-producing E. coli',
+        'disease': 'Shiga toxin-producing E. coli', 'category': 'diarrheal',
         'daly': 0.4
       },
      {
-        'disease': 'Shigella spp.',
+        'disease': 'Shigella spp.', 'category': 'diarrheal',
         'daly': 0.2
       },
      {
-        'disease': 'Protozoa',
+        'disease': 'Aflatoxin', 'category': 'chemicals',
         'daly': 0.2
       },
      {
-        'disease': 'Aflatoxin',
-        'daly': 0.2
-      },
-     {
-        'disease': 'Cryptosporidium spp.',
+        'disease': 'Cryptosporidium spp.', 'category': 'diarrheal',
         'daly': 0.1
       },
      {
-        'disease': 'Mycobacterium bovis',
+        'disease': 'Mycobacterium bovis', 'category': 'invasive',
         'daly': 0.1
       },
      {
-        'disease': 'Salmonella Paratyphi A',
+        'disease': 'Salmonella Paratyphi A', 'category': 'invasive',
         'daly': 0.1
       },
      {
-        'disease': 'Dioxin',
+        'disease': 'Dioxin', 'category': 'chemicals',
         'daly': 0.1
       },
      {
-        'disease': 'Fasciola spp.',
+        'disease': 'Fasciola spp.', 'category': 'helminths',
         'daly': 0.07
       },
      {
-        'disease': 'Clonorchis sinensis',
+        'disease': 'Clonorchis sinensis', 'category': 'helminths',
         'daly': 0.05
       },
      {
-        'disease': 'Paragonimus spp.',
+        'disease': 'Paragonimus spp.', 'category': 'helminths',
         'daly': 0.05
       },
      {
-        'disease': 'Giardia spp.',
+        'disease': 'Giardia spp.', 'category': 'diarrheal',
         'daly': 0.03
       },
      {
-        'disease': 'Cestodes',
-        'daly': 0.03
-      },
-     {
-        'disease': 'Echinococcus granulosus',
+        'disease': 'Echinococcus granulosus', 'category': 'helminths',
         'daly': 0.02
       },
      {
-        'disease': 'Echinococcus multilocularis',
+        'disease': 'Echinococcus multilocularis', 'category': 'helminths',
         'daly': 0.01
       },
      {
-        'disease': 'Enteropathogenic E. coli ',
+        'disease': 'Enteropathogenic E. coli ', 'category': 'diarrheal',
         'daly': 0.01
       },
      {
-        'disease': 'Nematodes',
+        'disease': 'Trichinella spp.', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Trichinella spp.',
+        'disease': 'Enterotoxigenic E. coli', 'category': 'diarrheal',
         'daly': 0
       },
      {
-        'disease': 'Enterotoxigenic E. coli',
+        'disease': 'Vibrio cholerae', 'category': 'diarrheal',
         'daly': 0
       },
      {
-        'disease': 'Vibrio cholerae',
+        'disease': 'Entamoeba histolytica', 'category': 'diarrheal',
         'daly': 0
       },
      {
-        'disease': 'Entamoeba histolytica',
+        'disease': 'Taenia solium', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Taenia solium',
+        'disease': 'Ascaris spp.', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Ascaris spp.',
+        'disease': 'Opisthorchis spp.', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Opisthorchis spp.',
-        'daly': 0
-      },
-     {
-        'disease': 'Cassava cyanide',
+        'disease': 'Cassava cyanide', 'category': 'chemicals',
         'daly': 0
       }
     ],
     'WPR B': [
      {
-        'disease': 'Trematodes',
-        'daly': 106
-      },
-     {
-        'disease': 'Paragonimus spp.',
+        'disease': 'Paragonimus spp.', 'category': 'helminths',
         'daly': 60
       },
      {
-        'disease': 'Bacteria (Invasive Infectious)',
-        'daly': 50
-      },
-     {
-        'disease': 'Cestodes',
-        'daly': 45
-      },
-     {
-        'disease': 'Salmonella Typhi',
+        'disease': 'Salmonella Typhi', 'category': 'invasive',
         'daly': 36
       },
      {
-        'disease': 'Bacteria  (Diarrheal)',
-        'daly': 34
-      },
-     {
-        'disease': 'Clonorchis sinensis',
+        'disease': 'Clonorchis sinensis', 'category': 'helminths',
         'daly': 31
       },
      {
-        'disease': 'Taenia solium',
+        'disease': 'Taenia solium', 'category': 'helminths',
         'daly': 27
       },
      {
-        'disease': 'Echinococcus multilocularis',
+        'disease': 'Echinococcus multilocularis', 'category': 'helminths',
         'daly': 18
       },
      {
-        'disease': 'Aflatoxin',
+        'disease': 'Aflatoxin', 'category': 'chemicals',
         'daly': 17
       },
      {
-        'disease': 'Nematodes',
+        'disease': 'Ascaris spp.', 'category': 'helminths',
         'daly': 11
       },
      {
-        'disease': 'Ascaris spp.',
-        'daly': 11
-      },
-     {
-        'disease': 'Campylobacter spp.',
+        'disease': 'Campylobacter spp.', 'category': 'diarrheal',
         'daly': 10
       },
      {
-        'disease': 'Non-typhoidal S. enterica',
+        'disease': 'Non-typhoidal S. enterica', 'category': 'diarrheal',
         'daly': 9
       },
      {
-        'disease': 'Protozoa',
+        'disease': 'Toxoplasma gondii', 'category': 'invasive',
         'daly': 9
       },
      {
-        'disease': 'Toxoplasma gondii',
+        'disease': 'Intestinal flukes', 'category': 'helminths',
         'daly': 9
       },
      {
-        'disease': 'Intestinal flukes',
-        'daly': 9
-      },
-     {
-        'disease': 'Salmonella Paratyphi A',
+        'disease': 'Salmonella Paratyphi A', 'category': 'invasive',
         'daly': 8
       },
      {
-        'disease': 'Enteropathogenic E. coli ',
+        'disease': 'Enteropathogenic E. coli ', 'category': 'diarrheal',
         'daly': 5
       },
      {
-        'disease': 'Viruses (Invasive Infectious)',
+        'disease': 'Hepatitis A virus', 'category': 'invasive',
         'daly': 5
       },
      {
-        'disease': 'Hepatitis A virus',
-        'daly': 5
-      },
-     {
-        'disease': 'Viruses (Diarheal)',
+        'disease': 'Norovirus', 'category': 'diarrheal',
         'daly': 4
       },
      {
-        'disease': 'Norovirus',
+        'disease': 'Enterotoxigenic E. coli', 'category': 'diarrheal',
         'daly': 4
       },
      {
-        'disease': 'Enterotoxigenic E. coli',
+        'disease': 'Shigella spp.', 'category': 'diarrheal',
         'daly': 4
       },
      {
-        'disease': 'Shigella spp.',
-        'daly': 4
-      },
-     {
-        'disease': 'Mycobacterium bovis',
+        'disease': 'Mycobacterium bovis', 'category': 'invasive',
         'daly': 3
       },
      {
-        'disease': 'Opisthorchis spp.',
+        'disease': 'Opisthorchis spp.', 'category': 'helminths',
         'daly': 3
       },
      {
-        'disease': 'Protozoa',
+        'disease': 'Listeria monocytogenes', 'category': 'invasive',
         'daly': 1
       },
      {
-        'disease': 'Listeria monocytogenes',
-        'daly': 1
-      },
-     {
-        'disease': 'Fasciola spp.',
+        'disease': 'Fasciola spp.', 'category': 'helminths',
         'daly': 0.9
       },
      {
-        'disease': 'Brucella spp.',
+        'disease': 'Brucella spp.', 'category': 'invasive',
         'daly': 0.6
       },
      {
-        'disease': 'Cryptosporidium spp.',
+        'disease': 'Cryptosporidium spp.', 'category': 'diarrheal',
         'daly': 0.3
       },
      {
-        'disease': 'Entamoeba histolytica',
+        'disease': 'Entamoeba histolytica', 'category': 'diarrheal',
         'daly': 0.3
       },
      {
-        'disease': 'Giardia spp.',
+        'disease': 'Giardia spp.', 'category': 'diarrheal',
         'daly': 0.3
       },
      {
-        'disease': 'Echinococcus granulosus',
+        'disease': 'Echinococcus granulosus', 'category': 'helminths',
         'daly': 0.3
       },
      {
-        'disease': 'Vibrio cholerae',
+        'disease': 'Vibrio cholerae', 'category': 'diarrheal',
         'daly': 0.1
       },
      {
-        'disease': 'Dioxin',
+        'disease': 'Dioxin', 'category': 'chemicals',
         'daly': 0.06
       },
      {
-        'disease': 'Shiga toxin-producing E. coli',
+        'disease': 'Shiga toxin-producing E. coli', 'category': 'diarrheal',
         'daly': 0.01
       },
      {
-        'disease': 'Trichinella spp.',
+        'disease': 'Trichinella spp.', 'category': 'helminths',
         'daly': 0
       },
      {
-        'disease': 'Cassava cyanide',
+        'disease': 'Cassava cyanide', 'category': 'chemicals',
         'daly': 0
       }
     ]
@@ -2806,7 +2302,8 @@
       detailEl = document.createElement('div');
       detailEl.classList.add('data__detail__metric');
       detailEl.innerHTML = [
-        '<div class="data__detail__metric__title">' +
+'<div class="data__detail__metric__title data__detail__metric__title--' +
+        detail.category + '">' +
         detail.disease +
         '</div>',
         '<div class="data__detail__metric__value">',
