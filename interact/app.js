@@ -2084,7 +2084,6 @@
         if (tiles === 'satellite') {
           satelliteEl.style.display = 'none';
           streetEl.style.display = 'block';
-          /*
           // PROD
           // jscs:disable
           tileLayer =  L.tileLayer(
@@ -2094,7 +2093,7 @@
             }
           ).addTo(leafletMap);
           // jscs:enable
-          */
+          /*
           // DEV
           // jscs:disable
           tileLayer = L.tileLayer(
@@ -2104,6 +2103,7 @@
               attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             }
           ).addTo(leafletMap);
+          */
         }
       }
       function addRegion(code, color, popup,
