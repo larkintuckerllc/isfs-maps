@@ -1,0 +1,24 @@
+{
+  "name": "isfs-maps",
+  "version": "0.0.1",
+  "homepage": "https://github.com/larkintuckerllc/isfs-maps",
+  "authors": [
+    "John Tucker <john@larkintuckerllc.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "thr0w-leaflet": "^0.1.3",
+    "thr0w-client": "^2.1.1",
+    "thr0w-video": "^0.0.1",
+    "thr0w-windows": "^0.1.2"
+  }
+}

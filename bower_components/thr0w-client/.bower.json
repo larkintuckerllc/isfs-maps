@@ -1,0 +1,33 @@
+{
+  "name": "thr0w-client",
+  "description": "The Thr0w Project is about building digital signage. This package provides the project's (Client) API.",
+  "version": "2.1.1",
+  "main": [
+    "dist/thr0w-base.css",
+    "dist/thr0w-base.min.js"
+  ],
+  "license": "GPL",
+  "ignore": [],
+  "keywords": [
+    "digital",
+    "signage"
+  ],
+  "authors": [
+    "John Tucker <john@larkintuckerllc.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/larkintuckerllc/thr0w-client.git"
+  },
+  "dependencies": {},
+  "homepage": "https://github.com/larkintuckerllc/thr0w-client",
+  "_release": "2.1.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "2.1.1",
+    "commit": "99bca644eb0562663f5a322f2386b66f4ec5a67c"
+  },
+  "_source": "https://github.com/larkintuckerllc/thr0w-client.git",
+  "_target": "^2.1.0",
+  "_originalSource": "thr0w-client"
+}

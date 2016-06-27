@@ -1,8 +1,8 @@
 (function() {
   'use strict';
   var TIMEOUT = 120 * 1000;
-  var BASE_URL = 'http://192.168.1.2/apps/isfs-steering/interact/'; // PROD
-  // var BASE_URL = 'http://localhost:8080/apps/isfs-steering/interact/'; // DEV
+  var BASE_URL = 'http://192.168.1.2/larkintuckerllc-isfs-maps/interact/'; // PROD
+  // var BASE_URL = 'http://localhost:8080/larkintuckerllc-isfs-maps/interact/'; // DEV
   var CHANNELS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   var BROWSERS = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
   var MIN_ZOOM = {
@@ -2084,6 +2084,7 @@
         if (tiles === 'satellite') {
           satelliteEl.style.display = 'none';
           streetEl.style.display = 'block';
+          /*
           // PROD
           // jscs:disable
           tileLayer =  L.tileLayer(
@@ -2093,7 +2094,7 @@
             }
           ).addTo(leafletMap);
           // jscs:enable
-          /*
+          */
           // DEV
           // jscs:disable
           tileLayer = L.tileLayer(
@@ -2103,7 +2104,6 @@
               attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             }
           ).addTo(leafletMap);
-          */
         }
       }
       function addRegion(code, color, popup,
