@@ -2235,7 +2235,7 @@
             }
           }
         }
-        xmlhttp.open('GET', 'lib/world.geo.json/countries/' +
+        xmlhttp.open('GET', '../../upload/larkintuckerllc-isfs-maps/world.geo.json/countries/' +
           code + '.geo.json', true);
         xmlhttp.send();
       }
