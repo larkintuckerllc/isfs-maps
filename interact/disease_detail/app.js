@@ -2264,7 +2264,8 @@
   function ready() {
     var titleRegionEl = document.getElementById('title__region');
     var titleAllEl = document.getElementById('title__all');
-    var scaleValueAllEl = document.getElementById('data__scale__value--all');
+    var scaleValueSummaryEl = document.getElementById('data__scale__value--summary');
+    var scaleValueDetailEl = document.getElementById('data__scale__value--detail');
     var countriesEl = document.getElementById('countries');
     var countryEl;
     var i;
@@ -2273,21 +2274,19 @@
     var countries = _.filter(COUNTRY_IN_REGION, matchesRegion)
       .map(pluckCountry).sort();
     var allHazards = REGIONS[region]['All Hazards'];
+    var maxDisease = 0;
     var detail;
-    var barChemicalsEl = document
-    .getElementById('data__metric__value__bar--chemicals');
-    var barDiarrhealEl = document
-    .getElementById('data__metric__value__bar--diarrheal');
-    var barHelminthsEl = document
-    .getElementById('data__metric__value__bar--helminths');
-    var barInvasiveEl = document
-        .getElementById('data__metric__value__bar--invasive');
+    var category;
+    var dataSummaryEl = document
+        .getElementById('data__summary');
     var dataDetailEl = document
         .getElementById('data__detail');
     var detailEl;
+    var summaryEl;
+    var categories = [];
     titleRegionEl.innerHTML = region;
     titleAllEl.innerHTML = allHazards;
-    scaleValueAllEl.innerHTML = allHazards;
+    scaleValueSummaryEl.innerHTML = allHazards;
     for (i = 0; i < countries.length; i++) {
       countryEl = document.createElement('div');
       countryEl.classList.add('countries__country');
@@ -2297,6 +2296,51 @@
       }
       countriesEl.appendChild(countryEl);
     }
+    categories.push({
+      id: 'chemicals',
+      name: 'Chemicals and Toxins',
+      daly: REGIONS[region]['Chemicals and Toxins']
+    });
+    categories.push({
+      id: 'diarrheal',
+      name: 'Diarrheal Disease Agents',
+      daly: REGIONS[region]['Diarrheal Disease Agents']
+    });
+    categories.push({
+      id: 'helminths',
+      name: 'Helminths',
+      daly: REGIONS[region].Helminths
+    });
+    categories.push({
+      id: 'invasive',
+      name: 'Invasive Infectious Disease Agents',
+      daly: REGIONS[region]['Invasive Infectious Disease Agents']
+    });
+    categories = _.reverse(_.sortBy(categories, sortDaly));
+    for (i = 0; i < categories.length; i++) {
+      category  = categories[i];
+      summaryEl = document.createElement('div');
+      summaryEl.classList.add('data__summary__metric');
+      summaryEl.innerHTML = [
+'<div class="data__summary__metric__title data__summary__metric__title--' +
+        category.id + '">' +
+        category.name +
+        '</div>',
+        '<div class="data__detail__metric__value">',
+        '  <div ' +
+        'style="width: ' +
+        (100 * category.daly / allHazards) +
+        '%;" class="data__detail__metric__value__bar"></div>',
+        '</div>'
+      ].join('\n');
+      dataSummaryEl.appendChild(summaryEl);
+    }
+    for (i = 0; i < REGIONS_DETAIL[region].length; i++) {
+      detail = REGIONS_DETAIL[region][i];
+      maxDisease = detail.daly > maxDisease ?
+        detail.daly : maxDisease;
+    }
+    scaleValueDetailEl.innerHTML = maxDisease;
     for (i = 0; i < REGIONS_DETAIL[region].length; i++) {
       detail = REGIONS_DETAIL[region][i];
       detailEl = document.createElement('div');
@@ -2307,23 +2351,14 @@
         detail.disease +
         '</div>',
         '<div class="data__detail__metric__value">',
-        '  <div id="data__detail__metric__value__bar--invasive"' +
+        '  <div ' +
         'style="width: ' +
-        (100 * detail.daly / allHazards) +
+        (100 * detail.daly / maxDisease) +
         '%;" class="data__detail__metric__value__bar"></div>',
         '</div>'
       ].join('\n');
       dataDetailEl.appendChild(detailEl);
     }
-    barChemicalsEl.style.width =
-      (100 * REGIONS[region]['Chemicals and Toxins'] / allHazards) + '%';
-    barDiarrhealEl.style.width =
-      (100 * REGIONS[region]['Diarrheal Disease Agents'] / allHazards) + '%';
-    barHelminthsEl.style.width =
-      (100 * REGIONS[region].Helminths / allHazards) + '%';
-    barInvasiveEl.style.width =
-      (100 * REGIONS[region]['Invasive Infectious Disease Agents'] /
-      allHazards) + '%';
     function matchesCountry(o) {
       return o.country === code;
     }
@@ -2332,6 +2367,9 @@
     }
     function pluckCountry(o) {
       return o.country;
+    }
+    function sortDaly(o) {
+      return o.daly;
     }
   }
   function parseQueryString() {
