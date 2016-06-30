@@ -30,7 +30,9 @@
       frameEl.addEventListener('touchstart', keepActive, true);
       document.getElementById('back').addEventListener('click',
         handleBackClick);
-      document.getElementById('controls').style.display = 'block';
+      if (thr0w.getChannel() === 6) {
+        document.getElementById('controls').style.display = 'block';
+      }
       window.setInterval(checkIdle, TIMEOUT);
     }
     function messageCallback(data) {
@@ -45,10 +47,7 @@
       thr0w.thr0wChannel(CHANNELS, {type: 'active'});
     }
     function checkIdle() {
-      if (!active) {
-        thr0w.thr0wChannel(CHANNELS, {type: 'idle'});
-      }
-      active = false;
+      keepActive();
     }
     function handleBackClick() {
       thr0w.thr0wChannel(CHANNELS, {type: 'idle'});
