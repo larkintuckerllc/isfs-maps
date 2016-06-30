@@ -1,0 +1,26 @@
+html, body {
+  margin: 0px;
+  padding: 0px;
+  -webkit-user-select: none;
+}
+#my_frame {
+  position: relative;
+  overflow: hidden;
+  width: 600px;
+  height: 600px;
+}
+#my_content {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+}
+#controls {
+  position: absolute;
+  z-index: 900;
+  left: 0px;
+  bottom: 0px;
+  width: 100px;
+}
+.control {
+  height: 100px;
+}

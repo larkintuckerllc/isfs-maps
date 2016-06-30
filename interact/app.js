@@ -1,8 +1,8 @@
 (function() {
   'use strict';
   var TIMEOUT = 120 * 1000;
-  var BASE_URL = 'http://192.168.1.2/larkintuckerllc-isfs-maps/interact/'; // PROD
-  // var BASE_URL = 'http://localhost:8080/larkintuckerllc-isfs-maps/interact/'; // DEV
+  var BASE_URL = 'http://192.168.1.2/larkintuckerllc-isfs-maps/'; // PROD
+  // var BASE_URL = 'http://localhost:8080/larkintuckerllc-isfs-maps/'; // DEV
   var CHANNELS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   var BROWSERS = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
   var MIN_ZOOM = {
@@ -1739,6 +1739,8 @@
         document.getElementById('controls').style.display = 'block';
       }
       frameEl.addEventListener('touchstart', keepActive, true);
+      document.getElementById('whiteboard').addEventListener('click',
+        handleWhiteboardClick);
       singleEl.addEventListener('click', handleSingleClick);
       doubleEl.addEventListener('click', handleDoubleClick);
       document.getElementById('full')
@@ -1871,9 +1873,14 @@
           }
         }
       }
+      function handleWhiteboardClick() {
+        thr0w.thr0wChannel([16, 17, 18, 19], {action: 'update',
+          url: BASE_URL + 'whiteboard/'});
+      }
       function handleSingleClick() {
         var url = [
           BASE_URL,
+          'interact/',
           '?size=0',
           '&initialCenterLat=' + map.getCenterLat(),
           '&initialCenterLng=' + map.getCenterLng(),
@@ -1909,6 +1916,7 @@
       function handleDoubleClick() {
         var url = [
           BASE_URL,
+          'interact/',
           '?size=1&control=6',
           '&initialCenterLat=' + map.getCenterLat(),
           '&initialCenterLng=' + map.getCenterLng(),
@@ -1923,6 +1931,7 @@
         thr0w.thr0wChannel([16, 17], {action: 'update', url: url});
         url = [
           BASE_URL,
+          'interact/',
           '?size=1&control=8',
           '&initialCenterLat=' + map.getCenterLat(),
           '&initialCenterLng=' + map.getCenterLng(),
@@ -1939,6 +1948,7 @@
       function handleFullClick() {
         var url = [
           BASE_URL,
+          'interact/',
           '?size=2',
           '&initialCenterLat=' + map.getCenterLat(),
           '&initialCenterLng=' + map.getCenterLng(),
