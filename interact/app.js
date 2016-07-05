@@ -1,15 +1,20 @@
 (function() {
   'use strict';
+  var SIZE_SINGLE = 0;
+  var SIZE_DOUBLE = 1;
+  var SIZE_QUAD = 2;
+  var SIZE_FULL = 3;
   var TIMEOUT = 120 * 1000;
   var BASE_URL = 'http://192.168.1.2/larkintuckerllc-isfs-maps/'; // PROD
   // var BASE_URL = 'http://localhost:8080/larkintuckerllc-isfs-maps/'; // DEV
   var CHANNELS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   var BROWSERS = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
   var MIN_ZOOM = {
-    0: 3,
-    1: 4,
-    2: 4
   };
+  MIN_ZOOM[SIZE_SINGLE] = 3;
+  MIN_ZOOM[SIZE_DOUBLE] = 4;
+  MIN_ZOOM[SIZE_QUAD] = 4;
+  MIN_ZOOM[SIZE_FULL] = 4;
   var MAX_ZOOM = 19;
   var DISEASE = [
     // AMRO A
@@ -1457,9 +1462,7 @@
       minZoom: 5
     }
   ];
-  var SIZE_SINGLE = 0;
-  var SIZE_DOUBLE = 1;
-  var SIZE_FULL = 2;
+
   var CHARTS = {
     fisheries: {
       regionsPopup: false,
@@ -1536,6 +1539,7 @@
       var videoObj;
       var singleEl = document.getElementById('single');
       var doubleEl = document.getElementById('double');
+      var quadEl = document.getElementById('quad');
       var fullEl = document.getElementById('full');
       var satelliteEl = document.getElementById('satellite');
       var streetEl = document.getElementById('street');
@@ -1621,6 +1625,30 @@
             }
           ];
           break;
+        case SIZE_QUAD:
+          drawing = true;
+          videoElementEl.setAttribute('width', 1600);
+          videoElementEl.setAttribute('height', 900);
+          videoContainerEl.style.width = '1600px';
+          videoContainerEl.style.height = '900px';
+          singleEl.style.display = 'block';
+          doubleEl.style.display = 'block';
+          fullEl.style.display = 'block';
+          controlChannel = 6;
+          base = 'quad';
+          windowX = 180;
+          windowYBase = 0;
+          matrix = [
+            [6, 7, 8, 9]
+          ];
+          rows = [
+            {
+              width: 1080,
+              height: 1920,
+              spacing: 112
+            }
+          ];
+          break;
         case SIZE_FULL:
           videoElementEl.setAttribute('width', 3200);
           videoElementEl.setAttribute('height', 1800);
@@ -1635,6 +1663,7 @@
           videoStopEl.style.transform = 'translate(-150%, 150%)';
           singleEl.style.display = 'block';
           doubleEl.style.display = 'block';
+          quadEl.style.display = 'block';
           base = 'full';
           controlChannel = 6;
           windowX = 300;
@@ -1749,6 +1778,7 @@
         handleWhiteboardClick);
       singleEl.addEventListener('click', handleSingleClick);
       doubleEl.addEventListener('click', handleDoubleClick);
+      quadEl.addEventListener('click', handleQuadClick);
       document.getElementById('full')
         .addEventListener('click', handleFullClick);
       satelliteEl.addEventListener('click', handleSatelliteClick);
@@ -1887,7 +1917,7 @@
         var url = [
           BASE_URL,
           'interact/',
-          '?size=0',
+          '?size=' + SIZE_SINGLE,
           '&initialCenterLat=' + map.getCenterLat(),
           '&initialCenterLng=' + map.getCenterLng(),
           '&initialZoomLevel=' + map.getZoomLevel(),
@@ -1900,6 +1930,10 @@
         url += initialRegionPoppedParameter();
         switch (size) {
           case SIZE_FULL:
+            thr0w.thr0wChannel([16, 17, 18, 19], {action: 'update',
+              url: url});
+            break;
+          case SIZE_QUAD:
             thr0w.thr0wChannel([16, 17, 18, 19], {action: 'update',
               url: url});
             break;
@@ -1923,7 +1957,7 @@
         var url = [
           BASE_URL,
           'interact/',
-          '?size=1&control=6',
+          '?size=' + SIZE_DOUBLE + '&control=6',
           '&initialCenterLat=' + map.getCenterLat(),
           '&initialCenterLng=' + map.getCenterLng(),
           '&initialZoomLevel=' + map.getZoomLevel(),
@@ -1938,7 +1972,7 @@
         url = [
           BASE_URL,
           'interact/',
-          '?size=1&control=8',
+          '?size=' + SIZE_DOUBLE + '&control=8',
           '&initialCenterLat=' + map.getCenterLat(),
           '&initialCenterLng=' + map.getCenterLng(),
           '&initialZoomLevel=' + map.getZoomLevel(),
@@ -1951,11 +1985,28 @@
         url += initialRegionPoppedParameter();
         thr0w.thr0wChannel([18, 19], {action: 'update', url: url});
       }
+      function handleQuadClick() {
+        var url = [
+          BASE_URL,
+          'interact/',
+          '?size=' + SIZE_QUAD,
+          '&initialCenterLat=' + map.getCenterLat(),
+          '&initialCenterLng=' + map.getCenterLng(),
+          '&initialZoomLevel=' + map.getZoomLevel(),
+          '&tiles=' + tiles
+        ].join('');
+        if (chart) {
+          url += '&chart=' + chart;
+        }
+        url += initialMarkerPoppedParameter();
+        url += initialRegionPoppedParameter();
+        thr0w.thr0wChannel([16, 17, 18, 19], {action: 'update', url: url});
+      }
       function handleFullClick() {
         var url = [
           BASE_URL,
           'interact/',
-          '?size=2',
+          '?size=' + SIZE_FULL,
           '&initialCenterLat=' + map.getCenterLat(),
           '&initialCenterLng=' + map.getCenterLng(),
           '&initialZoomLevel=' + map.getZoomLevel(),
