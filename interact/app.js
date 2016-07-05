@@ -1511,6 +1511,7 @@
       var markers = [];
       var video = false;
       var grid;
+      var drawing = false;
       var wm;
       var chartSync;
       var tilesSync;
@@ -1556,6 +1557,7 @@
       initialZoomLevel = Math.max(initialZoomLevel, MIN_ZOOM[size]);
       switch (size) {
         case SIZE_SINGLE:
+          drawing = true;
           fullEl.style.display = 'block';
           base = 'single';
           controlChannel = channel;
@@ -1572,6 +1574,7 @@
           ];
           break;
         case SIZE_DOUBLE:
+          drawing = true;
           videoElementEl.setAttribute('width', 1600);
           videoElementEl.setAttribute('height', 900);
           videoContainerEl.style.width = '1600px';
@@ -1673,6 +1676,9 @@
         matrix,
         rows
       );
+      if (drawing) {
+        thr0w.draw.load(grid);
+      }
       wm = new thr0w.windows.WindowManager(
         'wm',
         grid
@@ -2245,7 +2251,8 @@
             }
           }
         }
-        xmlhttp.open('GET', '../../upload/larkintuckerllc-isfs-maps/world.geo.json/countries/' +
+        xmlhttp.open('GET',
+          '../../upload/larkintuckerllc-isfs-maps/world.geo.json/countries/' +
           code + '.geo.json', true);
         xmlhttp.send();
       }
