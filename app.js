@@ -18,8 +18,9 @@
   document.addEventListener('DOMContentLoaded', ready);
   function ready() {
     var frameEl = document.getElementById('my_frame');
-    thr0w.setBase('http://192.168.1.2'); // PROD
-    // thr0w.setBase('http://localhost'); // DEV
+    var base = window.location.protocol + '//' +
+      window.location.hostname;
+    thr0w.setBase(base);
     thr0w.addAdminTools(frameEl,
       connectCallback, messageCallback);
     function connectCallback() {

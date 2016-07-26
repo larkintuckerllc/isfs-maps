@@ -1,12 +1,12 @@
 (function() {
   'use strict';
+  var APP_USER = 'larkintuckerllc';
+  var APP_REPO = 'isfs-maps';
   var SIZE_SINGLE = 0;
   var SIZE_DOUBLE = 1;
   var SIZE_QUAD = 2;
   var SIZE_FULL = 3;
   var TIMEOUT = 120 * 1000;
-  var BASE_URL = 'http://192.168.1.2/larkintuckerllc-isfs-maps/'; // PROD
-  // var BASE_URL = 'http://localhost:8080/larkintuckerllc-isfs-maps/'; // DEV
   var CHANNELS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   var BROWSERS = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
   var MIN_ZOOM = {
@@ -1495,8 +1495,9 @@
     var active = true;
     var frameEl = document.getElementById('my_frame');
     var contentEl = document.getElementById('interact_content');
-    thr0w.setBase('http://192.168.1.2'); // PROD
-    // thr0w.setBase('http://localhost'); // DEV
+    var base = window.location.protocol + '//' +
+      window.location.hostname;
+    thr0w.setBase(base);
     thr0w.addAdminTools(frameEl,
       connectCallback, messageCallback);
     function connectCallback() {
@@ -1525,7 +1526,7 @@
       var map;
       var matrix;
       var rows;
-      var base;
+      var baseSize;
       var windowX;
       var windowYBase;
       var controlChannel;
@@ -1563,7 +1564,7 @@
         case SIZE_SINGLE:
           drawing = true;
           fullEl.style.display = 'block';
-          base = 'single';
+          baseSize = 'single';
           controlChannel = channel;
           windowX = 180;
           windowYBase = 0;
@@ -1586,7 +1587,7 @@
           singleEl.style.display = 'block';
           fullEl.style.display = 'block';
           controlChannel = parseInt(parameters.control);
-          base = 'double_' + controlChannel;
+          baseSize = 'double_' + controlChannel;
           windowX = 180;
           windowYBase = 0;
           switch (controlChannel) {
@@ -1635,7 +1636,7 @@
           doubleEl.style.display = 'block';
           fullEl.style.display = 'block';
           controlChannel = 6;
-          base = 'quad';
+          baseSize = 'quad';
           windowX = 180;
           windowYBase = 0;
           matrix = [
@@ -1664,7 +1665,7 @@
           singleEl.style.display = 'block';
           doubleEl.style.display = 'block';
           quadEl.style.display = 'block';
-          base = 'full';
+          baseSize = 'full';
           controlChannel = 6;
           windowX = 300;
           windowYBase = 1882;
@@ -1714,31 +1715,31 @@
       );
       chartSync = new thr0w.Sync(
         grid,
-        base + '_chart',
+        baseSize + '_chart',
         chartMessage,
         chartReceive
       );
       tilesSync = new thr0w.Sync(
         grid,
-        base + '_tiles',
+        baseSize + '_tiles',
         tilesMessage,
         tilesReceive
       );
       markerSync = new thr0w.Sync(
         grid,
-        base + '_marker',
+        baseSize + '_marker',
         markerMessage,
         markerReceive
       );
       regionSync = new thr0w.Sync(
         grid,
-        base + '_region',
+        baseSize + '_region',
         regionMessage,
         regionReceive
       );
       videoSync = new thr0w.Sync(
         grid,
-        base + '_video',
+        baseSize + '_video',
         videoMessage,
         videoReceive
       );
@@ -1911,12 +1912,12 @@
       }
       function handleWhiteboardClick() {
         thr0w.thr0wChannel([16, 17, 18, 19], {action: 'update',
-          url: BASE_URL + 'whiteboard/'});
+          url: base  + '/' + APP_USER  + '-' + APP_REPO + '/whiteboard/'});
       }
       function handleSingleClick() {
         var url = [
-          BASE_URL,
-          'interact/',
+          base  + '/' + APP_USER  + '-' + APP_REPO,
+          '/interact/',
           '?size=' + SIZE_SINGLE,
           '&initialCenterLat=' + map.getCenterLat(),
           '&initialCenterLng=' + map.getCenterLng(),
@@ -1955,8 +1956,8 @@
       }
       function handleDoubleClick() {
         var url = [
-          BASE_URL,
-          'interact/',
+          base  + '/' + APP_USER  + '-' + APP_REPO,
+          '/interact/',
           '?size=' + SIZE_DOUBLE + '&control=6',
           '&initialCenterLat=' + map.getCenterLat(),
           '&initialCenterLng=' + map.getCenterLng(),
@@ -1970,8 +1971,8 @@
         url += initialRegionPoppedParameter();
         thr0w.thr0wChannel([16, 17], {action: 'update', url: url});
         url = [
-          BASE_URL,
-          'interact/',
+          base  + '/' + APP_USER  + '-' + APP_REPO,
+          '/interact/',
           '?size=' + SIZE_DOUBLE + '&control=8',
           '&initialCenterLat=' + map.getCenterLat(),
           '&initialCenterLng=' + map.getCenterLng(),
@@ -1987,8 +1988,8 @@
       }
       function handleQuadClick() {
         var url = [
-          BASE_URL,
-          'interact/',
+          base  + '/' + APP_USER  + '-' + APP_REPO,
+          '/interact/',
           '?size=' + SIZE_QUAD,
           '&initialCenterLat=' + map.getCenterLat(),
           '&initialCenterLng=' + map.getCenterLng(),
@@ -2004,8 +2005,8 @@
       }
       function handleFullClick() {
         var url = [
-          BASE_URL,
-          'interact/',
+          base  + '/' + APP_USER  + '-' + APP_REPO,
+          '/interact/',
           '?size=' + SIZE_FULL,
           '&initialCenterLat=' + map.getCenterLat(),
           '&initialCenterLng=' + map.getCenterLng(),
