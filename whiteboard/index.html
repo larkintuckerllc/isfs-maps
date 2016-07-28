@@ -7,6 +7,7 @@
   <title>ISFS Maps</title>
   <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="../bower_components/thr0w-client/dist/thr0w-base.css">
+  <link rel="stylesheet" type="text/css" href="../bower_components/ds-client/dist/ds-base.css">
   <link rel="stylesheet" type="text/css" href="../bower_components/thr0w-draw/dist/thr0w-draw.css">
   <link rel="stylesheet" type="text/css" href="app.css">
 </head>
@@ -16,12 +17,13 @@
     </div>
     <div id="cover" style="display: none;"></div>
     <div id ="capture" style="display: none;">
-      <div id="capture__frame--left" class="capture__frame"></div>
-      <div id="capture__frame--middle-left" class="capture__frame"></div>
-      <div id="capture__frame--middle-right" class="capture__frame"></div>
-      <div id="capture__frame--right" class="capture__frame"></div>
+      <div id="capture__frame--left" style="background-image: none;" class="capture__frame"></div>
+      <div id="capture__frame--middle-left" style="background-image: none;" class="capture__frame"></div>
+      <div id="capture__frame--middle-right" style="background-image: none;" class="capture__frame"></div>
+      <div id="capture__frame--right" style="background-image: none;" class="capture__frame"></div>
       <div id="capture__controls">
         <button id="capture__controls__cancel" class="btn btn-default" type="button">Cancel</button>
+        <button id="capture__controls__email" class="btn btn-default" type="button">Email</button>
       </div>
     </div>
     <div id="controls" style="display: none;">
@@ -35,6 +37,7 @@
   </div>
   <script src="../lib/socket.io/socket.io.js"></script>
   <script src="../bower_components/thr0w-client/dist/thr0w-base.min.js"></script>
+  <script src="../bower_components/ds-client/dist/ds-base.min.js"></script>
   <script src="../bower_components/thr0w-draw/dist/thr0w-draw.min.js"></script>
   <script src="app.js"></script>
 </body>

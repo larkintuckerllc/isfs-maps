@@ -21,6 +21,7 @@
     "thr0w-video": "^0.0.1",
     "thr0w-windows": "^0.1.2",
     "thr0w-draw": "^0.1.0",
-    "bootstrap": "^3.3.7"
+    "bootstrap": "^3.3.7",
+    "ds-client": "^0.1.2"
   }
 }
