@@ -24,6 +24,8 @@
       .getElementById('capture__frame--middle-right');
     var captureFrameRightEl = document
       .getElementById('capture__frame--right');
+    var captureControlsEmailEl = document
+      .getElementById('capture__controls__email');
     thr0w.setBase(base);
     ds.setBase(base);
     thr0w.addAdminTools(frameEl,
@@ -66,8 +68,8 @@
             document.getElementById('controls').style.display = 'block';
             document.getElementById('capture__controls__cancel')
               .addEventListener('click', handleCaptureControlsCancel);
-            document.getElementById('capture__controls__email')
-              .addEventListener('click', handleCaptureControlsEmail);
+            document.getElementById('capture__controls__send')
+              .addEventListener('click', handleCaptureControlsSend);
           }
           window.setInterval(checkIdle, TIMEOUT);
           function message() {
@@ -138,12 +140,16 @@
     function handleCaptureControlsCancel() {
       closeCapture();
     }
-    function handleCaptureControlsEmail() {
+    function handleCaptureControlsSend() {
       var leftImage;
       var middleLeftImage;
       var middleRightImage;
       var rightImage;
       var backgroundImage;
+      var email = captureControlsEmailEl.value;
+      if (email === '') {
+        return;
+      }
       backgroundImage = captureFrameLeftEl.style.backgroundImage;
       leftImage = backgroundImage !== 'none' ? backgroundImage
         .substring(28, backgroundImage.length - 2) : null;
@@ -156,7 +162,7 @@
       backgroundImage = captureFrameRightEl.style.backgroundImage;
       rightImage = backgroundImage !== 'none' ? backgroundImage
         .substring(28, backgroundImage.length - 2) : null;
-      mail(leftImage, middleLeftImage,
+      mail(email, leftImage, middleLeftImage,
         middleRightImage, rightImage, handleMail);
       closeCapture();
       function handleMail() {
@@ -174,16 +180,16 @@
       sync.idle();
     }
   }
-  function mail(leftImage, middleLeftImage,
+  function mail(email, leftImage, middleLeftImage,
       middleRightImage, rightImage, callback) {
     var xmlhttp = new XMLHttpRequest();
     var message = {
-      html: '<p><b>This</b> worked.</p>',
-      text: 'This worked',
-      subject: 'Test Subject from browser',
+      html: '<p>Attached are the screen captures.</p>',
+      text: 'Attached are the screen captures.',
+      subject: 'Screen Captures - ISFS Wall Whiteboard',
       to: [{
-        email: 'john@larkintuckerllc.com',
-        name: 'John Tucker',
+        email: email,
+        name: 'ISFS Wall User',
         type: 'to'
       }]
     };

@@ -21,10 +21,11 @@
       <div id="capture__frame--middle-left" style="background-image: none;" class="capture__frame"></div>
       <div id="capture__frame--middle-right" style="background-image: none;" class="capture__frame"></div>
       <div id="capture__frame--right" style="background-image: none;" class="capture__frame"></div>
-      <div id="capture__controls">
-        <button id="capture__controls__cancel" class="btn btn-default" type="button">Cancel</button>
-        <button id="capture__controls__email" class="btn btn-default" type="button">Email</button>
-      </div>
+      <form id="capture__controls" class="form-inline">
+        <input id="capture__controls__email" type="text" class="form-control" placeholder="someone@example.com">
+        <button id="capture__controls__send" class="btn btn-default" type="button" style="margin-left: 10px;">Send</button>
+        <button id="capture__controls__cancel" class="btn btn-default" type="button" style="margin-left: 10px;">Cancel</button>
+      </form>
     </div>
     <div id="controls" style="display: none;">
       <div id="controls__capture" class="control">
