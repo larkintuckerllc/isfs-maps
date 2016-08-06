@@ -1912,12 +1912,12 @@
       }
       function handleWhiteboardClick() {
         thr0w.thr0wChannel([16, 17, 18, 19], {action: 'update',
-          url: base  + '/' + APP_USER  + '-' + APP_REPO + '/whiteboard/'});
+          url: base  + '/' + APP_USER  + '-' + APP_REPO + '/dist/whiteboard/'});
       }
       function handleSingleClick() {
         var url = [
           base  + '/' + APP_USER  + '-' + APP_REPO,
-          '/interact/',
+          '/dist/interact/',
           '?size=' + SIZE_SINGLE,
           '&initialCenterLat=' + map.getCenterLat(),
           '&initialCenterLng=' + map.getCenterLng(),
@@ -1957,7 +1957,7 @@
       function handleDoubleClick() {
         var url = [
           base  + '/' + APP_USER  + '-' + APP_REPO,
-          '/interact/',
+          '/dist/interact/',
           '?size=' + SIZE_DOUBLE + '&control=6',
           '&initialCenterLat=' + map.getCenterLat(),
           '&initialCenterLng=' + map.getCenterLng(),
@@ -1972,7 +1972,7 @@
         thr0w.thr0wChannel([16, 17], {action: 'update', url: url});
         url = [
           base  + '/' + APP_USER  + '-' + APP_REPO,
-          '/interact/',
+          '/dist/interact/',
           '?size=' + SIZE_DOUBLE + '&control=8',
           '&initialCenterLat=' + map.getCenterLat(),
           '&initialCenterLng=' + map.getCenterLng(),
@@ -1989,7 +1989,7 @@
       function handleQuadClick() {
         var url = [
           base  + '/' + APP_USER  + '-' + APP_REPO,
-          '/interact/',
+          '/dist/interact/',
           '?size=' + SIZE_QUAD,
           '&initialCenterLat=' + map.getCenterLat(),
           '&initialCenterLng=' + map.getCenterLng(),
@@ -2006,7 +2006,7 @@
       function handleFullClick() {
         var url = [
           base  + '/' + APP_USER  + '-' + APP_REPO,
-          '/interact/',
+          '/dist/interact/',
           '?size=' + SIZE_FULL,
           '&initialCenterLat=' + map.getCenterLat(),
           '&initialCenterLng=' + map.getCenterLng(),
