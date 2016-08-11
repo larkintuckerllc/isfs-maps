@@ -2304,7 +2304,7 @@
           }
         }
         xmlhttp.open('GET',
-          '/upload/' + APP_USER '-' + APP_REPO + '/world.geo.json/countries/' +
+          '/upload/' + APP_USER + '-' + APP_REPO + '/world.geo.json/countries/' +
           code + '.geo.json', true);
         xmlhttp.send();
       }
