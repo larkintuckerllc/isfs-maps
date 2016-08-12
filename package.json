@@ -1,0 +1,7 @@
+{
+  "name": "isfs-maps",
+  "private": true,
+  "devDependencies": {
+    "eslint": "^3.2.2"
+  }
+}

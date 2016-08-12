@@ -1544,6 +1544,9 @@
       var fullEl = document.getElementById('full');
       var satelliteEl = document.getElementById('satellite');
       var streetEl = document.getElementById('street');
+      var nightEl = document.getElementById('night');
+      var whiteEl = document.getElementById('white');
+      var blackEl = document.getElementById('black');
       var initialCenterLat = parameters.initialCenterLat ?
         parseFloat(parameters.initialCenterLat) : 0;
       var initialCenterLng = parameters.initialCenterLng ?
@@ -1784,6 +1787,9 @@
         .addEventListener('click', handleFullClick);
       satelliteEl.addEventListener('click', handleSatelliteClick);
       streetEl.addEventListener('click', handleStreetClick);
+      nightEl.addEventListener('click', handleNightClick);
+      whiteEl.addEventListener('click', handleWhiteClick);
+      blackEl.addEventListener('click', handleBlackClick);
       document.getElementById('none')
         .addEventListener('click', handleNoneClick);
       document.getElementById('fisheries')
@@ -2058,6 +2064,24 @@
         tilesSync.update();
         tilesSync.idle();
       }
+      function handleNightClick() {
+        tiles = 'night';
+        updateTiles();
+        tilesSync.update();
+        tilesSync.idle();
+      }
+      function handleWhiteClick() {
+        tiles = 'white';
+        updateTiles();
+        tilesSync.update();
+        tilesSync.idle();
+      }
+      function handleBlackClick() {
+        tiles = 'black';
+        updateTiles();
+        tilesSync.update();
+        tilesSync.idle();
+      }
       function handleNoneClick() {
         wm.closeAllWindows();
         map.moveTo(0, 0, 0, MIN_ZOOM[size]);
@@ -2140,7 +2164,11 @@
         }
         if (tiles === 'street') {
           streetEl.style.display = 'none';
-          satelliteEl.style.display = 'block';
+          satelliteEl.style.display = 'none';
+          whiteEl.style.display = 'none';
+          nightEl.style.display = 'block';
+          document.querySelector('.leaflet-container')
+            .style.backgroundColor = 'rgb(255,255,255)';
           // jscs:disable
           tileLayer = L.tileLayer(
             'http://192.168.1.2:8081/street/{z}/{x}/{y}.png', {
@@ -2151,8 +2179,12 @@
         }
         if (tiles === 'satellite') {
           satelliteEl.style.display = 'none';
+          nightEl.style.display = 'none';
+          whiteEl.style.display = 'none';
+          blackEl.style.display = 'none';
           streetEl.style.display = 'block';
-          // PROD
+          document.querySelector('.leaflet-container')
+            .style.backgroundColor = 'rgb(0,0,0)';
           // jscs:disable
           tileLayer =  L.tileLayer(
             'http://192.168.1.2:8080/satellite/{z}/{y}/{x}',
@@ -2161,17 +2193,42 @@
             }
           ).addTo(leafletMap);
           // jscs:enable
-          /*
-          // DEV
+        }
+        if (tiles === 'night') {
+          nightEl.style.display = 'none';
+          streetEl.style.display = 'none';
+          satelliteEl.style.display = 'none';
+          blackEl.style.display = 'none';
+          whiteEl.style.display = 'block';
+          document.querySelector('.leaflet-container')
+            .style.backgroundColor = 'rgb(0,0,0)';
           // jscs:disable
           tileLayer = L.tileLayer(
-            'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-            {
-              maxZoom: 19,
-              attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            }
-          ).addTo(leafletMap);
-          */
+            'http://192.168.1.2:8082/night/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+          }).addTo(leafletMap);
+          // jscs:enable
+        }
+        if (tiles === 'white') {
+          nightEl.style.display = 'none';
+          streetEl.style.display = 'none';
+          whiteEl.style.display = 'none';
+          satelliteEl.style.display = 'none';
+          blackEl.style.display = 'block';
+          document.querySelector('.leaflet-container')
+            .style.backgroundColor = 'rgb(255,255,255)';
+          tileLayer = null
+        }
+        if (tiles === 'black') {
+          nightEl.style.display = 'none';
+          streetEl.style.display = 'none';
+          whiteEl.style.display = 'none';
+          blackEl.style.display = 'none';
+          satelliteEl.style.display = 'block';
+          document.querySelector('.leaflet-container')
+            .style.backgroundColor = 'rgb(0,0,0)';
+          tileLayer = null
         }
       }
       function addRegion(code, color, popup,
