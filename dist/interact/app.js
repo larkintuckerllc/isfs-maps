@@ -6,7 +6,7 @@
   var SIZE_DOUBLE = 1;
   var SIZE_QUAD = 2;
   var SIZE_FULL = 3;
-  var TIMEOUT = 120 * 1000;
+  var TIMEOUT = 30 * 60 * 1000;
   var CHANNELS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   var BROWSERS = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
   var MIN_ZOOM = {
@@ -1778,8 +1778,6 @@
         document.getElementById('controls').style.display = 'block';
       }
       frameEl.addEventListener('touchstart', keepActive, true);
-      document.getElementById('whiteboard').addEventListener('click',
-        handleWhiteboardClick);
       singleEl.addEventListener('click', handleSingleClick);
       doubleEl.addEventListener('click', handleDoubleClick);
       quadEl.addEventListener('click', handleQuadClick);
@@ -1915,10 +1913,6 @@
             }
           }
         }
-      }
-      function handleWhiteboardClick() {
-        thr0w.thr0wChannel([16, 17, 18, 19], {action: 'update',
-          url: base  + '/' + APP_USER  + '-' + APP_REPO + '/dist/whiteboard/'});
       }
       function handleSingleClick() {
         var url = [
