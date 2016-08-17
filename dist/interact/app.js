@@ -1547,6 +1547,7 @@
       var nightEl = document.getElementById('night');
       var whiteEl = document.getElementById('white');
       var blackEl = document.getElementById('black');
+      var cameraEl = document.getElementById('camera');
       var initialCenterLat = parameters.initialCenterLat ?
         parseFloat(parameters.initialCenterLat) : 0;
       var initialCenterLng = parameters.initialCenterLng ?
@@ -1566,6 +1567,7 @@
       switch (size) {
         case SIZE_SINGLE:
           drawing = true;
+          cameraEl.style.display = 'block';
           fullEl.style.display = 'block';
           baseSize = 'single';
           controlChannel = channel;
@@ -1776,6 +1778,7 @@
       // CONTROLS
       if (channel === controlChannel) {
         document.getElementById('controls').style.display = 'block';
+        cameraEl.style.display = 'block';
       }
       frameEl.addEventListener('touchstart', keepActive, true);
       singleEl.addEventListener('click', handleSingleClick);
