@@ -97,7 +97,7 @@
           tileLayer = L.tileLayer(
             'http://192.168.1.2:8082/night/{z}/{x}/{y}.png',
             {
-          	   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+              attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
             }
           ).addTo(leafletMap);
           // jscs:enable

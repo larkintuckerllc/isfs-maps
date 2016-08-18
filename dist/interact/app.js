@@ -1517,6 +1517,8 @@
       var grid;
       var drawing = false;
       var wm;
+      var captureCover = false;
+      var captureSync;
       var chartSync;
       var tilesSync;
       var markerSync;
@@ -1552,7 +1554,7 @@
       var captureEl = document.getElementById('capture');
       var captureSingleEl = document.getElementById('capture__single');
       var captureDoubleEl = document.getElementById('capture__double');
-      var captureQuadEl = document.getElementById('capture_quad');
+      var captureQuadEl = document.getElementById('capture__quad');
       var initialCenterLat = parameters.initialCenterLat ?
         parseFloat(parameters.initialCenterLat) : 0;
       var initialCenterLng = parameters.initialCenterLng ?
@@ -1722,6 +1724,12 @@
         'wm',
         grid
       );
+      captureSync = new thr0w.Sync(
+        grid,
+        baseSize + '_capture',
+        captureMessage,
+        captureReceive
+      );
       chartSync = new thr0w.Sync(
         grid,
         baseSize + '_chart',
@@ -1822,6 +1830,18 @@
       function chartReceive(data) {
         chart = data.chart;
         updateChart();
+      }
+      function captureMessage() {
+        return {
+          captureCover: captureCover
+        }
+      }
+      function captureReceive(data) {
+        if (data.captureCover) {
+          captureCoverEl.style.display = 'block';
+        } else {
+          captureCoverEl.style.display = 'none';
+        }
       }
       function tilesMessage() {
         return {
@@ -2132,34 +2152,54 @@
       }
       function handleCameraClick() {
         captureCoverEl.style.display = 'block';
+        captureCover = true;
+        captureSync.update();
+        captureSync.idle();
         captureEl.style.display = 'block';
         switch (size) {
           case SIZE_SINGLE:
+            thr0w.thr0w([channel + 10], {
+              action: 'capture',
+              target: channel
+            });
             captureSingleEl.style.display = 'block';
             break;
           case SIZE_DOUBLE:
+            thr0w.thr0w([channel + 10, channel + 11], {
+              action: 'capture',
+              target: channel
+            });
             captureDoubleEl.style.display = 'block';
             break;
           case SIZE_FULL:
+            thr0w.thr0w([channel + 10, channel + 11, channel + 12, channel + 13], {
+              action: 'capture',
+              target: channel
+            });
             captureQuadEl.style.display = 'block';
             break;
           default:
         }
       }
       function handleCaptureControlCancel() {
-        window.console.log('WHAT');
-        captureCoverEl.style.display = 'none';
         captureEl.style.display = 'none';
         captureSingleEl.style.display = 'none';
         captureDoubleEl.style.display = 'none';
         captureQuadEl.style.display = 'none';
+        captureCoverEl.style.display = 'none';
+        captureCover = false;
+        captureSync.update();
+        captureSync.idle();
       }
       function handleCaptureControlSend() {
-        captureCoverEl.style.display = 'none';
         captureEl.style.display = 'none';
         captureSingleEl.style.display = 'none';
         captureDoubleEl.style.display = 'none';
         captureQuadEl.style.display = 'none';
+        captureCoverEl.style.display = 'none';
+        captureCover = false;
+        captureSync.update();
+        captureSync.idle();
       }
       function updateChart() {
         var i;
@@ -2581,6 +2621,53 @@
       }
     }
     function messageCallback(data) {
+      if (data.message.thr0w && data.message.thr0w.type === 'capture') {
+        switch (data.source) {
+          case 16:
+            window.console.log('16');
+            break;
+          case 17:
+            window.console.log('17');
+            break;
+          case 18:
+            window.console.log('18');
+            break;
+          case 19:
+            window.console.log('19');
+            break;
+          default:
+        }
+      }
+      /*
+      if (data.message.thr0w && data.message.thr0w.type === 'capture') {
+        switch (data.source) {
+          case 16:
+            cover = true;
+            captureFrameLeftEl.style.backgroundImage = 'url(' +
+              data.message.thr0w.dataUrl + ')';
+            coverEl.style.display = 'block';
+            captureEl.style.display = 'block';
+            sync.update();
+            sync.idle();
+            break;
+          case 17:
+            captureFrameMiddleLeftEl.style.backgroundImage = 'url(' +
+              data.message.thr0w.dataUrl + ')';
+            break;
+          case 18:
+            captureFrameMiddleRightEl.style.backgroundImage = 'url(' +
+              data.message.thr0w.dataUrl + ')';
+            break;
+          case 19:
+            captureFrameRightEl.style.backgroundImage = 'url(' +
+              data.message.thr0w.dataUrl + ')';
+            break;
+          default:
+        }
+        return;
+      }
+      */
+
       if (data.message.type === 'idle') {
         document.location.href = '../';
       } else if (data.message.type === 'active') {
