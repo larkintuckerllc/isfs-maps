@@ -1504,6 +1504,13 @@
     var captureQuadMiddleLeftEl = document.getElementById('capture__quad__middle_left');
     var captureQuadMiddleRightEl = document.getElementById('capture__quad__middle_right');
     var captureQuadRightEl = document.getElementById('capture__quad__right');
+    var captureCover = false;
+    var captureCoverEl = document.getElementById('capture_cover');
+    var captureEl = document.getElementById('capture');
+    var captureSingleEl = document.getElementById('capture__single');
+    var captureDoubleEl = document.getElementById('capture__double');
+    var captureQuadEl = document.getElementById('capture__quad');
+    var captureSync;
     var size = parseInt(parameters.size);
     thr0w.setBase(base);
     thr0w.addAdminTools(frameEl,
@@ -1525,8 +1532,6 @@
       var grid;
       var drawing = false;
       var wm;
-      var captureCover = false;
-      var captureSync;
       var chartSync;
       var tilesSync;
       var markerSync;
@@ -1557,11 +1562,6 @@
       var whiteEl = document.getElementById('white');
       var blackEl = document.getElementById('black');
       var cameraEl = document.getElementById('camera');
-      var captureCoverEl = document.getElementById('capture_cover');
-      var captureEl = document.getElementById('capture');
-      var captureSingleEl = document.getElementById('capture__single');
-      var captureDoubleEl = document.getElementById('capture__double');
-      var captureQuadEl = document.getElementById('capture__quad');
       var initialCenterLat = parameters.initialCenterLat ?
         parseFloat(parameters.initialCenterLat) : 0;
       var initialCenterLng = parameters.initialCenterLng ?
@@ -2158,11 +2158,7 @@
         videoObj.setCurrentTime(0);
       }
       function handleCameraClick() {
-        captureCoverEl.style.display = 'block';
-        captureCover = true;
-        captureSync.update();
-        captureSync.idle();
-        captureEl.style.display = 'block';
+
         switch (size) {
           case SIZE_SINGLE:
             thr0w.thr0w([channel + 10], {
@@ -2627,75 +2623,63 @@
         active = false;
       }
     }
+    function showCapture() {
+      captureCover = true;
+      captureCoverEl.style.display = 'block';
+      captureEl.style.display = 'block';
+      captureSync.update();
+      captureSync.idle();
+    }
     function messageCallback(data) {
       if (data.message.thr0w && data.message.thr0w.type === 'capture') {
-        switch (data.source) {
-          case 16:
-            switch (size) {
-              case SIZE_SINGLE:
-                captureSingleLeftEl.style.backgroundImage = 'url(' +
-                  data.message.thr0w.dataUrl + ')';
-                break;
-              case SIZE_DOUBLE:
+        switch (size) {
+          case SIZE_SINGLE:
+            captureSingleLeftEl.style.backgroundImage = 'url(' +
+              data.message.thr0w.dataUrl + ')';
+            showCapture();
+            break;
+          case SIZE_DOUBLE:
+            switch(data.source) {
+              case 16:
                 captureDoubleLeftEl.style.backgroundImage = 'url(' +
                   data.message.thr0w.dataUrl + ')';
+                showCapture();
                 break;
-              case SIZE_QUAD:
-                captureQuadLeftEl.style.backgroundImage = 'url(' +
+              case 17:
+                captureDoubleRightEl.style.backgroundImage = 'url(' +
+                  data.message.thr0w.dataUrl + ')';
+                break;
+              case 18:
+                captureDoubleLeftEl.style.backgroundImage = 'url(' +
+                  data.message.thr0w.dataUrl + ')';
+                showCapture();
+                break;
+              case 19:
+                captureDoubleRightEl.style.backgroundImage = 'url(' +
                   data.message.thr0w.dataUrl + ')';
                 break;
               default:
             }
             break;
-          case 17:
-            switch (size) {
-              case SIZE_SINGLE:
-                captureSingleLeftEl.style.backgroundImage = 'url(' +
+          case SIZE_QUAD:
+            switch(data.source) {
+              case 16:
+                captureQuadLeftEl.style.backgroundImage = 'url(' +
                   data.message.thr0w.dataUrl + ')';
-              break;
-              case SIZE_DOUBLE:
-                captureDoubleRightEl.style.backgroundImage = 'url(' +
-                  data.message.thr0w.dataUrl + ')';
+                showCapture();
                 break;
-              case SIZE_QUAD:
+              case 17:
                 captureQuadMiddleLeftEl.style.backgroundImage = 'url(' +
                   data.message.thr0w.dataUrl + ')';
                 break;
-              default:
-            }
-            break;
-          case 18:
-            switch (size) {
-              case SIZE_SINGLE:
-                captureSingleLeftEl.style.backgroundImage = 'url(' +
-                  data.message.thr0w.dataUrl + ')';
-              break;
-              case SIZE_DOUBLE:
-                captureDoubleLeftEl.style.backgroundImage = 'url(' +
-                  data.message.thr0w.dataUrl + ')';
-                break;
-              case SIZE_QUAD:
+              case 18:
                 captureQuadMiddleRightEl.style.backgroundImage = 'url(' +
                   data.message.thr0w.dataUrl + ')';
                 break;
-              default:
-            }
-            break;
-          case 19:
-            switch (size) {
-              case SIZE_SINGLE:
-                captureSingleLeftEl.style.backgroundImage = 'url(' +
-                  data.message.thr0w.dataUrl + ')';
-              break;
-              case SIZE_DOUBLE:
-                captureDoubleRightEl.style.backgroundImage = 'url(' +
-                  data.message.thr0w.dataUrl + ')';
-                break;
-              case SIZE_QUAD:
+              case 19:
                 captureQuadRightEl.style.backgroundImage = 'url(' +
                   data.message.thr0w.dataUrl + ')';
                 break;
-              default:
             }
             break;
           default:
