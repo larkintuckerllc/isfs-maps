@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>ISFS Maps</title>
+  <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="../lib/leaflet/leaflet.css">
   <link rel="stylesheet" type="text/css" href="../bower_components/thr0w-client/dist/thr0w-base.css">
   <link rel="stylesheet" type="text/css" href="../bower_components/thr0w-leaflet/dist/thr0w-leaflet.css">
@@ -32,6 +33,27 @@
     </div>
     <div id="camera" style="display: none;">
       <img src="img/camera.png" width="100" height="100" />
+    </div>
+    <div id="capture_cover" style="display: none;"></div>
+    <div id ="capture" style="display: none;">
+      <div id="capture__single" style="display: none;">
+        <div id="capture__single__left" style="background-image: none;" class="capture__frame"></div>
+      </div>
+      <div id="capture__double" style="display: none;">
+        <div id="capture__double__left" style="background-image: none;" class="capture__frame"></div>
+        <div id="capture__double__right" style="background-image: none;" class="capture__frame"></div>
+      </div>
+      <div id="capture__quad" style="display: none;">
+        <div id="capture__quad__left" style="background-image: none;" class="capture__frame"></div>
+        <div id="capture__quad__middle_left" style="background-image: none;" class="capture__frame"></div>
+        <div id="capture__quad__middle_right" style="background-image: none;" class="capture__frame"></div>
+        <div id="capture__quad__right" style="background-image: none;" class="capture__frame"></div>
+      </div>
+      <form id="capture__controls" class="form-inline">
+        <input id="capture__controls__email" type="text" class="form-control" placeholder="someone@example.com">
+        <button id="capture__controls__send" class="btn btn-default" type="button" style="margin-left: 10px;">Send</button>
+        <button id="capture__controls__cancel" class="btn btn-default" type="button" style="margin-left: 10px;">Cancel</button>
+      </form>
     </div>
     <div id="controls" style="display: none;">
       <div id="single" style="display: none;" class="control">
@@ -73,10 +95,6 @@
       <div id="video" class="control">
         <img src="img/video.png" width="100" height="100" />
       </div>
-    </div>
-  </div>
-  <div id="draw_frame">
-    <div id="draw_content">
     </div>
   </div>
   <script src="../lib/leaflet/leaflet.js"></script>

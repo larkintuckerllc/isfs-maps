@@ -1548,6 +1548,11 @@
       var whiteEl = document.getElementById('white');
       var blackEl = document.getElementById('black');
       var cameraEl = document.getElementById('camera');
+      var captureCoverEl = document.getElementById('capture_cover');
+      var captureEl = document.getElementById('capture');
+      var captureSingleEl = document.getElementById('capture__single');
+      var captureDoubleEl = document.getElementById('capture__double');
+      var captureQuadEl = document.getElementById('capture_quad');
       var initialCenterLat = parameters.initialCenterLat ?
         parseFloat(parameters.initialCenterLat) : 0;
       var initialCenterLng = parameters.initialCenterLng ?
@@ -1567,7 +1572,6 @@
       switch (size) {
         case SIZE_SINGLE:
           drawing = true;
-          cameraEl.style.display = 'block';
           fullEl.style.display = 'block';
           baseSize = 'single';
           controlChannel = channel;
@@ -1778,7 +1782,9 @@
       // CONTROLS
       if (channel === controlChannel) {
         document.getElementById('controls').style.display = 'block';
-        cameraEl.style.display = 'block';
+        if (size !== SIZE_FULL) {
+          cameraEl.style.display = 'block';
+        }
       }
       frameEl.addEventListener('touchstart', keepActive, true);
       singleEl.addEventListener('click', handleSingleClick);
@@ -1802,6 +1808,11 @@
       videoStopEl.addEventListener('click', handleVideoStopClick);
       videoObj = new thr0w.video.Video(grid, videoElementEl);
       videoObj.addEventListener('ended', handleVideoStopClick);
+      cameraEl.addEventListener('click', handleCameraClick);
+      document.getElementById('capture__controls__send')
+        .addEventListener('click', handleCaptureControlSend);
+      document.getElementById('capture__controls__cancel')
+        .addEventListener('click', handleCaptureControlCancel);
       window.setInterval(checkIdle, TIMEOUT);
       function chartMessage() {
         return {
@@ -2118,6 +2129,37 @@
         videoSync.update();
         videoSync.idle();
         videoObj.setCurrentTime(0);
+      }
+      function handleCameraClick() {
+        captureCoverEl.style.display = 'block';
+        captureEl.style.display = 'block';
+        switch (size) {
+          case SIZE_SINGLE:
+            captureSingleEl.style.display = 'block';
+            break;
+          case SIZE_DOUBLE:
+            captureDoubleEl.style.display = 'block';
+            break;
+          case SIZE_FULL:
+            captureQuadEl.style.display = 'block';
+            break;
+          default:
+        }
+      }
+      function handleCaptureControlCancel() {
+        window.console.log('WHAT');
+        captureCoverEl.style.display = 'none';
+        captureEl.style.display = 'none';
+        captureSingleEl.style.display = 'none';
+        captureDoubleEl.style.display = 'none';
+        captureQuadEl.style.display = 'none';
+      }
+      function handleCaptureControlSend() {
+        captureCoverEl.style.display = 'none';
+        captureEl.style.display = 'none';
+        captureSingleEl.style.display = 'none';
+        captureDoubleEl.style.display = 'none';
+        captureQuadEl.style.display = 'none';
       }
       function updateChart() {
         var i;
