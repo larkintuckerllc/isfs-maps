@@ -1497,6 +1497,14 @@
     var contentEl = document.getElementById('interact_content');
     var base = window.location.protocol + '//' +
       window.location.hostname;
+    var captureSingleLeftEl = document.getElementById('capture__single__left');
+    var captureDoubleLeftEl = document.getElementById('capture__double__left');
+    var captureDoubleRightEl = document.getElementById('capture__double__right');
+    var captureQuadLeftEl = document.getElementById('capture__quad__left');
+    var captureQuadMiddleLeftEl = document.getElementById('capture__quad__middle_left');
+    var captureQuadMiddleRightEl = document.getElementById('capture__quad__middle_right');
+    var captureQuadRightEl = document.getElementById('capture__quad__right');
+    var size = parseInt(parameters.size);
     thr0w.setBase(base);
     thr0w.addAdminTools(frameEl,
       connectCallback, messageCallback);
@@ -1534,7 +1542,6 @@
       var controlChannel;
       var tileLayer;
       var channel = thr0w.getChannel();
-      var size = parseInt(parameters.size);
       var videoCoverEl = document.getElementById('video_cover');
       var videoContainerEl = document.getElementById('video_container');
       var videoElementEl = document.getElementById('video_element');
@@ -2171,7 +2178,7 @@
             });
             captureDoubleEl.style.display = 'block';
             break;
-          case SIZE_FULL:
+          case SIZE_QUAD:
             thr0w.thr0w([channel + 10, channel + 11, channel + 12, channel + 13], {
               action: 'capture',
               target: channel
@@ -2624,50 +2631,77 @@
       if (data.message.thr0w && data.message.thr0w.type === 'capture') {
         switch (data.source) {
           case 16:
-            window.console.log('16');
+            switch (size) {
+              case SIZE_SINGLE:
+                captureSingleLeftEl.style.backgroundImage = 'url(' +
+                  data.message.thr0w.dataUrl + ')';
+                break;
+              case SIZE_DOUBLE:
+                captureDoubleLeftEl.style.backgroundImage = 'url(' +
+                  data.message.thr0w.dataUrl + ')';
+                break;
+              case SIZE_QUAD:
+                captureQuadLeftEl.style.backgroundImage = 'url(' +
+                  data.message.thr0w.dataUrl + ')';
+                break;
+              default:
+            }
             break;
           case 17:
-            window.console.log('17');
+            switch (size) {
+              case SIZE_SINGLE:
+                captureSingleLeftEl.style.backgroundImage = 'url(' +
+                  data.message.thr0w.dataUrl + ')';
+              break;
+              case SIZE_DOUBLE:
+                captureDoubleRightEl.style.backgroundImage = 'url(' +
+                  data.message.thr0w.dataUrl + ')';
+                break;
+              case SIZE_QUAD:
+                captureQuadMiddleLeftEl.style.backgroundImage = 'url(' +
+                  data.message.thr0w.dataUrl + ')';
+                break;
+              default:
+            }
             break;
           case 18:
-            window.console.log('18');
+            switch (size) {
+              case SIZE_SINGLE:
+                captureSingleLeftEl.style.backgroundImage = 'url(' +
+                  data.message.thr0w.dataUrl + ')';
+              break;
+              case SIZE_DOUBLE:
+                captureDoubleLeftEl.style.backgroundImage = 'url(' +
+                  data.message.thr0w.dataUrl + ')';
+                break;
+              case SIZE_QUAD:
+                captureQuadMiddleRightEl.style.backgroundImage = 'url(' +
+                  data.message.thr0w.dataUrl + ')';
+                break;
+              default:
+            }
             break;
           case 19:
-            window.console.log('19');
-            break;
-          default:
-        }
-      }
-      /*
-      if (data.message.thr0w && data.message.thr0w.type === 'capture') {
-        switch (data.source) {
-          case 16:
-            cover = true;
-            captureFrameLeftEl.style.backgroundImage = 'url(' +
-              data.message.thr0w.dataUrl + ')';
-            coverEl.style.display = 'block';
-            captureEl.style.display = 'block';
-            sync.update();
-            sync.idle();
-            break;
-          case 17:
-            captureFrameMiddleLeftEl.style.backgroundImage = 'url(' +
-              data.message.thr0w.dataUrl + ')';
-            break;
-          case 18:
-            captureFrameMiddleRightEl.style.backgroundImage = 'url(' +
-              data.message.thr0w.dataUrl + ')';
-            break;
-          case 19:
-            captureFrameRightEl.style.backgroundImage = 'url(' +
-              data.message.thr0w.dataUrl + ')';
+            switch (size) {
+              case SIZE_SINGLE:
+                captureSingleLeftEl.style.backgroundImage = 'url(' +
+                  data.message.thr0w.dataUrl + ')';
+              break;
+              case SIZE_DOUBLE:
+                captureDoubleRightEl.style.backgroundImage = 'url(' +
+                  data.message.thr0w.dataUrl + ')';
+                break;
+              case SIZE_QUAD:
+                captureQuadRightEl.style.backgroundImage = 'url(' +
+                  data.message.thr0w.dataUrl + ')';
+                break;
+              default:
+            }
             break;
           default:
         }
         return;
       }
-      */
-
       if (data.message.type === 'idle') {
         document.location.href = '../';
       } else if (data.message.type === 'active') {
