@@ -1489,6 +1489,7 @@
   };
   var L = window.L;
   var thr0w = window.thr0w;
+  var ds = window.ds;
   var parameters = parseQueryString();
   document.addEventListener('DOMContentLoaded', ready);
   function ready() {
@@ -1510,893 +1511,1165 @@
     var captureSingleEl = document.getElementById('capture__single');
     var captureDoubleEl = document.getElementById('capture__double');
     var captureQuadEl = document.getElementById('capture__quad');
+    var captureControlsEmailEl = document.getElementById('capture__controls__email');
     var captureSync;
     var size = parseInt(parameters.size);
     thr0w.setBase(base);
+    ds.setBase(base);
     thr0w.addAdminTools(frameEl,
       connectCallback, messageCallback);
     function connectCallback() {
-      var markerCode;
-      var markerEvent;
-      var regionCode;
-      var regionEvent;
-      var regionLat;
-      var regionLng;
-      var chart = parameters.chart ?
-        parameters.chart : null;
-      var tiles = parameters.tiles ?
-        parameters.tiles : 'satellite';
-      var regions = [];
-      var markers = [];
-      var video = false;
-      var grid;
-      var drawing = false;
-      var wm;
-      var chartSync;
-      var tilesSync;
-      var markerSync;
-      var regionSync;
-      var videoSync;
-      var leafletMap;
-      var map;
-      var matrix;
-      var rows;
-      var baseSize;
-      var windowX;
-      var windowYBase;
-      var controlChannel;
-      var tileLayer;
-      var channel = thr0w.getChannel();
-      var videoCoverEl = document.getElementById('video_cover');
-      var videoContainerEl = document.getElementById('video_container');
-      var videoElementEl = document.getElementById('video_element');
-      var videoStopEl = document.getElementById('video_stop');
-      var videoObj;
-      var singleEl = document.getElementById('single');
-      var doubleEl = document.getElementById('double');
-      var quadEl = document.getElementById('quad');
-      var fullEl = document.getElementById('full');
-      var satelliteEl = document.getElementById('satellite');
-      var streetEl = document.getElementById('street');
-      var nightEl = document.getElementById('night');
-      var whiteEl = document.getElementById('white');
-      var blackEl = document.getElementById('black');
-      var cameraEl = document.getElementById('camera');
-      var initialCenterLat = parameters.initialCenterLat ?
-        parseFloat(parameters.initialCenterLat) : 0;
-      var initialCenterLng = parameters.initialCenterLng ?
-        parseFloat(parameters.initialCenterLng) : 0;
-      var initialZoomLevel = parameters.initialZoomLevel ?
-        parseInt(parameters.initialZoomLevel) : MIN_ZOOM[size];
-      var initialMarkerPopped = parameters.initialMarkerPopped ?
-        parameters.initialMarkerPopped : null;
-      var initialRegionPopped = parameters.initialRegionPopped ?
-        parameters.initialRegionPopped : null;
-      var initialRegionPoppedLat = parameters.initialRegionPoppedLat ?
-        parameters.initialRegionPoppedLat : null;
-      var initialRegionPoppedLng = parameters.initialRegionPoppedLng ?
-        parameters.initialRegionPoppedLng : null;
-      var iMarker;
-      initialZoomLevel = Math.max(initialZoomLevel, MIN_ZOOM[size]);
-      switch (size) {
-        case SIZE_SINGLE:
-          drawing = true;
-          fullEl.style.display = 'block';
-          baseSize = 'single';
-          controlChannel = channel;
-          windowX = 180;
-          windowYBase = 0;
-          matrix = [
-            [channel]
-          ];
-          rows = [
-            {
-              width: 1080,
-              height: 1920
-            }
-          ];
-          break;
-        case SIZE_DOUBLE:
-          drawing = true;
-          videoElementEl.setAttribute('width', 1600);
-          videoElementEl.setAttribute('height', 900);
-          videoContainerEl.style.width = '1600px';
-          videoContainerEl.style.height = '900px';
-          singleEl.style.display = 'block';
-          fullEl.style.display = 'block';
-          controlChannel = parseInt(parameters.control);
-          baseSize = 'double_' + controlChannel;
-          windowX = 180;
-          windowYBase = 0;
-          switch (controlChannel) {
-            case 6:
-              if (channel !== 6 && channel !== 7) {
-                throw 400;
-              }
-              matrix = [
-                [6, 7]
-              ];
-              break;
-            case 7:
-              if (channel !== 7 && channel !== 8) {
-                throw 400;
-              }
-              matrix = [
-                [7, 8]
-              ];
-              break;
-            case 8:
-              if (channel !== 8 && channel !== 9) {
-                throw 400;
-              }
-              matrix = [
-                [8, 9]
-              ];
-              break;
-            default:
-              throw 400;
-          }
-          rows = [
-            {
-              width: 1080,
-              height: 1920,
-              spacing: 112
-            }
-          ];
-          break;
-        case SIZE_QUAD:
-          drawing = true;
-          videoElementEl.setAttribute('width', 1600);
-          videoElementEl.setAttribute('height', 900);
-          videoContainerEl.style.width = '1600px';
-          videoContainerEl.style.height = '900px';
-          singleEl.style.display = 'block';
-          doubleEl.style.display = 'block';
-          fullEl.style.display = 'block';
-          controlChannel = 6;
-          baseSize = 'quad';
-          windowX = 180;
-          windowYBase = 0;
-          matrix = [
-            [6, 7, 8, 9]
-          ];
-          rows = [
-            {
-              width: 1080,
-              height: 1920,
-              spacing: 112
-            }
-          ];
-          break;
-        case SIZE_FULL:
-          videoElementEl.setAttribute('width', 3200);
-          videoElementEl.setAttribute('height', 1800);
-          videoContainerEl.style.width = '3200px';
-          videoContainerEl.style.height = '1800px';
-          videoStopEl.style.right = 'initial';
-          videoStopEl.style.top = 'initial';
-          videoStopEl.style.left = '0px';
-          videoStopEl.style.bottom = '0px';
-          videoStopEl.style.width = '100px';
-          videoStopEl.style.height = '100px';
-          videoStopEl.style.transform = 'translate(-150%, 150%)';
-          singleEl.style.display = 'block';
-          doubleEl.style.display = 'block';
-          quadEl.style.display = 'block';
-          baseSize = 'full';
-          controlChannel = 6;
-          windowX = 300;
-          windowYBase = 1882;
-          matrix = [
-            [0, 1, 2],
-            [3, 4, 5],
-            [6, 7, 8, 9]
-          ];
-          rows = [
-            {
-              width: 1920,
-              height: 1080,
-              spacing: 28,
-              scale: 0.84,
-              margin: 20
-            },
-            {
-              width: 1920,
-              height: 1080,
-              spacing: 28,
-              scale: 0.84,
-              margin: 60
-            },
-            {
-              width: 1080,
-              height: 1920,
-              spacing: 112,
-              padding: 111
-            }
-          ];
-          break;
-        default:
-          throw 400;
-      }
-      grid = new thr0w.FlexGrid(
-        frameEl,
-        contentEl,
-        matrix,
-        rows
-      );
-      if (drawing) {
-        thr0w.draw.load(grid);
-      }
-      wm = new thr0w.windows.WindowManager(
-        'wm',
-        grid
-      );
-      captureSync = new thr0w.Sync(
-        grid,
-        baseSize + '_capture',
-        captureMessage,
-        captureReceive
-      );
-      chartSync = new thr0w.Sync(
-        grid,
-        baseSize + '_chart',
-        chartMessage,
-        chartReceive
-      );
-      tilesSync = new thr0w.Sync(
-        grid,
-        baseSize + '_tiles',
-        tilesMessage,
-        tilesReceive
-      );
-      markerSync = new thr0w.Sync(
-        grid,
-        baseSize + '_marker',
-        markerMessage,
-        markerReceive
-      );
-      regionSync = new thr0w.Sync(
-        grid,
-        baseSize + '_region',
-        regionMessage,
-        regionReceive
-      );
-      videoSync = new thr0w.Sync(
-        grid,
-        baseSize + '_video',
-        videoMessage,
-        videoReceive
-      );
-      map = new thr0w.leaflet.Map(grid, initialCenterLat, initialCenterLng,
-        initialZoomLevel,
-        {
-          minZoom: MIN_ZOOM[size],
-          maxZoom: MAX_ZOOM,
-          zoomControl: false,
-          attributionControl: false,
-          closePopupOnClick: false
+      var thr0wToken = thr0w.getToken();
+      ds.loginToken(thr0wToken, handleLoginToken);
+      function handleLoginToken(loginTokenErr) {
+        if (loginTokenErr !== null) {
+          return ds.addAdminTools(frameEl, handleDsLogin);
         }
-      );
-      leafletMap = map.getLeafletMap();
-      leafletMap.addEventListener('zoom', zoomed);
-      updateTiles();
-      updateChart();
-      if (initialMarkerPopped) {
-        for (iMarker = 0; iMarker < markers.length; iMarker++) {
-          if (initialMarkerPopped === markers[iMarker].code) {
-            markers.popped = true;
-            if (markers[iMarker].added) {
-              markers[iMarker].layer.openPopup();
-            } else {
-              markers[iMarker].pinLayer.openPopup();
-            }
+        handleDsLogin();
+      }
+      function handleDsLogin() {
+        var dsToken = ds.getToken();
+        var markerCode;
+        var markerEvent;
+        var regionCode;
+        var regionEvent;
+        var regionLat;
+        var regionLng;
+        var chart = parameters.chart ?
+          parameters.chart : null;
+        var tiles = parameters.tiles ?
+          parameters.tiles : 'satellite';
+        var regions = [];
+        var markers = [];
+        var video = false;
+        var grid;
+        var drawing = false;
+        var wm;
+        var chartSync;
+        var tilesSync;
+        var markerSync;
+        var regionSync;
+        var videoSync;
+        var leafletMap;
+        var map;
+        var matrix;
+        var rows;
+        var baseSize;
+        var windowX;
+        var windowYBase;
+        var controlChannel;
+        var tileLayer;
+        var channel = thr0w.getChannel();
+        var videoCoverEl = document.getElementById('video_cover');
+        var videoContainerEl = document.getElementById('video_container');
+        var videoElementEl = document.getElementById('video_element');
+        var videoStopEl = document.getElementById('video_stop');
+        var videoObj;
+        var singleEl = document.getElementById('single');
+        var doubleEl = document.getElementById('double');
+        var quadEl = document.getElementById('quad');
+        var fullEl = document.getElementById('full');
+        var satelliteEl = document.getElementById('satellite');
+        var streetEl = document.getElementById('street');
+        var nightEl = document.getElementById('night');
+        var whiteEl = document.getElementById('white');
+        var blackEl = document.getElementById('black');
+        var cameraEl = document.getElementById('camera');
+        var initialCenterLat = parameters.initialCenterLat ?
+          parseFloat(parameters.initialCenterLat) : 0;
+        var initialCenterLng = parameters.initialCenterLng ?
+          parseFloat(parameters.initialCenterLng) : 0;
+        var initialZoomLevel = parameters.initialZoomLevel ?
+          parseInt(parameters.initialZoomLevel) : MIN_ZOOM[size];
+        var initialMarkerPopped = parameters.initialMarkerPopped ?
+          parameters.initialMarkerPopped : null;
+        var initialRegionPopped = parameters.initialRegionPopped ?
+          parameters.initialRegionPopped : null;
+        var initialRegionPoppedLat = parameters.initialRegionPoppedLat ?
+          parameters.initialRegionPoppedLat : null;
+        var initialRegionPoppedLng = parameters.initialRegionPoppedLng ?
+          parameters.initialRegionPoppedLng : null;
+        var iMarker;
+        initialZoomLevel = Math.max(initialZoomLevel, MIN_ZOOM[size]);
+        switch (size) {
+          case SIZE_SINGLE:
+            drawing = true;
+            fullEl.style.display = 'block';
+            baseSize = 'single';
+            controlChannel = channel;
+            windowX = 180;
+            windowYBase = 0;
+            matrix = [
+              [channel]
+            ];
+            rows = [
+              {
+                width: 1080,
+                height: 1920
+              }
+            ];
             break;
+          case SIZE_DOUBLE:
+            drawing = true;
+            videoElementEl.setAttribute('width', 1600);
+            videoElementEl.setAttribute('height', 900);
+            videoContainerEl.style.width = '1600px';
+            videoContainerEl.style.height = '900px';
+            singleEl.style.display = 'block';
+            fullEl.style.display = 'block';
+            controlChannel = parseInt(parameters.control);
+            baseSize = 'double_' + controlChannel;
+            windowX = 180;
+            windowYBase = 0;
+            switch (controlChannel) {
+              case 6:
+                if (channel !== 6 && channel !== 7) {
+                  throw 400;
+                }
+                matrix = [
+                  [6, 7]
+                ];
+                break;
+              case 7:
+                if (channel !== 7 && channel !== 8) {
+                  throw 400;
+                }
+                matrix = [
+                  [7, 8]
+                ];
+                break;
+              case 8:
+                if (channel !== 8 && channel !== 9) {
+                  throw 400;
+                }
+                matrix = [
+                  [8, 9]
+                ];
+                break;
+              default:
+                throw 400;
+            }
+            rows = [
+              {
+                width: 1080,
+                height: 1920,
+                spacing: 112
+              }
+            ];
+            break;
+          case SIZE_QUAD:
+            drawing = true;
+            videoElementEl.setAttribute('width', 1600);
+            videoElementEl.setAttribute('height', 900);
+            videoContainerEl.style.width = '1600px';
+            videoContainerEl.style.height = '900px';
+            singleEl.style.display = 'block';
+            doubleEl.style.display = 'block';
+            fullEl.style.display = 'block';
+            controlChannel = 6;
+            baseSize = 'quad';
+            windowX = 180;
+            windowYBase = 0;
+            matrix = [
+              [6, 7, 8, 9]
+            ];
+            rows = [
+              {
+                width: 1080,
+                height: 1920,
+                spacing: 112
+              }
+            ];
+            break;
+          case SIZE_FULL:
+            videoElementEl.setAttribute('width', 3200);
+            videoElementEl.setAttribute('height', 1800);
+            videoContainerEl.style.width = '3200px';
+            videoContainerEl.style.height = '1800px';
+            videoStopEl.style.right = 'initial';
+            videoStopEl.style.top = 'initial';
+            videoStopEl.style.left = '0px';
+            videoStopEl.style.bottom = '0px';
+            videoStopEl.style.width = '100px';
+            videoStopEl.style.height = '100px';
+            videoStopEl.style.transform = 'translate(-150%, 150%)';
+            singleEl.style.display = 'block';
+            doubleEl.style.display = 'block';
+            quadEl.style.display = 'block';
+            baseSize = 'full';
+            controlChannel = 6;
+            windowX = 300;
+            windowYBase = 1882;
+            matrix = [
+              [0, 1, 2],
+              [3, 4, 5],
+              [6, 7, 8, 9]
+            ];
+            rows = [
+              {
+                width: 1920,
+                height: 1080,
+                spacing: 28,
+                scale: 0.84,
+                margin: 20
+              },
+              {
+                width: 1920,
+                height: 1080,
+                spacing: 28,
+                scale: 0.84,
+                margin: 60
+              },
+              {
+                width: 1080,
+                height: 1920,
+                spacing: 112,
+                padding: 111
+              }
+            ];
+            break;
+          default:
+            throw 400;
+        }
+        grid = new thr0w.FlexGrid(
+          frameEl,
+          contentEl,
+          matrix,
+          rows
+        );
+        if (drawing) {
+          thr0w.draw.load(grid);
+        }
+        wm = new thr0w.windows.WindowManager(
+          'wm',
+          grid
+        );
+        captureSync = new thr0w.Sync(
+          grid,
+          baseSize + '_capture',
+          captureMessage,
+          captureReceive
+        );
+        chartSync = new thr0w.Sync(
+          grid,
+          baseSize + '_chart',
+          chartMessage,
+          chartReceive
+        );
+        tilesSync = new thr0w.Sync(
+          grid,
+          baseSize + '_tiles',
+          tilesMessage,
+          tilesReceive
+        );
+        markerSync = new thr0w.Sync(
+          grid,
+          baseSize + '_marker',
+          markerMessage,
+          markerReceive
+        );
+        regionSync = new thr0w.Sync(
+          grid,
+          baseSize + '_region',
+          regionMessage,
+          regionReceive
+        );
+        videoSync = new thr0w.Sync(
+          grid,
+          baseSize + '_video',
+          videoMessage,
+          videoReceive
+        );
+        map = new thr0w.leaflet.Map(grid, initialCenterLat, initialCenterLng,
+          initialZoomLevel,
+          {
+            minZoom: MIN_ZOOM[size],
+            maxZoom: MAX_ZOOM,
+            zoomControl: false,
+            attributionControl: false,
+            closePopupOnClick: false
+          }
+        );
+        leafletMap = map.getLeafletMap();
+        leafletMap.addEventListener('zoom', zoomed);
+        updateTiles();
+        updateChart();
+        if (initialMarkerPopped) {
+          for (iMarker = 0; iMarker < markers.length; iMarker++) {
+            if (initialMarkerPopped === markers[iMarker].code) {
+              markers.popped = true;
+              if (markers[iMarker].added) {
+                markers[iMarker].layer.openPopup();
+              } else {
+                markers[iMarker].pinLayer.openPopup();
+              }
+              break;
+            }
           }
         }
-      }
-      // CONTROLS
-      if (channel === controlChannel) {
-        document.getElementById('controls').style.display = 'block';
-        if (size !== SIZE_FULL) {
-          cameraEl.style.display = 'block';
+        // CONTROLS
+        if (channel === controlChannel) {
+          document.getElementById('controls').style.display = 'block';
+          if (size !== SIZE_FULL) {
+            cameraEl.style.display = 'block';
+          }
         }
-      }
-      frameEl.addEventListener('touchstart', keepActive, true);
-      singleEl.addEventListener('click', handleSingleClick);
-      doubleEl.addEventListener('click', handleDoubleClick);
-      quadEl.addEventListener('click', handleQuadClick);
-      document.getElementById('full')
-        .addEventListener('click', handleFullClick);
-      satelliteEl.addEventListener('click', handleSatelliteClick);
-      streetEl.addEventListener('click', handleStreetClick);
-      nightEl.addEventListener('click', handleNightClick);
-      whiteEl.addEventListener('click', handleWhiteClick);
-      blackEl.addEventListener('click', handleBlackClick);
-      document.getElementById('none')
-        .addEventListener('click', handleNoneClick);
-      document.getElementById('fisheries')
-        .addEventListener('click', handleFisheriesClick);
-      document.getElementById('disease')
-        .addEventListener('click', handleDiseaseClick);
-      document.getElementById('video')
-        .addEventListener('click', handleVideoClick);
-      videoStopEl.addEventListener('click', handleVideoStopClick);
-      videoObj = new thr0w.video.Video(grid, videoElementEl);
-      videoObj.addEventListener('ended', handleVideoStopClick);
-      cameraEl.addEventListener('click', handleCameraClick);
-      document.getElementById('capture__controls__send')
-        .addEventListener('click', handleCaptureControlSend);
-      document.getElementById('capture__controls__cancel')
-        .addEventListener('click', handleCaptureControlCancel);
-      window.setInterval(checkIdle, TIMEOUT);
-      function chartMessage() {
-        return {
-          chart: chart
-        };
-      }
-      function chartReceive(data) {
-        chart = data.chart;
-        updateChart();
-      }
-      function captureMessage() {
-        return {
-          captureCover: captureCover
+        frameEl.addEventListener('touchstart', keepActive, true);
+        singleEl.addEventListener('click', handleSingleClick);
+        doubleEl.addEventListener('click', handleDoubleClick);
+        quadEl.addEventListener('click', handleQuadClick);
+        document.getElementById('full')
+          .addEventListener('click', handleFullClick);
+        satelliteEl.addEventListener('click', handleSatelliteClick);
+        streetEl.addEventListener('click', handleStreetClick);
+        nightEl.addEventListener('click', handleNightClick);
+        whiteEl.addEventListener('click', handleWhiteClick);
+        blackEl.addEventListener('click', handleBlackClick);
+        document.getElementById('none')
+          .addEventListener('click', handleNoneClick);
+        document.getElementById('fisheries')
+          .addEventListener('click', handleFisheriesClick);
+        document.getElementById('disease')
+          .addEventListener('click', handleDiseaseClick);
+        document.getElementById('video')
+          .addEventListener('click', handleVideoClick);
+        videoStopEl.addEventListener('click', handleVideoStopClick);
+        videoObj = new thr0w.video.Video(grid, videoElementEl);
+        videoObj.addEventListener('ended', handleVideoStopClick);
+        cameraEl.addEventListener('click', handleCameraClick);
+        document.getElementById('capture__controls__send')
+          .addEventListener('click', handleCaptureControlSend);
+        document.getElementById('capture__controls__cancel')
+          .addEventListener('click', handleCaptureControlCancel);
+        window.setInterval(checkIdle, TIMEOUT);
+        function chartMessage() {
+          return {
+            chart: chart
+          };
         }
-      }
-      function captureReceive(data) {
-        if (data.captureCover) {
-          captureCoverEl.style.display = 'block';
-        } else {
-          captureCoverEl.style.display = 'none';
+        function chartReceive(data) {
+          chart = data.chart;
+          updateChart();
         }
-      }
-      function tilesMessage() {
-        return {
-          tiles: tiles
-        };
-      }
-      function tilesReceive(data) {
-        tiles = data.tiles;
-        updateTiles();
-      }
-      function markerMessage() {
-        return {
-          code: markerCode,
-          event: markerEvent
-        };
-      }
-      function markerReceive(data) {
-        var i;
-        for (i = 0; i < markers.length; i++) {
-          if (markers[i].code === data.code) {
-            if (data.event === 'popupopen') {
-              markers[i].popped = true;
-              if (markers[i].added) {
+        function captureMessage() {
+          return {
+            captureCover: captureCover
+          }
+        }
+        function captureReceive(data) {
+          if (data.captureCover) {
+            captureCoverEl.style.display = 'block';
+          } else {
+            captureCoverEl.style.display = 'none';
+          }
+        }
+        function tilesMessage() {
+          return {
+            tiles: tiles
+          };
+        }
+        function tilesReceive(data) {
+          tiles = data.tiles;
+          updateTiles();
+        }
+        function markerMessage() {
+          return {
+            code: markerCode,
+            event: markerEvent
+          };
+        }
+        function markerReceive(data) {
+          var i;
+          for (i = 0; i < markers.length; i++) {
+            if (markers[i].code === data.code) {
+              if (data.event === 'popupopen') {
+                markers[i].popped = true;
+                if (markers[i].added) {
+                  markers[i].layer.openPopup();
+                } else {
+                  markers[i].pinLayer.openPopup();
+                }
+              }
+              if (data.event === 'popupclose') {
+                markers[i].popped = false;
+                if (markers[i].added) {
+                  markers[i].layer.closePopup();
+                } else {
+                  markers[i].pinLayer.closePopup();
+                }
+              }
+            }
+          }
+        }
+        function regionMessage() {
+          return {
+            code: regionCode,
+            event: regionEvent,
+            lat: regionLat,
+            lng: regionLng
+          };
+        }
+        function regionReceive(data) {
+          var i;
+          for (i = 0; i < regions.length; i++) {
+            if (regions[i].code === data.code) {
+              if (data.event === 'popupopen') {
+                regions[i].popped = true;
+                regions[i].poppedLat = data.lat;
+                regions[i].poppedLng = data.lng;
+                regions[i].layer.openPopup(L.latLng(data.lat, data.lng));
+              }
+              if (data.event === 'popupclose') {
+                regions[i].popped = false;
+                regions[i].layer.closePopup();
+              }
+            }
+          }
+        }
+        function videoMessage() {
+          return {
+            video: video
+          };
+        }
+        function videoReceive(data) {
+          video = data.video;
+          updateVideo();
+        }
+        function updateVideo() {
+          if (!video) {
+            videoContainerEl.style.display = 'none';
+            videoCoverEl.style.display = 'none';
+          } else {
+            videoCoverEl.style.display = 'block';
+            videoContainerEl.style.display = 'block';
+          }
+        }
+        function zoomed() {
+          var zoom = leafletMap.getZoom();
+          var i;
+          var iPopped;
+          for (i = 0; i < markers.length; i++) {
+            iPopped = markers[i].popped;
+            if (zoom >= markers[i].minZoom && !markers[i].added) {
+              markers[i].added = true;
+              markers[i].pinLayer.removeFrom(leafletMap);
+              markers[i].layer.addTo(leafletMap);
+              if (iPopped) {
                 markers[i].layer.openPopup();
-              } else {
+              }
+            }
+            if (zoom < markers[i].minZoom && markers[i].added) {
+              markers[i].added = false;
+              markers[i].layer.removeFrom(leafletMap);
+              markers[i].pinLayer.addTo(leafletMap);
+              if (iPopped) {
                 markers[i].pinLayer.openPopup();
               }
             }
-            if (data.event === 'popupclose') {
-              markers[i].popped = false;
-              if (markers[i].added) {
-                markers[i].layer.closePopup();
-              } else {
-                markers[i].pinLayer.closePopup();
+          }
+        }
+        function handleSingleClick() {
+          var url = [
+            base  + '/' + APP_USER  + '-' + APP_REPO,
+            '/dist/interact/',
+            '?size=' + SIZE_SINGLE,
+            '&initialCenterLat=' + map.getCenterLat(),
+            '&initialCenterLng=' + map.getCenterLng(),
+            '&initialZoomLevel=' + map.getZoomLevel(),
+            '&tiles=' + tiles
+          ].join('');
+          if (chart) {
+            url += '&chart=' + chart;
+          }
+          url += initialMarkerPoppedParameter();
+          url += initialRegionPoppedParameter();
+          switch (size) {
+            case SIZE_FULL:
+              thr0w.thr0wChannel([16, 17, 18, 19], {action: 'update',
+                url: url});
+              break;
+            case SIZE_QUAD:
+              thr0w.thr0wChannel([16, 17, 18, 19], {action: 'update',
+                url: url});
+              break;
+            case SIZE_DOUBLE:
+              switch (channel) {
+                case 6:
+                  thr0w.thr0wChannel([16, 17], {action: 'update',
+                    url: url});
+                  break;
+                case 8:
+                  thr0w.thr0wChannel([18, 19], {action: 'update',
+                    url: url});
+                  break;
+                default:
               }
-            }
+              break;
+            default:
           }
         }
-      }
-      function regionMessage() {
-        return {
-          code: regionCode,
-          event: regionEvent,
-          lat: regionLat,
-          lng: regionLng
-        };
-      }
-      function regionReceive(data) {
-        var i;
-        for (i = 0; i < regions.length; i++) {
-          if (regions[i].code === data.code) {
-            if (data.event === 'popupopen') {
-              regions[i].popped = true;
-              regions[i].poppedLat = data.lat;
-              regions[i].poppedLng = data.lng;
-              regions[i].layer.openPopup(L.latLng(data.lat, data.lng));
-            }
-            if (data.event === 'popupclose') {
-              regions[i].popped = false;
-              regions[i].layer.closePopup();
+        function handleDoubleClick() {
+          var url = [
+            base  + '/' + APP_USER  + '-' + APP_REPO,
+            '/dist/interact/',
+            '?size=' + SIZE_DOUBLE + '&control=6',
+            '&initialCenterLat=' + map.getCenterLat(),
+            '&initialCenterLng=' + map.getCenterLng(),
+            '&initialZoomLevel=' + map.getZoomLevel(),
+            '&tiles=' + tiles
+          ].join('');
+          if (chart) {
+            url += '&chart=' + chart;
+          }
+          url += initialMarkerPoppedParameter();
+          url += initialRegionPoppedParameter();
+          thr0w.thr0wChannel([16, 17], {action: 'update', url: url});
+          url = [
+            base  + '/' + APP_USER  + '-' + APP_REPO,
+            '/dist/interact/',
+            '?size=' + SIZE_DOUBLE + '&control=8',
+            '&initialCenterLat=' + map.getCenterLat(),
+            '&initialCenterLng=' + map.getCenterLng(),
+            '&initialZoomLevel=' + map.getZoomLevel(),
+            '&tiles=' + tiles
+          ].join('');
+          if (chart) {
+            url += '&chart=' + chart;
+          }
+          url += initialMarkerPoppedParameter();
+          url += initialRegionPoppedParameter();
+          thr0w.thr0wChannel([18, 19], {action: 'update', url: url});
+        }
+        function handleQuadClick() {
+          var url = [
+            base  + '/' + APP_USER  + '-' + APP_REPO,
+            '/dist/interact/',
+            '?size=' + SIZE_QUAD,
+            '&initialCenterLat=' + map.getCenterLat(),
+            '&initialCenterLng=' + map.getCenterLng(),
+            '&initialZoomLevel=' + map.getZoomLevel(),
+            '&tiles=' + tiles
+          ].join('');
+          if (chart) {
+            url += '&chart=' + chart;
+          }
+          url += initialMarkerPoppedParameter();
+          url += initialRegionPoppedParameter();
+          thr0w.thr0wChannel([16, 17, 18, 19], {action: 'update', url: url});
+        }
+        function handleFullClick() {
+          var url = [
+            base  + '/' + APP_USER  + '-' + APP_REPO,
+            '/dist/interact/',
+            '?size=' + SIZE_FULL,
+            '&initialCenterLat=' + map.getCenterLat(),
+            '&initialCenterLng=' + map.getCenterLng(),
+            '&initialZoomLevel=' + map.getZoomLevel(),
+            '&tiles=' + tiles
+          ].join('');
+          if (chart) {
+            url += '&chart=' + chart;
+          }
+          url += initialMarkerPoppedParameter();
+          url += initialRegionPoppedParameter();
+          thr0w.thr0wChannel(BROWSERS, {action: 'update', url: url});
+        }
+        function initialMarkerPoppedParameter() {
+          var i;
+          var parameter = '';
+          for (i = 0; i < markers.length; i++) {
+            if (markers[i].popped) {
+              parameter = '&initialMarkerPopped=' + markers[i].code;
+              break;
             }
           }
+          return parameter;
         }
-      }
-      function videoMessage() {
-        return {
-          video: video
-        };
-      }
-      function videoReceive(data) {
-        video = data.video;
-        updateVideo();
-      }
-      function updateVideo() {
-        if (!video) {
-          videoContainerEl.style.display = 'none';
-          videoCoverEl.style.display = 'none';
-        } else {
-          videoCoverEl.style.display = 'block';
-          videoContainerEl.style.display = 'block';
-        }
-      }
-      function zoomed() {
-        var zoom = leafletMap.getZoom();
-        var i;
-        var iPopped;
-        for (i = 0; i < markers.length; i++) {
-          iPopped = markers[i].popped;
-          if (zoom >= markers[i].minZoom && !markers[i].added) {
-            markers[i].added = true;
-            markers[i].pinLayer.removeFrom(leafletMap);
-            markers[i].layer.addTo(leafletMap);
-            if (iPopped) {
-              markers[i].layer.openPopup();
+        function initialRegionPoppedParameter() {
+          var i;
+          var parameter = '';
+          for (i = 0; i < regions.length; i++) {
+            if (regions[i].popped) {
+              parameter = [
+                '&initialRegionPopped=' + regions[i].code,
+                '&initialRegionPoppedLat=' + regions[i].poppedLat,
+                '&initialRegionPoppedLng=' + regions[i].poppedLng
+              ].join('');
+              break;
             }
           }
-          if (zoom < markers[i].minZoom && markers[i].added) {
-            markers[i].added = false;
-            markers[i].layer.removeFrom(leafletMap);
-            markers[i].pinLayer.addTo(leafletMap);
-            if (iPopped) {
-              markers[i].pinLayer.openPopup();
-            }
-          }
+          return parameter;
         }
-      }
-      function handleSingleClick() {
-        var url = [
-          base  + '/' + APP_USER  + '-' + APP_REPO,
-          '/dist/interact/',
-          '?size=' + SIZE_SINGLE,
-          '&initialCenterLat=' + map.getCenterLat(),
-          '&initialCenterLng=' + map.getCenterLng(),
-          '&initialZoomLevel=' + map.getZoomLevel(),
-          '&tiles=' + tiles
-        ].join('');
-        if (chart) {
-          url += '&chart=' + chart;
+        function handleSatelliteClick() {
+          tiles = 'satellite';
+          updateTiles();
+          tilesSync.update();
+          tilesSync.idle();
         }
-        url += initialMarkerPoppedParameter();
-        url += initialRegionPoppedParameter();
-        switch (size) {
-          case SIZE_FULL:
-            thr0w.thr0wChannel([16, 17, 18, 19], {action: 'update',
-              url: url});
-            break;
-          case SIZE_QUAD:
-            thr0w.thr0wChannel([16, 17, 18, 19], {action: 'update',
-              url: url});
-            break;
-          case SIZE_DOUBLE:
-            switch (channel) {
-              case 6:
-                thr0w.thr0wChannel([16, 17], {action: 'update',
-                  url: url});
-                break;
-              case 8:
-                thr0w.thr0wChannel([18, 19], {action: 'update',
-                  url: url});
-                break;
-              default:
-            }
-            break;
-          default:
+        function handleStreetClick() {
+          tiles = 'street';
+          updateTiles();
+          tilesSync.update();
+          tilesSync.idle();
         }
-      }
-      function handleDoubleClick() {
-        var url = [
-          base  + '/' + APP_USER  + '-' + APP_REPO,
-          '/dist/interact/',
-          '?size=' + SIZE_DOUBLE + '&control=6',
-          '&initialCenterLat=' + map.getCenterLat(),
-          '&initialCenterLng=' + map.getCenterLng(),
-          '&initialZoomLevel=' + map.getZoomLevel(),
-          '&tiles=' + tiles
-        ].join('');
-        if (chart) {
-          url += '&chart=' + chart;
+        function handleNightClick() {
+          tiles = 'night';
+          updateTiles();
+          tilesSync.update();
+          tilesSync.idle();
         }
-        url += initialMarkerPoppedParameter();
-        url += initialRegionPoppedParameter();
-        thr0w.thr0wChannel([16, 17], {action: 'update', url: url});
-        url = [
-          base  + '/' + APP_USER  + '-' + APP_REPO,
-          '/dist/interact/',
-          '?size=' + SIZE_DOUBLE + '&control=8',
-          '&initialCenterLat=' + map.getCenterLat(),
-          '&initialCenterLng=' + map.getCenterLng(),
-          '&initialZoomLevel=' + map.getZoomLevel(),
-          '&tiles=' + tiles
-        ].join('');
-        if (chart) {
-          url += '&chart=' + chart;
+        function handleWhiteClick() {
+          tiles = 'white';
+          updateTiles();
+          tilesSync.update();
+          tilesSync.idle();
         }
-        url += initialMarkerPoppedParameter();
-        url += initialRegionPoppedParameter();
-        thr0w.thr0wChannel([18, 19], {action: 'update', url: url});
-      }
-      function handleQuadClick() {
-        var url = [
-          base  + '/' + APP_USER  + '-' + APP_REPO,
-          '/dist/interact/',
-          '?size=' + SIZE_QUAD,
-          '&initialCenterLat=' + map.getCenterLat(),
-          '&initialCenterLng=' + map.getCenterLng(),
-          '&initialZoomLevel=' + map.getZoomLevel(),
-          '&tiles=' + tiles
-        ].join('');
-        if (chart) {
-          url += '&chart=' + chart;
+        function handleBlackClick() {
+          tiles = 'black';
+          updateTiles();
+          tilesSync.update();
+          tilesSync.idle();
         }
-        url += initialMarkerPoppedParameter();
-        url += initialRegionPoppedParameter();
-        thr0w.thr0wChannel([16, 17, 18, 19], {action: 'update', url: url});
-      }
-      function handleFullClick() {
-        var url = [
-          base  + '/' + APP_USER  + '-' + APP_REPO,
-          '/dist/interact/',
-          '?size=' + SIZE_FULL,
-          '&initialCenterLat=' + map.getCenterLat(),
-          '&initialCenterLng=' + map.getCenterLng(),
-          '&initialZoomLevel=' + map.getZoomLevel(),
-          '&tiles=' + tiles
-        ].join('');
-        if (chart) {
-          url += '&chart=' + chart;
+        function handleNoneClick() {
+          wm.closeAllWindows();
+          map.moveTo(0, 0, 0, MIN_ZOOM[size]);
+          chart = null;
+          updateChart();
+          chartSync.update();
+          chartSync.idle();
         }
-        url += initialMarkerPoppedParameter();
-        url += initialRegionPoppedParameter();
-        thr0w.thr0wChannel(BROWSERS, {action: 'update', url: url});
-      }
-      function initialMarkerPoppedParameter() {
-        var i;
-        var parameter = '';
-        for (i = 0; i < markers.length; i++) {
-          if (markers[i].popped) {
-            parameter = '&initialMarkerPopped=' + markers[i].code;
-            break;
-          }
+        function handleFisheriesClick() {
+          wm.closeAllWindows();
+          map.moveTo(0, 0, 0, MIN_ZOOM[size]);
+          chart = 'fisheries';
+          updateChart();
+          chartSync.update();
+          chartSync.idle();
         }
-        return parameter;
-      }
-      function initialRegionPoppedParameter() {
-        var i;
-        var parameter = '';
-        for (i = 0; i < regions.length; i++) {
-          if (regions[i].popped) {
-            parameter = [
-              '&initialRegionPopped=' + regions[i].code,
-              '&initialRegionPoppedLat=' + regions[i].poppedLat,
-              '&initialRegionPoppedLng=' + regions[i].poppedLng
-            ].join('');
-            break;
-          }
+        function handleDiseaseClick() {
+          wm.closeAllWindows();
+          map.moveTo(0, 0, 0, MIN_ZOOM[size]);
+          chart = 'fisheries';
+          chart = 'disease';
+          updateChart();
+          chartSync.update();
+          chartSync.idle();
         }
-        return parameter;
-      }
-      function handleSatelliteClick() {
-        tiles = 'satellite';
-        updateTiles();
-        tilesSync.update();
-        tilesSync.idle();
-      }
-      function handleStreetClick() {
-        tiles = 'street';
-        updateTiles();
-        tilesSync.update();
-        tilesSync.idle();
-      }
-      function handleNightClick() {
-        tiles = 'night';
-        updateTiles();
-        tilesSync.update();
-        tilesSync.idle();
-      }
-      function handleWhiteClick() {
-        tiles = 'white';
-        updateTiles();
-        tilesSync.update();
-        tilesSync.idle();
-      }
-      function handleBlackClick() {
-        tiles = 'black';
-        updateTiles();
-        tilesSync.update();
-        tilesSync.idle();
-      }
-      function handleNoneClick() {
-        wm.closeAllWindows();
-        map.moveTo(0, 0, 0, MIN_ZOOM[size]);
-        chart = null;
-        updateChart();
-        chartSync.update();
-        chartSync.idle();
-      }
-      function handleFisheriesClick() {
-        wm.closeAllWindows();
-        map.moveTo(0, 0, 0, MIN_ZOOM[size]);
-        chart = 'fisheries';
-        updateChart();
-        chartSync.update();
-        chartSync.idle();
-      }
-      function handleDiseaseClick() {
-        wm.closeAllWindows();
-        map.moveTo(0, 0, 0, MIN_ZOOM[size]);
-        chart = 'fisheries';
-        chart = 'disease';
-        updateChart();
-        chartSync.update();
-        chartSync.idle();
-      }
-      function handleVideoClick() {
-        video = true;
-        updateVideo();
-        videoSync.update();
-        videoSync.idle();
-        videoObj.play();
-      }
-      function handleVideoStopClick() {
-        video = false;
-        videoObj.pause();
-        updateVideo();
-        videoSync.update();
-        videoSync.idle();
-        videoObj.setCurrentTime(0);
-      }
-      function handleCameraClick() {
+        function handleVideoClick() {
+          video = true;
+          updateVideo();
+          videoSync.update();
+          videoSync.idle();
+          videoObj.play();
+        }
+        function handleVideoStopClick() {
+          video = false;
+          videoObj.pause();
+          updateVideo();
+          videoSync.update();
+          videoSync.idle();
+          videoObj.setCurrentTime(0);
+        }
+        function handleCameraClick() {
 
-        switch (size) {
-          case SIZE_SINGLE:
-            thr0w.thr0w([channel + 10], {
-              action: 'capture',
-              target: channel
-            });
-            captureSingleEl.style.display = 'block';
-            break;
-          case SIZE_DOUBLE:
-            thr0w.thr0w([channel + 10, channel + 11], {
-              action: 'capture',
-              target: channel
-            });
-            captureDoubleEl.style.display = 'block';
-            break;
-          case SIZE_QUAD:
-            thr0w.thr0w([channel + 10, channel + 11, channel + 12, channel + 13], {
-              action: 'capture',
-              target: channel
-            });
-            captureQuadEl.style.display = 'block';
-            break;
-          default:
-        }
-      }
-      function handleCaptureControlCancel() {
-        captureEl.style.display = 'none';
-        captureSingleEl.style.display = 'none';
-        captureDoubleEl.style.display = 'none';
-        captureQuadEl.style.display = 'none';
-        captureCoverEl.style.display = 'none';
-        captureCover = false;
-        captureSync.update();
-        captureSync.idle();
-      }
-      function handleCaptureControlSend() {
-        captureEl.style.display = 'none';
-        captureSingleEl.style.display = 'none';
-        captureDoubleEl.style.display = 'none';
-        captureQuadEl.style.display = 'none';
-        captureCoverEl.style.display = 'none';
-        captureCover = false;
-        captureSync.update();
-        captureSync.idle();
-      }
-      function updateChart() {
-        var i;
-        var j;
-        removeRegions();
-        removeMarkers();
-        if (chart) {
-          for (i = 0; i < CHARTS[chart].regions.length; i++) {
-            addRegion(
-              CHARTS[chart].regions[i].region,
-              CHARTS[chart].regions[i].color,
-              CHARTS[chart].regionsPopup,
-              CHARTS[chart].regionsPopupDetail,
-              CHARTS[chart].regionsPopupWidth,
-              CHARTS[chart].regionsPopupHeight,
-              CHARTS[chart].regionsPopupDetailWidth,
-              CHARTS[chart].regionsPopupDetailHeight
-            );
+          switch (size) {
+            case SIZE_SINGLE:
+              thr0w.thr0w([channel + 10], {
+                action: 'capture',
+                target: channel
+              });
+              captureSingleEl.style.display = 'block';
+              break;
+            case SIZE_DOUBLE:
+              thr0w.thr0w([channel + 10, channel + 11], {
+                action: 'capture',
+                target: channel
+              });
+              captureDoubleEl.style.display = 'block';
+              break;
+            case SIZE_QUAD:
+              thr0w.thr0w([channel + 10, channel + 11, channel + 12, channel + 13], {
+                action: 'capture',
+                target: channel
+              });
+              captureQuadEl.style.display = 'block';
+              break;
+            default:
           }
-          for (i = 0; i < CHARTS[chart].markers.length; i++) {
-            for (j = 0; j < CHARTS[chart].markers[i].iconUrls.length; j++) {
-              addMarker(
-                CHARTS[chart].markers[i].marker,
-                CHARTS[chart].markers[i].latlng,
-                CHARTS[chart].markers[i].iconUrls[j],
-                CHARTS[chart].markers[i].minZoom,
-                CHARTS[chart].markersPopup,
-                CHARTS[chart].markersPopupDetail,
-                CHARTS[chart].markersPopupWidth,
-                CHARTS[chart].markersPopupHeight,
-                CHARTS[chart].markersPopupDetailWidth,
-                CHARTS[chart].markersPopupDetailHeight
+        }
+        function handleCaptureControlCancel() {
+          captureEl.style.display = 'none';
+          captureSingleEl.style.display = 'none';
+          captureDoubleEl.style.display = 'none';
+          captureQuadEl.style.display = 'none';
+          captureSingleLeftEl.style.backgroundImage = 'none';
+          captureDoubleLeftEl.style.backgroundImage = 'none';
+          captureDoubleRightEl.style.backgroundImage = 'none';
+          captureQuadLeftEl.style.backgroundImage = 'none';
+          captureQuadMiddleLeftEl.style.backgroundImage = 'none';
+          captureQuadMiddleRightEl.style.backgroundImage = 'none';
+          captureQuadRightEl.style.backgroundImage = 'none';
+          captureCoverEl.style.display = 'none';
+          captureCover = false;
+          captureSync.update();
+          captureSync.idle();
+        }
+        function handleCaptureControlSend() {
+          var leftImage = null;
+          var middleLeftImage = null;
+          var middleRightImage = null;
+          var rightImage = null;
+          var email = captureControlsEmailEl.value;
+          if (email === '') {
+            return;
+          }
+          switch (size) {
+            case SIZE_SINGLE:
+              leftImage = captureSingleLeftEl.style.backgroundImage;
+              leftImage = leftImage !== 'none' ? leftImage
+                .substring(28, leftImage.length - 2) : null;
+              break;
+            case SIZE_DOUBLE:
+              leftImage = captureDoubleLeftEl.style.backgroundImage;
+              leftImage = leftImage !== 'none' ? leftImage
+                .substring(28, leftImage.length - 2) : null;
+              rightImage = captureDoubleRightEl.style.backgroundImage;
+              rightImage = rightImage !== 'none' ? rightImage
+                .substring(28, rightImage.length - 2) : null;
+              break;
+            case SIZE_QUAD:
+              leftImage = captureQuadLeftEl.style.backgroundImage;
+              leftImage = leftImage !== 'none' ? leftImage
+                .substring(28, leftImage.length - 2) : null;
+              middleLeftImage = captureQuadMiddleLeftEl.style.backgroundImage;
+              middleLeftImage = middleLeftImage !== 'none' ? middleLeftImage
+                .substring(28, middleLeftImage.length - 2) : null;
+              middleRightImage = captureQuadMiddleRightEl.style.backgroundImage;
+              middleRightImage = middleRightImage !== 'none' ? middleRightImage
+                .substring(28, middleRightImage.length - 2) : null;
+              rightImage = captureQuadRightEl.style.backgroundImage;
+              rightImage = rightImage !== 'none' ? rightImage
+                .substring(28, rightImage.length - 2) : null;
+              break;
+            default:
+          }
+          var xmlhttp = new XMLHttpRequest();
+          var message = {
+            html: '<p>Attached are the screen captures.</p>',
+            text: 'Attached are the screen captures.',
+            subject: 'Screen Captures - ISFS Wall Whiteboard',
+            to: [{
+              email: email,
+              name: 'ISFS Wall User',
+              type: 'to'
+            }]
+          };
+          message.attachments = [];
+          if (leftImage !== null) {
+            message.attachments.push({
+              type: 'image/jpeg',
+              name: 'left.jpg',
+              content: leftImage
+            });
+          }
+          if (middleLeftImage !== null) {
+            message.attachments.push({
+              type: 'image/jpeg',
+              name: 'middle-left.jpg',
+              content: middleLeftImage
+            });
+          }
+          if (middleRightImage !== null) {
+            message.attachments.push({
+              type: 'image/jpeg',
+              name: 'middle-right.jpg',
+              content: middleRightImage
+            });
+          }
+          if (rightImage !== null) {
+            message.attachments.push({
+              type: 'image/jpeg',
+              name: 'right.jpg',
+              content: rightImage
+            });
+          }
+          xmlhttp.open('POST', base + ':3010/api/mail', true);
+          xmlhttp.setRequestHeader('Authorization',
+            'bearer ' + dsToken);
+          xmlhttp.setRequestHeader('Content-type',
+            'application/json');
+          xmlhttp.onreadystatechange = handleOnreadystatechange;
+          xmlhttp.send(JSON.stringify(message));
+          function handleOnreadystatechange() {
+            if (xmlhttp.readyState !== 4) {
+              return;
+            }
+            handleCaptureControlCancel();
+          }
+        }
+        function updateChart() {
+          var i;
+          var j;
+          removeRegions();
+          removeMarkers();
+          if (chart) {
+            for (i = 0; i < CHARTS[chart].regions.length; i++) {
+              addRegion(
+                CHARTS[chart].regions[i].region,
+                CHARTS[chart].regions[i].color,
+                CHARTS[chart].regionsPopup,
+                CHARTS[chart].regionsPopupDetail,
+                CHARTS[chart].regionsPopupWidth,
+                CHARTS[chart].regionsPopupHeight,
+                CHARTS[chart].regionsPopupDetailWidth,
+                CHARTS[chart].regionsPopupDetailHeight
               );
             }
+            for (i = 0; i < CHARTS[chart].markers.length; i++) {
+              for (j = 0; j < CHARTS[chart].markers[i].iconUrls.length; j++) {
+                addMarker(
+                  CHARTS[chart].markers[i].marker,
+                  CHARTS[chart].markers[i].latlng,
+                  CHARTS[chart].markers[i].iconUrls[j],
+                  CHARTS[chart].markers[i].minZoom,
+                  CHARTS[chart].markersPopup,
+                  CHARTS[chart].markersPopupDetail,
+                  CHARTS[chart].markersPopupWidth,
+                  CHARTS[chart].markersPopupHeight,
+                  CHARTS[chart].markersPopupDetailWidth,
+                  CHARTS[chart].markersPopupDetailHeight
+                );
+              }
+            }
           }
         }
-      }
-      function updateTiles() {
-        if (tileLayer) {
-          tileLayer.removeFrom(leafletMap);
-        }
-        if (tiles === 'street') {
-          streetEl.style.display = 'none';
-          satelliteEl.style.display = 'none';
-          whiteEl.style.display = 'none';
-          nightEl.style.display = 'block';
-          document.querySelector('.leaflet-container')
-            .style.backgroundColor = 'rgb(255,255,255)';
-          // jscs:disable
-          tileLayer = L.tileLayer(
-            'http://192.168.1.2:8081/street/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-          }).addTo(leafletMap);
-          // jscs:enable
-        }
-        if (tiles === 'satellite') {
-          satelliteEl.style.display = 'none';
-          nightEl.style.display = 'none';
-          whiteEl.style.display = 'none';
-          blackEl.style.display = 'none';
-          streetEl.style.display = 'block';
-          document.querySelector('.leaflet-container')
-            .style.backgroundColor = 'rgb(0,0,0)';
-          // jscs:disable
-          tileLayer =  L.tileLayer(
-            'http://192.168.1.2:8080/satellite/{z}/{y}/{x}',
-            {
-               attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
-            }
-          ).addTo(leafletMap);
-          // jscs:enable
-        }
-        if (tiles === 'night') {
-          nightEl.style.display = 'none';
-          streetEl.style.display = 'none';
-          satelliteEl.style.display = 'none';
-          blackEl.style.display = 'none';
-          whiteEl.style.display = 'block';
-          document.querySelector('.leaflet-container')
-            .style.backgroundColor = 'rgb(0,0,0)';
-          // jscs:disable
-          tileLayer = L.tileLayer(
-            'http://192.168.1.2:8082/night/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
-          }).addTo(leafletMap);
-          // jscs:enable
-        }
-        if (tiles === 'white') {
-          nightEl.style.display = 'none';
-          streetEl.style.display = 'none';
-          whiteEl.style.display = 'none';
-          satelliteEl.style.display = 'none';
-          blackEl.style.display = 'block';
-          document.querySelector('.leaflet-container')
-            .style.backgroundColor = 'rgb(255,255,255)';
-          tileLayer = null
-        }
-        if (tiles === 'black') {
-          nightEl.style.display = 'none';
-          streetEl.style.display = 'none';
-          whiteEl.style.display = 'none';
-          blackEl.style.display = 'none';
-          satelliteEl.style.display = 'block';
-          document.querySelector('.leaflet-container')
-            .style.backgroundColor = 'rgb(0,0,0)';
-          tileLayer = null
-        }
-      }
-      function addRegion(code, color, popup,
-        popupDetail, popupWidth, popupHeight,
-        popupDetailWidth, popupDetailHeight) {
-        var popupHtml = '';
-        var popupDetailHtml = '';
-        var popupDetailButton;
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = handleOnReadyStateChange;
-        function handleOnReadyStateChange() {
-          var layer;
-          var region = {};
-          if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-            layer = L.geoJson(
-              JSON.parse(xmlhttp.responseText),
+        function updateTiles() {
+          if (tileLayer) {
+            tileLayer.removeFrom(leafletMap);
+          }
+          if (tiles === 'street') {
+            streetEl.style.display = 'none';
+            satelliteEl.style.display = 'none';
+            whiteEl.style.display = 'none';
+            nightEl.style.display = 'block';
+            document.querySelector('.leaflet-container')
+              .style.backgroundColor = 'rgb(255,255,255)';
+            // jscs:disable
+            tileLayer = L.tileLayer(
+              'http://192.168.1.2:8081/street/{z}/{x}/{y}.png', {
+              maxZoom: 19,
+              attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(leafletMap);
+            // jscs:enable
+          }
+          if (tiles === 'satellite') {
+            satelliteEl.style.display = 'none';
+            nightEl.style.display = 'none';
+            whiteEl.style.display = 'none';
+            blackEl.style.display = 'none';
+            streetEl.style.display = 'block';
+            document.querySelector('.leaflet-container')
+              .style.backgroundColor = 'rgb(0,0,0)';
+            // jscs:disable
+            tileLayer =  L.tileLayer(
+              'http://192.168.1.2:8080/satellite/{z}/{y}/{x}',
               {
-                fillColor: color,
-                weight: 5,
-                opacity: 1,
-                color: 'rgb(255,255,255)',
-                fillOpacity: 0.7
+                 attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
               }
-            );
-            if (popup) {
-              popupHtml = [
-                '<iframe src="',
-                chart + '/?code=' + code,
-                '" ',
-                'width="',
-                popupWidth,
-                '" ',
-                'height="',
-                popupHeight,
-                '" style="border:none">',
-                '</iframe>'
-              ].join('');
-              if (popupDetail) {
-                popupDetailHtml = [
-                  '<div id="popup__detail--',
-                  code,
-                  '" class="popup__detail">',
-                  '<img src="img/info.png" width="50" height="50"/>',
-                  '</div>',
-                  '<div style="clear: both;">&nbsp;</div>',
+            ).addTo(leafletMap);
+            // jscs:enable
+          }
+          if (tiles === 'night') {
+            nightEl.style.display = 'none';
+            streetEl.style.display = 'none';
+            satelliteEl.style.display = 'none';
+            blackEl.style.display = 'none';
+            whiteEl.style.display = 'block';
+            document.querySelector('.leaflet-container')
+              .style.backgroundColor = 'rgb(0,0,0)';
+            // jscs:disable
+            tileLayer = L.tileLayer(
+              'http://192.168.1.2:8082/night/{z}/{x}/{y}.png', {
+              maxZoom: 19,
+              attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+            }).addTo(leafletMap);
+            // jscs:enable
+          }
+          if (tiles === 'white') {
+            nightEl.style.display = 'none';
+            streetEl.style.display = 'none';
+            whiteEl.style.display = 'none';
+            satelliteEl.style.display = 'none';
+            blackEl.style.display = 'block';
+            document.querySelector('.leaflet-container')
+              .style.backgroundColor = 'rgb(255,255,255)';
+            tileLayer = null
+          }
+          if (tiles === 'black') {
+            nightEl.style.display = 'none';
+            streetEl.style.display = 'none';
+            whiteEl.style.display = 'none';
+            blackEl.style.display = 'none';
+            satelliteEl.style.display = 'block';
+            document.querySelector('.leaflet-container')
+              .style.backgroundColor = 'rgb(0,0,0)';
+            tileLayer = null
+          }
+        }
+        function addRegion(code, color, popup,
+          popupDetail, popupWidth, popupHeight,
+          popupDetailWidth, popupDetailHeight) {
+          var popupHtml = '';
+          var popupDetailHtml = '';
+          var popupDetailButton;
+          var xmlhttp = new XMLHttpRequest();
+          xmlhttp.onreadystatechange = handleOnReadyStateChange;
+          function handleOnReadyStateChange() {
+            var layer;
+            var region = {};
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+              layer = L.geoJson(
+                JSON.parse(xmlhttp.responseText),
+                {
+                  fillColor: color,
+                  weight: 5,
+                  opacity: 1,
+                  color: 'rgb(255,255,255)',
+                  fillOpacity: 0.7
+                }
+              );
+              if (popup) {
+                popupHtml = [
+                  '<iframe src="',
+                  chart + '/?code=' + code,
+                  '" ',
+                  'width="',
+                  popupWidth,
+                  '" ',
+                  'height="',
+                  popupHeight,
+                  '" style="border:none">',
+                  '</iframe>'
                 ].join('');
+                if (popupDetail) {
+                  popupDetailHtml = [
+                    '<div id="popup__detail--',
+                    code,
+                    '" class="popup__detail">',
+                    '<img src="img/info.png" width="50" height="50"/>',
+                    '</div>',
+                    '<div style="clear: both;">&nbsp;</div>',
+                  ].join('');
+                }
+                layer.addEventListener('popupopen', handlePopupOpen);
+                layer.addEventListener('popupclose', handlePopupClose);
+                layer.addEventListener('click', handleClick);
+                layer.bindPopup(popupHtml + popupDetailHtml,
+                  {autoPan: false, maxWidth: popupWidth});
               }
-              layer.addEventListener('popupopen', handlePopupOpen);
-              layer.addEventListener('popupclose', handlePopupClose);
-              layer.addEventListener('click', handleClick);
-              layer.bindPopup(popupHtml + popupDetailHtml,
-                {autoPan: false, maxWidth: popupWidth});
+              region.code = code;
+              region.layer = layer;
+              region.popped = false;
+              regions.push(region);
+              layer.addTo(leafletMap);
+              if (initialRegionPopped === code) {
+                initialRegionPopped = null;
+                region.popped = true;
+                region.poppedLat = initialRegionPoppedLat;
+                region.poppedLng = initialRegionPoppedLng;
+                layer.openPopup(
+                  L.latLng(initialRegionPoppedLat,
+                    initialRegionPoppedLng));
+              }
             }
-            region.code = code;
-            region.layer = layer;
-            region.popped = false;
-            regions.push(region);
-            layer.addTo(leafletMap);
-            if (initialRegionPopped === code) {
-              initialRegionPopped = null;
-              region.popped = true;
-              region.poppedLat = initialRegionPoppedLat;
-              region.poppedLng = initialRegionPoppedLng;
-              layer.openPopup(
-                L.latLng(initialRegionPoppedLat,
-                  initialRegionPoppedLng));
+            function handlePopupOpen(e) {
+              if (popupDetail) {
+                popupDetailButton = document.getElementById(
+                  'popup__detail--' + code
+                );
+                popupDetailButton.addEventListener('click',
+                  handlePopupDetailClick);
+              }
+              if (!region.popped) {
+                region.popped = true;
+                region.poppedLat = e.popup.getLatLng().lat;
+                region.poppedLng = e.popup.getLatLng().lng;
+                regionCode = code;
+                regionEvent = 'popupopen';
+                regionLat = region.poppedLat;
+                regionLng = region.poppedLng;
+                regionSync.update();
+                regionSync.idle();
+              }
+            }
+            function handlePopupDetailClick() {
+              try {
+                wm.openWindow(code, windowX,
+                  windowYBase + 1920 - popupDetailHeight - 100,
+                  popupDetailWidth,
+                  popupDetailHeight, chart + '_detail' + '/?code=' + code
+                );
+              } catch (error) {
+                wm.closeWindow(code);
+                wm.openWindow(code, windowX,
+                  windowYBase + 1920 - popupDetailHeight - 100,
+                  popupDetailWidth,
+                  popupDetailHeight, chart + '_detail' + '/?code=' + code
+                );
+              }
+            }
+            function handlePopupClose() {
+              if (popupDetail) {
+                popupDetailButton.removeEventListener('click',
+                  handlePopupDetailClick);
+              }
+              if (region.popped) {
+                region.popped = false;
+                regionCode = code;
+                regionEvent = 'popupclose';
+                regionSync.update();
+                regionSync.idle();
+              }
+            }
+            function handleClick(e) {
+              if (region.popped) {
+                regionCode = code;
+                regionEvent = 'popupclose';
+                regionSync.update();
+                regionSync.idle();
+                regionEvent = 'popupopen';
+                regionLat = e.latlng.lat;
+                regionLng = e.latlng.lng;
+                regionSync.update();
+                regionSync.idle();
+              }
             }
           }
-          function handlePopupOpen(e) {
+          xmlhttp.open('GET',
+            '/upload/' + APP_USER + '-' + APP_REPO + '/world.geo.json/countries/' +
+            code + '.geo.json', true);
+          xmlhttp.send();
+        }
+        function removeRegions() {
+          var i;
+          var layer;
+          for (i = 0; i < regions.length; i++) {
+            layer = regions[i].layer;
+            if (regions[i].popped) {
+              regions[i].popped = false;
+              layer.closePopup();
+            }
+            layer.removeEventListener();
+            layer.removeFrom(leafletMap);
+          }
+          regions = [];
+        }
+        function addMarker(code, latlng, iconUrl, minZoom, popup,
+          popupDetail, popupWidth, popupHeight, popupDetailWidth,
+          popupDetailHeight) {
+          var popupHtml;
+          var popupDetailHtml = '';
+          var popupDetailPinHtml = '';
+          var popupDetailButton;
+          var marker = {};
+          var pinIcon = L.icon({
+            iconUrl: 'img/pins/red.png',
+            iconSize: L.point(25,43),
+            iconAnchor: L.point(12,43)
+          });
+          var pinLayer = L.marker(latlng, {icon: pinIcon});
+          var icon = L.icon({
+            iconUrl: iconUrl,
+            iconSize: L.point(100,100),
+            iconAnchor: L.point(50,50)
+          });
+          var layer = L.marker(latlng, {icon: icon});
+          if (popup) {
+            popupHtml = [
+              '<iframe src="',
+              chart + '/?code=' + code,
+              '" ',
+              'width="',
+              popupWidth,
+              '" ',
+              'height="',
+              popupHeight,
+              '" style="border:none">',
+              '</iframe>'
+            ].join('');
+            if (popupDetail) {
+              popupDetailHtml = [
+                '<div id="popup__detail--',
+                code,
+                '" class="popup__detail">',
+                '<img src="img/info.png" width="50" height="50"/>',
+                '</div>',
+                '<div style="clear: both;">&nbsp;</div>',
+              ].join('');
+              popupDetailPinHtml = [
+                '<div id="popup__detail--pin--',
+                code,
+                '" class="popup__detail">',
+                '<img src="img/info.png" width="50" height="50"/>',
+                '</div>',
+                '<div style="clear: both;">&nbsp;</div>',
+              ].join('');
+            }
+            pinLayer.addEventListener('popupopen', handlePopupPinOpen);
+            pinLayer.addEventListener('popupclose', handlePopupClose);
+            layer.addEventListener('popupopen', handlePopupOpen);
+            layer.addEventListener('popupclose', handlePopupClose);
+            pinLayer.bindPopup(popupHtml + popupDetailPinHtml,
+              {autoPan: false, maxWidth: popupWidth});
+            layer.bindPopup(popupHtml + popupDetailHtml,
+              {autoPan: false, maxWidth: popupWidth});
+          }
+          marker.code = code;
+          marker.pinLayer = pinLayer;
+          marker.layer = layer;
+          marker.minZoom = minZoom;
+          marker.added = false;
+          marker.popped = false;
+          markers.push(marker);
+          if (leafletMap.getZoom() >= minZoom) {
+            marker.added = true;
+            layer.addTo(leafletMap);
+          } else {
+            pinLayer.addTo(leafletMap);
+          }
+          function handlePopupPinOpen() {
+            handleOpen('popup__detail--pin--');
+          }
+          function handlePopupOpen() {
+            handleOpen('popup__detail--');
+          }
+          function handlePopupClose() {
+            if (popupDetail) {
+              popupDetailButton.removeEventListener('click',
+                handlePopupDetailClick);
+            }
+            if (marker.popped) {
+              marker.popped = false;
+              markerCode = code;
+              markerEvent = 'popupclose';
+              markerSync.update();
+              markerSync.idle();
+            }
+          }
+          function handleOpen(prefix) {
             if (popupDetail) {
               popupDetailButton = document.getElementById(
-                'popup__detail--' + code
+                prefix + code
               );
               popupDetailButton.addEventListener('click',
                 handlePopupDetailClick);
             }
-            if (!region.popped) {
-              region.popped = true;
-              region.poppedLat = e.popup.getLatLng().lat;
-              region.poppedLng = e.popup.getLatLng().lng;
-              regionCode = code;
-              regionEvent = 'popupopen';
-              regionLat = region.poppedLat;
-              regionLng = region.poppedLng;
-              regionSync.update();
-              regionSync.idle();
+            if (!marker.popped) {
+              marker.popped = true;
+              markerCode = code;
+              markerEvent = 'popupopen';
+              markerSync.update();
+              markerSync.idle();
             }
           }
           function handlePopupDetailClick() {
@@ -2415,212 +2688,43 @@
               );
             }
           }
-          function handlePopupClose() {
-            if (popupDetail) {
-              popupDetailButton.removeEventListener('click',
-                handlePopupDetailClick);
+        }
+        function removeMarkers() {
+          var i;
+          var pinLayer;
+          var layer;
+          for (i = 0; i < markers.length; i++) {
+            pinLayer = markers[i].pinLayer;
+            layer = markers[i].layer;
+            if (markers[i].popped) {
+              markers[i].popped = false;
+              layer.closePopup();
+              pinLayer.closePopup();
             }
-            if (region.popped) {
-              region.popped = false;
-              regionCode = code;
-              regionEvent = 'popupclose';
-              regionSync.update();
-              regionSync.idle();
-            }
-          }
-          function handleClick(e) {
-            if (region.popped) {
-              regionCode = code;
-              regionEvent = 'popupclose';
-              regionSync.update();
-              regionSync.idle();
-              regionEvent = 'popupopen';
-              regionLat = e.latlng.lat;
-              regionLng = e.latlng.lng;
-              regionSync.update();
-              regionSync.idle();
+            pinLayer.removeEventListener();
+            layer.removeEventListener();
+            if (markers[i].added) {
+              layer.removeFrom(leafletMap);
+            } else {
+              pinLayer.removeFrom(leafletMap);
             }
           }
+          markers = [];
         }
-        xmlhttp.open('GET',
-          '/upload/' + APP_USER + '-' + APP_REPO + '/world.geo.json/countries/' +
-          code + '.geo.json', true);
-        xmlhttp.send();
-      }
-      function removeRegions() {
-        var i;
-        var layer;
-        for (i = 0; i < regions.length; i++) {
-          layer = regions[i].layer;
-          if (regions[i].popped) {
-            regions[i].popped = false;
-            layer.closePopup();
+        function keepActive() {
+          active = true;
+          thr0w.thr0wChannel(CHANNELS, {type: 'active'});
+        }
+        function checkIdle() {
+          if (video) {
+            keepActive();
+            return;
           }
-          layer.removeEventListener();
-          layer.removeFrom(leafletMap);
-        }
-        regions = [];
-      }
-      function addMarker(code, latlng, iconUrl, minZoom, popup,
-        popupDetail, popupWidth, popupHeight, popupDetailWidth,
-        popupDetailHeight) {
-        var popupHtml;
-        var popupDetailHtml = '';
-        var popupDetailPinHtml = '';
-        var popupDetailButton;
-        var marker = {};
-        var pinIcon = L.icon({
-          iconUrl: 'img/pins/red.png',
-          iconSize: L.point(25,43),
-          iconAnchor: L.point(12,43)
-        });
-        var pinLayer = L.marker(latlng, {icon: pinIcon});
-        var icon = L.icon({
-          iconUrl: iconUrl,
-          iconSize: L.point(100,100),
-          iconAnchor: L.point(50,50)
-        });
-        var layer = L.marker(latlng, {icon: icon});
-        if (popup) {
-          popupHtml = [
-            '<iframe src="',
-            chart + '/?code=' + code,
-            '" ',
-            'width="',
-            popupWidth,
-            '" ',
-            'height="',
-            popupHeight,
-            '" style="border:none">',
-            '</iframe>'
-          ].join('');
-          if (popupDetail) {
-            popupDetailHtml = [
-              '<div id="popup__detail--',
-              code,
-              '" class="popup__detail">',
-              '<img src="img/info.png" width="50" height="50"/>',
-              '</div>',
-              '<div style="clear: both;">&nbsp;</div>',
-            ].join('');
-            popupDetailPinHtml = [
-              '<div id="popup__detail--pin--',
-              code,
-              '" class="popup__detail">',
-              '<img src="img/info.png" width="50" height="50"/>',
-              '</div>',
-              '<div style="clear: both;">&nbsp;</div>',
-            ].join('');
+          if (!active) {
+            thr0w.thr0wChannel(CHANNELS, {type: 'idle'});
           }
-          pinLayer.addEventListener('popupopen', handlePopupPinOpen);
-          pinLayer.addEventListener('popupclose', handlePopupClose);
-          layer.addEventListener('popupopen', handlePopupOpen);
-          layer.addEventListener('popupclose', handlePopupClose);
-          pinLayer.bindPopup(popupHtml + popupDetailPinHtml,
-            {autoPan: false, maxWidth: popupWidth});
-          layer.bindPopup(popupHtml + popupDetailHtml,
-            {autoPan: false, maxWidth: popupWidth});
+          active = false;
         }
-        marker.code = code;
-        marker.pinLayer = pinLayer;
-        marker.layer = layer;
-        marker.minZoom = minZoom;
-        marker.added = false;
-        marker.popped = false;
-        markers.push(marker);
-        if (leafletMap.getZoom() >= minZoom) {
-          marker.added = true;
-          layer.addTo(leafletMap);
-        } else {
-          pinLayer.addTo(leafletMap);
-        }
-        function handlePopupPinOpen() {
-          handleOpen('popup__detail--pin--');
-        }
-        function handlePopupOpen() {
-          handleOpen('popup__detail--');
-        }
-        function handlePopupClose() {
-          if (popupDetail) {
-            popupDetailButton.removeEventListener('click',
-              handlePopupDetailClick);
-          }
-          if (marker.popped) {
-            marker.popped = false;
-            markerCode = code;
-            markerEvent = 'popupclose';
-            markerSync.update();
-            markerSync.idle();
-          }
-        }
-        function handleOpen(prefix) {
-          if (popupDetail) {
-            popupDetailButton = document.getElementById(
-              prefix + code
-            );
-            popupDetailButton.addEventListener('click',
-              handlePopupDetailClick);
-          }
-          if (!marker.popped) {
-            marker.popped = true;
-            markerCode = code;
-            markerEvent = 'popupopen';
-            markerSync.update();
-            markerSync.idle();
-          }
-        }
-        function handlePopupDetailClick() {
-          try {
-            wm.openWindow(code, windowX,
-              windowYBase + 1920 - popupDetailHeight - 100,
-              popupDetailWidth,
-              popupDetailHeight, chart + '_detail' + '/?code=' + code
-            );
-          } catch (error) {
-            wm.closeWindow(code);
-            wm.openWindow(code, windowX,
-              windowYBase + 1920 - popupDetailHeight - 100,
-              popupDetailWidth,
-              popupDetailHeight, chart + '_detail' + '/?code=' + code
-            );
-          }
-        }
-      }
-      function removeMarkers() {
-        var i;
-        var pinLayer;
-        var layer;
-        for (i = 0; i < markers.length; i++) {
-          pinLayer = markers[i].pinLayer;
-          layer = markers[i].layer;
-          if (markers[i].popped) {
-            markers[i].popped = false;
-            layer.closePopup();
-            pinLayer.closePopup();
-          }
-          pinLayer.removeEventListener();
-          layer.removeEventListener();
-          if (markers[i].added) {
-            layer.removeFrom(leafletMap);
-          } else {
-            pinLayer.removeFrom(leafletMap);
-          }
-        }
-        markers = [];
-      }
-      function keepActive() {
-        active = true;
-        thr0w.thr0wChannel(CHANNELS, {type: 'active'});
-      }
-      function checkIdle() {
-        if (video) {
-          keepActive();
-          return;
-        }
-        if (!active) {
-          thr0w.thr0wChannel(CHANNELS, {type: 'idle'});
-        }
-        active = false;
       }
     }
     function showCapture() {
