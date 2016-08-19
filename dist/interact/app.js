@@ -1575,6 +1575,7 @@
         var whiteEl = document.getElementById('white');
         var blackEl = document.getElementById('black');
         var cameraEl = document.getElementById('camera');
+        var weightControlsEl = document.getElementById('weight_controls');
         var initialCenterLat = parameters.initialCenterLat ?
           parseFloat(parameters.initialCenterLat) : 0;
         var initialCenterLng = parameters.initialCenterLng ?
@@ -1831,6 +1832,8 @@
           .addEventListener('click', handleFisheriesClick);
         document.getElementById('disease')
           .addEventListener('click', handleDiseaseClick);
+        document.getElementById('weight')
+          .addEventListener('click', handleWeightClick);
         document.getElementById('video')
           .addEventListener('click', handleVideoClick);
         videoStopEl.addEventListener('click', handleVideoStopClick);
@@ -2132,6 +2135,7 @@
         }
         function handleNoneClick() {
           wm.closeAllWindows();
+          weightControlsEl.style.display = 'none';
           map.moveTo(0, 0, 0, MIN_ZOOM[size]);
           chart = null;
           updateChart();
@@ -2140,6 +2144,7 @@
         }
         function handleFisheriesClick() {
           wm.closeAllWindows();
+          weightControlsEl.style.display = 'none';
           map.moveTo(0, 0, 0, MIN_ZOOM[size]);
           chart = 'fisheries';
           updateChart();
@@ -2148,9 +2153,18 @@
         }
         function handleDiseaseClick() {
           wm.closeAllWindows();
+          weightControlsEl.style.display = 'none';
           map.moveTo(0, 0, 0, MIN_ZOOM[size]);
-          chart = 'fisheries';
           chart = 'disease';
+          updateChart();
+          chartSync.update();
+          chartSync.idle();
+        }
+        function handleWeightClick() {
+          wm.closeAllWindows();
+          map.moveTo(0, 0, 0, MIN_ZOOM[size]);
+          weightControlsEl.style.display = 'block';
+          chart = null;
           updateChart();
           chartSync.update();
           chartSync.idle();

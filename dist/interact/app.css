@@ -24,6 +24,13 @@ html, body {
   bottom: 0px;
   width: 100px;
 }
+#weight_controls {
+  position: absolute;
+  z-index: 900;
+  left: 100px;
+  bottom: 0px;
+  width: 100px;
+}
 .control {
   height: 100px;
 }
