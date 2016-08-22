@@ -2289,7 +2289,9 @@
         var initialRegionPoppedLng = parameters.initialRegionPoppedLng ?
           parameters.initialRegionPoppedLng : null;
         var iMarker;
-        weightControlsEl.style.display = weightControlsVisible;
+        if (channel === controlChannel) {
+          weightControlsEl.style.display = weightControlsVisible;
+        }
         initialZoomLevel = Math.max(initialZoomLevel, MIN_ZOOM[size]);
         switch (size) {
           case SIZE_SINGLE:
