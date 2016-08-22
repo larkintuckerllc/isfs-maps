@@ -2289,9 +2289,6 @@
         var initialRegionPoppedLng = parameters.initialRegionPoppedLng ?
           parameters.initialRegionPoppedLng : null;
         var iMarker;
-        if (channel === controlChannel) {
-          weightControlsEl.style.display = weightControlsVisible;
-        }
         initialZoomLevel = Math.max(initialZoomLevel, MIN_ZOOM[size]);
         switch (size) {
           case SIZE_SINGLE:
@@ -2432,6 +2429,9 @@
             break;
           default:
             throw 400;
+        }
+        if (channel === controlChannel) {
+          weightControlsEl.style.display = weightControlsVisible;
         }
         grid = new thr0w.FlexGrid(
           frameEl,
