@@ -16,6 +16,2236 @@
   MIN_ZOOM[SIZE_QUAD] = 4;
   MIN_ZOOM[SIZE_FULL] = 4;
   var MAX_ZOOM = 19;
+  var OBESITY = [
+    {
+      region: 'TLS',
+      color: 'rgb(11,0,0)'
+    },
+    {
+      region: 'PRK',
+      color: 'rgb(12,0,0)'
+    },
+    {
+      region: 'BDI',
+      color: 'rgb(13,0,0)'
+    },
+    {
+      region: 'AFG',
+      color: 'rgb(14,0,0)'
+    },
+    {
+      region: 'MMR',
+      color: 'rgb(14,0,0)'
+    },
+    {
+      region: 'KHM',
+      color: 'rgb(16,0,0)'
+    },
+    {
+      region: 'JPN',
+      color: 'rgb(16,0,0)'
+    },
+    {
+      region: 'NPL',
+      color: 'rgb(16,0,0)'
+    },
+    {
+      region: 'LAO',
+      color: 'rgb(17,0,0)'
+    },
+    {
+      region: 'BGD',
+      color: 'rgb(18,0,0)'
+    },
+    {
+      region: 'VNM',
+      color: 'rgb(18,0,0)'
+    },
+    {
+      region: 'ETH',
+      color: 'rgb(20,0,0)'
+    },
+    {
+      region: 'RWA',
+      color: 'rgb(20,0,0)'
+    },
+    {
+      region: 'ERI',
+      color: 'rgb(20,0,0)'
+    },
+    {
+      region: 'NER',
+      color: 'rgb(21,0,0)'
+    },
+    {
+      region: 'COD',
+      color: 'rgb(22,0,0)'
+    },
+    {
+      region: 'SOM',
+      color: 'rgb(23,0,0)'
+    },
+    {
+      region: 'IND',
+      color: 'rgb(24,0,0)'
+    },
+    {
+      region: 'UGA',
+      color: 'rgb(24,0,0)'
+    },
+    {
+      region: 'CAF',
+      color: 'rgb(25,0,0)'
+    },
+    {
+      region: 'PHL',
+      color: 'rgb(25,0,0)'
+    },
+    {
+      region: 'MWI',
+      color: 'rgb(26,0,0)'
+    },
+    {
+      region: 'MOZ',
+      color: 'rgb(26,0,0)'
+    },
+    {
+      region: 'MDG',
+      color: 'rgb(27,0,0)'
+    },
+    {
+      region: 'PAK',
+      color: 'rgb(27,0,0)'
+    },
+    {
+      region: 'IDN',
+      color: 'rgb(28,0,0)'
+    },
+    {
+      region: 'KOR',
+      color: 'rgb(29,0,0)'
+    },
+    {
+      region: 'SGP',
+      color: 'rgb(31,0,0)'
+    },
+    {
+      region: 'BFA',
+      color: 'rgb(31,0,0)'
+    },
+    {
+      region: 'LKA',
+      color: 'rgb(32,0,0)'
+    },
+    {
+      region: 'COM',
+      color: 'rgb(33,0,0)'
+    },
+    {
+      region: 'LBR',
+      color: 'rgb(33,0,0)'
+    },
+    {
+      region: 'BTN',
+      color: 'rgb(33,0,0)'
+    },
+    {
+      region: 'GIN',
+      color: 'rgb(34,0,0)'
+    },
+    {
+      region: 'MLI',
+      color: 'rgb(34,0,0)'
+    },
+    {
+      region: 'CHN',
+      color: 'rgb(34,0,0)'
+    },
+    {
+      region: 'KEN',
+      color: 'rgb(35,0,0)'
+    },
+    {
+      region: 'TZA',
+      color: 'rgb(35,0,0)'
+    },
+    {
+      region: 'GNB',
+      color: 'rgb(36,0,0)'
+    },
+    {
+      region: 'SSD',
+      color: 'rgb(37,0,0)'
+    },
+    {
+      region: 'SDN',
+      color: 'rgb(37,0,0)'
+    },
+    {
+      region: 'TGO',
+      color: 'rgb(37,0,0)'
+    },
+    {
+      region: 'SLE',
+      color: 'rgb(38,0,0)'
+    },
+    {
+      region: 'MDV',
+      color: 'rgb(39,0,0)'
+    },
+    {
+      region: 'TCD',
+      color: 'rgb(40,0,0)'
+    },
+    {
+      region: 'THA',
+      color: 'rgb(42,0,0)'
+    },
+    {
+      region: 'ZMB',
+      color: 'rgb(44,0,0)'
+    },
+    {
+      region: 'CIV',
+      color: 'rgb(46,0,0)'
+    },
+    {
+      region: 'BEN',
+      color: 'rgb(46,0,0)'
+    },
+    {
+      region: 'DJI',
+      color: 'rgb(48,0,0)'
+    },
+    {
+      region: 'MRT',
+      color: 'rgb(48,0,0)'
+    },
+    {
+      region: 'SEN',
+      color: 'rgb(49,0,0)'
+    },
+    {
+      region: 'AGO',
+      color: 'rgb(51,0,0)'
+    },
+    {
+      region: 'ZWE',
+      color: 'rgb(52,0,0)'
+    },
+    {
+      region: 'GMB',
+      color: 'rgb(54,0,0)'
+    },
+    {
+      region: 'COG',
+      color: 'rgb(55,0,0)'
+    },
+    {
+      region: 'NGA',
+      color: 'rgb(55,0,0)'
+    },
+    {
+      region: 'CMR',
+      color: 'rgb(57,0,0)'
+    },
+    {
+      region: 'HTI',
+      color: 'rgb(59,0,0)'
+    },
+    {
+      region: 'GHA',
+      color: 'rgb(61,0,0)'
+    },
+    {
+      region: 'STP',
+      color: 'rgb(61,0,0)'
+    },
+    {
+      region: 'CPV',
+      color: 'rgb(65,0,0)'
+    },
+    {
+      region: 'MYS',
+      color: 'rgb(66,0,0)'
+    },
+    {
+      region: 'TJK',
+      color: 'rgb(68,0,0)'
+    },
+    {
+      region: 'LSO',
+      color: 'rgb(71,0,0)'
+    },
+    {
+      region: 'KGZ',
+      color: 'rgb(72,0,0)'
+    },
+    {
+      region: 'MDA',
+      color: 'rgb(74,0,0)'
+    },
+    {
+      region: 'UZB',
+      color: 'rgb(77,0,0)'
+    },
+    {
+      region: 'PRY',
+      color: 'rgb(81,0,0)'
+    },
+    {
+      region: 'MNG',
+      color: 'rgb(83,0,0)'
+    },
+    {
+      region: 'BOL',
+      color: 'rgb(85,0,0)'
+    },
+    {
+      region: 'NIC',
+      color: 'rgb(85,0,0)'
+    },
+    {
+      region: 'YEM',
+      color: 'rgb(86,0,0)'
+    },
+    {
+      region: 'GNQ',
+      color: 'rgb(87,0,0)'
+    },
+    {
+      region: 'ALB',
+      color: 'rgb(88,0,0)'
+    },
+    {
+      region: 'GAB',
+      color: 'rgb(88,0,0)'
+    },
+    {
+      region: 'SWZ',
+      color: 'rgb(88,0,0)'
+    },
+    {
+      region: 'BIH',
+      color: 'rgb(89,0,0)'
+    },
+    {
+      region: 'MUS',
+      color: 'rgb(89,0,0)'
+    },
+    {
+      region: 'BRN',
+      color: 'rgb(90,0,0)'
+    },
+    {
+      region: 'HND',
+      color: 'rgb(91,0,0)'
+    },
+    {
+      region: 'AUT',
+      color: 'rgb(92,0,0)'
+    },
+    {
+      region: 'GTM',
+      color: 'rgb(93,0,0)'
+    },
+    {
+      region: 'ECU',
+      color: 'rgb(93,0,0)'
+    },
+    {
+      region: 'NAM',
+      color: 'rgb(94,0,0)'
+    },
+    {
+      region: 'DNK',
+      color: 'rgb(96,0,0)'
+    },
+    {
+      region: 'CHE',
+      color: 'rgb(97,0,0)'
+    },
+    {
+      region: 'ARM',
+      color: 'rgb(97,0,0)'
+    },
+    {
+      region: 'SRB',
+      color: 'rgb(97,0,0)'
+    },
+    {
+      region: 'MKD',
+      color: 'rgb(98,0,0)'
+    },
+    {
+      region: 'NLD',
+      color: 'rgb(99,0,0)'
+    },
+    {
+      region: 'BRA',
+      color: 'rgb(100,0,0)'
+    },
+    {
+      region: 'MNE',
+      color: 'rgb(100,0,0)'
+    },
+    {
+      region: 'DEU',
+      color: 'rgb(100,0,0)'
+    },
+    {
+      region: 'PRT',
+      color: 'rgb(100,0,0)'
+    },
+    {
+      region: 'TKM',
+      color: 'rgb(100,0,0)'
+    },
+    {
+      region: 'UKR',
+      color: 'rgb(100,0,0)'
+    },
+    {
+      region: 'BEL',
+      color: 'rgb(101,0,0)'
+    },
+    {
+      region: 'SWE',
+      color: 'rgb(102,0,0)'
+    },
+    {
+      region: 'FIN',
+      color: 'rgb(103,0,0)'
+    },
+    {
+      region: 'GEO',
+      color: 'rgb(104,0,0)'
+    },
+    {
+      region: 'COL',
+      color: 'rgb(105,0,0)'
+    },
+    {
+      region: 'ITA',
+      color: 'rgb(105,0,0)'
+    },
+    {
+      region: 'PER',
+      color: 'rgb(105,0,0)'
+    },
+    {
+      region: 'ROU',
+      color: 'rgb(108,0,0)'
+    },
+    {
+      region: 'SLV',
+      color: 'rgb(109,0,0)'
+    },
+    {
+      region: 'MAR',
+      color: 'rgb(111,0,0)'
+    },
+    {
+      region: 'BWA',
+      color: 'rgb(112,0,0)'
+    },
+    {
+      region: 'AZE',
+      color: 'rgb(112,0,0)'
+    },
+    {
+      region: 'BLZ',
+      color: 'rgb(112,0,0)'
+    },
+    {
+      region: 'EST',
+      color: 'rgb(113,0,0)'
+    },
+    {
+      region: 'ISL',
+      color: 'rgb(114,0,0)'
+    },
+    {
+      region: 'GRC',
+      color: 'rgb(114,0,0)'
+    },
+    {
+      region: 'GUY',
+      color: 'rgb(114,0,0)'
+    },
+    {
+      region: 'LUX',
+      color: 'rgb(115,0,0)'
+    },
+    {
+      region: 'NOR',
+      color: 'rgb(115,0,0)'
+    },
+    {
+      region: 'BGR',
+      color: 'rgb(116,0,0)'
+    },
+    {
+      region: 'HRV',
+      color: 'rgb(116,0,0)'
+    },
+    {
+      region: 'BLR',
+      color: 'rgb(117,0,0)'
+    },
+    {
+      region: 'KAZ',
+      color: 'rgb(117,0,0)'
+    },
+    {
+      region: 'SYR',
+      color: 'rgb(117,0,0)'
+    },
+    {
+      region: 'LVA',
+      color: 'rgb(118,0,0)'
+    },
+    {
+      region: 'ESP',
+      color: 'rgb(118,0,0)'
+    },
+    {
+      region: 'CYP',
+      color: 'rgb(119,0,0)'
+    },
+    {
+      region: 'IRQ',
+      color: 'rgb(119,0,0)'
+    },
+    {
+      region: 'DOM',
+      color: 'rgb(119,0,0)'
+    },
+    {
+      region: 'FRA',
+      color: 'rgb(119,0,0)'
+    },
+    {
+      region: 'HUN',
+      color: 'rgb(120,0,0)'
+    },
+    {
+      region: 'RUS',
+      color: 'rgb(120,0,0)'
+    },
+    {
+      region: 'CRI',
+      color: 'rgb(121,0,0)'
+    },
+    {
+      region: 'VCT',
+      color: 'rgb(121,0,0)'
+    },
+    {
+      region: 'DZA',
+      color: 'rgb(124,0,0)'
+    },
+    {
+      region: 'VEN',
+      color: 'rgb(124,0,0)'
+    },
+    {
+      region: 'SVN',
+      color: 'rgb(125,0,0)'
+    },
+    {
+      region: 'CUB',
+      color: 'rgb(126,0,0)'
+    },
+    {
+      region: 'POL',
+      color: 'rgb(126,0,0)'
+    },
+    {
+      region: 'ISR',
+      color: 'rgb(126,0,0)'
+    },
+    {
+      region: 'IRL',
+      color: 'rgb(128,0,0)'
+    },
+    {
+      region: 'SVK',
+      color: 'rgb(128,0,0)'
+    },
+    {
+      region: 'DMA',
+      color: 'rgb(129,0,0)'
+    },
+    {
+      region: 'LTU',
+      color: 'rgb(129,0,0)'
+    },
+    {
+      region: 'IRN',
+      color: 'rgb(130,0,0)'
+    },
+    {
+      region: 'SUR',
+      color: 'rgb(130,0,0)'
+    },
+    {
+      region: 'GRD',
+      color: 'rgb(131,0,0)'
+    },
+    {
+      region: 'ARG',
+      color: 'rgb(131,0,0)'
+    },
+    {
+      region: 'SYC',
+      color: 'rgb(131,0,0)'
+    },
+    {
+      region: 'MLT',
+      color: 'rgb(133,0,0)'
+    },
+    {
+      region: 'URY',
+      color: 'rgb(133,0,0)'
+    },
+    {
+      region: 'CZE',
+      color: 'rgb(134,0,0)'
+    },
+    {
+      region: 'PAN',
+      color: 'rgb(134,0,0)'
+    },
+    {
+      region: 'ZAF',
+      color: 'rgb(134,0,0)'
+    },
+    {
+      region: 'LCA',
+      color: 'rgb(134,0,0)'
+    },
+    {
+      region: 'TUN',
+      color: 'rgb(135,0,0)'
+    },
+    {
+      region: 'JAM',
+      color: 'rgb(136,0,0)'
+    },
+    {
+      region: 'SLB',
+      color: 'rgb(138,0,0)'
+    },
+    {
+      region: 'CHL',
+      color: 'rgb(139,0,0)'
+    },
+    {
+      region: 'PNG',
+      color: 'rgb(139,0,0)'
+    },
+    {
+      region: 'CAN',
+      color: 'rgb(140,0,0)'
+    },
+    {
+      region: 'MEX',
+      color: 'rgb(140,0,0)'
+    },
+    {
+      region: 'GBR',
+      color: 'rgb(140,0,0)'
+    },
+    {
+      region: 'KNA',
+      color: 'rgb(141,0,0)'
+    },
+    {
+      region: 'AUS',
+      color: 'rgb(143,0,0)'
+    },
+    {
+      region: 'EGY',
+      color: 'rgb(144,0,0)'
+    },
+    {
+      region: 'NZL',
+      color: 'rgb(146,0,0)'
+    },
+    {
+      region: 'AND',
+      color: 'rgb(147,0,0)'
+    },
+    {
+      region: 'TUR',
+      color: 'rgb(147,0,0)'
+    },
+    {
+      region: 'JOR',
+      color: 'rgb(152,0,0)'
+    },
+    {
+      region: 'ATG',
+      color: 'rgb(154,0,0)'
+    },
+    {
+      region: 'OMN',
+      color: 'rgb(154,0,0)'
+    },
+    {
+      region: 'TTO',
+      color: 'rgb(155,0,0)'
+    },
+    {
+      region: 'BRB',
+      color: 'rgb(156,0,0)'
+    },
+    {
+      region: 'LBN',
+      color: 'rgb(159,0,0)'
+    },
+    {
+      region: 'LBY',
+      color: 'rgb(165,0,0)'
+    },
+    {
+      region: 'USA',
+      color: 'rgb(168,0,0)'
+    },
+    {
+      region: 'SAU',
+      color: 'rgb(173,0,0)'
+    },
+    {
+      region: 'BHR',
+      color: 'rgb(175,0,0)'
+    },
+    {
+      region: 'VUT',
+      color: 'rgb(177,0,0)'
+    },
+    {
+      region: 'BHS',
+      color: 'rgb(181,0,0)'
+    },
+    {
+      region: 'FJI',
+      color: 'rgb(182,0,0)'
+    },
+    {
+      region: 'FSM',
+      color: 'rgb(186,0,0)'
+    },
+    {
+      region: 'ARE',
+      color: 'rgb(186,0,0)'
+    },
+    {
+      region: 'KWT',
+      color: 'rgb(198,0,0)'
+    },
+    {
+      region: 'TUV',
+      color: 'rgb(201,0,0)'
+    },
+    {
+      region: 'KIR',
+      color: 'rgb(203,0,0)'
+    },
+    {
+      region: 'QAT',
+      color: 'rgb(211,0,0)'
+    },
+    {
+      region: 'MHL',
+      color: 'rgb(214,0,0)'
+    },
+    {
+      region: 'NIU',
+      color: 'rgb(216,0,0)'
+    },
+    {
+      region: 'TON',
+      color: 'rgb(216,0,0)'
+    },
+    {
+      region: 'WSM',
+      color: 'rgb(217,0,0)'
+    },
+    {
+      region: 'NRU',
+      color: 'rgb(228,0,0)'
+    },
+    {
+      region: 'PLW',
+      color: 'rgb(238,0,0)'
+    },
+    {
+      region: 'COK',
+      color: 'rgb(254,0,0)'
+    }
+  ];
+  var OVERWEIGHT = [
+    {
+      region: 'TLS',
+      color: 'rgb(213,0,0)'
+    },
+    {
+      region: 'PRK',
+      color: 'rgb(95,0,0)'
+    },
+    {
+      region: 'BDI',
+      color: 'rgb(77,0,0)'
+    },
+    {
+      region: 'AFG',
+      color: 'rgb(45,0,0)'
+    },
+    {
+      region: 'MMR',
+      color: 'rgb(182,0,0)'
+    },
+    {
+      region: 'KHM',
+      color: 'rgb(79,0,0)'
+    },
+    {
+      region: 'JPN',
+      color: 'rgb(167,0,0)'
+    },
+    {
+      region: 'NPL',
+      color: 'rgb(182,0,0)'
+    },
+    {
+      region: 'LAO',
+      color: 'rgb(172,0,0)'
+    },
+    {
+      region: 'BGD',
+      color: 'rgb(64,0,0)'
+    },
+    {
+      region: 'VNM',
+      color: 'rgb(249,0,0)'
+    },
+    {
+      region: 'ETH',
+      color: 'rgb(108,0,0)'
+    },
+    {
+      region: 'RWA',
+      color: 'rgb(190,0,0)'
+    },
+    {
+      region: 'ERI',
+      color: 'rgb(105,0,0)'
+    },
+    {
+      region: 'NER',
+      color: 'rgb(184,0,0)'
+    },
+    {
+      region: 'COD',
+      color: 'rgb(96,0,0)'
+    },
+    {
+      region: 'SOM',
+      color: 'rgb(198,0,0)'
+    },
+    {
+      region: 'IND',
+      color: 'rgb(155,0,0)'
+    },
+    {
+      region: 'UGA',
+      color: 'rgb(230,0,0)'
+    },
+    {
+      region: 'CAF',
+      color: 'rgb(81,0,0)'
+    },
+    {
+      region: 'PHL',
+      color: 'rgb(186,0,0)'
+    },
+    {
+      region: 'MWI',
+      color: 'rgb(175,0,0)'
+    },
+    {
+      region: 'MOZ',
+      color: 'rgb(182,0,0)'
+    },
+    {
+      region: 'MDG',
+      color: 'rgb(174,0,0)'
+    },
+    {
+      region: 'PAK',
+      color: 'rgb(185,0,0)'
+    },
+    {
+      region: 'IDN',
+      color: 'rgb(158,0,0)'
+    },
+    {
+      region: 'KOR',
+      color: 'rgb(189,0,0)'
+    },
+    {
+      region: 'SGP',
+      color: 'rgb(196,0,0)'
+    },
+    {
+      region: 'BFA',
+      color: 'rgb(77,0,0)'
+    },
+    {
+      region: 'LKA',
+      color: 'rgb(201,0,0)'
+    },
+    {
+      region: 'COM',
+      color: 'rgb(85,0,0)'
+    },
+    {
+      region: 'LBR',
+      color: 'rgb(173,0,0)'
+    },
+    {
+      region: 'BTN',
+      color: 'rgb(68,0,0)'
+    },
+    {
+      region: 'GIN',
+      color: 'rgb(146,0,0)'
+    },
+    {
+      region: 'MLI',
+      color: 'rgb(175,0,0)'
+    },
+    {
+      region: 'CHN',
+      color: 'rgb(82,0,0)'
+    },
+    {
+      region: 'KEN',
+      color: 'rgb(170,0,0)'
+    },
+    {
+      region: 'TZA',
+      color: 'rgb(235,0,0)'
+    },
+    {
+      region: 'GNB',
+      color: 'rgb(147,0,0)'
+    },
+    {
+      region: 'SSD',
+      color: 'rgb(199,0,0)'
+    },
+    {
+      region: 'SDN',
+      color: 'rgb(201,0,0)'
+    },
+    {
+      region: 'TGO',
+      color: 'rgb(216,0,0)'
+    },
+    {
+      region: 'SLE',
+      color: 'rgb(195,0,0)'
+    },
+    {
+      region: 'MDV',
+      color: 'rgb(175,0,0)'
+    },
+    {
+      region: 'TCD',
+      color: 'rgb(81,0,0)'
+    },
+    {
+      region: 'THA',
+      color: 'rgb(211,0,0)'
+    },
+    {
+      region: 'CIV',
+      color: 'rgb(78,0,0)'
+    },
+    {
+      region: 'BEN',
+      color: 'rgb(68,0,0)'
+    },
+    {
+      region: 'DJI',
+      color: 'rgb(97,0,0)'
+    },
+    {
+      region: 'MRT',
+      color: 'rgb(177,0,0)'
+    },
+    {
+      region: 'SEN',
+      color: 'rgb(194,0,0)'
+    },
+    {
+      region: 'AGO',
+      color: 'rgb(55,0,0)'
+    },
+    {
+      region: 'GMB',
+      color: 'rgb(121,0,0)'
+    },
+    {
+      region: 'COG',
+      color: 'rgb(87,0,0)'
+    },
+    {
+      region: 'NGA',
+      color: 'rgb(184,0,0)'
+    },
+    {
+      region: 'CMR',
+      color: 'rgb(80,0,0)'
+    },
+    {
+      region: 'HTI',
+      color: 'rgb(148,0,0)'
+    },
+    {
+      region: 'GHA',
+      color: 'rgb(135,0,0)'
+    },
+    {
+      region: 'STP',
+      color: 'rgb(193,0,0)'
+    },
+    {
+      region: 'CPV',
+      color: 'rgb(79,0,0)'
+    },
+    {
+      region: 'MYS',
+      color: 'rgb(175,0,0)'
+    },
+    {
+      region: 'TJK',
+      color: 'rgb(210,0,0)'
+    },
+    {
+      region: 'LSO',
+      color: 'rgb(173,0,0)'
+    },
+    {
+      region: 'KGZ',
+      color: 'rgb(171,0,0)'
+    },
+    {
+      region: 'MDA',
+      color: 'rgb(189,0,0)'
+    },
+    {
+      region: 'UZB',
+      color: 'rgb(238,0,0)'
+    },
+    {
+      region: 'PRY',
+      color: 'rgb(186,0,0)'
+    },
+    {
+      region: 'MNG',
+      color: 'rgb(180,0,0)'
+    },
+    {
+      region: 'BOL',
+      color: 'rgb(69,0,0)'
+    },
+    {
+      region: 'NIC',
+      color: 'rgb(183,0,0)'
+    },
+    {
+      region: 'YEM',
+      color: 'rgb(255,0,0)'
+    },
+    {
+      region: 'GNQ',
+      color: 'rgb(105,0,0)'
+    },
+    {
+      region: 'ALB',
+      color: 'rgb(48,0,0)'
+    },
+    {
+      region: 'GAB',
+      color: 'rgb(121,0,0)'
+    },
+    {
+      region: 'SWZ',
+      color: 'rgb(202,0,0)'
+    },
+    {
+      region: 'BIH',
+      color: 'rgb(71,0,0)'
+    },
+    {
+      region: 'MUS',
+      color: 'rgb(177,0,0)'
+    },
+    {
+      region: 'BRN',
+      color: 'rgb(74,0,0)'
+    },
+    {
+      region: 'HND',
+      color: 'rgb(151,0,0)'
+    },
+    {
+      region: 'AUT',
+      color: 'rgb(59,0,0)'
+    },
+    {
+      region: 'GTM',
+      color: 'rgb(141,0,0)'
+    },
+    {
+      region: 'ECU',
+      color: 'rgb(103,0,0)'
+    },
+    {
+      region: 'NAM',
+      color: 'rgb(182,0,0)'
+    },
+    {
+      region: 'DNK',
+      color: 'rgb(96,0,0)'
+    },
+    {
+      region: 'CHE',
+      color: 'rgb(207,0,0)'
+    },
+    {
+      region: 'ARM',
+      color: 'rgb(59,0,0)'
+    },
+    {
+      region: 'SRB',
+      color: 'rgb(194,0,0)'
+    },
+    {
+      region: 'MKD',
+      color: 'rgb(212,0,0)'
+    },
+    {
+      region: 'NLD',
+      color: 'rgb(182,0,0)'
+    },
+    {
+      region: 'BRA',
+      color: 'rgb(74,0,0)'
+    },
+    {
+      region: 'MNE',
+      color: 'rgb(181,0,0)'
+    },
+    {
+      region: 'DEU',
+      color: 'rgb(131,0,0)'
+    },
+    {
+      region: 'PRT',
+      color: 'rgb(189,0,0)'
+    },
+    {
+      region: 'TKM',
+      color: 'rgb(224,0,0)'
+    },
+    {
+      region: 'UKR',
+      color: 'rgb(230,0,0)'
+    },
+    {
+      region: 'BEL',
+      color: 'rgb(68,0,0)'
+    },
+    {
+      region: 'SWE',
+      color: 'rgb(202,0,0)'
+    },
+    {
+      region: 'FIN',
+      color: 'rgb(111,0,0)'
+    },
+    {
+      region: 'GEO',
+      color: 'rgb(130,0,0)'
+    },
+    {
+      region: 'COL',
+      color: 'rgb(82,0,0)'
+    },
+    {
+      region: 'ITA',
+      color: 'rgb(165,0,0)'
+    },
+    {
+      region: 'PER',
+      color: 'rgb(186,0,0)'
+    },
+    {
+      region: 'ROU',
+      color: 'rgb(190,0,0)'
+    },
+    {
+      region: 'SLV',
+      color: 'rgb(105,0,0)'
+    },
+    {
+      region: 'MAR',
+      color: 'rgb(181,0,0)'
+    },
+    {
+      region: 'BWA',
+      color: 'rgb(72,0,0)'
+    },
+    {
+      region: 'AZE',
+      color: 'rgb(61,0,0)'
+    },
+    {
+      region: 'BLZ',
+      color: 'rgb(68,0,0)'
+    },
+    {
+      region: 'EST',
+      color: 'rgb(105,0,0)'
+    },
+    {
+      region: 'ISL',
+      color: 'rgb(154,0,0)'
+    },
+    {
+      region: 'GRC',
+      color: 'rgb(141,0,0)'
+    },
+    {
+      region: 'GUY',
+      color: 'rgb(147,0,0)'
+    },
+    {
+      region: 'LUX',
+      color: 'rgb(174,0,0)'
+    },
+    {
+      region: 'NOR',
+      color: 'rgb(184,0,0)'
+    },
+    {
+      region: 'BGR',
+      color: 'rgb(76,0,0)'
+    },
+    {
+      region: 'HRV',
+      color: 'rgb(91,0,0)'
+    },
+    {
+      region: 'BLR',
+      color: 'rgb(65,0,0)'
+    },
+    {
+      region: 'KAZ',
+      color: 'rgb(169,0,0)'
+    },
+    {
+      region: 'SYR',
+      color: 'rgb(208,0,0)'
+    },
+    {
+      region: 'LVA',
+      color: 'rgb(172,0,0)'
+    },
+    {
+      region: 'ESP',
+      color: 'rgb(199,0,0)'
+    },
+    {
+      region: 'CYP',
+      color: 'rgb(93,0,0)'
+    },
+    {
+      region: 'IRQ',
+      color: 'rgb(163,0,0)'
+    },
+    {
+      region: 'DOM',
+      color: 'rgb(102,0,0)'
+    },
+    {
+      region: 'FRA',
+      color: 'rgb(116,0,0)'
+    },
+    {
+      region: 'HUN',
+      color: 'rgb(152,0,0)'
+    },
+    {
+      region: 'RUS',
+      color: 'rgb(190,0,0)'
+    },
+    {
+      region: 'CRI',
+      color: 'rgb(90,0,0)'
+    },
+    {
+      region: 'VCT',
+      color: 'rgb(191,0,0)'
+    },
+    {
+      region: 'DZA',
+      color: 'rgb(51,0,0)'
+    },
+    {
+      region: 'VEN',
+      color: 'rgb(245,0,0)'
+    },
+    {
+      region: 'SVN',
+      color: 'rgb(196,0,0)'
+    },
+    {
+      region: 'CUB',
+      color: 'rgb(93,0,0)'
+    },
+    {
+      region: 'POL',
+      color: 'rgb(187,0,0)'
+    },
+    {
+      region: 'ISR',
+      color: 'rgb(164,0,0)'
+    },
+    {
+      region: 'IRL',
+      color: 'rgb(163,0,0)'
+    },
+    {
+      region: 'SVK',
+      color: 'rgb(196,0,0)'
+    },
+    {
+      region: 'DMA',
+      color: 'rgb(100,0,0)'
+    },
+    {
+      region: 'LTU',
+      color: 'rgb(173,0,0)'
+    },
+    {
+      region: 'IRN',
+      color: 'rgb(162,0,0)'
+    },
+    {
+      region: 'SUR',
+      color: 'rgb(201,0,0)'
+    },
+    {
+      region: 'GRD',
+      color: 'rgb(141,0,0)'
+    },
+    {
+      region: 'ARG',
+      color: 'rgb(56,0,0)'
+    },
+    {
+      region: 'SYC',
+      color: 'rgb(195,0,0)'
+    },
+    {
+      region: 'MLT',
+      color: 'rgb(177,0,0)'
+    },
+    {
+      region: 'URY',
+      color: 'rgb(237,0,0)'
+    },
+    {
+      region: 'CZE',
+      color: 'rgb(95,0,0)'
+    },
+    {
+      region: 'PAN',
+      color: 'rgb(185,0,0)'
+    },
+    {
+      region: 'ZAF',
+      color: 'rgb(199,0,0)'
+    },
+    {
+      region: 'LCA',
+      color: 'rgb(191,0,0)'
+    },
+    {
+      region: 'TUN',
+      color: 'rgb(217,0,0)'
+    },
+    {
+      region: 'JAM',
+      color: 'rgb(166,0,0)'
+    },
+    {
+      region: 'SLB',
+      color: 'rgb(198,0,0)'
+    },
+    {
+      region: 'CHL',
+      color: 'rgb(81,0,0)'
+    },
+    {
+      region: 'PNG',
+      color: 'rgb(185,0,0)'
+    },
+    {
+      region: 'CAN',
+      color: 'rgb(80,0,0)'
+    },
+    {
+      region: 'MEX',
+      color: 'rgb(178,0,0)'
+    },
+    {
+      region: 'GBR',
+      color: 'rgb(233,0,0)'
+    },
+    {
+      region: 'KNA',
+      color: 'rgb(191,0,0)'
+    },
+    {
+      region: 'AUS',
+      color: 'rgb(59,0,0)'
+    },
+    {
+      region: 'EGY',
+      color: 'rgb(104,0,0)'
+    },
+    {
+      region: 'NZL',
+      color: 'rgb(183,0,0)'
+    },
+    {
+      region: 'AND',
+      color: 'rgb(55,0,0)'
+    },
+    {
+      region: 'TUR',
+      color: 'rgb(219,0,0)'
+    },
+    {
+      region: 'JOR',
+      color: 'rgb(169,0,0)'
+    },
+    {
+      region: 'ATG',
+      color: 'rgb(56,0,0)'
+    },
+    {
+      region: 'OMN',
+      color: 'rgb(184,0,0)'
+    },
+    {
+      region: 'TTO',
+      color: 'rgb(216,0,0)'
+    },
+    {
+      region: 'BRB',
+      color: 'rgb(64,0,0)'
+    },
+    {
+      region: 'LBN',
+      color: 'rgb(173,0,0)'
+    },
+    {
+      region: 'LBY',
+      color: 'rgb(173,0,0)'
+    },
+    {
+      region: 'USA',
+      color: 'rgb(235,0,0)'
+    },
+    {
+      region: 'SAU',
+      color: 'rgb(194,0,0)'
+    },
+    {
+      region: 'BHR',
+      color: 'rgb(64,0,0)'
+    },
+    {
+      region: 'VUT',
+      color: 'rgb(244,0,0)'
+    },
+    {
+      region: 'BHS',
+      color: 'rgb(62,0,0)'
+    },
+    {
+      region: 'FJI',
+      color: 'rgb(109,0,0)'
+    },
+    {
+      region: 'FSM',
+      color: 'rgb(178,0,0)'
+    },
+    {
+      region: 'ARE',
+      color: 'rgb(232,0,0)'
+    },
+    {
+      region: 'KWT',
+      color: 'rgb(170,0,0)'
+    },
+    {
+      region: 'TUV',
+      color: 'rgb(225,0,0)'
+    },
+    {
+      region: 'KIR',
+      color: 'rgb(170,0,0)'
+    },
+    {
+      region: 'QAT',
+      color: 'rgb(189,0,0)'
+    },
+    {
+      region: 'MHL',
+      color: 'rgb(177,0,0)'
+    },
+    {
+      region: 'NIU',
+      color: 'rgb(184,0,0)'
+    },
+    {
+      region: 'TON',
+      color: 'rgb(216,0,0)'
+    },
+    {
+      region: 'WSM',
+      color: 'rgb(192,0,0)'
+    },
+    {
+      region: 'NRU',
+      color: 'rgb(182,0,0)'
+    },
+    {
+      region: 'PLW',
+      color: 'rgb(185,0,0)'
+    },
+    {
+      region: 'COK',
+      color: 'rgb(87,0,0)'
+    },
+    {
+      region: 'MCO',
+      color: 'rgb(179,0,0)'
+    },
+    {
+      region: 'SMR',
+      color: 'rgb(192,0,0)'
+    }
+  ];
+  var INADEQUATE = [
+  {
+    region: 'ZAF',
+    color: 'rgb(22,0,0)'
+  },
+  {
+    region: 'BRN',
+    color: 'rgb(22,0,0)'
+  },
+  {
+    region: 'AZE',
+    color: 'rgb(24,0,0)'
+  },
+  {
+    region: 'GHA',
+    color: 'rgb(26,0,0)'
+  },
+  {
+    region: 'KAZ',
+    color: 'rgb(26,0,0)'
+  },
+  {
+    region: 'KWT',
+    color: 'rgb(26,0,0)'
+  },
+  {
+    region: 'DZA',
+    color: 'rgb(27,0,0)'
+  },
+  {
+    region: 'MYS',
+    color: 'rgb(27,0,0)'
+  },
+  {
+    region: 'KIR',
+    color: 'rgb(28,0,0)'
+  },
+  {
+    region: 'MLI',
+    color: 'rgb(29,0,0)'
+  },
+  {
+    region: 'GAB',
+    color: 'rgb(30,0,0)'
+  },
+  {
+    region: 'WSM',
+    color: 'rgb(31,0,0)'
+  },
+  {
+    region: 'TKM',
+    color: 'rgb(33,0,0)'
+  },
+  {
+    region: 'CHL',
+    color: 'rgb(33,0,0)'
+  },
+  {
+    region: 'ARE',
+    color: 'rgb(33,0,0)'
+  },
+  {
+    region: 'MAR',
+    color: 'rgb(35,0,0)'
+  },
+  {
+    region: 'BRB',
+    color: 'rgb(35,0,0)'
+  },
+  {
+    region: 'MEX',
+    color: 'rgb(36,0,0)'
+  },
+  {
+    region: 'GMB',
+    color: 'rgb(37,0,0)'
+  },
+  {
+    region: 'FJI',
+    color: 'rgb(39,0,0)'
+  },
+  {
+    region: 'URY',
+    color: 'rgb(39,0,0)'
+  },
+  {
+    region: 'LBN',
+    color: 'rgb(39,0,0)'
+  },
+  {
+    region: 'MRT',
+    color: 'rgb(41,0,0)'
+  },
+  {
+    region: 'IRN',
+    color: 'rgb(42,0,0)'
+  },
+  {
+    region: 'MUS',
+    color: 'rgb(43,0,0)'
+  },
+  {
+    region: 'OMN',
+    color: 'rgb(43,0,0)'
+  },
+  {
+    region: 'UZB',
+    color: 'rgb(43,0,0)'
+  },
+  {
+    region: 'VUT',
+    color: 'rgb(45,0,0)'
+  },
+  {
+    region: 'MDV',
+    color: 'rgb(47,0,0)'
+  },
+  {
+    region: 'NGA',
+    color: 'rgb(48,0,0)'
+  },
+  {
+    region: 'KGZ',
+    color: 'rgb(49,0,0)'
+  },
+  {
+    region: 'BLZ',
+    color: 'rgb(49,0,0)'
+  },
+  {
+    region: 'STP',
+    color: 'rgb(50,0,0)'
+  },
+  {
+    region: 'CRI',
+    color: 'rgb(51,0,0)'
+  },
+  {
+    region: 'VCT',
+    color: 'rgb(54,0,0)'
+  },
+  {
+    region: 'BEN',
+    color: 'rgb(55,0,0)'
+  },
+  {
+    region: 'NPL',
+    color: 'rgb(56,0,0)'
+  },
+  {
+    region: 'ARM',
+    color: 'rgb(57,0,0)'
+  },
+  {
+    region: 'IDN',
+    color: 'rgb(59,0,0)'
+  },
+  {
+    region: 'NER',
+    color: 'rgb(62,0,0)'
+  },
+  {
+    region: 'TTO',
+    color: 'rgb(63,0,0)'
+  },
+  {
+    region: 'PER',
+    color: 'rgb(64,0,0)'
+  },
+  {
+    region: 'SUR',
+    color: 'rgb(67,0,0)'
+  },
+  {
+    region: 'THA',
+    color: 'rgb(69,0,0)'
+  },
+  {
+    region: 'GEO',
+    color: 'rgb(69,0,0)'
+  },
+  {
+    region: 'JAM',
+    color: 'rgb(69,0,0)'
+  },
+  {
+    region: 'COL',
+    color: 'rgb(70,0,0)'
+  },
+  {
+    region: 'CHN',
+    color: 'rgb(70,0,0)'
+  },
+  {
+    region: 'CMR',
+    color: 'rgb(70,0,0)'
+  },
+  {
+    region: 'PAN',
+    color: 'rgb(73,0,0)'
+  },
+  {
+    region: 'CPV',
+    color: 'rgb(73,0,0)'
+  },
+  {
+    region: 'SEN',
+    color: 'rgb(73,0,0)'
+  },
+  {
+    region: 'SLB',
+    color: 'rgb(76,0,0)'
+  },
+  {
+    region: 'LSO',
+    color: 'rgb(76,0,0)'
+  },
+  {
+    region: 'CIV',
+    color: 'rgb(78,0,0)'
+  },
+  {
+    region: 'GUY',
+    color: 'rgb(78,0,0)'
+  },
+  {
+    region: 'HND',
+    color: 'rgb(79,0,0)'
+  },
+  {
+    region: 'VNM',
+    color: 'rgb(80,0,0)'
+  },
+  {
+    region: 'PRY',
+    color: 'rgb(81,0,0)'
+  },
+  {
+    region: 'TGO',
+    color: 'rgb(82,0,0)'
+  },
+  {
+    region: 'ECU',
+    color: 'rgb(86,0,0)'
+  },
+  {
+    region: 'SLV',
+    color: 'rgb(88,0,0)'
+  },
+  {
+    region: 'PHL',
+    color: 'rgb(90,0,0)'
+  },
+  {
+    region: 'AGO',
+    color: 'rgb(91,0,0)'
+  },
+  {
+    region: 'DOM',
+    color: 'rgb(92,0,0)'
+  },
+  {
+    region: 'GTM',
+    color: 'rgb(95,0,0)'
+  },
+  {
+    region: 'GIN',
+    color: 'rgb(100,0,0)'
+  },
+  {
+    region: 'KHM',
+    color: 'rgb(101,0,0)'
+  },
+  {
+    region: 'MMR',
+    color: 'rgb(103,0,0)'
+  },
+  {
+    region: 'IND',
+    color: 'rgb(103,0,0)'
+  },
+  {
+    region: 'NIC',
+    color: 'rgb(104,0,0)'
+  },
+  {
+    region: 'DJI',
+    color: 'rgb(107,0,0)'
+  },
+  {
+    region: 'BFA',
+    color: 'rgb(109,0,0)'
+  },
+  {
+    region: 'BGD',
+    color: 'rgb(113,0,0)'
+  },
+  {
+    region: 'BOL',
+    color: 'rgb(113,0,0)'
+  },
+  {
+    region: 'MWI',
+    color: 'rgb(119,0,0)'
+  },
+  {
+    region: 'IRQ',
+    color: 'rgb(123,0,0)'
+  },
+  {
+    region: 'LAO',
+    color: 'rgb(125,0,0)'
+  },
+  {
+    region: 'LKA',
+    color: 'rgb(127,0,0)'
+  },
+  {
+    region: 'PAK',
+    color: 'rgb(129,0,0)'
+  },
+  {
+    region: 'SLE',
+    color: 'rgb(129,0,0)'
+  },
+  {
+    region: 'GNB',
+    color: 'rgb(130,0,0)'
+  },
+  {
+    region: 'MNG',
+    color: 'rgb(136,0,0)'
+  },
+  {
+    region: 'KEN',
+    color: 'rgb(137,0,0)'
+  },
+  {
+    region: 'UGA',
+    color: 'rgb(140,0,0)'
+  },
+  {
+    region: 'MOZ',
+    color: 'rgb(141,0,0)'
+  },
+  {
+    region: 'AFG',
+    color: 'rgb(150,0,0)'
+  },
+  {
+    region: 'TLS',
+    color: 'rgb(151,0,0)'
+  },
+  {
+    region: 'YEM',
+    color: 'rgb(151,0,0)'
+  },
+  {
+    region: 'BWA',
+    color: 'rgb(156,0,0)'
+  },
+  {
+    region: 'SWZ',
+    color: 'rgb(160,0,0)'
+  },
+  {
+    region: 'LBR',
+    color: 'rgb(167,0,0)'
+  },
+  {
+    region: 'TZA',
+    color: 'rgb(168,0,0)'
+  },
+  {
+    region: 'COG',
+    color: 'rgb(170,0,0)'
+  },
+  {
+    region: 'RWA',
+    color: 'rgb(175,0,0)'
+  },
+  {
+    region: 'ETH',
+    color: 'rgb(180,0,0)'
+  },
+  {
+    region: 'MDG',
+    color: 'rgb(183,0,0)'
+  },
+  {
+    region: 'ZWE',
+    color: 'rgb(185,0,0)'
+  },
+  {
+    region: 'TCD',
+    color: 'rgb(185,0,0)'
+  },
+  {
+    region: 'TJK',
+    color: 'rgb(189,0,0)'
+  },
+  {
+    region: 'CAF',
+    color: 'rgb(234,0,0)'
+  },
+  {
+    region: 'ZMB',
+    color: 'rgb(234,0,0)'
+  },
+  {
+    region: 'NAM',
+    color: 'rgb(236,0,0)'
+  },
+  {
+    region: 'PRK',
+    color: 'rgb(242,0,0)'
+  },
+  {
+    region: 'HTI',
+    color: 'rgb(251,0,0)'
+  },
+  {
+    region: 'ALB',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'AND',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'ARG',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'AUS',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'AUT',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'BMU',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'BRA',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'BGR',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'CAN',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'CUB',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'CYP',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'DNK',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'BLR',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'EGY',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'EST',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'FRO',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'FIN',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'FRA',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'DEU',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'BIH',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'GIB',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'GRC',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'GRL',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'VAT',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'HUN',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'HRV',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'ISL',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'IRL',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'ISR',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'ITA',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'JPN',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'JOR',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'KOR',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'LVA',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'LIE',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'LTU',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'MLT',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'MCO',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'MDA',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'NLD',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'MKD',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'NZL',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'NOR',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'CZE',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'POL',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'PRT',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'ROU',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'RUS',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'SRB',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'SPM',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'SMR',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'SAU',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'SVN',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'SVK',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'ESP',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'SWE',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'CHE',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'TUN',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'TUR',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'GBR',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'UKR',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'USA',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'VEN',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'BEL',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'LUX',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'SRB',
+    color: 'rgb(21,0,0)'
+  },
+  {
+    region: 'MNE',
+    color: 'rgb(21,0,0)'
+  }
+  ];
   var UNDER = [
 {
   region: 'ZAF',
@@ -2181,6 +4411,24 @@
       markersPopup: false,
       regions: UNDER,
       markers: []
+    },
+    inadequate: {
+      regionsPopup: false,
+      markersPopup: false,
+      regions: INADEQUATE,
+      markers: []
+    },
+    overweight: {
+      regionsPopup: false,
+      markersPopup: false,
+      regions: OVERWEIGHT,
+      markers: []
+    },
+    obesity: {
+      regionsPopup: false,
+      markersPopup: false,
+      regions: OBESITY,
+      markers: []
     }
   };
   var L = window.L;
@@ -2537,6 +4785,12 @@
           .addEventListener('click', handleWeightClick);
         document.getElementById('weight_controls__under')
           .addEventListener('click', handleWeightUnderClick);
+        document.getElementById('weight_controls__inadequate')
+          .addEventListener('click', handleWeightInadequateClick);
+        document.getElementById('weight_controls__overweight')
+          .addEventListener('click', handleWeightOverweightClick);
+        document.getElementById('weight_controls__obesity')
+          .addEventListener('click', handleWeightObesityClick);
         document.getElementById('video')
           .addEventListener('click', handleVideoClick);
         videoStopEl.addEventListener('click', handleVideoStopClick);
@@ -2879,6 +5133,30 @@
           wm.closeAllWindows();
           map.moveTo(0, 0, 0, MIN_ZOOM[size]);
           chart = 'under';
+          updateChart();
+          chartSync.update();
+          chartSync.idle();
+        }
+        function handleWeightInadequateClick() {
+          wm.closeAllWindows();
+          map.moveTo(0, 0, 0, MIN_ZOOM[size]);
+          chart = 'inadequate';
+          updateChart();
+          chartSync.update();
+          chartSync.idle();
+        }
+        function handleWeightOverweightClick() {
+          wm.closeAllWindows();
+          map.moveTo(0, 0, 0, MIN_ZOOM[size]);
+          chart = 'overweight';
+          updateChart();
+          chartSync.update();
+          chartSync.idle();
+        }
+        function handleWeightObesityClick() {
+          wm.closeAllWindows();
+          map.moveTo(0, 0, 0, MIN_ZOOM[size]);
+          chart = 'obesity';
           updateChart();
           chartSync.update();
           chartSync.idle();
