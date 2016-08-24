@@ -5095,7 +5095,22 @@
           tilesSync.update();
           tilesSync.idle();
         }
+        function removeControlCovers() {
+          document.getElementById('fisheries')
+            .getElementsByClassName('control__cover')[0].style.display = 'none';
+          document.getElementById('disease')
+            .getElementsByClassName('control__cover')[0].style.display = 'none';
+          document.getElementById('weight_controls__inadequate')
+            .getElementsByClassName('control__cover')[0].style.display = 'none';
+          document.getElementById('weight_controls__under')
+            .getElementsByClassName('control__cover')[0].style.display = 'none';
+          document.getElementById('weight_controls__overweight')
+            .getElementsByClassName('control__cover')[0].style.display = 'none';
+          document.getElementById('weight_controls__obesity')
+            .getElementsByClassName('control__cover')[0].style.display = 'none';
+        }
         function handleNoneClick() {
+          removeControlCovers();
           wm.closeAllWindows();
           weightControlsVisible = 'none';
           weightControlsEl.style.display = 'none';
@@ -5106,6 +5121,9 @@
           chartSync.idle();
         }
         function handleFisheriesClick() {
+          removeControlCovers();
+          document.getElementById('fisheries')
+            .getElementsByClassName('control__cover')[0].style.display = 'block';
           wm.closeAllWindows();
           weightControlsVisible = 'none';
           weightControlsEl.style.display = 'none';
@@ -5116,6 +5134,9 @@
           chartSync.idle();
         }
         function handleDiseaseClick() {
+          removeControlCovers();
+          document.getElementById('disease')
+            .getElementsByClassName('control__cover')[0].style.display = 'block';
           wm.closeAllWindows();
           weightControlsVisible = 'none';
           weightControlsEl.style.display = 'none';
@@ -5130,6 +5151,9 @@
           weightControlsEl.style.display = 'block';
         }
         function handleWeightUnderClick() {
+          removeControlCovers();
+          document.getElementById('weight_controls__under')
+            .getElementsByClassName('control__cover')[0].style.display = 'block';
           wm.closeAllWindows();
           map.moveTo(0, 0, 0, MIN_ZOOM[size]);
           chart = 'under';
@@ -5138,6 +5162,9 @@
           chartSync.idle();
         }
         function handleWeightInadequateClick() {
+          removeControlCovers();
+          document.getElementById('weight_controls__inadequate')
+            .getElementsByClassName('control__cover')[0].style.display = 'block';
           wm.closeAllWindows();
           map.moveTo(0, 0, 0, MIN_ZOOM[size]);
           chart = 'inadequate';
@@ -5146,6 +5173,9 @@
           chartSync.idle();
         }
         function handleWeightOverweightClick() {
+          removeControlCovers();
+          document.getElementById('weight_controls__overweight')
+            .getElementsByClassName('control__cover')[0].style.display = 'block';
           wm.closeAllWindows();
           map.moveTo(0, 0, 0, MIN_ZOOM[size]);
           chart = 'overweight';
@@ -5154,6 +5184,9 @@
           chartSync.idle();
         }
         function handleWeightObesityClick() {
+          removeControlCovers();
+          document.getElementById('weight_controls__obesity')
+            .getElementsByClassName('control__cover')[0].style.display = 'block';
           wm.closeAllWindows();
           map.moveTo(0, 0, 0, MIN_ZOOM[size]);
           chart = 'obesity';
