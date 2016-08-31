@@ -5,7 +5,7 @@
     document.getElementById('stories__salmon')
       .addEventListener('click', handleStoriesSalmonClick);
     function handleStoriesSalmonClick() {
-      window.parent.handleVideoClick()
+      window.parent.handleFisheriesVideoClick()
     }
   }
 })();

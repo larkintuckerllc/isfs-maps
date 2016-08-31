@@ -4793,7 +4793,7 @@
           .addEventListener('click', handleWeightObesityClick);
         document.getElementById('video')
           .addEventListener('click', handleVideoClick);
-        window.handleVideoClick = handleVideoClick; // ALLOW CALLING FROM IFRAME
+        window.handleFisheriesVideoClick = handleFisheriesVideoClick; // ALLOW CALLING FROM IFRAME
         videoStopEl.addEventListener('click', handleVideoStopClick);
         videoObj = new thr0w.video.Video(grid, videoElementEl);
         videoObj.addEventListener('ended', handleVideoStopClick);
@@ -5201,6 +5201,16 @@
           chartSync.idle();
         }
         function handleVideoClick() {
+          videoElementEl.src =
+            '/upload/larkintuckerllc-isfs-maps/ifas_research.mp4';
+          video = true;
+          updateVideo();
+          videoSync.update();
+          videoSync.idle();
+          videoObj.play();
+        }
+        function handleFisheriesVideoClick() {
+          videoElementEl.src = 'http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4';
           video = true;
           updateVideo();
           videoSync.update();
