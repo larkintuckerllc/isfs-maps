@@ -4488,6 +4488,8 @@
         var regions = [];
         var markers = [];
         var video = false;
+        var videoSrc =
+          '/upload/larkintuckerllc-isfs-maps/ifas_research.mp4';
         var grid;
         var drawing = false;
         var wm;
@@ -4889,11 +4891,13 @@
         }
         function videoMessage() {
           return {
-            video: video
+            video: video,
+            videoSrc: videoSrc
           };
         }
         function videoReceive(data) {
           video = data.video;
+          videoSrc = data.videoSrc;
           updateVideo();
         }
         function updateVideo() {
@@ -4901,6 +4905,7 @@
             videoContainerEl.style.display = 'none';
             videoCoverEl.style.display = 'none';
           } else {
+            videoElementEl.src = videoSrc;
             videoCoverEl.style.display = 'block';
             videoContainerEl.style.display = 'block';
           }
@@ -5201,7 +5206,7 @@
           chartSync.idle();
         }
         function handleVideoClick() {
-          videoElementEl.src =
+          videoSrc =
             '/upload/larkintuckerllc-isfs-maps/ifas_research.mp4';
           video = true;
           updateVideo();
@@ -5210,7 +5215,7 @@
           videoObj.play();
         }
         function handleFisheriesVideoClick() {
-          videoElementEl.src =
+          videoSrc =
             '/upload/larkintuckerllc-isfs-maps/fisheries.mp4';
           video = true;
           updateVideo();
