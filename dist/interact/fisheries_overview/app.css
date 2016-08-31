@@ -1,0 +1,30 @@
+html, body {
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
+  background-color: rgb(255,255,255);
+  font-family: sans-serif;
+  -webkit-user-select: none;
+}
+body {
+  width: 500px;
+  padding: 20px;
+}
+.stories__story {
+  display:  flex;
+  margin-bottom: 20px;
+  align-items: flex-start;
+}
+.stories__story__thumbnail {
+  margin-right: 20px;
+  width: 100px;
+  height:100px;
+  flex-shrink: 0;
+}
+.stories__story__text {
+  margin-top: 10px;
+}
+.stories__story__text__name {
+  margin-bottom: 10px;
+  font-size: 1.5em;
+}

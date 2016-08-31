@@ -4793,6 +4793,7 @@
           .addEventListener('click', handleWeightObesityClick);
         document.getElementById('video')
           .addEventListener('click', handleVideoClick);
+        window.handleVideoClick = handleVideoClick; // ALLOW CALLING FROM IFRAME
         videoStopEl.addEventListener('click', handleVideoStopClick);
         videoObj = new thr0w.video.Video(grid, videoElementEl);
         videoObj.addEventListener('ended', handleVideoStopClick);
@@ -5132,6 +5133,11 @@
           updateChart();
           chartSync.update();
           chartSync.idle();
+          wm.openWindow('fisheries_overview', windowX,
+            windowYBase + 1920 - 500 - 100,
+            500,
+            500, 'fisheries_overview/'
+          );
         }
         function handleDiseaseClick() {
           removeControlCovers();
