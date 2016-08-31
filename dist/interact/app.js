@@ -5210,7 +5210,8 @@
           videoObj.play();
         }
         function handleFisheriesVideoClick() {
-          videoElementEl.src = 'http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4';
+          videoElementEl.src =
+            '/upload/larkintuckerllc-isfs-maps/fisheries.mp4';
           video = true;
           updateVideo();
           videoSync.update();
