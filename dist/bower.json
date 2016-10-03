@@ -1,6 +1,6 @@
 {
   "name": "isfs-maps",
-  "version": "0.21.2",
+  "version": "0.22.0",
   "homepage": "https://github.com/larkintuckerllc/isfs-maps",
   "authors": [
     "John Tucker <john@larkintuckerllc.com>"
@@ -16,7 +16,7 @@
     "tests"
   ],
   "dependencies": {
-    "thr0w-leaflet": "^0.3.0",
+    "thr0w-leaflet": "^0.4.0",
     "thr0w-client": "^2.2.0",
     "thr0w-video": "^0.0.1",
     "thr0w-windows": "^0.1.2",

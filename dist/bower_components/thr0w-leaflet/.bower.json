@@ -1,7 +1,7 @@
 {
   "name": "thr0w-leaflet",
   "description": "The Thr0w Project is about building digital signage. This package creates interactive maps using the Leaflet library.",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "main": [
     "dist/thr0w-leaflet.css",
     "dist/thr0w-leaflet.min.js"
@@ -25,13 +25,13 @@
     "thr0w-client": "^2.1.0"
   },
   "homepage": "https://github.com/larkintuckerllc/thr0w-leaflet",
-  "_release": "0.3.0",
+  "_release": "0.4.0",
   "_resolution": {
     "type": "version",
-    "tag": "0.3.0",
-    "commit": "b0902fde5f48da821302b4fbdf99e965982a912a"
+    "tag": "0.4.0",
+    "commit": "0d3b9d8074d93c0e5f25925a752e7a6e28cabb7a"
   },
   "_source": "https://github.com/larkintuckerllc/thr0w-leaflet.git",
-  "_target": "^0.3.0",
+  "_target": "^0.4.0",
   "_originalSource": "thr0w-leaflet"
 }
